@@ -17,20 +17,3 @@
 ```npm run build```
 
 ```serve -s build```
-
-## docker
-Na raiz do projeto use o comando:
-
-```docker-compose build --no-cache```
-
-Em seguida:
-
-```docker-compose up -d```
-
-
-Para visualizar a aplicação web acesse http://localhost:3000/ .
-
-
-Quando quiser descer aplicação use:
-
-```docker-compose down```
