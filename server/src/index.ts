@@ -15,7 +15,7 @@ import morganBody from 'morgan-body';
 
 
 
-import { AppDataSource } from './configs/postgres';
+import { AppDataSource } from './database/postgres';
 
 
 //creating express app
