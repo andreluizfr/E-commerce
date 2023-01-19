@@ -11,6 +11,11 @@ export class UsersRepository implements IUsersRepository{
         return createdUser;
     };
 
+    async deleteUser(user: User){
+        const userRepository = AppDataSource.getRepository(User);
+        await userRepository.remove(user);
+    };
+
     async updateRefreshToken(email: string, newRefreshToken: string){
         const userRepository = AppDataSource.getRepository(User);
         const user = await userRepository.findOneBy({email: email});
@@ -36,13 +41,6 @@ export class UsersRepository implements IUsersRepository{
     async findByEmail(email: string){
         const userRepository = AppDataSource.getRepository(User)
         const user = await userRepository.findOneBy({email: email});
-
-        return user;
-    }
-
-    async findByEmailAndPassword(email: string, password: string){
-        const userRepository = AppDataSource.getRepository(User);
-        const user = await userRepository.findOneBy({email: email, password: password});
 
         return user;
     }

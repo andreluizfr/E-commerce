@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
+import { appendFile } from 'fs';
 
 export interface IjwtPayload {
     email: string
@@ -18,12 +19,11 @@ export function createAccessToken (email: string) {
 export function createRefreshToken (email: string) {
 
     const refreshToken = jwt.sign({ email: email }, process.env.JWT_SECRET || 'ssshhhhhhh', {
-        expiresIn: process.env.JWT_REFRESH_TOKEN_EXP || "604800000" // expires in one week
+        expiresIn: process.env.JWT_REFRESH_TOKEN_EXP || "604800000"  // expires in one week
     });
 
     return refreshToken;
 }
-
 
 export function authentication (req : Request, res: Response, next: NextFunction) {
 

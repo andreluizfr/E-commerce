@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { VerifyEmailService } from '../../services/UsersServices/verifyEmailService';
+import { SignupService } from '../../services/Users/signupService';
 import { UsersRepository } from "../../repositories/Users/UsersRepository";
 
 const usersRepository = new UsersRepository();
-const verifyEmailService = new VerifyEmailService(usersRepository);
+const signupService = new SignupService(usersRepository);
 
 //receive a request, calls the use-case, then send back a response
 export default new class SignupController{
@@ -11,15 +11,14 @@ export default new class SignupController{
 
     async handle(req: Request, res: Response): Promise<Response>{
         
-        const { verificationEmailCode } = req.body;
+        const { firstName, lastName, email, birthDate, cpf, password } = req.body;
 
         try{
 
-            const { verifiedUser } = await verifyEmailService.execute({verificationEmailCode});
+            await signupService.execute({firstName, lastName, email, birthDate, cpf, password});
 
             return res.status(201).send({
-                message: "Email verification succesfull.",
-                verified: true
+                message: "Signup succesfull, waiting for e-mail confirmation."
             });
 
         } catch (err) {

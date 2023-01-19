@@ -25,7 +25,7 @@ export class User{
     @Column()
     public password!: string;
 
-    @Column(({ nullable: true }))
+    @Column({ nullable: true })
     public photoURL!: string;
 
     @Column()
@@ -37,7 +37,7 @@ export class User{
     @Column()
     public admin!: boolean;
 
-    @Column(({ nullable: true }))
+    @Column({ nullable: true })
     public refreshToken!: string;
 
     @CreateDateColumn()

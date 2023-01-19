@@ -1,5 +1,4 @@
 import { IUsersRepository } from "../../repositories/Users/IUsersRepository";
-import { User }  from "../../entities/User";
 
 interface IVerifyEmailRequestDTO{
     verificationEmailCode: string;

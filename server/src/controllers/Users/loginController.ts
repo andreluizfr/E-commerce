@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { LoginService } from '../../services/UsersServices/loginService';
+import { LoginService } from '../../services/Users/loginService';
 import { UsersRepository } from "../../repositories/Users/UsersRepository";
 
 const usersRepository = new UsersRepository();
@@ -19,13 +19,22 @@ export default new class LoginController{
 
             res.cookie("refreshToken", refreshToken, {
                 httpOnly: true,
-                expires: new Date(Date.now() + (process.env.JWT_REFRESH_TOKEN_EXP || "604800000") )
+                expires: new Date(Date.now() + Number(process.env.JWT_REFRESH_TOKEN_EXP || "604800000") )
             });
 
+            const publicUser = {
+                firstName: user.firstName,
+                lastName: user.lastName,
+                email: user.email,
+                birthDate: user.birthDate,
+                cpf: user.cpf,
+                photoURL: user.photoURL,
+                emailVerified: user.emailVerified,
+            }
             return res.status(201).send({
                 message: "Login succesfull.",
                 accessToken: accessToken,
-                user: user
+                user: publicUser
             });
 
         } catch (err) {

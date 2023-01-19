@@ -22,8 +22,13 @@ export class SignupService{
         const user = new User(data, verificationEmailCode, false);
         const createdUser = await this.usersRepository.createUser(user);
         
-        if(createdUser) await sendVerificationLinkToEmail(createdUser.email, verificationEmailCode);
-        else throw new Error("Couldn't create user!");
+        try{
+            await sendVerificationLinkToEmail(createdUser.email, verificationEmailCode);
+        } catch (err) {
+            const error = err as Error;
+            await this.usersRepository.deleteUser(createdUser);
+            throw new Error('Error, e-mail verification not working. ' + error.message);
+        }
 
     }
     
