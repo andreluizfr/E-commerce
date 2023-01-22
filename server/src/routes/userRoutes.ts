@@ -1,9 +1,13 @@
 import { Router } from 'express';
 import { Request, Response } from 'express';
 
-import loginController from '../controllers/Users/loginController';
-import signupController from '../controllers/Users/signupController';
-import verifyEmailController from '../controllers/Users/verifyEmailController';
+import loginController from '../controllers/Users/LoginController';
+import signupController from '../controllers/Users/SignupController';
+import verifyEmailController from '../controllers/Users/VerifyEmailController';
+import refreshTokenController from '../controllers/Users/RefreshTokenController';
+import getUserController from '../controllers/Users/GetUserController';
+
+import { authentication } from '../auth';
 
 //import { authentication } from '../utils/auth';
 
@@ -21,11 +25,12 @@ userRouter.post('/verifyEmail', (request: Request, response: Response)=>{
     return verifyEmailController.handle(request, response);
 });
 
-
-/*
-userRouter.get('/getPrivateInfo', authentication, (request: Request, response: Response)=>{
-    return getPrivateUserInfoController.handle(request, response);
+userRouter.get('/refreshToken', (request: Request, response: Response)=>{
+    return refreshTokenController.handle(request, response);
 });
-*/
+
+userRouter.get('/getUser', authentication, (request: Request, response: Response)=>{
+    return getUserController.handle(request, response);
+});
 
 export { userRouter };

@@ -5,7 +5,7 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 const corsOptions = {
-	origin: '*',
+	origin: process.env.BASE_URL_WEB_APP,
 	credentials: true 
 };
 

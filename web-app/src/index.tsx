@@ -1,5 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+
+import { QueryClientProvider } from 'react-query';
+import { queryClient } from './libs/reactQuery';
+
 import App from 'App';
 
 const root = ReactDOM.createRoot(
@@ -7,9 +11,11 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-	<React.StrictMode>
-		<App />
-	</React.StrictMode>
+	<QueryClientProvider client={queryClient}>
+		<React.StrictMode>
+			<App />
+		</React.StrictMode>
+	</QueryClientProvider>
 );
 
 /*

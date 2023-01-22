@@ -1,26 +1,21 @@
 import { Request, Response } from 'express';
-import { LoginService } from '../../services/Users/LoginService';
+import { GetUserService } from '../../services/Users/GetUserService';
 import { UsersRepository } from "../../repositories/Users/UsersRepository";
 
 const usersRepository = new UsersRepository();
-const loginService = new LoginService(usersRepository);
+const getUserService = new GetUserService(usersRepository);
 
 //receive a request, calls the use-case, then send back a response
-export default new class LoginController{
+export default new class GetUserController{
     constructor (){}
 
     async handle(req: Request, res: Response): Promise<Response>{
         
-        const { email, password } = req.body;
+        const { email } = req.body;
 
         try{
 
-            const { accessToken, refreshToken, user }  = await loginService.execute({email, password});
-
-            res.cookie("refreshToken", refreshToken, {
-                httpOnly: true,
-                expires: new Date(Date.now() + Number(process.env.JWT_REFRESH_TOKEN_EXP || "604800000") )
-            });
+            const { user }  = await getUserService.execute(email);
 
             const publicUser = {
                 firstName: user.firstName,
@@ -31,9 +26,10 @@ export default new class LoginController{
                 photoURL: user.photoURL,
                 emailVerified: user.emailVerified,
             }
+
             return res.status(201).send({
-                message: "Login succesfull.",
-                accessToken: accessToken,
+                authenticated: true,
+                message: "User fetching succesfull.",
                 user: publicUser
             });
 
@@ -41,8 +37,8 @@ export default new class LoginController{
             const error = err as Error;
             
             return res.status(202).send({
+                authenticated: true,
                 message: error.message || 'Unexpected error.',
-                accessToken: null,
                 user: null
             });
 

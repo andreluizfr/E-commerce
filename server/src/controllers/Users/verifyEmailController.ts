@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { VerifyEmailService } from '../../services/Users/verifyEmailService';
+import { VerifyEmailService } from '../../services/Users/VerifyEmailService';
 import { UsersRepository } from "../../repositories/Users/UsersRepository";
 
 const usersRepository = new UsersRepository();
