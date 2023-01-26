@@ -95,3 +95,88 @@
     justify-content: space-between;
     align-items: flex-start;
 }
+
+
+
+
+
+@mixin icon-smaller{
+    width: .8rem;
+    height: .8rem;
+}
+
+@mixin icon-small{
+    width: 1rem;
+    height: 1rem;
+}
+
+@mixin icon-normal{
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+@mixin icon-medium{
+    width: 1.4rem;
+    height: 1.4rem;
+}
+
+@mixin icon-large{
+    width: 1.8rem;
+    height: 1.8rem;
+}
+
+@mixin icon-xl{
+    width: 3rem;
+    height: 3rem;
+}
+
+@mixin icon-xxl{
+    width: 5rem;
+    height: 5rem;
+}
+
+@mixin icon-xxxl{
+    width: 8rem;
+    height: 8rem;
+}
+
+
+@mixin image-smaller{
+    width: 3rem;
+    height: auto;
+}
+
+@mixin image-small{
+    width: 5rem;
+    height: auto;
+}
+
+@mixin image-normal{
+    width: 10rem;
+    height: auto;
+}
+
+@mixin image-medium{
+    width: 15rem;
+    height: auto;
+}
+
+@mixin image-large{
+    width: 20rem;
+    height: auto;
+}
+
+@mixin image-xl{
+    width: 30rem;
+    height: auto;
+}
+
+@mixin image-xxl{
+    width: 40rem;
+    height: auto;
+}
+
+@mixin image-xxxl{
+    width: 50rem;
+    height: auto;
+}

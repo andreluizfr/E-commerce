@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap");
 * {
   margin: 0;
   box-sizing: border-box;
@@ -9,6 +10,7 @@ code {
 
 body {
   margin: 0;
-  width: 100vw;
-  height: 100vh;
+  min-width: 372px;
+  background-color: white;
+  font-family: "Raleway", sans-serif;
 }/*# sourceMappingURL=styles.css.map */

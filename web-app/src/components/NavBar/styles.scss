@@ -1,0 +1,121 @@
+@import '../../assets/css/variables';
+@import '../../assets/css/_mixins';
+
+.NavBar{
+    @include flex-column-center-center;
+
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    width: 100%;
+    
+    background-color: $white;
+
+    &-banner{
+        @include flex-row-center-center;
+        padding: .5rem;
+
+        &-sentence{
+            font-size: $font-size-normal;
+
+            .Coloured-word{
+                color: $red;
+            }
+        }
+
+        .Van-Icon{
+            @include icon-large;
+            margin-left: .5rem;
+        }
+    }
+
+    &-logo{
+        @include image-small;
+        margin: .5rem;
+    }
+
+    .NavBar-container-background{
+        @include flex-row-center-center;
+        width: 100%;
+        background-color: $black;
+
+        .NavBar-container{
+            @include flex-row-center-center;
+            width: 80%;
+            padding: 1rem;
+    
+            .NavBar-logo{
+                @include image-small;
+                background-color: $white;
+                padding: .2rem;
+                transition: .1s;
+            }
+    
+            .NavBar-logo:hover{
+                opacity: .7;
+                cursor: pointer;
+            }
+    
+            .NavBar-searchBar{
+                @include flex-row-center-center;
+                flex: 2;
+                margin: 0 2rem;
+    
+                .SearchBar-input{
+                    flex: 1;
+                    margin-right: .5rem;
+    
+                    border: none;
+                    outline: none;
+                    border-radius: .5rem;
+    
+                    padding: .5rem;
+    
+                    color: $gray;
+                }
+    
+                .SearchBar-icon{
+                    @include icon-normal;
+                    fill: $white;
+                    min-width: 1.2rem;
+                    transition: .1s;
+                }
+                .SearchBar-icon:hover{
+                    opacity: .7;
+                    cursor: pointer;
+                }
+            }
+    
+            .NavBar-user-toolbar{
+                @include flex-row-center-center;
+                gap: .5rem;
+                margin: .5rem;
+    
+                .User-icon{
+                    @include icon-medium;
+                    filter: invert(100%);
+                    transition: .1s;
+                }
+                .User-icon:hover{
+                    opacity: .7;
+                    cursor: pointer;
+                }
+    
+                .ShoppingCart-icon{
+                    @include icon-medium;
+                    filter: invert(100%);
+                    transition: .1s;
+                }
+                .ShoppingCart-icon:hover{
+                    opacity: .7;
+                    cursor: pointer;
+                }
+    
+            }
+    
+        }
+
+    }
+    
+
+}
