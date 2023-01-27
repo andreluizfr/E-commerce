@@ -33,13 +33,13 @@
     }
 
     input:focus{
-        outline: 1px solid $blue;
-        border: 1px solid $blue;
+        outline: 1px solid $black;
+        border: 1px solid $black;
     }
     
     input:focus + span{
         font-size: $font-size-smaller;
-        color: $blue;
+        color: $black;
         top: 0.2rem;
     }
 
@@ -54,18 +54,18 @@
         top: 0.2rem;
     }
 
-    input:invalid[wasFocused="true"]{
+    input:invalid[wasBlured="true"]{
         outline: 1px solid $red;
         border: 1px solid $red;
     }
     
-    input:invalid[wasFocused="true"] + span{
+    input:invalid[wasBlured="true"] + span{
         font-size: $font-size-smaller;
         color: $red;
         top: 0.2rem;
     }
 
-    input:invalid[wasFocused="true"] ~ p{
+    input:invalid[wasBlured="true"] ~ p{
         display: block;
     }
 

@@ -1,0 +1,93 @@
+@import '../../assets/css/variables';
+@import '../../assets/css/_mixins';
+
+.Footer{
+    @include flex-row-space-around-start;
+    flex-wrap: wrap;
+    width: 100%;
+
+    background-color: $almost-black;
+    color: $white;
+
+    .FirstSecondColumn{
+        @include flex-column-center-center;
+        gap: 1rem;
+        margin: 1rem 0;
+
+        .Column-title{
+            font-size: $font-size-normal;
+            font-weight: 500;
+        }
+
+        &-container{
+            @include flex-column-center-center;
+            gap: .2rem;
+
+            span{
+                font-size: $font-size-pp;
+                cursor: help;
+            }
+        }
+    }
+
+    .ThirdColumn{
+        @include flex-column-center-center;
+        gap: 1rem;
+        margin: 1rem 0;
+
+        .Column-title{
+            font-size: $font-size-normal;
+            font-weight: 500;
+        }
+
+        &-container{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: .5rem;
+
+            img{
+                @include image-smaller;
+                height: 2rem;
+                object-fit: contain;
+                border-radius: .6rem;
+                background-color: $light-gray;
+                cursor: help;
+            }
+            img:nth-child(5){
+                object-fit: cover;
+            }
+            img:nth-child(6){
+                object-fit: cover;
+            }
+        }
+    }
+
+    .FourthColumn{
+        @include flex-column-center-center;
+        gap: 1rem;
+        margin: 1rem 0;
+
+        .Column-title{
+            font-size: $font-size-normal;
+            font-weight: 500;
+        }
+
+        &-container{
+            @include flex-row-center-center;
+            gap: .8rem;
+            
+            .FourthColumn-icon{
+                @include icon-large;
+                fill: $white;
+                cursor: help;
+            }
+        }
+        
+    }
+
+    @include mq-small{
+        @include flex-column-space-around-center;
+    }
+
+}
+

@@ -4,11 +4,10 @@ import { useRef, useState } from 'react';
 
 import Login from 'queries/Login';
 
+import StyledInput from 'components/StyledInput';
+
 
 export default function LoginPage () : JSX.Element {
-
-    const emailRef = useRef <HTMLInputElement | null>(null);
-    const passwordRef = useRef <HTMLInputElement | null>(null);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -27,10 +26,32 @@ export default function LoginPage () : JSX.Element {
 
     return(
         <div className='LoginPage'>
+
             <h1>login</h1>
-            <input placeholder="email" ref={emailRef} onChange={saveEmail}/>
-            <input placeholder="password" ref={passwordRef} onChange={savePassword}/>
-            <button className='button' onClick={()=>{loginQuery.refetch()}}>logar</button>
+
+            <StyledInput 
+                title="email" 
+                warning="e-mail é necessário para realizar login." 
+                onChange={saveEmail} 
+                type="email"
+                pattern=""
+                required
+            />
+            <StyledInput 
+                title="senha" 
+                warning="e-mail é necessário para realizar login." 
+                onChange={savePassword}  
+                type="password"
+                pattern=""
+                required
+            />
+            <button 
+                className='button' 
+                onClick={()=>{loginQuery.refetch()}}
+            >
+                logar
+            </button>
+
             {loginQuery.isFetching?
                 <>fetching</>
                 : 
@@ -42,7 +63,10 @@ export default function LoginPage () : JSX.Element {
                 <></>
             }
             {loginQuery.data?
-                <>{JSON.stringify(loginQuery.data)}</>
+                <>
+                    <div>{JSON.stringify(loginQuery.data)}</div>
+                    <a href="http://localhost:3000/">Voltar para página inicial</a>
+                </>
                 :
                 <></>
             }

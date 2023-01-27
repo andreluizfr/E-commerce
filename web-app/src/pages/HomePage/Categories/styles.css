@@ -1,23 +1,24 @@
-.HomePage-categories-container {
+.HomePage-categories {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
+  margin-top: 1rem;
   background-color: rgb(255, 255, 255);
 }
-.HomePage-categories-container .Container-title {
+.HomePage-categories .Container-title {
   font-size: 1.4rem;
   font-weight: bold;
 }
-.HomePage-categories-container .Categories-cards-wrapper {
+.HomePage-categories .Categories-cards-wrapper {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr));
   width: 80%;
   margin: 1rem 4rem 4rem 4rem;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
-.HomePage-categories-container .Categories-cards-wrapper .Categorie-card {
+.HomePage-categories .Categories-cards-wrapper .Categorie-card {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -28,16 +29,17 @@
   border: 1px solid rgba(0, 0, 0, 0.24);
   transition: 100ms;
 }
-.HomePage-categories-container .Categories-cards-wrapper .Categorie-card .Card-image {
+.HomePage-categories .Categories-cards-wrapper .Categorie-card .Card-image {
   width: 70%;
   height: auto;
   border-radius: 50%;
 }
-.HomePage-categories-container .Categories-cards-wrapper .Categorie-card .Card-title {
+.HomePage-categories .Categories-cards-wrapper .Categorie-card .Card-title {
   font-size: 0.7rem;
   font-weight: 500;
+  text-align: center;
 }
-.HomePage-categories-container .Categories-cards-wrapper .Categorie-card:hover {
+.HomePage-categories .Categories-cards-wrapper .Categorie-card:hover {
   background-color: #E3E3E3;
   cursor: pointer;
 }/*# sourceMappingURL=styles.css.map */

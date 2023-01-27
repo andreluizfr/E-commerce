@@ -1,14 +1,12 @@
 import './styles.css';
 
-import { Link } from 'react-router-dom';
-
 import NavBar from 'components/NavBar';
-import CategoriesContainer from './CategoriesContainer';
-
-import promocaoCarnaval from 'assets/images/banners/promocao_carnaval.png';
-import promocaoVerao from 'assets/images/banners/promocao_verao.png';
-import promocaoPapelaria from 'assets/images/banners/promocao_papelaria.png';
-
+import Carousel from './Carousel';
+import Categories from './Categories';
+import Promotions from './Promotions';
+import Catalogs from './Catalogs';
+import SocialMedia from './SocialMedia';
+import Footer from 'components/Footer';
 
 export default function HomePage () : JSX.Element {
 
@@ -16,100 +14,17 @@ export default function HomePage () : JSX.Element {
         <>
             <NavBar/>
             <main className='HomePage'>
+                <Carousel/>
 
-                <Link to='/login'>login page</Link>
-                <br></br>
-                <Link to='/cadastro'>signup page</Link>
+                <Categories/>
 
-                <section className='HomePage-carousel'>
+                <Promotions/>
 
-                </section>
+                <Catalogs/>
 
-                <CategoriesContainer/>
-
-                <section className='HomePage-promotions'>
-
-                    <div className='HomePage-promotions-banners'>
-                        <img 
-                            className='Promotion-image'
-                            alt='banner de promoção de carnaval'
-                            src={promocaoCarnaval}
-                        />
-                        <img 
-                            className='Promotion-image'
-                            alt='banner de promoção de verão'
-                            src={promocaoVerao}
-                        />
-                        <img 
-                            className='Promotion-image'
-                            alt='banner de promoção de produtos de papelaria'
-                            src={promocaoPapelaria}
-                        />
-                    </div>
-
-                </section>
-
-                {
-                    <section className='Catalogs'>
-                    </section>
-                }
-
-                <section className='HomePage-socialMedia'>
-
-                </section>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
-                <div>abobrinha</div>
+                <SocialMedia/>
             </main>
+            <Footer/>
         </>
     )
 

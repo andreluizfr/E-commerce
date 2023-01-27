@@ -28,6 +28,12 @@
     align-items: center;
 }
 
+@mixin flex-row-space-around-start{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
 @mixin flex-row-space-between-center{
     display: flex;
     justify-content: space-between;
@@ -141,6 +147,9 @@
 }
 
 
+
+
+
 @mixin image-smaller{
     width: 3rem;
     height: auto;
@@ -179,4 +188,10 @@
 @mixin image-xxxl{
     width: 50rem;
     height: auto;
+}
+
+@mixin mq-small{
+    @media only screen and (max-width: 720px) {
+        @content;
+    }
 }

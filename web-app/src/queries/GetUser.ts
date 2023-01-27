@@ -29,7 +29,7 @@ export default function GetUser () {
             if (data.authenticated && data.refresh){
 
                 await refreshToken();
-                window.location.reload();
+                return null;
 
             } else if (data.authenticated && !data.refresh){
 
@@ -44,7 +44,7 @@ export default function GetUser () {
             }
         }
 
-        console.log("No logged user found.");
+        console.log("No access token found.");
         return null;
 
     }, {
@@ -63,7 +63,10 @@ async function refreshToken () {
     const data = response.data as IrefreshTokenResponse;
     console.log(data.message);
 
-    if(data.refreshed && data.newAccessToken) localStorage.setItem("x-access-token", data.newAccessToken);
+    if(data.refreshed && data.newAccessToken) {
+        localStorage.setItem("x-access-token", data.newAccessToken);
+        window.location.reload();
+    }
     else localStorage.clear();
 
 }

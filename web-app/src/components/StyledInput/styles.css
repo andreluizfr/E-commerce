@@ -29,12 +29,12 @@
   color: rgb(255, 0, 0);
 }
 .Styled-input input:focus {
-  outline: 1px solid rgb(29, 155, 240);
-  border: 1px solid rgb(29, 155, 240);
+  outline: 1px solid rgb(0, 0, 0);
+  border: 1px solid rgb(0, 0, 0);
 }
 .Styled-input input:focus + span {
   font-size: 0.9rem;
-  color: rgb(29, 155, 240);
+  color: rgb(0, 0, 0);
   top: 0.2rem;
 }
 .Styled-input input:valid {
@@ -46,15 +46,15 @@
   color: rgb(0, 186, 124);
   top: 0.2rem;
 }
-.Styled-input input:invalid[wasFocused=true] {
+.Styled-input input:invalid[wasBlured=true] {
   outline: 1px solid rgb(255, 0, 0);
   border: 1px solid rgb(255, 0, 0);
 }
-.Styled-input input:invalid[wasFocused=true] + span {
+.Styled-input input:invalid[wasBlured=true] + span {
   font-size: 0.9rem;
   color: rgb(255, 0, 0);
   top: 0.2rem;
 }
-.Styled-input input:invalid[wasFocused=true] ~ p {
+.Styled-input input:invalid[wasBlured=true] ~ p {
   display: block;
 }/*# sourceMappingURL=styles.css.map */

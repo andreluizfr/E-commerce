@@ -1,0 +1,99 @@
+.Footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  background-color: #121517;
+  color: rgb(255, 255, 255);
+}
+.Footer .FirstSecondColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+.Footer .FirstSecondColumn .Column-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.Footer .FirstSecondColumn-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2rem;
+}
+.Footer .FirstSecondColumn-container span {
+  font-size: 0.7rem;
+  cursor: help;
+}
+.Footer .ThirdColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+.Footer .ThirdColumn .Column-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.Footer .ThirdColumn-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 0.5rem;
+}
+.Footer .ThirdColumn-container img {
+  width: 3rem;
+  height: auto;
+  height: 2rem;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border-radius: 0.6rem;
+  background-color: #E3E3E3;
+  cursor: help;
+}
+.Footer .ThirdColumn-container img:nth-child(5) {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.Footer .ThirdColumn-container img:nth-child(6) {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.Footer .FourthColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+.Footer .FourthColumn .Column-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.Footer .FourthColumn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+}
+.Footer .FourthColumn-container .FourthColumn-icon {
+  width: 1.8rem;
+  height: 1.8rem;
+  fill: rgb(255, 255, 255);
+  cursor: help;
+}
+@media only screen and (max-width: 720px) {
+  .Footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+}/*# sourceMappingURL=styles.css.map */

@@ -4,38 +4,4 @@
 .HomePage{
     @include flex-column-start-center;
     width: 100%;
-
-    &-carousel{
-
-    }
-
-    &-promotions{
-        @include flex-column-center-center;
-        width: 100%;
-        background-color: $lighter-gray;
-
-        &-banners{
-            @include flex-row-space-around-center;
-            width: 100%;
-            margin: 3% 0;
-
-            .Promotion-image{
-                width: 25%;
-                height: auto;
-                transition: .1s;
-            }
-
-            .Promotion-image:hover{
-                scale: 1.1;
-                opacity: .7;
-                cursor: pointer;
-            }
-            
-        }
-    }
-    
-    &-socialMedia{
-
-    }
-
 }

@@ -16,11 +16,11 @@ import Papelaria from 'assets/images/categories/papelaria.png';
 import BrinquedosInfantil from 'assets/images/categories/brinquedos_e_infantil.png';
 import JoiasRelogios from 'assets/images/categories/joias_e_relogios.png';
 
-export default function CategoriesContainer () : JSX.Element {
+export default function Categories () : JSX.Element {
 
     return(
 
-        <section className='HomePage-categories-container'>
+        <section className='HomePage-categories'>
 
             <div className='Container-title'>Categorias</div>
 

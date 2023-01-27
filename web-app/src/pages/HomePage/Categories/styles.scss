@@ -1,9 +1,10 @@
 @import '../../../assets/css/variables';
 @import '../../../assets/css/_mixins';
 
-.HomePage-categories-container{
+.HomePage-categories{
     @include flex-column-center-center;
     width: 100%;
+    margin-top: 1rem;
     background-color: $white;
 
     .Container-title{
@@ -36,6 +37,7 @@
             .Card-title{
                 font-size: $font-size-pp;
                 font-weight: 500;
+                text-align: center;
             }
         }
 

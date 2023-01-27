@@ -3,11 +3,12 @@ import './styles.css';
 import { useMediaQuery } from 'react-responsive';
 
 import logo from 'assets/images/logo.png';
+
 import { ReactComponent as SearchIcon } from 'assets/svg/search.svg';
 import van from 'assets/svg/van.png'; //trocar pra svg
-import user from 'assets/svg/user.png'; //trocar pra svg
 import shoppingCart from 'assets/svg/shoppingCart.png'; //trocar pra svg
 
+import UserDropdownMenu from 'components/UserDropdownMenu';
 
 
 export default function NavBar() : JSX.Element{
@@ -29,7 +30,7 @@ export default function NavBar() : JSX.Element{
                         src={van}
                     />
                 </div>
-                
+
                 <img 
                     className='NavBar-logo'
                     alt='logo da empresa' 
@@ -49,11 +50,7 @@ export default function NavBar() : JSX.Element{
                         </div>
                         
                         <div className='NavBar-user-toolbar'>
-                            <img 
-                                className='User-icon'
-                                alt='icone de usuário' 
-                                src={user}
-                            />
+                            <UserDropdownMenu/>
                             <img 
                                 className='ShoppingCart-icon'
                                 alt='icone de carrinho de compras' 
@@ -103,11 +100,7 @@ export default function NavBar() : JSX.Element{
                         
                         
                         <div className='NavBar-user-toolbar'>
-                            <img 
-                                className='User-icon'
-                                alt='icone de usuário' 
-                                src={user}
-                            />
+                            <UserDropdownMenu/>
                             <img 
                                 className='ShoppingCart-icon'
                                 alt='icone de carrinho de compras' 
