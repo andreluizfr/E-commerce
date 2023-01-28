@@ -31,18 +31,18 @@ export default function LoginPage () : JSX.Element {
 
             <StyledInput 
                 title="email" 
-                warning="e-mail é necessário para realizar login." 
+                warning="E-mail é necessário para realizar login." 
                 onChange={saveEmail} 
                 type="email"
-                pattern=""
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                 required
             />
             <StyledInput 
                 title="senha" 
-                warning="e-mail é necessário para realizar login." 
+                warning="A senha deve conter 8 ou mais caracteres e possuir pelo menos 1 número e 1 letra." 
                 onChange={savePassword}  
                 type="password"
-                pattern=""
+                pattern="(?=.*\d)(?=.*[a-z]).{8,}"
                 required
             />
             <button 
