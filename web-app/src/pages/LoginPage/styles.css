@@ -1,1 +1,61 @@
-/*# sourceMappingURL=styles.css.map */
+.InfoLogin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30rem;
+  max-height: 40rem;
+  margin: 1rem 5rem;
+  padding: 2rem;
+  background-color: #E3E3E3;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+@media only screen and (max-width: 720px) {
+  .InfoLogin {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
+}
+
+.InfoLogin h1 {
+  margin-bottom: 2rem;
+}
+@media only screen and (max-width: 720px) {
+  .InfoLogin h1 {
+    font-size: 3rem;
+  }
+}
+
+.InfoLogin input {
+  border-radius: 5px;
+}
+
+.InfoLogin button {
+  background-color: #121517;
+  color: #F3F3F3;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  cursor: pointer;
+  width: 60%;
+  padding: 0.7rem 0;
+  border-radius: 5px;
+  margin: 12rem 0 1rem 0;
+  font-size: 1.2rem;
+}
+@media only screen and (max-width: 720px) {
+  .InfoLogin button {
+    width: 50%;
+    margin: 25% 0 1rem 0;
+  }
+}
+
+.LoginBG {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  background-color: white;
+  width: 100%;
+}/*# sourceMappingURL=styles.css.map */

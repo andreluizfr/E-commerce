@@ -6,6 +6,10 @@ import Login from 'queries/Login';
 
 import StyledInput from 'components/StyledInput';
 
+import NavBar from 'components/NavBar';
+
+import Footer from 'components/Footer';
+
 
 export default function LoginPage () : JSX.Element {
 
@@ -25,33 +29,38 @@ export default function LoginPage () : JSX.Element {
     }
 
     return(
-        <div className='LoginPage'>
+        <>
 
-            <h1>login</h1>
+            <NavBar/>
 
-            <StyledInput 
-                title="email" 
-                warning="E-mail é necessário para realizar login." 
-                onChange={saveEmail} 
-                type="email"
-                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                required
-            />
-            <StyledInput 
-                title="senha" 
-                warning="A senha deve conter 8 ou mais caracteres e possuir pelo menos 1 número e 1 letra." 
-                onChange={savePassword}  
-                type="password"
-                pattern="(?=.*\d)(?=.*[a-z]).{8,}"
-                required
-            />
-            <button 
-                className='button' 
-                onClick={()=>{loginQuery.refetch()}}
-            >
-                logar
-            </button>
-
+            <div className='LoginBG'>
+                <div className='InfoLogin'>
+                    <h1>LOGIN</h1>
+            
+                    <StyledInput 
+                        title="email" 
+                        warning="E-mail é necessário para realizar login." 
+                        onChange={saveEmail} 
+                        type="email"
+                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                        required
+                    />
+                    <StyledInput 
+                        title="senha" 
+                        warning="A senha deve conter 8 ou mais caracteres e possuir pelo menos 1 número e 1 letra." 
+                        onChange={savePassword}  
+                        type="password"
+                        pattern="(?=.*\d)(?=.*[a-z]).{8,}"
+                        required
+                    />
+                    <button 
+                        className='button' 
+                        onClick={()=>{loginQuery.refetch()}}
+                    >
+                        Logar
+                    </button>
+                </div>
+            </div>
             {loginQuery.isFetching?
                 <>fetching</>
                 : 
@@ -70,7 +79,9 @@ export default function LoginPage () : JSX.Element {
                 :
                 <></>
             }
-        </div>
+
+            <Footer/>
+        </>    
     )
 
 }
