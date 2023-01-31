@@ -1,1 +1,19 @@
-/*# sourceMappingURL=styles.css.map */
+.LoadingPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(255, 255, 255);
+}
+.LoadingPage .Logo {
+  position: absolute;
+  width: 5rem;
+  height: 5rem;
+  z-index: 1;
+}
+.LoadingPage .Loader {
+  position: absolute;
+  z-index: 2;
+}/*# sourceMappingURL=styles.css.map */

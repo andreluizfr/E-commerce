@@ -1,15 +1,14 @@
 import './styles.css';
 
-import { useRef, useState } from 'react';
-
-import Login from 'queries/Login';
-
 import StyledInput from 'components/StyledInput';
-
 import NavBar from 'components/NavBar';
-
 import Footer from 'components/Footer';
 
+import HashLoader from "react-spinners/HashLoader";
+//import BarLoader from "react-spinners/BarLoader";
+
+import Login from 'queries/Login';
+import { useState, useEffect } from 'react';
 
 export default function LoginPage () : JSX.Element {
 
@@ -27,6 +26,16 @@ export default function LoginPage () : JSX.Element {
         const value = (event.target as HTMLInputElement).value;
         setPassword(value);
     }
+
+    function showResponse(){
+        const el = document.getElementsByClassName("Response-message")[0];
+        el.setAttribute("visible", "true");
+    }
+
+    useEffect(()=>{
+        const el = document.getElementsByClassName("Response-message")[0];
+        el.setAttribute("visible", "false");
+    }, [])
 
     return(
         <div className='LoginPage'>
@@ -56,32 +65,34 @@ export default function LoginPage () : JSX.Element {
                     <div className='Login-button'>
                         <button 
                             className='button' 
-                            onClick={()=>{loginQuery.refetch()}}
+                            onClick={()=>{loginQuery.refetch(); showResponse();}}
                         >
                             Logar
                         </button>
                     </div>
+
+                    <div className='Response-message'>
+                        {loginQuery.isFetching?
+                            <HashLoader
+                                color="black"
+                                size={30}
+                                aria-label="Loading Spinner"
+                                data-testid="loader"
+                            />
+                            : 
+                            loginQuery.isError?
+                                (loginQuery.error as Error).message
+                                : 
+                                loginQuery.data?
+                                    loginQuery.data.message
+                                    :
+                                    <></>
+                            
+                        }
+                    </div>
+                    
                 </div>
             </div>
-            {loginQuery.isFetching?
-                <>fetching</>
-                : 
-                <></>
-            }
-            {loginQuery.isError?
-                <>{JSON.stringify(loginQuery.error)}</>
-                : 
-                <></>
-            }
-            {loginQuery.data?
-                <>
-                    <div>{JSON.stringify(loginQuery.data)}</div>
-                    <a href="http://localhost:3000/">Voltar para página inicial</a>
-                </>
-                :
-                <></>
-            }
-
             <Footer/>
         </div>    
     )

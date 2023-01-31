@@ -13,16 +13,19 @@ export default function Promotions () :JSX.Element {
                     className='Promotion-image'
                     alt='banner de promoção de carnaval'
                     src={promocaoCarnaval}
+                    loading="lazy"
                 />
                 <img 
                     className='Promotion-image'
                     alt='banner de promoção de verão'
                     src={promocaoVerao}
+                    loading="lazy"
                 />
                 <img 
                     className='Promotion-image'
                     alt='banner de promoção de produtos de papelaria'
                     src={promocaoPapelaria}
+                    loading="lazy"
                 />
             </div>
 

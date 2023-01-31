@@ -2,9 +2,8 @@ import './styles.css';
 
 import eyeOpen from 'assets/svg/eye-open.png'; //trocar pra svg
 import eyeClosed from 'assets/svg/eye-closed.png'; //trocar pra svg
-import check from 'assets/svg/check.png'; //trocar pra svg
 import { ReactComponent as Check } from 'assets/svg/check.svg';
-import check2 from 'assets/svg/check2.png'; //trocar pra svg
+//import check2 from 'assets/svg/check2.png'; //trocar pra svg
 
 import { InputHTMLAttributes, useEffect, useRef } from "react";
 

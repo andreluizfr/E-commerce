@@ -11,7 +11,8 @@
         @include flex-column-center-center;
         width: 100%;
     
-        background-color: white;
+        background: radial-gradient(ellipse at right bottom, #EEB1BF 5%, #d42dab 25%, #4d1d63 50%, #030243 100%);
+        //background-color: $light-gray;
     }
     
     .InfoLogin{
@@ -21,19 +22,23 @@
         max-height: 30rem;
         margin: 2rem;
         padding: 2rem;
-        border-radius: 5px;
-    
-        background-color: $light-gray;
+        border: 1px solid $thinner-black;
+        border-radius: .5rem;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     
+        background-color: $white;
+        //backdrop-filter: blur(10px);
+        
         font-family: 'David Libre', serif;
     
         @include mq-small{
             width: 100%;
             max-height: 100%;
             margin: 0;
+            border-radius: 0;
     
             background-color: $white;
+            box-shadow: none;
         }
      
     }
@@ -45,7 +50,7 @@
         font-family: 'Raleway', sans-serif;
         font-weight: 500;
     }
-     
+
     .InfoLogin .Login-button{
         flex: 1;
         @include flex-column-end-center;
@@ -62,19 +67,36 @@
         padding: 0.7rem 0;
         border-radius: 5px;
     
-        background-color: $almost-black;
-        color: $lighter-gray;
+        background-color: $black;
+        color: $white;
         filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
        
         font-size: $font-size-normal;
         font-family: 'David Libre', serif;
-    
+        
+        transition: 200ms;
         cursor: pointer;
     
         @include mq-small{
             width: 50%;
             margin-top: 2rem;
         }
+    }
+    .InfoLogin button:hover{
+        background-color: $white;
+        color: $black;
+        scale: (0.9);
+    }
+
+    .InfoLogin .Response-message{
+        @include flex-column-center-center;
+        margin-top: 1rem;
+    }
+    .InfoLogin .Response-message[visible="false"]{
+        visibility: hidden;
+    }
+    .InfoLogin .Response-message[visible="true"]{
+        visibility: visible;
     }
     
     .Footer{

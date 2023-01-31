@@ -1,0 +1,22 @@
+@import '../../assets/css/variables';
+@import '../../assets/css/_mixins';
+
+.LoadingPage{
+    @include flex-column-center-center;
+    height: 100vh;
+    width: 100vw;
+
+    background-color: $white;
+
+    .Logo{
+        position: absolute;
+        //@include image-small;
+        @include icon-xxl;
+        z-index: 1;
+    }
+
+    .Loader{
+        position: absolute;
+        z-index: 2;
+    }
+}

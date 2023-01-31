@@ -31,6 +31,7 @@ export default function Categories () : JSX.Element {
                         className='Card-image'
                         alt='uma roupa masculina'
                         src={RoupasMasculinas}
+                        loading="lazy"
                     />
                     <span className='Card-title'>Roupas masculinas</span>
                 </article>
@@ -40,6 +41,7 @@ export default function Categories () : JSX.Element {
                         className='Card-image'
                         alt='uma roupa feminina'
                         src={RoupasFemininas}
+                        loading="lazy"
                     />
                     <span className='Card-title'>Roupas femininas</span>
                 </article>
@@ -49,6 +51,7 @@ export default function Categories () : JSX.Element {
                         className='Card-image'
                         alt='um celular'
                         src={Telefonia}
+                        loading="lazy"
                     />
                     <span className='Card-title'>Telefonia</span>
                 </article>
@@ -58,6 +61,7 @@ export default function Categories () : JSX.Element {
                         className='Card-image'
                         alt='um computador'
                         src={Computadores}
+                        loading="lazy"
                     />
                     <span className='Card-title'>Computadores</span>
                 </article>
@@ -67,6 +71,7 @@ export default function Categories () : JSX.Element {
                         className='Card-image'
                         alt='um aparelho eletrônico'
                         src={Eletronicos}
+                        loading="lazy"
                     />
                     <span className='Card-title'>Eletrônicos</span>
                 </article>
@@ -76,6 +81,7 @@ export default function Categories () : JSX.Element {
                         className='Card-image'
                         alt='um utensílio doméstico'
                         src={SaudeBeleza}
+                        loading="lazy"
                     />
                     <span className='Card-title'>Casa e utensílios</span>
                 </article>
@@ -85,6 +91,7 @@ export default function Categories () : JSX.Element {
                         className='Card-image'
                         alt='imagem de almofada e edredom'
                         src={SaudeBeleza}
+                        loading="lazy"
                     />
                     <span className='Card-title'>Casa e decoração</span>
                 </article>
@@ -94,6 +101,7 @@ export default function Categories () : JSX.Element {
                         className='Card-image'
                         alt='um sapato'
                         src={SaudeBeleza}
+                        loading="lazy"
                     />
                     <span className='Card-title'>Bolsas e calçados</span>
                 </article>
@@ -103,6 +111,7 @@ export default function Categories () : JSX.Element {
                         className='Card-image'
                         alt='uma jóia'
                         src={JoiasRelogios}
+                        loading="lazy"
                     />
                     <span className='Card-title'>Jóias e relógios</span>
                 </article>
@@ -112,6 +121,7 @@ export default function Categories () : JSX.Element {
                         className='Card-image'
                         alt='produto de beleza'
                         src={SaudeBeleza}
+                        loading="lazy"
                     />
                     <span className='Card-title'>Saúde e beleza</span>
                 </article>
@@ -121,6 +131,7 @@ export default function Categories () : JSX.Element {
                         className='Card-image'
                         alt='brinquedo para cachorro'
                         src={Pets}
+                        loading="lazy"
                     />
                     <span className='Card-title'>Pets</span>
                 </article>
@@ -130,6 +141,7 @@ export default function Categories () : JSX.Element {
                         className='Card-image'
                         alt='bonequinhos de brinquedo'
                         src={BrinquedosInfantil}
+                        loading="lazy"
                     />
                     <span className='Card-title'>Brinquedos e infantil</span>
                 </article>
@@ -139,6 +151,7 @@ export default function Categories () : JSX.Element {
                         className='Card-image'
                         alt='roupa para bebê'
                         src={Bebes}
+                        loading="lazy"
                     />
                     <span className='Card-title'>Bebês</span>
                 </article>
@@ -148,6 +161,7 @@ export default function Categories () : JSX.Element {
                         className='Card-image'
                         alt='bola de basquetebol'
                         src={Esportes}
+                        loading="lazy"
                     />
                     <span className='Card-title'>Esportes</span>
                 </article>
@@ -157,6 +171,7 @@ export default function Categories () : JSX.Element {
                         className='Card-image'
                         alt='ferramentas'
                         src={FerramentasConstrucao}
+                        loading="lazy"
                     />
                     <span className='Card-title'>Ferramentas e construção</span>
                 </article>
@@ -166,6 +181,7 @@ export default function Categories () : JSX.Element {
                         className='Card-image'
                         alt='caderno, lápis, borracha, caneta...'
                         src={Papelaria}
+                        loading="lazy"
                     />
                     <span className='Card-title'>Papelaria</span>
                 </article>

@@ -16,19 +16,17 @@ export default function Login (email: string, password: string) {
             const response = await axios.post('/user/login', {email:email, password:password});
         
             const data = response.data as ILoginResponse;
-            console.log(data.message);
         
             if (data.accessToken && data.user){
         
                 localStorage.setItem("x-access-token", data.accessToken);
                 localStorage.setItem("user", JSON.stringify(data.user));
-                return data.user;
-        
-            } 
-            
+                
+            }
+            return data;
         }
         
-        return null;
+        return {message: "E-mail e/ou senha não identificados"};
     
     }, {
         refetchOnWindowFocus: false,

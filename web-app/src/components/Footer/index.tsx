@@ -41,12 +41,12 @@ export default function Footer () :JSX.Element {
             <section className='ThirdColumn'>
                 <header className='Column-title'>Pagamento</header>
                 <div className='ThirdColumn-container'>
-                    <img alt='colocar' src={elo}/>
-                    <img alt='colocar' src={pix}/>
-                    <img alt='colocar' src={boleto}/>
-                    <img alt='colocar' src={mastercard}/>
-                    <img alt='colocar' src={hiper}/>
-                    <img alt='colocar' src={visa}/>
+                    <img alt='elo' src={elo} loading="lazy"/>
+                    <img alt='pix' src={pix} loading="lazy"/>
+                    <img alt='boleto' src={boleto} loading="lazy"/>
+                    <img alt='mastercard' src={mastercard} loading="lazy"/>
+                    <img alt='hiper' src={hiper} loading="lazy"/>
+                    <img alt='visa' src={visa} loading="lazy"/>
                 </div>
             </section>
 

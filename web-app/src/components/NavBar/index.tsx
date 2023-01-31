@@ -1,15 +1,14 @@
 import './styles.css';
 
-import { useMediaQuery } from 'react-responsive';
-
-import logo from 'assets/images/logo.png';
+import UserDropdownMenu from 'components/UserDropdownMenu';
 
 import { ReactComponent as SearchIcon } from 'assets/svg/search.svg';
 import van from 'assets/svg/van.png'; //trocar pra svg
 import shoppingCart from 'assets/svg/shoppingCart.png'; //trocar pra svg
+import logo from 'assets/images/logo.png';
 
-import UserDropdownMenu from 'components/UserDropdownMenu';
-
+import { useMediaQuery } from 'react-responsive';
+import { Link } from 'react-router-dom';
 
 export default function NavBar() : JSX.Element{
 
@@ -31,11 +30,13 @@ export default function NavBar() : JSX.Element{
                     />
                 </div>
 
-                <img 
-                    className='NavBar-logo'
-                    alt='logo da empresa' 
-                    src={logo}
-                />
+                <Link to='/'>
+                    <img 
+                        className='NavBar-logo'
+                        alt='logo da empresa' 
+                        src={logo}
+                    />
+                </Link>
 
                 <div className='NavBar-container-background'>
 
@@ -84,11 +85,13 @@ export default function NavBar() : JSX.Element{
 
                     <div className='NavBar-container'>
 
+                    <Link to='/'>
                         <img 
                             className='NavBar-logo'
                             alt='logo da empresa' 
                             src={logo}
                         />
+                    </Link>
 
                         <div className='NavBar-searchBar'>
                             <input 
