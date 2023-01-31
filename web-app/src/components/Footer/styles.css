@@ -89,7 +89,7 @@
   fill: rgb(255, 255, 255);
   cursor: help;
 }
-@media only screen and (max-width: 720px) {
+@media only screen and (max-width: 576px) {
   .Footer {
     display: flex;
     flex-direction: column;

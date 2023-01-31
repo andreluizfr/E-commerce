@@ -11,9 +11,10 @@ import Footer from 'components/Footer';
 export default function HomePage () : JSX.Element {
 
     return(
-        <>
+        <div className='HomePage'>
             <NavBar/>
-            <main className='HomePage'>
+
+            <main className='HomePage-container'>
                 <Carousel/>
 
                 <Categories/>
@@ -24,8 +25,9 @@ export default function HomePage () : JSX.Element {
 
                 <SocialMedia/>
             </main>
+
             <Footer/>
-        </>
+        </div>
     )
 
 }

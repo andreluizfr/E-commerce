@@ -29,16 +29,15 @@ export default function LoginPage () : JSX.Element {
     }
 
     return(
-        <>
-
+        <div className='LoginPage'>
             <NavBar/>
 
             <div className='LoginBG'>
                 <div className='InfoLogin'>
-                    <h1>LOGIN</h1>
+                    <h1>Login</h1>
             
                     <StyledInput 
-                        title="email" 
+                        title="Email" 
                         warning="E-mail é necessário para realizar login." 
                         onChange={saveEmail} 
                         type="email"
@@ -46,19 +45,22 @@ export default function LoginPage () : JSX.Element {
                         required
                     />
                     <StyledInput 
-                        title="senha" 
+                        title="Senha" 
                         warning="A senha deve conter 8 ou mais caracteres e possuir pelo menos 1 número e 1 letra." 
+                        eye={true}
                         onChange={savePassword}  
                         type="password"
                         pattern="(?=.*\d)(?=.*[a-z]).{8,}"
                         required
                     />
-                    <button 
-                        className='button' 
-                        onClick={()=>{loginQuery.refetch()}}
-                    >
-                        Logar
-                    </button>
+                    <div className='Login-button'>
+                        <button 
+                            className='button' 
+                            onClick={()=>{loginQuery.refetch()}}
+                        >
+                            Logar
+                        </button>
+                    </div>
                 </div>
             </div>
             {loginQuery.isFetching?
@@ -81,7 +83,7 @@ export default function LoginPage () : JSX.Element {
             }
 
             <Footer/>
-        </>    
+        </div>    
     )
 
 }

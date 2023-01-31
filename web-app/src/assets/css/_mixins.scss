@@ -22,6 +22,18 @@
     align-items: flex-start;
 }
 
+@mixin flex-row-end-center{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+@mixin flex-row-end-start{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
 @mixin flex-row-space-around-center{
     display: flex;
     justify-content: space-around;
@@ -71,6 +83,20 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    align-items: flex-start;
+}
+
+@mixin flex-column-end-center{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+@mixin flex-column-end-start{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     align-items: flex-start;
 }
 
@@ -191,7 +217,7 @@
 }
 
 @mixin mq-small{
-    @media only screen and (max-width: 720px) {
+    @media only screen and (max-width: 576px) {
         @content;
     }
 }

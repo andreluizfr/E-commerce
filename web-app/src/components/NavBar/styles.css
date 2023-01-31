@@ -14,7 +14,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
   padding: 0.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.24);
 }
 .NavBar-banner-sentence {
   font-size: 1.2rem;
@@ -71,7 +73,6 @@
   outline: none;
   border-radius: 0.5rem;
   padding: 0.5rem;
-  color: rgb(207, 217, 222);
 }
 .NavBar .NavBar-container-background .NavBar-container .NavBar-searchBar .SearchBar-icon {
   width: 1.2rem;

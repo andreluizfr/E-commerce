@@ -1,17 +1,23 @@
 import './styles.css';
 
+import eyeOpen from 'assets/svg/eye-open.png'; //trocar pra svg
+import eyeClosed from 'assets/svg/eye-closed.png'; //trocar pra svg
+import check from 'assets/svg/check.png'; //trocar pra svg
+import { ReactComponent as Check } from 'assets/svg/check.svg';
+import check2 from 'assets/svg/check2.png'; //trocar pra svg
+
 import { InputHTMLAttributes, useEffect, useRef } from "react";
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
     title: string;
     warning?: string | undefined;
-    ref?: React.MutableRefObject<HTMLInputElement | null> | undefined;
+    eye?: boolean | undefined;
 }
 
 const StyledInput = (props:Props) : JSX.Element => {
 
     //desestruturação para pegar as props passadas para o component e o resto das props são repassadas para tag input
-    const {title, warning, ...rest} = props;
+    const {title, warning, eye, ...rest} = props;
     const ref = useRef <HTMLInputElement | null>(null);
 
     //inicia a tag input com atributo wasBlured como falso
@@ -25,6 +31,23 @@ const StyledInput = (props:Props) : JSX.Element => {
         event.target.setAttribute("wasBlured", "true");
     }
 
+    function toggleEye(event: React.MouseEvent<HTMLElement>){
+        const styledInput = (event.target as HTMLElement).parentElement;
+        const input = styledInput?.firstChild as HTMLInputElement;
+        const state = input.getAttribute("type");
+        const eye = styledInput?.getElementsByClassName("Eye")[0] as HTMLImageElement;
+        
+        if(state === "password"){
+            input.setAttribute("type", "text");
+            eye.src = eyeOpen;
+            eye.alt = "olho aberto";
+        } else if(state === "text"){
+            input.setAttribute("type", "password");
+            eye.src = eyeClosed;
+            eye.alt = "olho fechado";
+        }
+    }
+
     //se foi passada a propriedade warning, coloca a tag p com o warning
     return (
         <div className='Styled-input'>
@@ -35,6 +58,13 @@ const StyledInput = (props:Props) : JSX.Element => {
                 :
                 null
             }
+            {eye?
+                <img className='Eye' src={eyeClosed} alt='olho fechado' onClick={toggleEye}/>
+                :
+                null
+            }
+            <Check className='Check'/>
+ 
         </div>
     );
 

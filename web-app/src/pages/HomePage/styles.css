@@ -1,6 +1,12 @@
 .HomePage {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+}
+
+.HomePage-container {
+  display: flex;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   width: 100%;

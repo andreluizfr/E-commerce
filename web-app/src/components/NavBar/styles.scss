@@ -13,8 +13,10 @@
 
     &-banner{
         @include flex-row-center-center;
+        width: 100%;
         padding: .5rem;
-
+        border-bottom: 1px solid $thin-black;
+    
         &-sentence{
             font-size: $font-size-normal;
 
@@ -70,8 +72,6 @@
                     border-radius: .5rem;
     
                     padding: .5rem;
-    
-                    color: $gray;
                 }
     
                 .SearchBar-icon{

@@ -12,12 +12,13 @@
   font-size: 1rem;
   width: 100%;
   padding: 1.5rem 0.5rem 0.5rem 0.5rem;
-  border: 1px solid rgba(0, 0, 0, 0.24);
-  border-radius: 0.2rem;
+  border: 1px solid rgba(0, 0, 0, 0.85);
+  border-radius: 0.3rem;
   height: 3rem;
+  color: rgb(0, 0, 0);
 }
 .Styled-input span {
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: rgb(83, 100, 113);
   position: absolute;
   left: 0.5rem;
@@ -27,8 +28,25 @@
 }
 .Styled-input p {
   display: none;
-  font-size: 0.9rem;
+  margin-top: 0.4rem;
+  font-size: 1rem;
   color: rgb(255, 0, 0);
+}
+.Styled-input .Eye {
+  width: 1.2rem;
+  height: 1.2rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+.Styled-input .Check {
+  width: 1.2rem;
+  height: 1.2rem;
+  display: none;
+  position: absolute;
+  top: 1rem;
+  right: -1.6rem;
+  fill: rgb(0, 186, 124);
 }
 .Styled-input input:focus {
   outline: 1px solid rgb(0, 0, 0);
@@ -40,13 +58,16 @@
   top: 0.2rem;
 }
 .Styled-input input:valid {
-  outline: 1px solid rgb(0, 186, 124);
-  border: 1px solid rgb(0, 186, 124);
+  outline: 1px solid rgb(0, 0, 0);
+  border: 1px solid rgb(0, 0, 0);
 }
 .Styled-input input:valid + span {
   font-size: 0.9rem;
-  color: rgb(0, 186, 124);
+  color: rgb(0, 0, 0);
   top: 0.2rem;
+}
+.Styled-input input:valid ~ .Check {
+  display: block;
 }
 .Styled-input input:invalid[wasBlured=true] {
   outline: 1px solid rgb(255, 0, 0);
