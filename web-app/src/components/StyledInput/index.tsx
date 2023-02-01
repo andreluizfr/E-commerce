@@ -17,6 +17,7 @@ const StyledInput = (props:Props) : JSX.Element => {
 
     //desestruturação para pegar as props passadas para o component e o resto das props são repassadas para tag input
     const {title, warning, eye, ...rest} = props;
+
     const ref = useRef <HTMLInputElement | null>(null);
 
     //inicia a tag input com atributo wasBlured como falso
