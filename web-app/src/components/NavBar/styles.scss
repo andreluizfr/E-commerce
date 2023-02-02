@@ -16,12 +16,19 @@
         width: 100%;
         padding: .5rem;
         border-bottom: 1px solid $thin-black;
-    
-        &-sentence{
-            font-size: $font-size-normal;
 
+        &-sentence{
+            background-image: radial-gradient(ellipse at right bottom, #EEB1BF 5%, #d42dab 25%, #4d1d63 50%, #030243 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            font-size: $font-size-normal;
+        
+            .Normal-word{
+                color: $black;
+            }
             .Coloured-word{
-                color: $red;
+                color: transparent;
+                //color: $red;
             }
         }
 

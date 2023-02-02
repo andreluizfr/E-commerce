@@ -3,23 +3,31 @@ import { User }  from "../../entities/User";
 import generateRandomString from "../../utils/generateRandomString";
 import { sendVerificationLinkToEmail } from "../../helpers/sendEmail";
 
-interface ISignupRequestDTO{
+interface ISignupRequest{
     firstName: string;
     lastName: string;
     email: string;
-    birthDate: string;
+    birthDate: Date;
     cpf: string;
     password: string;
 }
+
 //contains the business logic
 export class SignupService{
     //dependency inversion principle, depende apenas da interface e não da implementação dela
     constructor (private usersRepository: IUsersRepository){}
 
-    async execute(data: ISignupRequestDTO){
+    async execute(data: ISignupRequest){
 
         const verificationEmailCode = generateRandomString(30);
         const user = new User(data, verificationEmailCode, false);
+        
+        const emailExists = await this.usersRepository.findByEmail(user.email);
+        if (emailExists) throw new Error("E-mail já cadastrado.");
+
+        const cpfExists = await this.usersRepository.findByCpf(user.cpf);
+        if (cpfExists) throw new Error("CPF já cadastrado.");
+
         const createdUser = await this.usersRepository.createUser(user);
         
         try{
@@ -27,7 +35,7 @@ export class SignupService{
         } catch (err) {
             const error = err as Error;
             await this.usersRepository.deleteUser(createdUser);
-            throw new Error('Error, e-mail verification not working. ' + error.message);
+            throw new Error('Verificação de e-mail não está funcionando. Por favor, tente mais tarde. ' + error.message);
         }
 
     }

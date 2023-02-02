@@ -5,11 +5,10 @@
   align-items: center;
   width: 100%;
   margin-top: 1rem;
-  background-color: rgb(255, 255, 255);
 }
 .HomePage-categories .Container-title {
   font-size: 1.4rem;
-  font-weight: bold;
+  font-weight: 500;
 }
 .HomePage-categories .Categories-cards-wrapper {
   display: grid;

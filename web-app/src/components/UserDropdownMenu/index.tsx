@@ -19,7 +19,7 @@ export default function UserDropdownMenu () :JSX.Element {
 
     function logout(){
         localStorage.clear();
-        window.location.href = "http://localhost:3000/";
+        window.location.reload();
     }
 
     if(User)

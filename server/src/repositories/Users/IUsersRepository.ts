@@ -6,5 +6,6 @@ export interface IUsersRepository{
     verifyEmail(verificationEmailCode: string) : Promise <User | null>;
     updateRefreshToken(email: string, newRefreshToken: string) : Promise <User | null>;
     findByEmail(email: string) : Promise <User | null>;
+    findByCpf(cpf: string) : Promise <User | null>;
     findByEmailAndRefreshToken(email: string, refreshToken: string) : Promise <User | null>;
 }

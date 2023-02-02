@@ -36,6 +36,13 @@
   cursor: pointer;
 }
 
+.UserDropdownMenuItem:hover {
+  color: rgb(83, 100, 113);
+}
+.UserDropdownMenuItem:hover a {
+  color: rgb(83, 100, 113);
+}
+
 .UserDropdownMenuSeparator {
   height: 1px;
   background-color: rgba(0, 0, 0, 0.24);

@@ -1,0 +1,40 @@
+@import '../../assets/css/variables';
+@import '../../assets/css/_mixins';
+
+.NotFoundPage{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+    background-color: $white;
+
+    .NotFoundPage-background{
+        flex-grow: 1;
+        @include flex-column-center-center;
+        width: 100%;
+    
+        background: radial-gradient(ellipse at right bottom, #EEB1BF 5%, #d42dab 25%, #4d1d63 50%, #030243 100%);
+
+        @include mq-small{
+            background: $almost-black;
+        }
+
+        .NotFoundImg{
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            height: auto;
+            width: 576px;
+
+            @include mq-small{
+                height: auto;
+                width: 100%;
+            }
+        }
+    }
+
+    .Footer{
+        @include mq-small{
+            background-color: $black;
+        }
+    }
+}

@@ -21,7 +21,10 @@ export default function NavBar() : JSX.Element{
 
                 <div className='NavBar-banner'>
                     <p className='NavBar-banner-sentence'>
-                        <span className='Coloured-word'>FRETE GRÁTIS</span> para <span className='Coloured-word'>TODO</span> Brasil
+                        <span className='Coloured-word'>FRETE GRÁTIS</span>
+                        <span className='Normal-word'> para </span>
+                        <span className='Coloured-word'>TODO</span>
+                        <span className='Normal-word'> Brasil </span>
                     </p>
                     <img 
                         className='Van-Icon'

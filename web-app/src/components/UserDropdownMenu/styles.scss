@@ -39,6 +39,14 @@
     }
 }
 
+.UserDropdownMenuItem:hover{
+    color: $dark-gray;
+
+    a{
+        color: $dark-gray;
+    }
+}
+
 .UserDropdownMenuSeparator{
     height: 1px;
     background-color: $thin-black;

@@ -221,3 +221,15 @@
         @content;
     }
 }
+
+@mixin mq-day{
+    @media (prefers-color-scheme: light) {
+        @content;
+    }
+}
+
+@mixin mq-night{
+    @media (prefers-color-scheme: dark) {
+        @content;
+    }
+}

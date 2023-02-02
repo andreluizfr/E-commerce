@@ -9,23 +9,19 @@ import HashLoader from "react-spinners/HashLoader";
 
 import { useState, useEffect } from 'react';
 import Login from 'queries/Login';
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginPage () : JSX.Element {
 
     const [formData, setFormData] = useState({email: "", password: ""});
     const loginQuery = Login(formData);
+    
+    const navigate = useNavigate();
 
     useEffect(()=>{
         const el = document.getElementsByClassName("Response-message")[0];
         el.setAttribute("visible", "false");
     }, []);
-
-    function updateFormData (event: React.ChangeEvent<HTMLInputElement>) {
-        setFormData({
-            ...formData,
-            [event.target.name]: event.target.value
-        })
-    }
 
     function handleLogin(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault();
@@ -35,6 +31,20 @@ export default function LoginPage () : JSX.Element {
         const el = document.getElementsByClassName("Response-message")[0];
         el.setAttribute("visible", "true");
     }
+
+    function updateFormData (event: React.ChangeEvent<HTMLInputElement>) {
+        setFormData({
+            ...formData,
+            [event.target.name]: event.target.value
+        })
+    }
+
+    useEffect(()=>{
+        if(loginQuery.data && loginQuery.data.success)
+            setTimeout(()=>{
+                navigate("/");
+            }, 1000) //1s
+    }, [loginQuery.data, navigate]);
 
     return(
         <div className='LoginPage'>
@@ -88,7 +98,6 @@ export default function LoginPage () : JSX.Element {
                             
                         }
                     </div>
-                    
                 </form>
             </div>
 

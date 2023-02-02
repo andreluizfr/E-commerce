@@ -5,11 +5,10 @@
     @include flex-column-center-center;
     width: 100%;
     margin-top: 1rem;
-    background-color: $white;
 
     .Container-title{
         font-size: $font-size-medium;
-        font-weight: bold;
+        font-weight: 500;
     }
 
     .Categories-cards-wrapper{

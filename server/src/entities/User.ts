@@ -17,7 +17,7 @@ export class User{
     public email!: string;
 
     @Column()
-    public birthDate!: string;
+    public birthDate!: Date;
 
     @Column({ unique: true })
     public cpf!: string;

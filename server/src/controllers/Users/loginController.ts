@@ -32,7 +32,8 @@ export default new class LoginController{
                 emailVerified: user.emailVerified,
             }
             return res.status(201).send({
-                message: "Login succesfull.",
+                success: true,
+                message: "Login realizado com sucesso.",
                 accessToken: accessToken,
                 user: publicUser
             });
@@ -41,6 +42,7 @@ export default new class LoginController{
             const error = err as Error;
             
             return res.status(202).send({
+                success: false,
                 message: error.message || 'Unexpected error.',
                 accessToken: null,
                 user: null

@@ -11,4 +11,6 @@
     @include flex-column-start-center;
     width: 100%;
     flex-grow: 1;
+    background-color: $white;
+    //background: radial-gradient(ellipse at right bottom, #EEB1BF 5%, #d42dab 25%, #4d1d63 50%, #030243 100%);
 }

@@ -13,7 +13,7 @@ export class VerifyEmailService{
         const verifiedUser = await this.usersRepository.verifyEmail(data.verificationEmailCode);
         
         if(verifiedUser) return {verifiedUser: verifiedUser};
-        else throw new Error("Couldn't verify email!");
+        else throw new Error("Código de verificação de e-mail não válido.");
 
     }
     

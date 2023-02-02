@@ -18,8 +18,8 @@ export default new class SignupController{
             const { verifiedUser } = await verifyEmailService.execute({verificationEmailCode});
 
             return res.status(201).send({
-                message: "Email verification succesfull.",
-                verified: true
+                message: "E-mail verificado com sucesso.",
+                success: true
             });
 
         } catch (err) {
@@ -27,7 +27,7 @@ export default new class SignupController{
             
             return res.status(202).send({
                 message: error.message || 'Unexpected error.',
-                verified: false
+                success: false
             });
 
         } 

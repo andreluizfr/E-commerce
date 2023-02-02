@@ -1,0 +1,123 @@
+@import '../../assets/css/variables';
+@import '../../assets/css/_mixins';
+
+.SignupPage{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+    .SignupBG{
+        flex-grow: 1;
+        @include flex-column-center-center;
+        width: 100%;
+    
+        background: radial-gradient(ellipse at right bottom, #EEB1BF 5%, #d42dab 25%, #4d1d63 50%, #030243 100%);
+        //background-color: $light-gray;
+    }
+
+    .InfoSignup{
+        flex: 1;
+        @include flex-column-center-center;
+        width: 30rem;
+        max-height: 50rem;
+        margin: 2rem;
+        padding: 2rem;
+        border: 1px solid $thinner-black;
+        border-radius: .5rem;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    
+        background-color: $white;
+        //backdrop-filter: blur(10px);
+        
+        font-family: 'David Libre', serif;
+    
+        @include mq-small{
+            width: 100%;
+            max-height: 100%;
+            margin: 0;
+            border-radius: 0;
+    
+            background-color: $white;
+            box-shadow: none;
+        }
+     
+    }
+     
+    .InfoSignup h1{
+        margin-bottom: 2rem;
+        
+        font-size: $font-size-large;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 500;
+    }
+
+    .InfoSignup .NameInputs{
+        @include flex-row-center-center;
+        width: 100%;
+        gap: 2rem;
+    }
+
+    .InfoSignup .BirthDateTitle{
+        margin-bottom: .5rem;
+
+        color: $black;
+        font-size: $font-size-small;
+        font-weight: 500;
+        font-family: "Raleway", sans-serif;
+    }
+
+    .InfoSignup .Signup-button{
+        flex: 1;
+        @include flex-column-end-center;
+        width: 100%;
+
+        @include mq-small{
+            flex:none;
+        }
+    }
+    
+    .InfoSignup button{
+        width: 60%;
+        margin-top: 2rem;
+        padding: 0.7rem 0;
+        border-radius: 5px;
+    
+        background-color: $black;
+        color: $white;
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+       
+        font-size: $font-size-normal;
+        font-family: 'David Libre', serif;
+        
+        transition: 200ms;
+        cursor: pointer;
+    
+        @include mq-small{
+            width: 50%;
+            margin-top: 2rem;
+        }
+    }
+    .InfoSignup button:hover{
+        background-color: $white;
+        color: $black;
+        scale: (0.9);
+    }
+
+    .InfoSignup .Response-message{
+        @include flex-column-center-center;
+        margin-top: 1rem;
+    }
+    .InfoSignup .Response-message[visible="false"]{
+        visibility: hidden;
+    }
+    .InfoSignup .Response-message[visible="true"]{
+        visibility: visible;
+    }
+    
+    .Footer{
+        @include mq-small{
+            display: none;
+        }
+    }
+
+}

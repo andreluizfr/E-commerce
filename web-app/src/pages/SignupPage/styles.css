@@ -1,1 +1,115 @@
-/*# sourceMappingURL=styles.css.map */
+.SignupPage {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.SignupPage .SignupBG {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background: radial-gradient(ellipse at right bottom, #EEB1BF 5%, #d42dab 25%, #4d1d63 50%, #030243 100%);
+}
+.SignupPage .InfoSignup {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30rem;
+  max-height: 50rem;
+  margin: 2rem;
+  padding: 2rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: rgb(255, 255, 255);
+  font-family: "David Libre", serif;
+}
+@media only screen and (max-width: 576px) {
+  .SignupPage .InfoSignup {
+    width: 100%;
+    max-height: 100%;
+    margin: 0;
+    border-radius: 0;
+    background-color: rgb(255, 255, 255);
+    box-shadow: none;
+  }
+}
+.SignupPage .InfoSignup h1 {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+}
+.SignupPage .InfoSignup .NameInputs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 2rem;
+}
+.SignupPage .InfoSignup .BirthDateTitle {
+  margin-bottom: 0.5rem;
+  color: rgb(0, 0, 0);
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: "Raleway", sans-serif;
+}
+.SignupPage .InfoSignup .Signup-button {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+}
+@media only screen and (max-width: 576px) {
+  .SignupPage .InfoSignup .Signup-button {
+    flex: none;
+  }
+}
+.SignupPage .InfoSignup button {
+  width: 60%;
+  margin-top: 2rem;
+  padding: 0.7rem 0;
+  border-radius: 5px;
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  font-size: 1.2rem;
+  font-family: "David Libre", serif;
+  transition: 200ms;
+  cursor: pointer;
+}
+@media only screen and (max-width: 576px) {
+  .SignupPage .InfoSignup button {
+    width: 50%;
+    margin-top: 2rem;
+  }
+}
+.SignupPage .InfoSignup button:hover {
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  scale: 0.9;
+}
+.SignupPage .InfoSignup .Response-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+.SignupPage .InfoSignup .Response-message[visible=false] {
+  visibility: hidden;
+}
+.SignupPage .InfoSignup .Response-message[visible=true] {
+  visibility: visible;
+}
+@media only screen and (max-width: 576px) {
+  .SignupPage .Footer {
+    display: none;
+  }
+}/*# sourceMappingURL=styles.css.map */

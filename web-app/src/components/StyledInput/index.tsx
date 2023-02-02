@@ -8,7 +8,7 @@ import { ReactComponent as Check } from 'assets/svg/check.svg';
 import { InputHTMLAttributes, useEffect, useRef } from "react";
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
-    title: string;
+    title?: string;
     warning?: string | undefined;
     eye?: boolean | undefined;
 }
@@ -52,7 +52,11 @@ const StyledInput = (props:Props) : JSX.Element => {
     return (
         <div className='Styled-input'>
             <input {...rest} ref={ref} onBlur={wasBlured}/>
-            <span>{title}</span>
+            {title?
+                <span>{title}</span>
+                :
+                null
+            }
             {warning?
                 <p>{warning}</p>
                 :

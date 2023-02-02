@@ -18,13 +18,15 @@ export default new class SignupController{
             await signupService.execute({firstName, lastName, email, birthDate, cpf, password});
 
             return res.status(201).send({
-                message: "Signup succesfull, waiting for e-mail confirmation."
+                success: true,
+                message: "O registro foi um sucesso, aguardando pela confirmação por e-mail."
             });
 
         } catch (err) {
             const error = err as Error;
             
             return res.status(202).send({
+                success: false,
                 message: error.message || 'Unexpected error.'
             });
 
