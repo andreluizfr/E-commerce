@@ -11,11 +11,11 @@ export default new class SignupController{
 
     async handle(req: Request, res: Response): Promise<Response>{
         
-        const { firstName, lastName, email, birthDate, cpf, password } = req.body;
+        const { firstName, lastName, email, birthDate, cpf, phoneNumber, password } = req.body;
 
         try{
 
-            await signupService.execute({firstName, lastName, email, birthDate, cpf, password});
+            await signupService.execute({firstName, lastName, email, birthDate, cpf, phoneNumber, password});
 
             return res.status(201).send({
                 success: true,

@@ -23,6 +23,7 @@ export default new class GetUserController{
                 email: user.email,
                 birthDate: user.birthDate,
                 cpf: user.cpf,
+                phoneNumber: user.phoneNumber,
                 photoURL: user.photoURL,
                 emailVerified: user.emailVerified,
             }

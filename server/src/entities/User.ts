@@ -22,6 +22,9 @@ export class User{
     @Column({ unique: true })
     public cpf!: string;
 
+    @Column({ nullable: true }) //colunas inseridas posteriormente exigem que contenha nullable pra não dar erro nas antigas informações do DB
+    public phoneNumber!: string;
+
     @Column()
     public password!: string;
 
@@ -45,7 +48,7 @@ export class User{
 
 
     constructor(
-        props: Pick <User, 'firstName' | 'lastName' | 'email' | 'birthDate' | 'cpf' | 'password'>,
+        props: Pick <User, 'firstName' | 'lastName' | 'email' | 'birthDate' | 'cpf' | 'phoneNumber' | 'password'>,
         verificationEmailCode: string,
         admin: boolean
     ){

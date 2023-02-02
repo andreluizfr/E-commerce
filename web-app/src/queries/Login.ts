@@ -6,7 +6,6 @@ interface ILoginResponse {
     success: boolean;
     accessToken: string;
     message: string;
-    user: Object | null;
 }
 
 const formData = z.object({
@@ -28,12 +27,8 @@ export default function Login (formDataInput: FormData) {
     
         const data = response.data as ILoginResponse;
     
-        if (data.success){
-    
-            localStorage.setItem("x-access-token", data.accessToken);
-            localStorage.setItem("user", JSON.stringify(data.user));
-            
-        }
+        if (data.success) localStorage.setItem("x-access-token", data.accessToken);
+
         return data;
     
     }, {

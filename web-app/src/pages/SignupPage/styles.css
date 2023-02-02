@@ -12,21 +12,24 @@
   width: 100%;
   background: radial-gradient(ellipse at right bottom, #EEB1BF 5%, #d42dab 25%, #4d1d63 50%, #030243 100%);
 }
+@media only screen and (max-width: 576px) {
+  .SignupPage .SignupBG {
+    justify-content: flex-start;
+    background: rgb(255, 255, 255);
+  }
+}
 .SignupPage .InfoSignup {
-  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 30rem;
-  max-height: 50rem;
   margin: 2rem;
   padding: 2rem;
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 0.5rem;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   background-color: rgb(255, 255, 255);
-  font-family: "David Libre", serif;
 }
 @media only screen and (max-width: 576px) {
   .SignupPage .InfoSignup {
@@ -51,12 +54,32 @@
   width: 100%;
   gap: 2rem;
 }
+.SignupPage .InfoSignup .BirthDate {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1rem;
+}
 .SignupPage .InfoSignup .BirthDateTitle {
   margin-bottom: 0.5rem;
   color: rgb(0, 0, 0);
   font-size: 1rem;
   font-weight: 500;
   font-family: "Raleway", sans-serif;
+}
+.SignupPage .InfoSignup .Next-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+@media only screen and (max-width: 576px) {
+  .SignupPage .InfoSignup .Next-button {
+    flex: none;
+  }
 }
 .SignupPage .InfoSignup .Signup-button {
   flex: 1;
@@ -71,26 +94,25 @@
     flex: none;
   }
 }
-.SignupPage .InfoSignup button {
-  width: 60%;
+.SignupPage .InfoSignup .Button {
+  width: 50%;
   margin-top: 2rem;
   padding: 0.7rem 0;
   border-radius: 5px;
   background-color: rgb(0, 0, 0);
   color: rgb(255, 255, 255);
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  font-size: 1.2rem;
-  font-family: "David Libre", serif;
+  font-size: 1rem;
   transition: 200ms;
   cursor: pointer;
 }
 @media only screen and (max-width: 576px) {
-  .SignupPage .InfoSignup button {
-    width: 50%;
+  .SignupPage .InfoSignup .Button {
+    width: 40%;
     margin-top: 2rem;
   }
 }
-.SignupPage .InfoSignup button:hover {
+.SignupPage .InfoSignup .Button:hover {
   background-color: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
   scale: 0.9;
@@ -108,8 +130,47 @@
 .SignupPage .InfoSignup .Response-message[visible=true] {
   visibility: visible;
 }
-@media only screen and (max-width: 576px) {
-  .SignupPage .Footer {
-    display: none;
-  }
+.SignupPage .InfoSignup .Or {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  gap: 1rem;
+  margin: 1rem;
+}
+.SignupPage .InfoSignup .Or .Line {
+  flex: 1;
+  border-top: 1px solid rgb(0, 0, 0);
+}
+.SignupPage .InfoSignup .Or .OrWord {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.SignupPage .Login-with-google-facebook {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.85);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  cursor: help;
+}
+.SignupPage .Login-with-google-facebook img {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+.SignupPage .Login-with-google-facebook span {
+  font-size: 1rem;
+}
+.SignupPage .Politcs {
+  width: 70%;
+  font-size: smaller;
+}
+.SignupPage .Politcs span {
+  color: rgb(29, 155, 240);
+  cursor: help;
 }/*# sourceMappingURL=styles.css.map */

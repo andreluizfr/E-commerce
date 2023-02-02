@@ -9,6 +9,7 @@ interface ISignupRequest{
     email: string;
     birthDate: Date;
     cpf: string;
+    phoneNumber: string;
     password: string;
 }
 

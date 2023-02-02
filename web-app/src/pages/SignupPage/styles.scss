@@ -12,24 +12,22 @@
         width: 100%;
     
         background: radial-gradient(ellipse at right bottom, #EEB1BF 5%, #d42dab 25%, #4d1d63 50%, #030243 100%);
-        //background-color: $light-gray;
+
+        @include mq-small{
+            justify-content: flex-start;
+            background: $white;
+        }
     }
 
     .InfoSignup{
-        flex: 1;
         @include flex-column-center-center;
         width: 30rem;
-        max-height: 50rem;
         margin: 2rem;
         padding: 2rem;
         border: 1px solid $thinner-black;
         border-radius: .5rem;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    
         background-color: $white;
-        //backdrop-filter: blur(10px);
-        
-        font-family: 'David Libre', serif;
     
         @include mq-small{
             width: 100%;
@@ -57,6 +55,12 @@
         gap: 2rem;
     }
 
+    .InfoSignup .BirthDate{
+        @include flex-column-center-center;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
     .InfoSignup .BirthDateTitle{
         margin-bottom: .5rem;
 
@@ -64,6 +68,15 @@
         font-size: $font-size-small;
         font-weight: 500;
         font-family: "Raleway", sans-serif;
+    }
+
+    .InfoSignup .Next-button{
+        @include flex-column-center-center;
+        width: 100%;
+
+        @include mq-small{
+            flex:none;
+        }
     }
 
     .InfoSignup .Signup-button{
@@ -76,8 +89,8 @@
         }
     }
     
-    .InfoSignup button{
-        width: 60%;
+    .InfoSignup .Button{
+        width: 50%;
         margin-top: 2rem;
         padding: 0.7rem 0;
         border-radius: 5px;
@@ -86,18 +99,17 @@
         color: $white;
         filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
        
-        font-size: $font-size-normal;
-        font-family: 'David Libre', serif;
+        font-size: $font-size-small;
         
         transition: 200ms;
         cursor: pointer;
     
         @include mq-small{
-            width: 50%;
+            width: 40%;
             margin-top: 2rem;
         }
     }
-    .InfoSignup button:hover{
+    .InfoSignup .Button:hover{
         background-color: $white;
         color: $black;
         scale: (0.9);
@@ -113,10 +125,52 @@
     .InfoSignup .Response-message[visible="true"]{
         visibility: visible;
     }
+
+    .InfoSignup .Or{
+        @include flex-row-center-center;
+        width: 90%;
+        gap: 1rem;
+        margin: 1rem;
     
-    .Footer{
-        @include mq-small{
-            display: none;
+        .Line{
+            flex: 1;
+            border-top: 1px solid $black;
+        }
+
+        .OrWord{
+            font-size: $font-size-normal;
+            font-weight: 500;
+        }
+    }
+
+    .Login-with-google-facebook{
+        @include flex-row-start-center;
+        width: 100%;
+        gap: 1rem;
+        border: 1px solid $opaque-black;
+        border-radius: .5rem;
+        padding: .5rem;
+        margin-bottom: .5rem;
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+        cursor: help;
+
+        img{
+            @include icon-large;
+        }
+
+        span{
+            font-size: $font-size-small;
+        }
+    }
+
+    .Politcs{
+        width: 70%;
+        font-size: smaller;
+
+        span{
+            color: $blue;
+            cursor: help;
         }
     }
 

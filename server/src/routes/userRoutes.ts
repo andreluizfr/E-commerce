@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { Request, Response } from 'express';
 
+import emailExistsController from '../controllers/Users/EmailExistsController';
 import loginController from '../controllers/Users/LoginController';
 import signupController from '../controllers/Users/SignupController';
 import verifyEmailController from '../controllers/Users/VerifyEmailController';
@@ -9,9 +10,11 @@ import getUserController from '../controllers/Users/GetUserController';
 
 import { authentication } from '../auth';
 
-//import { authentication } from '../utils/auth';
-
 const userRouter = Router();
+
+userRouter.post('/EmailExists',(request: Request, response: Response)=>{
+    return emailExistsController.handle(request, response);
+});
 
 userRouter.post('/signup', (request: Request, response: Response)=>{
     return signupController.handle(request, response);
