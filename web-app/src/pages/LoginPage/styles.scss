@@ -11,7 +11,7 @@
         @include flex-column-center-center;
         width: 100%;
     
-        background: radial-gradient(ellipse at right bottom, #EEB1BF 5%, #d42dab 25%, #4d1d63 50%, #030243 100%);
+        background: radial-gradient(ellipse at right bottom, #b3178c 0%, #400f57 50%, #030243 100%);
     }
     
     .InfoLogin{
@@ -48,18 +48,13 @@
     }
 
     .InfoLogin .Login-button{
-        flex: 1;
         @include flex-column-end-center;
         width: 100%;
-
-        @include mq-small{
-            flex:none;
-        }
     }
     
     .InfoLogin button{
         width: 60%;
-        margin-top: 2rem;
+        margin-top: 1rem;
         padding: 0.7rem 0;
         border-radius: 5px;
     
@@ -92,6 +87,44 @@
     }
     .InfoLogin .Response-message[visible="true"]{
         visibility: visible;
+    }
+
+    .InfoLogin .Or{
+        @include flex-row-center-center;
+        width: 90%;
+        gap: 1rem;
+        margin: 1rem;
+    
+        .Line{
+            flex: 1;
+            border-top: 1px solid $black;
+        }
+
+        .OrWord{
+            font-size: $font-size-normal;
+            font-weight: 500;
+        }
+    }
+
+    .Login-with-google-facebook{
+        @include flex-row-start-center;
+        width: 100%;
+        gap: 1rem;
+        border: 1px solid $opaque-black;
+        border-radius: .5rem;
+        padding: .5rem;
+        margin-bottom: .5rem;
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+        cursor: help;
+
+        img{
+            @include icon-large;
+        }
+
+        span{
+            font-size: $font-size-small;
+        }
     }
     
     .Footer{

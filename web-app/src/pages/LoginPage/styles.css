@@ -10,7 +10,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  background: radial-gradient(ellipse at right bottom, #EEB1BF 5%, #d42dab 25%, #4d1d63 50%, #030243 100%);
+  background: radial-gradient(ellipse at right bottom, #b3178c 0%, #400f57 50%, #030243 100%);
 }
 .LoginPage .InfoLogin {
   flex: 1;
@@ -44,21 +44,15 @@
   font-weight: 500;
 }
 .LoginPage .InfoLogin .Login-button {
-  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
   width: 100%;
 }
-@media only screen and (max-width: 576px) {
-  .LoginPage .InfoLogin .Login-button {
-    flex: none;
-  }
-}
 .LoginPage .InfoLogin button {
   width: 60%;
-  margin-top: 2rem;
+  margin-top: 1rem;
   padding: 0.7rem 0;
   border-radius: 5px;
   background-color: rgb(0, 0, 0);
@@ -91,6 +85,42 @@
 }
 .LoginPage .InfoLogin .Response-message[visible=true] {
   visibility: visible;
+}
+.LoginPage .InfoLogin .Or {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  gap: 1rem;
+  margin: 1rem;
+}
+.LoginPage .InfoLogin .Or .Line {
+  flex: 1;
+  border-top: 1px solid rgb(0, 0, 0);
+}
+.LoginPage .InfoLogin .Or .OrWord {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.LoginPage .Login-with-google-facebook {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.85);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  cursor: help;
+}
+.LoginPage .Login-with-google-facebook img {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+.LoginPage .Login-with-google-facebook span {
+  font-size: 1rem;
 }
 @media only screen and (max-width: 576px) {
   .LoginPage .Footer {

@@ -10,18 +10,15 @@
         flex-grow: 1;
         @include flex-column-center-center;
         width: 100%;
-    
-        background: radial-gradient(ellipse at right bottom, #EEB1BF 5%, #d42dab 25%, #4d1d63 50%, #030243 100%);
+        background: radial-gradient(ellipse at right bottom, #b3178c 0%, #400f57 50%, #030243 100%);
 
-        @include mq-small{
-            justify-content: flex-start;
-            background: $white;
-        }
     }
 
     .InfoSignup{
+        flex: 1;
         @include flex-column-center-center;
-        width: 30rem;
+        width: 25rem;
+        max-height: 30rem;
         margin: 2rem;
         padding: 2rem;
         border: 1px solid $thinner-black;
@@ -39,6 +36,10 @@
             box-shadow: none;
         }
      
+    }
+
+    .InfoSignup[big="true"]{
+        max-height: max-content;
     }
      
     .InfoSignup h1{
@@ -171,6 +172,12 @@
         span{
             color: $blue;
             cursor: help;
+        }
+    }
+
+    .Footer{
+        @include mq-small{
+            display: none;
         }
     }
 

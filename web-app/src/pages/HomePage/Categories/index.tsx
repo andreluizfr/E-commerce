@@ -13,8 +13,11 @@ import RoupasFemininas from 'assets/images/categories/roupas_femininas.png';
 import Pets from 'assets/images/categories/pets.png';
 import Bebes from 'assets/images/categories/bebes.png';
 import Papelaria from 'assets/images/categories/papelaria.png';
-import BrinquedosInfantil from 'assets/images/categories/brinquedos_e_infantil.png';
+import BrinquedosHobbies from 'assets/images/categories/brinquedos_e_hobbies.png';
 import JoiasRelogios from 'assets/images/categories/joias_e_relogios.png';
+import BolsasCalcados from 'assets/images/categories/bolsas_e_calcados.png';
+import CasaDecoracao from 'assets/images/categories/casa_e_decoracao.png';
+import UtensiliosCasa from 'assets/images/categories/utensilios_para_casa.png';
 
 export default function Categories () : JSX.Element {
 
@@ -80,17 +83,17 @@ export default function Categories () : JSX.Element {
                     <img
                         className='Card-image'
                         alt='um utensílio doméstico'
-                        src={SaudeBeleza}
+                        src={UtensiliosCasa}
                         loading="lazy"
                     />
-                    <span className='Card-title'>Casa e utensílios</span>
+                    <span className='Card-title'>Utensílios para casa</span>
                 </article>
 
                 <article className='Categorie-card'>
                     <img
                         className='Card-image'
                         alt='imagem de almofada e edredom'
-                        src={SaudeBeleza}
+                        src={CasaDecoracao}
                         loading="lazy"
                     />
                     <span className='Card-title'>Casa e decoração</span>
@@ -100,7 +103,7 @@ export default function Categories () : JSX.Element {
                     <img
                         className='Card-image'
                         alt='um sapato'
-                        src={SaudeBeleza}
+                        src={BolsasCalcados}
                         loading="lazy"
                     />
                     <span className='Card-title'>Bolsas e calçados</span>
@@ -140,10 +143,10 @@ export default function Categories () : JSX.Element {
                     <img
                         className='Card-image'
                         alt='bonequinhos de brinquedo'
-                        src={BrinquedosInfantil}
+                        src={BrinquedosHobbies}
                         loading="lazy"
                     />
-                    <span className='Card-title'>Brinquedos e infantil</span>
+                    <span className='Card-title'>Brinquedos e hobbies</span>
                 </article>
 
                 <article className='Categorie-card'>

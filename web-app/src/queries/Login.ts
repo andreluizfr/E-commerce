@@ -27,7 +27,11 @@ export default function Login (formDataInput: FormData) {
     
         const data = response.data as ILoginResponse;
     
-        if (data.success) localStorage.setItem("x-access-token", data.accessToken);
+        if (data.success) {
+            localStorage.setItem("x-access-token", data.accessToken);
+           // localStorage.setItem("user", data.user);
+        }
+
 
         return data;
     

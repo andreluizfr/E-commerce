@@ -4,20 +4,20 @@ import StyledInput from 'components/StyledInput';
 import NavBar from 'components/NavBar';
 import Footer from 'components/Footer';
 
+import google from 'assets/images/google.png';
+import facebook from 'assets/images/facebook.png';
+
 import HashLoader from "react-spinners/HashLoader";
 //import BarLoader from "react-spinners/BarLoader";
 
 import { useState, useEffect } from 'react';
 import Login from 'queries/Login';
-import { useNavigate } from 'react-router-dom';
 
 export default function LoginPage () : JSX.Element {
 
     const [formData, setFormData] = useState({email: "", password: ""});
     const loginQuery = Login(formData);
     
-    const navigate = useNavigate();
-
     useEffect(()=>{
         const el = document.getElementsByClassName("Response-message")[0];
         el.setAttribute("visible", "false");
@@ -42,9 +42,10 @@ export default function LoginPage () : JSX.Element {
     useEffect(()=>{
         if(loginQuery.data && loginQuery.data.success)
             setTimeout(()=>{
-                navigate("/");
+                window.location.href = process.env.REACT_APP_APP_BASE_URL || "http://localhost:3000";  //´com href porque precisa atualizar a página pra dar fetch no user
             }, 1000) //1s
-    }, [loginQuery.data, navigate]);
+        
+    }, [loginQuery.data]);
 
     return(
         <div className='LoginPage'>
@@ -98,6 +99,23 @@ export default function LoginPage () : JSX.Element {
                             
                         }
                     </div>
+
+                    <div className='Or'>
+                        <span className='Line'></span>
+                        <span className='OrWord'>Ou</span>
+                        <span className='Line'></span>
+                    </div>
+
+                    <div className='Login-with-google-facebook'>
+                        <img src={google} alt='icone do google'/>
+                        <span>Entre com o Google</span>
+                    </div>
+
+                    <div className='Login-with-google-facebook'>
+                        <img src={facebook} alt='icone do facebook'/>
+                        <span>Entre com o Facebook</span>
+                    </div>
+
                 </form>
             </div>
 

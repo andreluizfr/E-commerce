@@ -4,7 +4,7 @@ import UserDropdownMenu from 'components/UserDropdownMenu';
 
 import { ReactComponent as SearchIcon } from 'assets/svg/search.svg';
 import van from 'assets/svg/van.png'; //trocar pra svg
-import shoppingCart from 'assets/svg/shoppingCart.png'; //trocar pra svg
+import shoppingCart from 'assets/svg/shopping-cart.png'; //trocar pra svg
 import logo from 'assets/images/logo.png';
 
 import { useMediaQuery } from 'react-responsive';

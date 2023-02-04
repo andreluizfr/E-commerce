@@ -11,7 +11,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  background: radial-gradient(ellipse at right bottom, #EEB1BF 5%, #d42dab 25%, #4d1d63 50%, #030243 100%);
+  background: radial-gradient(ellipse at right bottom, #e65a7a 5%, #d42dab 25%, #4d1d63 50%, #030243 100%);
 }
 @media only screen and (max-width: 576px) {
   .SignupNextStepPage .SignupNextStepPage-background {

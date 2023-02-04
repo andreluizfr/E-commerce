@@ -46,7 +46,7 @@ export default function SignupPage () : JSX.Element {
 
     useEffect(()=>{
         checkEmail();
-    }, [emailExistsQuery.data, checkEmail])
+    }, [emailExistsQuery.data, checkEmail]);
 
     function checkPassword(){
         const password = (document.getElementById("password") as HTMLInputElement).value;
@@ -102,6 +102,16 @@ export default function SignupPage () : JSX.Element {
                 navigate("/cadastro/confirmeSeuEmail");
             }, 1000) //1s
     }, [signupQuery.data, navigate]);
+
+    useEffect(()=>{
+        if(step===1){
+            const signupContainer = document.getElementsByClassName("InfoSignup")[0];
+            signupContainer.setAttribute("big", "false");
+        } else {
+            const signupContainer = document.getElementsByClassName("InfoSignup")[0];
+            signupContainer.setAttribute("big", "true");
+        }
+    }, [step]);
 
     if(step === 1)
         return(
