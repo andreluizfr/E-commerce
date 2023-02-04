@@ -1,0 +1,26 @@
+.CartPopoverTrigger {
+  background-color: rgb(0, 0, 0);
+}
+.CartPopoverTrigger .ShoppingCart-icon {
+  width: 1.6rem;
+  height: 1.6rem;
+  margin-top: 0.2rem;
+  filter: invert(100%);
+  transition: 0.1s;
+}
+.CartPopoverTrigger .ShoppingCart-icon:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.CartPopoverContent {
+  z-index: 999999999;
+  padding: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.24);
+  border-top: none;
+  border-radius: 0.2rem;
+  background-color: rgb(247, 249, 249);
+}
+.CartPopoverContent .CartPopoverArrow {
+  fill: rgb(247, 249, 249);
+}/*# sourceMappingURL=styles.css.map */

@@ -17,14 +17,13 @@
         width: 80%;
 
         margin: 1rem 4rem 4rem 4rem;
-        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 
         .Categorie-card{
             @include flex-column-center-center;
             gap: 1rem;
             height: 8rem;
             background-color: $lighter-gray;
-            border: 1px solid $thin-black;
+            border: 1px solid $thinner-black;
 
             transition: 100ms;
 

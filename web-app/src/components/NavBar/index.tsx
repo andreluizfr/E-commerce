@@ -1,11 +1,10 @@
 import './styles.css';
-
-import UserDropdownMenu from 'components/UserDropdownMenu';
-
 import { ReactComponent as SearchIcon } from 'assets/svg/search.svg';
 import van from 'assets/svg/van.png'; //trocar pra svg
-import shoppingCart from 'assets/svg/shopping-cart.png'; //trocar pra svg
 import logo from 'assets/images/logo.png';
+
+import UserDropdownMenu from './UserDropdownMenu';
+import CartPopover from './CartPopover';
 
 import { useMediaQuery } from 'react-responsive';
 import { Link } from 'react-router-dom';
@@ -13,7 +12,6 @@ import { Link } from 'react-router-dom';
 export default function NavBar() : JSX.Element{
 
     const isSmall = useMediaQuery({ query: '(max-width: 720px)' });
-    //const isPortrait = useMediaQuery({ query: '(orientation: portrait)' });
 
     if(isSmall)
         return (
@@ -55,11 +53,7 @@ export default function NavBar() : JSX.Element{
                         
                         <div className='NavBar-user-toolbar'>
                             <UserDropdownMenu/>
-                            <img 
-                                className='ShoppingCart-icon'
-                                alt='icone de carrinho de compras' 
-                                src={shoppingCart}
-                            />
+                            <CartPopover/>
                         </div>
 
                     </div>
@@ -107,11 +101,7 @@ export default function NavBar() : JSX.Element{
                         
                         <div className='NavBar-user-toolbar'>
                             <UserDropdownMenu/>
-                            <img 
-                                className='ShoppingCart-icon'
-                                alt='icone de carrinho de compras' 
-                                src={shoppingCart}
-                            />
+                            <CartPopover/>
                         </div>
 
                     </div>

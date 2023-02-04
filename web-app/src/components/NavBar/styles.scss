@@ -97,17 +97,6 @@
                 @include flex-row-center-center;
                 gap: .5rem;
                 margin: .5rem;
-    
-                .ShoppingCart-icon{
-                    @include icon-medium;
-                    filter: invert(100%);
-                    transition: .1s;
-                }
-                .ShoppingCart-icon:hover{
-                    opacity: .7;
-                    cursor: pointer;
-                }
-    
             }
     
         }

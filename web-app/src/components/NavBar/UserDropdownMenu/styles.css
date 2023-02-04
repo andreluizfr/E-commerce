@@ -1,0 +1,55 @@
+.UserDropdownMenuIcon {
+  width: 1.4rem;
+  height: 1.4rem;
+  filter: invert(100%);
+  transition: 0.1s;
+  cursor: pointer;
+}
+
+.UserDropdownMenuIcon:hover {
+  opacity: 0.7;
+}
+
+.UserDropdownMenuContent {
+  z-index: 999999999;
+  padding: 0.2rem 0;
+  border: 1px solid rgba(0, 0, 0, 0.24);
+  border-top: none;
+  border-radius: 0.2rem;
+  background-color: rgb(247, 249, 249);
+}
+.UserDropdownMenuContent .SomeMarginAround {
+  margin: 0.5rem 1rem;
+}
+.UserDropdownMenuContent .UserDropdownMenuItem {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.9rem;
+  text-align: left;
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+}
+.UserDropdownMenuContent .UserDropdownMenuItem a {
+  font-size: 0.9rem;
+  text-align: left;
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+}
+.UserDropdownMenuContent .UserDropdownMenuItem .Icon {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+.UserDropdownMenuContent .UserDropdownMenuItem:hover {
+  opacity: 0.8;
+}
+.UserDropdownMenuContent .UserDropdownMenuSeparator {
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.24);
+}
+.UserDropdownMenuContent .UserDropdownMenuArrow {
+  fill: rgb(247, 249, 249);
+}/*# sourceMappingURL=styles.css.map */

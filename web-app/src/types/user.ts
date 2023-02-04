@@ -4,6 +4,7 @@ type User = {
     email: string,
     birthDate: Date,
     cpf: string,
+    phoneNumber: string,
     photoURL: string | null,
     emailVerified: boolean,
 };

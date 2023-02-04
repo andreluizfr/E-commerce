@@ -1,0 +1,31 @@
+@import '../../../assets/css/variables';
+@import '../../../assets/css/_mixins';
+
+
+.CartPopoverTrigger{
+    background-color: $black;
+
+    .ShoppingCart-icon{
+        @include icon-medium2;
+        margin-top: 0.2rem;
+        filter: invert(100%);
+        transition: .1s;
+    }
+    .ShoppingCart-icon:hover{
+        opacity: .7;
+        cursor: pointer;
+    }
+}
+
+.CartPopoverContent{
+    z-index: 999999999;
+    padding: 1rem;
+    border: 1px solid $thin-black;
+    border-top: none;
+    border-radius: .2rem;
+    background-color: $almost-white;
+
+    .CartPopoverArrow{
+        fill: $almost-white;
+    }
+}

@@ -11,7 +11,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  background: radial-gradient(ellipse at right bottom, #b3178c 0%, #400f57 50%, #030243 100%);
+  background: rgb(255, 255, 255);
 }
 @media only screen and (max-width: 576px) {
   .NotFoundPage .NotFoundPage-background {
