@@ -5,12 +5,15 @@ import {
     RouterProvider
 } from "react-router-dom";
 
-import React from 'react';
+import React, { useEffect } from 'react';
+
+import { useDispatch } from 'react-redux';
+import { newUser } from 'store/features/userSlice';
+import { newCart } from 'store/features/cartSlice';
 
 import GetUser from 'queries/GetUser';
 
 import LoadingPage from 'pages/LoadingPage';
-
 
 const HomePage = React.lazy(() => import('pages/HomePage'));
 const LoginPage = React.lazy(() => import('pages/LoginPage'));
@@ -23,7 +26,55 @@ const ProductPage = React.lazy(() => import('pages/ProductPage'));
 
 function App() {
 
+	const dispatch = useDispatch();
 	const getUserQuery = GetUser();
+
+	//quando inciar app, ver se tinha carrinho salvo e passa pra store.
+	useEffect(()=>{
+		/*
+		const StoragedCart = localStorage.getItem("cart");
+        if(StoragedCart)
+			dispatch(newCart(JSON.parse(StoragedCart)));
+		*/
+		const mockCart = [
+			{
+				quantity: 2,
+				product: {
+					productId: "1",
+					title: "maquina de lavar",
+					description: "sla",
+					midia: ["", "", ""],
+					price: 499.98,
+					comparisonPrice: 650,
+					category: "Utensílios para casa",
+					subcategory: ""
+				}
+			},
+			{
+				quantity: 5,
+				product: {
+					productId: "2",
+					title: "escova de cabelo",
+					description: "sla",
+					midia: ["", "", ""],
+					price: 17.90,
+					comparisonPrice: null,
+					category: "Saúde e beleza",
+					subcategory: "",
+				}
+			}
+		];
+
+		dispatch(newCart(mockCart));
+		
+	}, [dispatch]);
+
+	//tenta salvar na store um usuario se ele está logado.
+	useEffect(()=>{
+		if(getUserQuery.data)
+			dispatch(newUser(getUserQuery.data));
+	}, [getUserQuery.data, dispatch]);
+
 
     if(getUserQuery.isFetching)
 		return(
@@ -47,9 +98,10 @@ function App() {
 					}
 				])
 			}/>
-		)
+		);
 
-    else
+    else{
+
 		return (
 			<React.Suspense fallback={<LoadingPage/>}>
 				<RouterProvider router={
@@ -86,7 +138,7 @@ function App() {
 				}/> 
 			</React.Suspense>
 		);
-
+	}
 }
 
 export default App;

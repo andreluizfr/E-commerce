@@ -1,29 +1,52 @@
 import './styles.css';
+
 import * as Popover from '@radix-ui/react-popover';
 
-import shoppingCartEmpty from 'assets/svg/shopping-cart-empty.png'; //trocar pra svg
 import shoppingCart from 'assets/svg/shopping-cart.png'; //trocar pra svg
-import shoppingCart2 from 'assets/svg/shopping-cart2.png'; //trocar pra svg
 
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { StoreState } from 'store';
+import { addProduct, removeProduct, clearCart } from 'store/features/cartSlice';
 import Product from 'types/product';
-type Cart = Array<Product>;
+
+//import { Link } from 'react-router-dom';
 
 export default function UserDropdownMenu () :JSX.Element {
     
-    const [Cart, setCart] = useState <null | Cart>(null);
+    const cart = useSelector((state: StoreState) => state.cart);
+    const dispatch = useDispatch();
 
-    useEffect(()=>{
-        const StoragedCart = localStorage.getItem("cart");
-        if(StoragedCart) setCart(JSON.parse(StoragedCart));
-    }, []);
+    //sempre que carrinho store atualizar, atualizar o localStorage como backup.
+	useEffect(()=>{
+            localStorage.setItem("cart", JSON.stringify(cart.value));
+	}, [cart]);
 
-    if(Cart)
+    function add(product: Product) {
+        dispatch(addProduct(product));
+    }
+
+    function remove(productId: string) {
+        dispatch(removeProduct(productId));
+    }
+
+    function clear() {
+        dispatch(clearCart());
+    }
+
+    function animateCart() {
+        const cartIconElement = document.getElementsByClassName("ShoppingCart-icon")[0];
+        cartIconElement.setAttribute("animate", "true");
+
+        setTimeout(()=>{
+            cartIconElement.setAttribute("animate", "false");
+        }, 200); //0.2s igual o tempo da animação
+    }
+
+    if(cart && cart.value.length > 0)
         return(
             <Popover.Root>
-                <Popover.Trigger className="PopoverTrigger">
+                <Popover.Trigger className="CartPopoverTrigger">
                     <img 
                         className='ShoppingCart-icon'
                         alt='icone de carrinho de compras' 
@@ -32,9 +55,26 @@ export default function UserDropdownMenu () :JSX.Element {
                 </Popover.Trigger>
 
                 <Popover.Portal>
-                    <Popover.Content className="PopoverContent" sideOffset={5}>
-                        Some more info…
-                        <Popover.Arrow className="PopoverArrow" />
+                    <Popover.Content className="CartPopoverContent" sideOffset={5}>
+                        {
+                            cart.value.map((productState, index)=>{
+                                return(
+                                    <div key={index}>
+                                        {JSON.stringify(productState.product)}
+                                        <div>{productState.quantity}</div>
+                                        <button onClick={()=>{
+                                            add(productState.product);
+                                            animateCart();
+                                        }}>
+                                            add
+                                        </button>
+                                        <button onClick={()=>remove(productState.product.productId)}>remove</button>
+                                    </div>
+                                );
+                            })
+                        }
+                        <button onClick={clear}>Clear</button>
+                        <Popover.Arrow className="CartPopoverArrow" />
                     </Popover.Content>
                 </Popover.Portal>
             </Popover.Root>
@@ -46,7 +86,7 @@ export default function UserDropdownMenu () :JSX.Element {
                     <img 
                         className='ShoppingCart-icon'
                         alt='icone de carrinho de compras' 
-                        src={shoppingCartEmpty}
+                        src={shoppingCart}
                     />
                 </Popover.Trigger>
 

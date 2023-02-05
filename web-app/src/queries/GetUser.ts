@@ -1,5 +1,6 @@
 import axios from 'libs/axios';
 import { useQuery } from 'react-query';
+import User from 'types/user';
 
 interface IGetUserResponse {
     authenticated: boolean
@@ -14,10 +15,11 @@ interface IrefreshTokenResponse {
     message: string
 }
 
+
 export default function GetUser () {
 
     const getUserQuery = useQuery('getUser', async () => {
-
+        
         const accessToken = localStorage.getItem("x-access-token");
 
         if(accessToken){
@@ -33,8 +35,7 @@ export default function GetUser () {
 
             } else if (data.authenticated && !data.refresh){
 
-                localStorage.setItem("user", JSON.stringify(data.user));
-                return data.user;
+                return data.user as User;
 
             } else {
 
