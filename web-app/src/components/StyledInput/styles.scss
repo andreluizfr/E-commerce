@@ -8,7 +8,6 @@
     margin-bottom: 0.7rem;
     width: 100%;
     
-
     input{
         font-size: $font-size-small;
         width: 100%;
@@ -20,7 +19,7 @@
     }
 
     span{
-        font-size: $font-size-normal;
+        font-size: $font-size-small;
         font-weight: 400;
         color: $dark-gray;
         position: absolute;
@@ -33,7 +32,7 @@
     p{
         display: none;
         margin-top: .4rem;
-        font-size: $font-size-small;
+        font-size: $font-size-smaller;
         color: $red;
     }
 
@@ -101,7 +100,8 @@
     input[type="date"]{
         
         width: auto;
-        height: 2rem;
+        height: auto;
+        padding: .5rem;
         text-align: center;
 
         color: $dark-gray;
@@ -112,13 +112,4 @@
 
 .Styled-input:has(input[type="date"]){
     @include flex-column-center-center;
-}
-
-.Styled-input:has(input[type="side-by-side"]) p{
-    display: block;
-    visibility: hidden;
-}
-
-.Styled-input:has(input[type="side-by-side"]) input:invalid[wasBlured="true"] ~ p{
-    visibility: visible;
 }

@@ -17,7 +17,7 @@
   color: rgb(0, 0, 0);
 }
 .Styled-input span {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 400;
   color: rgb(83, 100, 113);
   position: absolute;
@@ -29,7 +29,7 @@
 .Styled-input p {
   display: none;
   margin-top: 0.4rem;
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: rgb(255, 0, 0);
 }
 .Styled-input .Eye {
@@ -86,7 +86,8 @@
 }
 .Styled-input input[type=date] {
   width: auto;
-  height: 2rem;
+  height: auto;
+  padding: 0.5rem;
   text-align: center;
   color: rgb(83, 100, 113);
 }
@@ -96,13 +97,4 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.Styled-input:has(input[type=side-by-side]) p {
-  display: block;
-  visibility: hidden;
-}
-
-.Styled-input:has(input[type=side-by-side]) input:invalid[wasBlured=true] ~ p {
-  visibility: visible;
 }/*# sourceMappingURL=styles.css.map */

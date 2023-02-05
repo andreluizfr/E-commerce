@@ -181,18 +181,14 @@ export default function SignupPage () : JSX.Element {
                         <div className='NameInputs'>
                             <StyledInput 
                                 title="Primeiro nome" 
-                                warning="É necessário preencher esse campo." 
                                 name="firstName"
                                 onChange={updateFormData}
-                                type="side-by-side"
                                 required
                             />
                             <StyledInput 
                                 title="Sobrenome" 
-                                warning="É necessário preencher esse campo." 
                                 name="lastName"
                                 onChange={updateFormData}
-                                type="side-by-side"
                                 required
                             />
                         </div>

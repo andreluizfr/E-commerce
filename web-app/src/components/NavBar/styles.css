@@ -77,8 +77,9 @@
   margin-right: 0.5rem;
   border: none;
   outline: none;
-  border-radius: 0.5rem;
+  border-radius: 0.2rem;
   padding: 0.5rem;
+  font-size: 0.9rem;
 }
 .NavBar .NavBar-container-background .NavBar-container .NavBar-searchBar .SearchBar-icon {
   width: 1.2rem;

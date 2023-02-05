@@ -73,12 +73,12 @@
                 .SearchBar-input{
                     flex: 1;
                     margin-right: .5rem;
-    
                     border: none;
                     outline: none;
-                    border-radius: .5rem;
-    
+                    border-radius: .2rem;
                     padding: .5rem;
+
+                    font-size: $font-size-smaller;
                 }
     
                 .SearchBar-icon{

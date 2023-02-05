@@ -27,7 +27,7 @@ export default function UserDropdownMenu () :JSX.Element {
         localStorage.clear();
     }
 
-    if(user)
+    if(user && user.logged)
         return(
             <DropdownMenu.Root>
                 <DropdownMenu.Trigger asChild>
