@@ -1,2 +1,231 @@
 @import '../../assets/css/variables';
 @import '../../assets/css/_mixins';
+
+body{
+    width: 100vw;
+    min-height: 100vh;
+    margin: 0;
+    overflow-x: hidden;
+    font-family: 'Raleway', sans-serif;
+}
+
+.ProductPage{
+    @include flex-column-center-center;
+    height: 100%;
+    width: 100%;
+
+    .Grid-wrapper{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        margin: 0 1rem;
+        row-gap: 1rem;
+
+        @include mq-small{
+            @include flex-column-center-center;
+        }
+
+        .First-section{
+            grid-column-start: 1;
+            grid-column-end: 2;
+
+            @include flex-row-center-center;
+            flex-wrap: wrap;
+            height: max-content;
+            padding: 1rem;
+
+            img{
+                box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+            }
+            :nth-child(1){
+                width: 100%;
+                height: auto;
+                margin-bottom: 1rem;
+            }
+            :nth-child(n+2){
+                width: 20%;
+                height: auto;
+                margin: .2rem;
+            }
+        }
+
+        .Second-section{
+            grid-column-start: 2;
+            grid-column-end: 3;
+
+            @include flex-column-center-start;
+            padding: 1rem;
+            gap: 1rem;
+            min-width: 22rem;
+
+            .Row-1{
+                width: 100%;
+                text-align: center;
+                font-size: $font-size-large;
+            }
+
+            .Row-2{
+                @include flex-row-start-center;
+                width: 100%;
+                gap: 1rem;
+                
+                .Price{
+                    font-family: 'Roboto', sans-serif;
+                    font-size: $font-size-medium;
+                    color: $red;
+                }
+
+                .Stars[quantity="0"]{
+                    svg{
+                        fill: yellow; 
+                        @include icon-medium;
+                    }
+                    :nth-child(n){
+                        fill: black;
+                    }
+                }
+                .Stars[quantity="1"]{
+                    svg{
+                        fill: yellow;
+                        @include icon-medium;
+                    }
+                    :nth-child(n+1){
+                        fill: black;
+                    }
+                }
+                .Stars[quantity="2"]{
+                    svg{
+                        fill: yellow;
+                        @include icon-medium;
+                    }
+                    :nth-child(n+2){
+                        fill: black;
+                    }
+                }
+                .Stars[quantity="3"]{
+                    svg{
+                        fill: yellow;
+                        @include icon-medium;
+                    }
+                    :nth-child(n+2){
+                        fill: black;
+                    }
+                }
+                .Stars[quantity="4"]{
+                    svg{
+                        fill: yellow;
+                        @include icon-medium;
+                    }
+                    :nth-child(n+4){
+                        fill: black;
+                    }
+                }
+                .Stars[quantity="5"]{
+                    svg{
+                        fill: yellow;
+                        @include icon-medium;
+                    }
+                }
+            }
+
+            .Row-3{
+                @include flex-column-start-center;
+                width: 100%;
+
+                .Attributes{
+                    @include flex-column-start-start;
+                    width: 100%;
+                    gap: 1rem;
+
+                    .Attribute{
+                        .Name{
+                            font-size: $font-size-smaller;
+                        }
+                        
+                        .Values{
+                            @include flex-row-start-center;
+                            flex-wrap: wrap;
+                            gap: .2rem;
+
+                            .Value{
+                                padding: .5rem;
+                                border: 1px solid rgba(0,0,0,0.24);
+                                border-radius: 0.2rem;
+
+                                font-size: $font-size-small;
+                                font-weight: 500;
+                            }
+                        }
+                        
+                    }
+                    
+                }
+            }
+
+            .Row-4{
+                @include flex-row-start-center;
+                width: 100%;
+                gap: 1rem;
+
+                Button{
+                    padding: .5rem 1rem;
+                    border: none;
+                    outline: none;
+                    border-radius: 0.2rem;
+                    filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
+                    
+                    white-space: nowrap;
+
+                    font-size: $font-size-small;
+                }
+                .Add-to-cart{
+                    border: 1px solid rgba(0,0,0,0.24);
+
+                    background-color: $white;
+                    color: $black;
+                }
+
+                .Buy{
+                    background-color: $black;
+                    color: $white;
+                }
+
+            }
+
+            .Row-5{
+                @include flex-column-center-center;
+                width: 100%;
+
+                .Warning{
+                    width: 100%;
+                    font-size: $font-size-smaller;
+                }
+            }
+            
+        }
+
+        .Third-section{
+            grid-column-start: 1;
+            grid-column-end: 3;
+
+            @include flex-column-center-center;
+            width: 100%;
+
+            .Title{
+                text-align: center;
+                font-size: $font-size-medium;
+                font-weight: 500;
+            }
+
+            .Description{
+                width: 100%;
+            }
+        }
+
+        .Fourth-section{
+            grid-column-start: 1;
+            grid-column-end: 3;
+        }   
+
+    }
+
+}
