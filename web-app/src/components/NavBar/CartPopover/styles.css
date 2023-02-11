@@ -13,19 +13,7 @@
   cursor: pointer;
 }
 .CartPopoverTrigger .ShoppingCart-icon[animate=true] {
-  -webkit-animation: little-shake 0.2s;
-          animation: little-shake 0.2s;
-}
-@-webkit-keyframes little-shake {
-  33% {
-    transform: translateX(0.2rem) rotateZ(5deg) translateY(-0.2rem);
-  }
-  66% {
-    transform: translateX(-0.2rem) rotateZ(-5deg) translateY(-0.2rem);
-  }
-  100% {
-    transform: translateX(0rem) rotateZ(0deg) translateY(0rem);
-  }
+  animation: little-shake 0.2s;
 }
 @keyframes little-shake {
   33% {

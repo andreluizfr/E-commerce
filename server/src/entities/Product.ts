@@ -1,6 +1,10 @@
 import { Entity, Column, CreateDateColumn, PrimaryGeneratedColumn} from 'typeorm';
+
 import Category from '../types/Category';
 import ProductStatus from '../types/ProductStatus';
+import Attributes from '../types/Attributes';
+import Midias from '../types/Midias';
+import RatingNumbers from '../types/RatingNumbers';
 
 @Entity("Products")
 export class Product{
@@ -15,7 +19,7 @@ export class Product{
     public description!: string;
 
     @Column({nullable: true})
-    public midia!: string[];
+    public midias!: Midias;
 
     @Column({type: 'decimal', precision: 20, scale: 2, nullable: true})
     public price!: number;
@@ -35,8 +39,17 @@ export class Product{
     @Column({nullable: true})
     public providerURL!: string;
 
+    @Column({nullable: true})
+    public attributes!: Attributes;
+
     @Column()
     public productStatus!: ProductStatus;
+
+    @Column()
+    public rating!: number;
+
+    @Column()
+    public ratingNumbers!: RatingNumbers;
 
     @CreateDateColumn()
     public created_at!: Date;
