@@ -2,14 +2,13 @@
 @import '../../assets/css/_mixins';
 
 .HomePage{
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    @include flex-column-start-center;
+    min-height: 100vh; 
 }
 
 .HomePage-container{
     @include flex-column-start-center;
-    width: 100%;
+    width: 70%;
     flex-grow: 1;
     background-color: $white;
     //background: radial-gradient(ellipse at right bottom, #EEB1BF 5%, #d42dab 25%, #4d1d63 50%, #030243 100%);
