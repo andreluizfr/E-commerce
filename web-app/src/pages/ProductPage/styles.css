@@ -35,7 +35,6 @@ body {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
   padding: 1rem;
