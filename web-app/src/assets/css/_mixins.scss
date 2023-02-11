@@ -227,7 +227,7 @@
 }
 
 @mixin mq-medium{
-    @media only screen and (max-width: 872px) {
+    @media only screen and (max-width: 1000px) {
         @content;
     }
 }
@@ -240,6 +240,12 @@
 
 @mixin mq-night{
     @media (prefers-color-scheme: dark) {
+        @content;
+    }
+}
+
+@mixin no-motion{
+    @media (prefers-reduced-motion: reduce) {
         @content;
     }
 }

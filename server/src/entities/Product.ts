@@ -1,10 +1,11 @@
-import { Entity, Column, CreateDateColumn, PrimaryGeneratedColumn} from 'typeorm';
+import { Entity, Column, CreateDateColumn, PrimaryGeneratedColumn, OneToMany} from 'typeorm';
 
 import Category from '../types/Category';
 import ProductStatus from '../types/ProductStatus';
 import Attributes from '../types/Attributes';
 import Midias from '../types/Midias';
 import RatingNumbers from '../types/RatingNumbers';
+import { Rating } from './Rating';
 
 @Entity("Products")
 export class Product{
@@ -50,6 +51,10 @@ export class Product{
 
     @Column()
     public ratingNumbers!: RatingNumbers;
+
+    @OneToMany(() => Rating, (rating: Rating) => rating.product, {cascade: true})
+    @Column()
+    public ratings!: Rating[];
 
     @CreateDateColumn()
     public created_at!: Date;

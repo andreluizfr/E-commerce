@@ -1,6 +1,7 @@
-import { Entity, Column, CreateDateColumn, PrimaryColumn, BeforeInsert } from 'typeorm';
+import { Entity, Column, CreateDateColumn, PrimaryColumn, BeforeInsert, OneToMany } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
 import * as bcrypt from 'bcrypt';
+import { Rating } from './Rating';
 @Entity("Users")
 export class User{
 
@@ -42,6 +43,10 @@ export class User{
 
     @Column({ nullable: true })
     public refreshToken!: string;
+
+    @OneToMany(() => Rating, (rating: Rating) => rating.user, {cascade: true})
+    @Column()
+    public ratings!: Rating[];
 
     @CreateDateColumn()
     public created_at!: Date;

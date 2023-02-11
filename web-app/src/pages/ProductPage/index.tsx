@@ -6,7 +6,7 @@ import Rating from './Rating';
 import NotFoundPage from 'pages/NotFoundPage';
 
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import Product from 'types/product';
 
@@ -17,23 +17,23 @@ const productMock = {
     description: "<div>meu ovo</div> <div>meu ovo 2</div>",
     midias: [
         {
-            link: "https://live.staticflickr.com/4577/37942236145_78d9979517_b.jpg",
+            url: "https://live.staticflickr.com/4577/37942236145_78d9979517_b.jpg",
             attributeValue: null
         },
         {
-            link: "https://live.staticflickr.com/4577/37942236145_78d9979517_b.jpg",
+            url: "https://live.staticflickr.com/4577/37942236145_78d9979517_b.jpg",
             attributeValue: null
         },
         {
-            link: "https://live.staticflickr.com/4577/37942236145_78d9979517_b.jpg",
+            url: "https://live.staticflickr.com/4577/37942236145_78d9979517_b.jpg",
             attributeValue: null
         },
         {
-            link: "https://live.staticflickr.com/4577/37942236145_78d9979517_b.jpg",
+            url: "https://live.staticflickr.com/4577/37942236145_78d9979517_b.jpg",
             attributeValue: null
         },
         {
-            link: "https://live.staticflickr.com/4577/37942236145_78d9979517_b.jpg",
+            url: "https://live.staticflickr.com/4577/37942236145_78d9979517_b.jpg",
             attributeValue: null
         }
     ],
@@ -107,7 +107,7 @@ export default function ProductPage () : JSX.Element {
                             {
                                 product.midias.map((midia, index)=>
                                     <img 
-                                        src={midia.link} 
+                                        src={midia.url} 
                                         alt={product.title+index} 
                                         className={"Picture "+midia.attributeValue}
                                         key={"img"+index}

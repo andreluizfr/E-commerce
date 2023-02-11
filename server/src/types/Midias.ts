@@ -1,5 +1,5 @@
 type Midias= {
-    link: string,
+    url: string,
     attributeValue: string | null
 }[];
 

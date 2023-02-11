@@ -5,7 +5,7 @@ type Product = {
     title: string,
     description: string,
     midias: {
-                link: string,
+                url: string,
                 attributeValue: string | null
             }[],
     price: number,
