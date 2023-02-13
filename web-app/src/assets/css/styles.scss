@@ -9,6 +9,7 @@
     margin: 0;
     box-sizing: border-box;
     font-family: 'Raleway', sans-serif;
+    scroll-behavior: smooth;
 }
 
 code{
@@ -20,9 +21,7 @@ body{
     min-width: 372px;
     min-height: 100vh;
     background-color: $white;
-
     overflow-y: auto;
-    scroll-behavior: smooth;
 }
 
 //o scroll inteiro

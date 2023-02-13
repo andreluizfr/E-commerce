@@ -1,53 +1,10 @@
-@keyframes tonext {
-  75% {
-    left: 0;
-  }
-  95% {
-    left: 100%;
-  }
-  98% {
-    left: 100%;
-  }
-  99% {
-    left: 0;
-  }
-}
-@keyframes tostart {
-  75% {
-    left: 0;
-  }
-  95% {
-    left: -300%;
-  }
-  98% {
-    left: -300%;
-  }
-  99% {
-    left: 0;
-  }
-}
-@keyframes snap {
-  96% {
-    scroll-snap-align: center;
-  }
-  97% {
-    scroll-snap-align: none;
-  }
-  99% {
-    scroll-snap-align: none;
-  }
-  100% {
-    scroll-snap-align: center;
-  }
-}
 .HomePage-carousel {
   filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.2));
   perspective: 100px;
   width: 100%;
-  position: relative;
   display: flex;
   justify-content: center;
-  top: 1rem;
+  margin: 1rem 0;
 }
 
 .HomePage-carousel::before,
@@ -67,68 +24,64 @@
 
 .carousel__viewport {
   display: flex;
-  overflow-x: scroll;
   counter-reset: item;
-  scroll-behavior: smooth;
+  overflow-x: hidden;
   scroll-snap-type: x mandatory;
   height: auto;
   width: 100%;
   position: relative;
   padding: 0;
   aspect-ratio: 30/9;
-  overflow-x: hidden;
 }
 
 .carousel__slide {
   position: relative;
   flex: 0 0 100%;
   width: 100%;
-  background-color: #f99;
   counter-increment: item;
+  list-style-type: none;
+  background-color: rgb(0, 0, 0);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
-.carousel__slide:nth-child(even) {
-  background-color: #99f;
+.carousel__slide:nth-child(1) {
+  background-image: url("https://cdna.artstation.com/p/assets/images/images/041/593/288/large/alexander-akan-frete-gratis-20-08.jpg?1632151313");
 }
 
-.carousel__slide:before {
-  content: counter(item);
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%, -40%, 70px);
-  color: #fff;
-  font-size: 2rem;
-  position: absolute;
+.carousel__slide:nth-child(2) {
+  background-image: url("https://marcusmarques.com.br/wp-content/uploads/2017/03/promocao.jpg");
+}
+
+.carousel__slide:nth-child(3) {
+  background-image: url("https://static.vecteezy.com/ti/vetor-gratis/p2/2294859-banner-flash-venda-web-design-e-commerce-on-line-shopping-header-or-footer-banner-gratis-vetor.jpg");
+}
+
+.carousel__slide:nth-child(4) {
+  background-image: url("https://static.vecteezy.com/ti/vetor-gratis/p2/10481978-venda-banner-design-com-desconto-flash-venda-modelo-vetor.jpg");
 }
 
 .carousel__snapper {
+  position: absolute;
   width: 100%;
   height: 100%;
   scroll-snap-align: center;
-  position: absolute;
+  transition: 0.5s left;
+}
+@media (prefers-reduced-motion: reduce) {
+  .carousel__snapper {
+    transition: 0 left;
+  }
 }
 
-@media (hover: hover) {
-  .carousel__snapper {
-    animation-name: tonext, snap;
-    animation-timing-function: ease;
-    animation-duration: 4s;
-    animation-iteration-count: infinite;
-  }
+.carousel__slide:last-child .carousel__snapper {
+  transition: 0.5s left;
 }
-@media (hover: hover) and (prefers-reduced-motion: reduce) {
-  .carousel__snapper {
-    animation-name: none;
-  }
-}
-@media (hover: hover) {
+@media (prefers-reduced-motion: reduce) {
   .carousel__slide:last-child .carousel__snapper {
-    animation-name: tostart, snap;
+    transition: 0 left;
   }
-}
-.HomePage-carousel:hover .carousel__snapper,
-.carousel:focus-within .carousel__snapper {
-  animation-name: none;
 }
 
 .HomePage-carousel::before,
@@ -186,21 +139,25 @@
   opacity: 1;
 }
 
+.HomePage-carousel:has(.carousel__next:hover)::after {
+  opacity: 1;
+}
+
 .carousel__navigation-list {
   position: absolute;
-  right: 0;
-  bottom: 1.5rem;
   left: 0;
+  right: 0;
+  bottom: 1rem;
   text-align: center;
 }
 @media only screen and (max-width: 576px) {
   .carousel__navigation-list {
-    bottom: 0.5rem;
+    bottom: 0.2rem;
   }
 }
 @media only screen and (max-width: 1000px) {
   .carousel__navigation-list {
-    bottom: 1rem;
+    bottom: 0.5rem;
   }
 }
 

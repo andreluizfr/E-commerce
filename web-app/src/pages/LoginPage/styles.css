@@ -3,6 +3,18 @@
   flex-direction: column;
   min-height: 100vh;
 }
+.LoginPage .NavBar-banner-sentence {
+  background: radial-gradient(ellipse at right bottom, #b3178c 0%, #400f57 50%, #030243 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  font-size: 1.2rem;
+}
+.LoginPage .NavBar-banner-sentence .Normal-word {
+  color: rgb(0, 0, 0);
+}
+.LoginPage .NavBar-banner-sentence .Coloured-word {
+  color: transparent;
+}
 .LoginPage .LoginBG {
   flex-grow: 1;
   display: flex;

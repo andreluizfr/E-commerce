@@ -18,16 +18,13 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.24);
 }
 .NavBar-banner-sentence {
-  background: radial-gradient(ellipse at right bottom, #b3178c 0%, #400f57 50%, #030243 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
   font-size: 1.2rem;
 }
 .NavBar-banner-sentence .Normal-word {
   color: rgb(0, 0, 0);
 }
 .NavBar-banner-sentence .Coloured-word {
-  color: transparent;
+  color: rgb(255, 0, 0);
 }
 .NavBar-banner .Van-Icon {
   width: 1.8rem;

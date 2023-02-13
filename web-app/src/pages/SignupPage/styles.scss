@@ -6,6 +6,24 @@
     flex-direction: column;
     min-height: 100vh;
 
+    .NavBar{
+        &-banner{
+            &-sentence{
+                background: radial-gradient(ellipse at right bottom, #b3178c 0%, #400f57 50%, #030243 100%);
+                background-clip: text;
+                -webkit-background-clip: text;
+                font-size: $font-size-normal;
+            
+                .Normal-word{
+                    color: $black;
+                }
+                .Coloured-word{
+                    color: transparent;
+                }
+            }
+        }
+    }
+
     .SignupBG{
         flex-grow: 1;
         @include flex-column-center-center;
