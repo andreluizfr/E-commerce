@@ -2,13 +2,16 @@ import './styles.css';
 
 import NavBar from 'components/NavBar';
 import Footer from 'components/Footer';
-import Rating from './Rating';
+import RatingStars from './RatingStars';
 import NotFoundPage from 'pages/NotFoundPage';
+import ProgressionBar from './ProgressionBar';
+import Ratings from './Ratings';
 
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 
 import Product from 'types/product';
+
 
 
 const productMock = {
@@ -123,8 +126,8 @@ export default function ProductPage () : JSX.Element {
                             </header>
 
                             <div className="Row-2">
-                                <span className="Price">R$ {product.price}</span>
-                                <Rating rate={product.rating}/>
+                                <span className="Price">R${product.price}</span>
+                                <RatingStars rate={product.rating} size="medium"/>
                             </div>
 
                             <div className="Row-3">
@@ -197,24 +200,51 @@ export default function ProductPage () : JSX.Element {
                         </section>
                         
                         <section className="Fourth-section">
-                            <div className='Rating'>
-                                <span className='Value'>{product.rating.toFixed(2)}</span>
-                                <Rating rate={product.rating}/>
-                            </div>
 
-                            <div className='Rating-data'>
-                                <div>1</div>
-                                <div>2</div>
-                                <div>3</div>
-                                <div>4</div>
-                                <div>5</div>
+                            <header className='Title'>
+                                Avaliações
+                            </header>
+
+                            <div className='Ratings'>
+
+                                <div className='Rating-value'>
+                                    <span className='Value'>{product.rating.toFixed(2)}</span>
+                                    <RatingStars rate={product.rating} size="large"/>
+                                </div>
+
+                                <div className='Rating-data'>
+                                    <div className='Rating-data-wrapper'>
+                                        <span className='Rating-number'>5 estrelas</span>
+                                        <ProgressionBar number="5" ratingNumbers={product.ratingNumbers}/>
+                                    </div>
+
+                                    <div className='Rating-data-wrapper'>
+                                        <span className='Rating-number'>4 estrelas</span>
+                                        <ProgressionBar number="4" ratingNumbers={product.ratingNumbers}/>
+                                    </div>
+
+                                    <div className='Rating-data-wrapper'>
+                                        <span className='Rating-number'>3 estrelas</span>
+                                        <ProgressionBar number="3" ratingNumbers={product.ratingNumbers}/>
+                                    </div>
+
+                                    <div className='Rating-data-wrapper'>
+                                        <span className='Rating-number'>2 estrelas</span>
+                                        <ProgressionBar number="2" ratingNumbers={product.ratingNumbers}/>
+                                    </div>
+
+                                    <div className='Rating-data-wrapper'>
+                                        <span className='Rating-number'>1 estrela</span>
+                                        <ProgressionBar number="1" ratingNumbers={product.ratingNumbers}/>
+                                    </div>
+                                </div>
+
                             </div>
+                        
                         </section>
 
                         <section className="Fifth-section">
-                            <div className='Comments-container'>
-                                
-                            </div>
+                            <Ratings/>
                         </section>
 
                     </div>

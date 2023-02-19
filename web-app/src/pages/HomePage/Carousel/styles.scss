@@ -95,7 +95,7 @@
 	font-size: 0;
 	outline: 0;
 
-	@include mq-medium {
+	@include mq-large {
 		width: 2.5rem;
 		height: 2.5rem;
 	}
@@ -167,7 +167,7 @@
 	font-size: 0;
 	transition: transform 0.1s;
 
-	@include mq-medium {
+	@include mq-large {
 		width: 1.2rem;
 		height: 1.2rem;
 	}

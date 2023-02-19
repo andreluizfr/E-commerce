@@ -9,17 +9,27 @@
 
     .ProductPage-container{
         flex: 1;
-        padding: 1rem 20%;
+        padding: 1rem 15%;
+        background-color: $lighter-gray;
+
+        @include mq-large{
+            padding: 1rem 10%;
+        }
+
+        @include mq-medium{
+            padding: 1rem 5%;
+        } 
+
+        @include mq-small{
+            padding: 0;
+        }
 
         .Grid-wrapper{
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             row-gap: 1rem;
-
-            @include mq-small{
-                @include flex-column-center-center;
-                margin: 1rem;
-            }
+            background-color: $white;
+            padding: 1rem;
 
             .First-section{
                 grid-column-start: 1;
@@ -28,7 +38,11 @@
                 @include flex-row-start-center;
                 flex-wrap: wrap;
                 height: max-content;
-                padding: 1rem;
+                padding: .5rem;
+
+                @include mq-medium{
+                    grid-column-end: 3;
+                }
 
                 img{
                     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
@@ -51,9 +65,12 @@
                 grid-column-end: 3;
 
                 @include flex-column-center-start;
-                padding: 1rem;
+                padding: .5rem;
                 gap: 1rem;
-                min-width: 22rem;
+
+                @include mq-medium{
+                    grid-column-start: 1;
+                }
 
                 .Row-1{
                     width: 100%;
@@ -71,7 +88,7 @@
                     gap: 1rem;
                     
                     .Price{
-                        font-family: 'Roboto', sans-serif;
+                        font-family: Arial, Helvetica, sans-serif;
                         font-size: $font-size-medium;
                         color: $red;
                     }
@@ -178,6 +195,7 @@
                     .Warning{
                         width: 100%;
                         font-size: $font-size-smaller;
+                        text-align: justify;
                     }
                 }
                 
@@ -194,6 +212,8 @@
                     text-align: center;
                     font-size: $font-size-medium;
                     font-weight: 500;
+
+                    margin-bottom: 1rem;
                 }
 
                 .Description{
@@ -204,7 +224,64 @@
             .Fourth-section{
                 grid-column-start: 1;
                 grid-column-end: 3;
+
+                @include flex-column-center-center;
+                width: 100%;
+
+                .Title{
+                    text-align: center;
+                    font-size: $font-size-medium;
+                    font-weight: 500;
+
+                    margin-bottom: 1rem;
+                }
+
+                .Ratings{
+                    @include flex-row-center-center;
+                    width: 100%;
+                    
+                    .Rating-value{
+                        @include flex-row-center-center;
+                        width: 50%;
+                        gap: 1rem;
+
+                        .Value{
+                            font-size: $font-size-medium;
+                            font-weight: 500;
+                        }
+                    }
+
+                    .Rating-data{
+                        @include flex-column-center-start;
+                        width: 50%;
+
+                        .Rating-data-wrapper{
+                            @include flex-row-start-center;
+                            width: 100%;
+                            gap: .5rem;
+
+                            .Rating-number{
+                                font-size: $font-size-small;
+                                font-weight: 400;
+                                white-space: nowrap;
+                            }
+                        }
+
+                        .Rating-data-wrapper:last-child{
+                            gap: 1rem;
+                        }
+
+                    }
+
+                }
+
             }   
+
+            .Fifth-section{
+                grid-column-start: 1;
+                grid-column-end: 3;
+                width: 100%;
+            }
 
         }
 

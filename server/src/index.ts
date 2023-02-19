@@ -1,6 +1,7 @@
 import './configs/env';
 
 import express from 'express';
+import "reflect-metadata";
 
 import cookieParser from 'cookie-parser';
 import cors from 'cors';

@@ -44,8 +44,7 @@ export class User{
     @Column({ nullable: true })
     public refreshToken!: string;
 
-    @OneToMany(() => Rating, (rating: Rating) => rating.user, {cascade: true})
-    @Column()
+    @OneToMany(() => Rating, (rating: Rating) => rating.user)
     public ratings!: Rating[];
 
     @CreateDateColumn()

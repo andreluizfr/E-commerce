@@ -1,0 +1,41 @@
+@import '../../../assets/css/variables';
+@import '../../../assets/css/_mixins';
+
+.RatingStars{
+    display: flex;
+    width: 69px;
+    height: 15px;
+
+    background: $white;
+
+    .Star{
+        width: 15px;
+        height: 15px;
+        margin-right: 1px;
+        clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    }
+
+    :last-child{
+        margin-right: 0;
+    }
+}
+
+.RatingStars[size="medium"]{
+    width: 104px;
+    height: 20px;
+
+    .Star{
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.RatingStars[size="large"]{
+    width: 129px;
+    height: 25px;
+
+    .Star{
+        width: 25px;
+        height: 25px;
+    }
+}

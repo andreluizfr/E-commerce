@@ -1,0 +1,24 @@
+.ProgressionBar {
+  position: relative;
+  width: 100%;
+  height: 1rem;
+  border-radius: 0.5rem;
+  background: rgb(207, 217, 222);
+}
+.ProgressionBar .Bar {
+  height: 1rem;
+  border-radius: 1rem;
+  background: rgb(255, 192, 203);
+  --content: "100%";
+}
+.ProgressionBar .Bar::after {
+  content: var(--content);
+  display: none;
+  position: absolute;
+  left: calc(100% + 1rem);
+  font-size: 1rem;
+}
+
+.ProgressionBar:hover .Bar::after {
+  display: block;
+}/*# sourceMappingURL=styles.css.map */

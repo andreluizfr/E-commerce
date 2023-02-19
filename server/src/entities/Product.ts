@@ -2,9 +2,7 @@ import { Entity, Column, CreateDateColumn, PrimaryGeneratedColumn, OneToMany} fr
 
 import Category from '../types/Category';
 import ProductStatus from '../types/ProductStatus';
-import Attributes from '../types/Attributes';
-import Midias from '../types/Midias';
-import RatingNumbers from '../types/RatingNumbers';
+
 import { Rating } from './Rating';
 
 @Entity("Products")
@@ -19,8 +17,8 @@ export class Product{
     @Column({nullable: true})
     public description!: string;
 
-    @Column({nullable: true})
-    public midias!: Midias;
+    @Column({type: "jsonb", nullable: true})
+    public midias!: {attributeValue: string | null, type: string, url: string}[];
 
     @Column({type: 'decimal', precision: 20, scale: 2, nullable: true})
     public price!: number;
@@ -40,8 +38,8 @@ export class Product{
     @Column({nullable: true})
     public providerURL!: string;
 
-    @Column({nullable: true})
-    public attributes!: Attributes;
+    @Column({type: "jsonb", nullable: true})
+    public attributes!: {name: string, values: string[]}[];
 
     @Column()
     public productStatus!: ProductStatus;
@@ -49,11 +47,16 @@ export class Product{
     @Column()
     public rating!: number;
 
-    @Column()
-    public ratingNumbers!: RatingNumbers;
+    @Column({type: "json"})
+    public ratingNumbers!: {
+        "1": number,
+        "2": number,
+        "3": number,
+        "4": number,
+        "5": number
+    };
 
-    @OneToMany(() => Rating, (rating: Rating) => rating.product, {cascade: true})
-    @Column()
+    @OneToMany(() => Rating, (rating: Rating) => rating.product)
     public ratings!: Rating[];
 
     @CreateDateColumn()

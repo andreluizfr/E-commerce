@@ -9,24 +9,24 @@ export class Rating{
     public readonly ratingId!: string;
     
     @ManyToOne(() => User, (user) => user.ratings, {cascade: true})
-    public user!: string;
+    public user!: User;
 
     @ManyToOne(() => Product, (product) => product.ratings, {cascade: true})
-    public product!: string;
+    public product!: Product;
 
-    @Column({unique: true})
+    @Column({type: 'json'})
     public variation!: object;
 
     @Column({nullable: true})
     public rating!: number;
 
     @Column()
-    public comment!: number;
+    public comment!: string;
 
     @Column()
     public hasMidia!: boolean;
 
-    @Column({nullable: true})
+    @Column({type: "jsonb", nullable: true})
     public midias!: {type: string, url: string}[];
 
     @CreateDateColumn()

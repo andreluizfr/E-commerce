@@ -23,7 +23,7 @@ export default function Carousel () : JSX.Element {
             thirdSnapper.current.style.left = (n-1)*100+"%";
             fourthSnapper.current.style.left = (n-1)*100+"%";
         }
-        console.log("n-", n);
+
         setActualSlide(n);
     }
 
@@ -43,6 +43,7 @@ export default function Carousel () : JSX.Element {
                     SetInterval(setInterval(()=>slideTo(actualSlide+1), 4000));
             }
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [actualSlide, start]);
 
 

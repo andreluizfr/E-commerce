@@ -1,0 +1,215 @@
+.Rating-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+.Rating-container .User-picture {
+  width: 3rem;
+  height: 3rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+.Rating-container .Rows {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  gap: 0.2rem;
+}
+.Rating-container .Rows .Row-1 {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+}
+.Rating-container .Rows .Row-1 .User-name {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.Rating-container .Rows .Row-1 .Rating-date span {
+  font-size: 0.9rem;
+  font-weight: 400;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(83, 100, 113);
+}
+.Rating-container .Rows .Row-2 span {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgb(83, 100, 113);
+}
+.Rating-container .Rows .Row-4 {
+  margin: 1rem 0;
+}
+.Rating-container .Rows .Row-4 .Comment {
+  font-size: 1rem;
+  font-weight: 400;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #222830;
+}
+.Rating-container .Rows .Row-5 {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.2rem;
+  transition: none;
+}
+.Rating-container .Rows .Row-5 .Midia img {
+  width: 5rem;
+  height: auto;
+  transition: none;
+  cursor: pointer;
+}
+.Rating-container .Rows .Row-5 .Midia button {
+  display: none;
+}
+.Rating-container .Rows .Row-5 :hover {
+  opacity: 0.9;
+}
+.Rating-container .Rows .Row-5[carousel=true] {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999999999999;
+  transition: 200ms all;
+  background-color: rgba(34, 40, 48, 0.7);
+}
+.Rating-container .Rows .Row-5[carousel=true] .Midia {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  transition: 200ms all;
+}
+.Rating-container .Rows .Row-5[carousel=true] .Midia img {
+  width: 80%;
+  height: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.Rating-container .Rows .Row-5[carousel=true] .Midia button {
+  display: block;
+  position: absolute;
+  top: 48%;
+  z-index: 9999999999999;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  width: 1.8rem;
+  height: 1.8rem;
+  background-color: rgb(255, 255, 255);
+  text-align: center;
+  transition: 200ms all;
+  cursor: pointer;
+}
+.Rating-container .Rows .Row-5[carousel=true] .Midia button:hover {
+  opacity: 0.8;
+}
+.Rating-container .Rows .Row-5[carousel=true] .Midia .Left {
+  left: 2rem;
+}
+@media only screen and (max-width: 720px) {
+  .Rating-container .Rows .Row-5[carousel=true] .Midia .Left {
+    left: 1.5rem;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .Rating-container .Rows .Row-5[carousel=true] .Midia .Left {
+    left: 0.5rem;
+  }
+}
+.Rating-container .Rows .Row-5[carousel=true] .Midia .Right {
+  right: 2rem;
+}
+@media only screen and (max-width: 720px) {
+  .Rating-container .Rows .Row-5[carousel=true] .Midia .Right {
+    right: 1.5rem;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .Rating-container .Rows .Row-5[carousel=true] .Midia .Right {
+    right: 0.5rem;
+  }
+}
+.Rating-container .Rows .Row-5[carousel=true] :hover {
+  opacity: 1;
+}
+.Rating-container .Rows .Row-5 .Midia:first-child button:first-child {
+  background-color: rgba(207, 217, 222, 0.8);
+  cursor: default;
+}
+.Rating-container .Rows .Row-5 .Midia:first-child button:first-child:hover {
+  opacity: 1;
+}
+.Rating-container .Rows .Row-5 .Midia:last-child button:last-child {
+  background-color: rgba(207, 217, 222, 0.8);
+  cursor: default;
+}
+.Rating-container .Rows .Row-5 .Midia:last-child button:last-child:hover {
+  opacity: 1;
+}
+.Rating-container .Rows .Row-5[index="1"] .Midia:nth-child(1) {
+  left: 0;
+}
+.Rating-container .Rows .Row-5[index="1"] .Midia:nth-child(2) {
+  left: 100%;
+}
+.Rating-container .Rows .Row-5[index="1"] .Midia:nth-child(3) {
+  left: 200%;
+}
+.Rating-container .Rows .Row-5[index="1"] .Midia:nth-child(4) {
+  left: 300%;
+}
+.Rating-container .Rows .Row-5[index="2"] .Midia:nth-child(1) {
+  left: -160%;
+}
+.Rating-container .Rows .Row-5[index="2"] .Midia:nth-child(2) {
+  left: 0;
+}
+.Rating-container .Rows .Row-5[index="2"] .Midia:nth-child(3) {
+  left: 100%;
+}
+.Rating-container .Rows .Row-5[index="2"] .Midia:nth-child(4) {
+  left: 200%;
+}
+.Rating-container .Rows .Row-5[index="3"] .Midia:nth-child(1) {
+  left: -200%;
+}
+.Rating-container .Rows .Row-5[index="3"] .Midia:nth-child(2) {
+  left: -100%;
+}
+.Rating-container .Rows .Row-5[index="3"] .Midia:nth-child(3) {
+  left: 0;
+}
+.Rating-container .Rows .Row-5[index="3"] .Midia:nth-child(4) {
+  left: 100%;
+}
+.Rating-container .Rows .Row-5[index="4"] .Midia:nth-child(1) {
+  left: -300%;
+}
+.Rating-container .Rows .Row-5[index="4"] .Midia:nth-child(2) {
+  left: -200%;
+}
+.Rating-container .Rows .Row-5[index="4"] .Midia:nth-child(3) {
+  left: -100%;
+}
+.Rating-container .Rows .Row-5[index="4"] .Midia:nth-child(4) {
+  left: 0;
+}
+
+body:has(.Row-5[carousel=true]) {
+  overflow: hidden;
+}/*# sourceMappingURL=styles.css.map */

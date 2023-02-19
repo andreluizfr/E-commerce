@@ -4,11 +4,18 @@ import { HTMLAttributes, useEffect, useRef } from "react";
 
 interface RatingProps extends HTMLAttributes<HTMLDivElement> {
     rate: number;
+    size?: "small" | "medium" | "large";
 }
 
-export default function Rating (props: RatingProps) : JSX.Element {
+export default function RatingStars (props: RatingProps) : JSX.Element {
 
     const ratingRef = useRef<HTMLDivElement | null>(null);
+
+    useEffect(()=>{
+        if(props.size){
+            ratingRef.current?.setAttribute("size", props.size);
+        }
+    }, []);
 
     useEffect(()=>{
         const stars = ratingRef.current?.getElementsByClassName("Star");
@@ -40,7 +47,7 @@ export default function Rating (props: RatingProps) : JSX.Element {
     }, [props.rate]);
 
     return(
-        <div className='Rating' ref={ratingRef}>
+        <div className='RatingStars' ref={ratingRef}>
             <div className='Star'></div>
             <div className='Star'></div>
             <div className='Star'></div>
