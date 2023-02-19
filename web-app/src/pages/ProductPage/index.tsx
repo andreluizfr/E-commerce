@@ -10,9 +10,10 @@ import Ratings from './Ratings';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 
+import { useDispatch } from 'react-redux';
+import { addProduct } from 'store/features/cartSlice';
+
 import Product from 'types/product';
-
-
 
 const productMock = {
     productId: "123",
@@ -44,6 +45,7 @@ const productMock = {
     comparisonPrice: 999999.98,
     category: "Ferramentas e construção",
     subcategory: null,
+    hasAttributes: true,
     attributes: [
         {
             name: "tamanho",
@@ -68,10 +70,9 @@ const productMock = {
 export default function ProductPage () : JSX.Element {
 
     let { productId } = useParams();
-
-    const product = productMock;
-
-    const [selectedAttributes, setSelectedAttributes] = useState<object | null>(null);
+    const [product, setProduct] = useState <Product>(productMock);
+    const [selectedAttributes, setSelectedAttributes] = useState<{[key: string]: string}>({});
+    const dispatch = useDispatch();
 
     function selectValue (event: React.MouseEvent<HTMLElement>){
 
@@ -95,6 +96,19 @@ export default function ProductPage () : JSX.Element {
 
     function updateSelectedAttributes (name: string, value: string){
         setSelectedAttributes({...selectedAttributes, [name]: value});
+    }
+
+    function addToCart () {
+        if(product.hasAttributes){
+            if(Object.keys(selectedAttributes).length === product.attributes?.length){
+                setProduct({...product, variation: selectedAttributes});
+                dispatch(addProduct({...product, variation: selectedAttributes}));
+            } else{
+                alert("Selecione todos atributos do produto");
+            }
+        } else {
+            dispatch(addProduct(product));
+        }
     }
 
     if(productId === product.productId)
@@ -169,7 +183,7 @@ export default function ProductPage () : JSX.Element {
                             </div>
 
                             <div className="Row-4">
-                                <button className="Add-to-cart">
+                                <button className="Add-to-cart" onClick={addToCart}>
                                     Adicionar ao carrinho
                                 </button>
 

@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 import Product from 'types/product';
 
 interface ProductState {
@@ -19,24 +19,52 @@ const cartSlice = createSlice({
                 state.empty = false;
         },
         addProduct(state, action){
-            const productIndex = state.value.findIndex(productState =>
-                productState.product.productId === action.payload.productId
-            );
+            const productIndex = state.value.findIndex(productState =>{
+                const productInState = current(productState.product);
+                const productToAdd = action.payload;
+
+                if(productInState.hasAttributes && productInState.variation){
+                    let equalVariation = true;
+                    
+                    Object.keys(productInState.variation).forEach(name=>{
+                        if(productInState.variation && productInState.variation[name] !== productToAdd.variation[name])
+                            equalVariation = false;
+                    })
+
+                    return (productInState.productId === productToAdd.productId) && equalVariation;
+                }
+                else
+                    return (productInState.productId === productToAdd.productId);
+            });
 
             if(productIndex >= 0)
                 state.value[productIndex].quantity += 1;
             else 
                 state.value.push({
-                    product: action.payload,
+                    product: action.payload as Product,
                     quantity: 1
                 });
 
             state.empty = false;
         },
         removeProduct(state, action){
-            const productIndex = state.value.findIndex(productState =>
-                productState.product.productId === action.payload
-            );
+            const productIndex = state.value.findIndex(productState => {
+                const productInState = current(productState.product);
+                const productToRemove = action.payload;
+            
+                if(productInState.hasAttributes && productInState.variation){
+                    let equalVariation = true;
+                    
+                    Object.keys(productInState.variation).forEach(name=>{
+                        if(productInState.variation && productInState.variation[name] !== productToRemove.variation[name])
+                            equalVariation = false;
+                    })
+
+                    return (productInState.productId === productToRemove.productId) && equalVariation;
+                }
+                else
+                    return (productInState.productId === productToRemove.productId);
+            });
 
             if(productIndex >= 0){
                 if(state.value[productIndex].quantity > 1)

@@ -152,7 +152,7 @@ export default function Ratings (props: RatingsProps) : JSX.Element {
                                         {
                                             rating.midias.map((midia, index, midias)=>{
                                                 return (
-                                                    <div className="Midia" onClick={closeCarousel}>
+                                                    <div className="Midia" onClick={closeCarousel} key={index}>
                                                         <button className='Left' onClick={carouselToLeft}>{"<-"}</button>
                                                         <img 
                                                             src={midia.url} 

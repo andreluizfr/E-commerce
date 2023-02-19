@@ -7,6 +7,7 @@ type User = {
     phoneNumber: string,
     photoURL: string | null,
     emailVerified: boolean,
+    admin: boolean
 };
 
 export default User;

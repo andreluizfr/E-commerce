@@ -26,8 +26,8 @@ export default function UserDropdownMenu () :JSX.Element {
         dispatch(addProduct(product));
     }
 
-    function remove(productId: string) {
-        dispatch(removeProduct(productId));
+    function remove(product: Product) {
+        dispatch(removeProduct(product));
     }
 
     function clear() {
@@ -60,15 +60,20 @@ export default function UserDropdownMenu () :JSX.Element {
                             cart.value.map((productState, index)=>{
                                 return(
                                     <div key={index}>
-                                        {JSON.stringify(productState.product)}
+                                        <span>{productState.product.title}</span>
+                                        <span>{JSON.stringify(productState.product.variation)}</span>
+                                        <img src={productState.product.midias[0].url} alt="imagem do produto" width="50px"/>
+
                                         <div>{productState.quantity}</div>
+
                                         <button onClick={()=>{
                                             add(productState.product);
                                             animateCart();
                                         }}>
                                             add
                                         </button>
-                                        <button onClick={()=>remove(productState.product.productId)}>remove</button>
+
+                                        <button onClick={()=>remove(productState.product)}>remove</button>
                                     </div>
                                 );
                             })

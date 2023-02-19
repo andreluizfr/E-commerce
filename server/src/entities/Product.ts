@@ -38,6 +38,9 @@ export class Product{
     @Column({nullable: true})
     public providerURL!: string;
 
+    @Column()
+    public hasAttributes!: boolean;
+
     @Column({type: "jsonb", nullable: true})
     public attributes!: {name: string, values: string[]}[];
 

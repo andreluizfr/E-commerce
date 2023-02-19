@@ -12,10 +12,14 @@ type Product = {
     comparisonPrice: number | null,
     category: Category,
     subcategory: string | null,
+    hasAttributes: boolean,
     attributes: {
                     name: string,
                     values: string[]
                 }[] | null
+    variation: {
+        [key: string]: string;
+    } | null | undefined;
     rating: number
     ratingNumbers: {
         "1": number,

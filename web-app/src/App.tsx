@@ -15,6 +15,7 @@ import GetUser from 'queries/GetUser';
 
 import LoadingPage from 'pages/LoadingPage';
 
+const AdminPage = React.lazy(() => import('pages/AdminPage'));
 const HomePage = React.lazy(() => import('pages/HomePage'));
 const LoginPage = React.lazy(() => import('pages/LoginPage'));
 const SignupPage = React.lazy(() => import('pages/SignupPage'));
@@ -31,42 +32,9 @@ function App() {
 
 	//quando inciar app, ver se tinha carrinho salvo e passa pra store.
 	useEffect(()=>{
-		/*
 		const StoragedCart = localStorage.getItem("cart");
         if(StoragedCart)
 			dispatch(newCart(JSON.parse(StoragedCart)));
-		*/
-		const mockCart = [
-			{
-				quantity: 2,
-				product: {
-					productId: "1",
-					title: "maquina de lavar",
-					description: "sla",
-					midia: ["", "", ""],
-					price: 499.98,
-					comparisonPrice: 650,
-					category: "Utensílios para casa",
-					subcategory: ""
-				}
-			},
-			{
-				quantity: 5,
-				product: {
-					productId: "2",
-					title: "escova de cabelo",
-					description: "sla",
-					midia: ["", "", ""],
-					price: 17.90,
-					comparisonPrice: null,
-					category: "Saúde e beleza",
-					subcategory: "",
-				}
-			}
-		];
-
-		dispatch(newCart(mockCart));
-		
 	}, [dispatch]);
 
 	//tenta salvar na store um usuario se ele está logado.
@@ -100,8 +68,49 @@ function App() {
 			}/>
 		);
 
-    else{
+    else if(getUserQuery.data && getUserQuery.data.admin === true)
+		return (
+			<React.Suspense fallback={<LoadingPage/>}>
+				<RouterProvider router={
+					createBrowserRouter([
+						{
+							path: "/admin",
+							element: <AdminPage/>,
+						},
+						{
+							path: "/",
+							element: <HomePage/>,
+						},
+						{
+							path: "/login",
+							element: <LoginPage/>,
+						},
+						{
+							path: "/cadastro",
+							element: <SignupPage/>,
+						},
+						{
+							path: "/cadastro/confirmeSeuEmail",
+							element: <SignupNextStepPage/>,
+						},
+						{
+							path: "/verificacao/:verificationEmailCode",
+							element: <EmailVerificationPage/>,
+						},
+						{
+							path: "/produto/:productId",
+							element: <ProductPage/>,
+						},
+						{
+							path: "*",
+							element: <NotFoundPage/>,
+						},
+					])
+				}/> 
+			</React.Suspense>
+		);
 
+	else
 		return (
 			<React.Suspense fallback={<LoadingPage/>}>
 				<RouterProvider router={
@@ -138,7 +147,6 @@ function App() {
 				}/> 
 			</React.Suspense>
 		);
-	}
 }
 
 export default App;
