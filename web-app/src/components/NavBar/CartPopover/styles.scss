@@ -34,12 +34,120 @@
 }
 
 .CartPopoverContent{
+    @include flex-column-center-center;
     z-index: 999999999;
     padding: 1rem;
-    border: 1px solid $thin-black;
-    border-top: none;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     border-radius: .2rem;
     background-color: $almost-white;
+    gap: 1rem;
+
+    .Item-container{
+        @include flex-row-start-center;
+        width: 100%;
+        gap: 1rem;
+
+        .Item-image{
+            @include image-small;
+            transition: 200ms;
+            cursor: pointer;
+        }
+        .Item-image:hover{
+            opacity: 0.9;
+        }
+
+        .TitleVariation-wrapper{
+            @include flex-column-center-start;
+
+            .Title{
+                font-size: $font-size-smaller;
+                font-weight: 500;
+
+                max-width: 12rem;
+                white-space: nowrap;
+                overflow-x: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .Variation{
+                font-size: $font-size-smaller;
+            }
+        }
+
+        .QuantityPrice-wrapper{
+            @include flex-column-center-start;
+
+            .Quantity{
+                font-size: $font-size-smaller;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            .Price{
+                font-size: $font-size-smaller;
+                font-weight: 500;
+                font-family: Arial, Helvetica, sans-serif;
+                color: $red;
+            }
+        }
+
+        .Buttons{
+            @include flex-column-center-start;
+
+            .Add-button{
+                @include icon-medium;
+                transition: 200ms all;
+                cursor: pointer;
+            }
+            .Add-button:hover{
+                transform: scale(1.1);
+            }
+
+            .Remove-button{
+                @include icon-medium;
+                transition: 200ms all;
+                cursor: pointer;
+            }
+            .Remove-button:hover{
+                transform: scale(1.1);
+            }
+
+        }
+
+    }
+
+    .Bottom-buttons{
+        @include flex-row-center-center;
+        gap: 1rem;
+
+        .Button{
+            outline: none;
+            border: 1px solid $thin-black;
+            border-radius: 0.4rem;
+            padding: .5rem;
+
+            font-size: $font-size-smaller;
+            font-weight: 500;
+
+            transition: 200ms;
+            cursor: pointer;
+        }
+
+        .Clear-button{
+            background-color: $white;
+            color: $black;
+        }
+        .Clear-button:hover{
+           background-color: $thinner-black;
+        }
+
+        .Finish-button{
+            background-color: $black;
+            color: $white;
+        }
+        .Finish-button:hover{
+            background-color: $opaque-black;
+        }
+    }
 
     .CartPopoverArrow{
         fill: $almost-white;

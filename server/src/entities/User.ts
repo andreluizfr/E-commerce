@@ -2,6 +2,7 @@ import { Entity, Column, CreateDateColumn, PrimaryColumn, BeforeInsert, OneToMan
 import { v4 as uuidv4 } from 'uuid';
 import * as bcrypt from 'bcrypt';
 import { Rating } from './Rating';
+
 @Entity("Users")
 export class User{
 

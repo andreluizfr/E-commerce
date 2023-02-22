@@ -1,24 +1,17 @@
 import { IUsersRepository } from "../../repositories/Users/IUsersRepository";
 import { User }  from "../../entities/User";
+import { UserDTO } from "../../repositories/Users/UserDTO";
+
 import generateRandomString from "../../utils/generateRandomString";
 import { sendVerificationLinkToEmail } from "../../helpers/sendEmail";
 
-interface ISignupRequest{
-    firstName: string;
-    lastName: string;
-    email: string;
-    birthDate: Date;
-    cpf: string;
-    phoneNumber: string;
-    password: string;
-}
 
 //contains the business logic
 export class SignupService{
     //dependency inversion principle, depende apenas da interface e não da implementação dela
     constructor (private usersRepository: IUsersRepository){}
 
-    async execute(data: ISignupRequest){
+    async execute(data: UserDTO){
 
         const verificationEmailCode = generateRandomString(30);
         const user = new User(data, verificationEmailCode, false);

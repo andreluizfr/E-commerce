@@ -46,7 +46,7 @@
 
         .NavBar-container{
             @include flex-row-center-center;
-            width: 80%;
+            width: 70%;
             padding: 1rem;
     
             .NavBar-logo{
@@ -81,11 +81,11 @@
                     @include icon-normal;
                     fill: $white;
                     min-width: 1.2rem;
-                    transition: .1s;
+                    transition: 200ms;
+                    cursor: pointer;
                 }
                 .SearchBar-icon:hover{
                     opacity: .7;
-                    cursor: pointer;
                 }
             }
     

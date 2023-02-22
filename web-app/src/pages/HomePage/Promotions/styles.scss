@@ -6,15 +6,30 @@
     width: 100%;
     background-color: $lighter-gray;
 
+    @include mq-medium{
+        background-color: transparent;
+    }
+
     &-banners{
         @include flex-row-space-around-center;
         width: 100%;
         margin: 3% 0;
 
+        @include mq-medium{
+            @include flex-column-start-center;
+            gap: 1rem;
+            margin: 0;
+        }
+
         .Promotion-image{
             width: 25%;
             height: auto;
-            transition: .1s;
+            transition: .2s;
+
+            @include mq-medium{
+                width: 80%;
+                height: auto;
+            }
         }
 
         .Promotion-image:hover{

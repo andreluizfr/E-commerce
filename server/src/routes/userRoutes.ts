@@ -12,7 +12,7 @@ import { authentication } from '../auth';
 
 const userRouter = Router();
 
-userRouter.post('/EmailExists',(request: Request, response: Response)=>{
+userRouter.post('/emailExists',(request: Request, response: Response)=>{
     return emailExistsController.handle(request, response);
 });
 

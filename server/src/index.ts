@@ -17,6 +17,7 @@ import morganBody from 'morgan-body';
 import { AppDataSource } from './database/postgres';
 
 import { userRouter } from './routes/userRoutes';
+import { productRouter } from './routes/productRoutes';
 
 
 
@@ -73,7 +74,7 @@ if(process.env.NODE_ENV === "development")
 
 //    ****  routes  ****    //
 app.use('/user', userRouter);
-
+app.use('/product', productRouter);
 
 
 

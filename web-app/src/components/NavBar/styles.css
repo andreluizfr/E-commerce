@@ -47,7 +47,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80%;
+  width: 70%;
   padding: 1rem;
 }
 .NavBar .NavBar-container-background .NavBar-container .NavBar-logo {
@@ -82,11 +82,11 @@
   height: 1.2rem;
   fill: rgb(255, 255, 255);
   min-width: 1.2rem;
-  transition: 0.1s;
+  transition: 200ms;
+  cursor: pointer;
 }
 .NavBar .NavBar-container-background .NavBar-container .NavBar-searchBar .SearchBar-icon:hover {
   opacity: 0.7;
-  cursor: pointer;
 }
 .NavBar .NavBar-container-background .NavBar-container .NavBar-user-toolbar {
   display: flex;

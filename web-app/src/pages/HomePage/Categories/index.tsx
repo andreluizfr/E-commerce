@@ -2,22 +2,22 @@ import './styles.css';
 
 //import { Link } from 'react-router-dom';
 
-import SaudeBeleza from 'assets/images/categories/saude_e_beleza.png';
-import Telefonia from 'assets/images/categories/telefonia.png';
-import Eletronicos from 'assets/images/categories/eletronicos.png';
-import Esportes from 'assets/images/categories/esportes.png';
-import Computadores from 'assets/images/categories/computadores.png';
-import FerramentasConstrucao from 'assets/images/categories/ferramentas_e_construcao.png';
-import RoupasMasculinas from 'assets/images/categories/roupas_masculinas.png';
-import RoupasFemininas from 'assets/images/categories/roupas_femininas.png';
-import Pets from 'assets/images/categories/pets.png';
-import Bebes from 'assets/images/categories/bebes.png';
-import Papelaria from 'assets/images/categories/papelaria.png';
-import BrinquedosHobbies from 'assets/images/categories/brinquedos_e_hobbies.png';
-import JoiasRelogios from 'assets/images/categories/joias_e_relogios.png';
-import BolsasCalcados from 'assets/images/categories/bolsas_e_calcados.png';
-import CasaDecoracao from 'assets/images/categories/casa_e_decoracao.png';
-import UtensiliosCasa from 'assets/images/categories/utensilios_para_casa.png';
+import SaudeBeleza from 'assets/images/categories/saude_e_beleza.jpg';
+import Telefonia from 'assets/images/categories/telefonia.jpg';
+import Eletronicos from 'assets/images/categories/eletronicos.jpg';
+import Esportes from 'assets/images/categories/esportes.jpg';
+import Computadores from 'assets/images/categories/computadores.jpg';
+import FerramentasConstrucao from 'assets/images/categories/ferramentas_e_construcao.jpg';
+import RoupasMasculinas from 'assets/images/categories/roupas_masculinas.jpg';
+import RoupasFemininas from 'assets/images/categories/roupas_femininas.jpg';
+import Pets from 'assets/images/categories/pets.jpg';
+import Bebes from 'assets/images/categories/bebes.jpg';
+import Papelaria from 'assets/images/categories/papelaria.jpg';
+import BrinquedosHobbies from 'assets/images/categories/brinquedos_e_hobbies.jpg';
+import JoiasRelogios from 'assets/images/categories/joias_e_relogios.jpg';
+import BolsasCalcados from 'assets/images/categories/bolsas_e_calcados.jpg';
+import CasaDecoracao from 'assets/images/categories/casa_e_decoracao.jpg';
+import UtensiliosCasa from 'assets/images/categories/utensilios_para_casa.jpg';
 
 export default function Categories () : JSX.Element {
 

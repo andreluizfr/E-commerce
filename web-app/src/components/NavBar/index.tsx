@@ -7,13 +7,28 @@ import UserDropdownMenu from './UserDropdownMenu';
 import CartPopover from './CartPopover';
 
 import { useMediaQuery } from 'react-responsive';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
+import { useState } from 'react';
 
 export default function NavBar() : JSX.Element{
 
-    const isSmall = useMediaQuery({ query: '(max-width: 720px)' });
+    const isMedium = useMediaQuery({ query: '(max-width: 720px)' });
+    const [searchInputContent, updateSearchInputContent] = useState <string>("");
+    const navigate = useNavigate();
 
-    if(isSmall)
+    function saveInput (event: React.ChangeEvent<HTMLInputElement>){
+        const input = event.target as HTMLInputElement;
+        updateSearchInputContent(input.value);
+    }
+
+    function search (event: React.MouseEvent<HTMLAnchorElement>){
+        event.preventDefault();
+        if(searchInputContent.length > 0)
+            navigate("/busca?keyword="+searchInputContent);
+    }
+
+    if(isMedium)
         return (
             <header className='NavBar'>
 
@@ -47,8 +62,11 @@ export default function NavBar() : JSX.Element{
                             <input 
                                 className='SearchBar-input'
                                 placeholder='Procure um produto...'
+                                onChange={saveInput}
                             />
-                            <SearchIcon className='SearchBar-icon'/>
+                            <Link to={'/busca?keyword='+searchInputContent} onClick={search}>
+                                <SearchIcon className='SearchBar-icon'/>
+                            </Link>
                         </div>
                         
                         <div className='NavBar-user-toolbar'>
@@ -94,8 +112,11 @@ export default function NavBar() : JSX.Element{
                             <input 
                                 className='SearchBar-input'
                                 placeholder='Procure um produto...'
+                                onChange={saveInput}
                             />
-                            <SearchIcon className='SearchBar-icon'/>
+                             <Link to={'/busca?keyword='+searchInputContent} onClick={search}>
+                                <SearchIcon className='SearchBar-icon'/>
+                            </Link>
                         </div>
                         
                         

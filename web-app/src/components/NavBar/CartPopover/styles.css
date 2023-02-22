@@ -28,12 +28,119 @@
 }
 
 .CartPopoverContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   z-index: 999999999;
   padding: 1rem;
-  border: 1px solid rgba(0, 0, 0, 0.24);
-  border-top: none;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   border-radius: 0.2rem;
   background-color: rgb(247, 249, 249);
+  gap: 1rem;
+}
+.CartPopoverContent .Item-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+}
+.CartPopoverContent .Item-container .Item-image {
+  width: 5rem;
+  height: auto;
+  transition: 200ms;
+  cursor: pointer;
+}
+.CartPopoverContent .Item-container .Item-image:hover {
+  opacity: 0.9;
+}
+.CartPopoverContent .Item-container .TitleVariation-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.CartPopoverContent .Item-container .TitleVariation-wrapper .Title {
+  font-size: 0.9rem;
+  font-weight: 500;
+  max-width: 12rem;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+.CartPopoverContent .Item-container .TitleVariation-wrapper .Variation {
+  font-size: 0.9rem;
+}
+.CartPopoverContent .Item-container .QuantityPrice-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.CartPopoverContent .Item-container .QuantityPrice-wrapper .Quantity {
+  font-size: 0.9rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.CartPopoverContent .Item-container .QuantityPrice-wrapper .Price {
+  font-size: 0.9rem;
+  font-weight: 500;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(255, 0, 0);
+}
+.CartPopoverContent .Item-container .Buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.CartPopoverContent .Item-container .Buttons .Add-button {
+  width: 1.4rem;
+  height: 1.4rem;
+  transition: 200ms all;
+  cursor: pointer;
+}
+.CartPopoverContent .Item-container .Buttons .Add-button:hover {
+  transform: scale(1.1);
+}
+.CartPopoverContent .Item-container .Buttons .Remove-button {
+  width: 1.4rem;
+  height: 1.4rem;
+  transition: 200ms all;
+  cursor: pointer;
+}
+.CartPopoverContent .Item-container .Buttons .Remove-button:hover {
+  transform: scale(1.1);
+}
+.CartPopoverContent .Bottom-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.CartPopoverContent .Bottom-buttons .Button {
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.24);
+  border-radius: 0.4rem;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: 200ms;
+  cursor: pointer;
+}
+.CartPopoverContent .Bottom-buttons .Clear-button {
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+}
+.CartPopoverContent .Bottom-buttons .Clear-button:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+.CartPopoverContent .Bottom-buttons .Finish-button {
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+}
+.CartPopoverContent .Bottom-buttons .Finish-button:hover {
+  background-color: rgba(0, 0, 0, 0.85);
 }
 .CartPopoverContent .CartPopoverArrow {
   fill: rgb(247, 249, 249);

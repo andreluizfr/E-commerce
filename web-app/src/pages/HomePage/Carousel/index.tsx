@@ -35,7 +35,7 @@ export default function Carousel () : JSX.Element {
     useEffect(()=>{
         if(start){
             clearInterval(interval);
-            console.log(actualSlide);
+            console.log("slide -",actualSlide);
             if(actualSlide){
                 if(actualSlide === 4)
                     SetInterval(setInterval(()=>slideTo(1), 4000));

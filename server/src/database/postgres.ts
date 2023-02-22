@@ -5,14 +5,14 @@ import { User } from "../entities/User";
 
 export const AppDataSource = new DataSource({
     type: "postgres",
-    host: process.env.POSTGRES_HOST || "loja-database-dev.ctnoicqgrfud.sa-east-1.rds.amazonaws.com",
+    host: process.env.POSTGRES_HOST || "localhost",
     port: 5432,
     username: process.env.POSTGRES_USER || "postgres",
-    password: process.env.POSTGRES_PASSWORD || "loja1234",
-    database: process.env.POSTGRES_DB || "lojadbdev",
-    synchronize: true,
+    password: process.env.POSTGRES_PASSWORD || "admin",
+    database: process.env.POSTGRES_DB || "lojadev",
+    synchronize: Boolean(process.env.POSTGRES_DB), //if It's true anytime you make changes to your entity, it’ll automatically update the schemas changes with the database linked to your app
     logging: true,
     entities: [User, Product, Rating],
-    subscribers: [],
-    migrations: ['src/database/migrations'],
+    migrations: ['src/database/migrations/**/*.ts'],
+    subscribers: ["src/subscriber/**/*.ts"]
 });

@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 interface IEmailExistsResponse {
     exists: boolean
 }
-export default function GetUser (email: string) {
+export default function EmailExists (email: string) {
 
     const emailExistsQuery = useQuery('emailExists', async () => {
 

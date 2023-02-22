@@ -6,6 +6,11 @@
   width: 100%;
   background-color: #F3F3F3;
 }
+@media only screen and (max-width: 720px) {
+  .HomePage-promotions {
+    background-color: transparent;
+  }
+}
 .HomePage-promotions-banners {
   display: flex;
   justify-content: space-around;
@@ -13,10 +18,26 @@
   width: 100%;
   margin: 3% 0;
 }
+@media only screen and (max-width: 720px) {
+  .HomePage-promotions-banners {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    margin: 0;
+  }
+}
 .HomePage-promotions-banners .Promotion-image {
   width: 25%;
   height: auto;
-  transition: 0.1s;
+  transition: 0.2s;
+}
+@media only screen and (max-width: 720px) {
+  .HomePage-promotions-banners .Promotion-image {
+    width: 80%;
+    height: auto;
+  }
 }
 .HomePage-promotions-banners .Promotion-image:hover {
   scale: 1.1;
