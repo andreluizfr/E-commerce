@@ -18,9 +18,9 @@ export class RatingsRepository implements IRatingsRepository{
         return createdProduct;
     };
 
-    async removeProduct(product: Product){
+    async deleteProduct(productId: string){
         const productsRepository = AppDataSource.getRepository(Product);
-        await productsRepository.remove(product);
+        await productsRepository.delete({productId: productId});
     };
 
     async updateProduct(productId: string, changes: object){

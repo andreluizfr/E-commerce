@@ -1,13 +1,15 @@
 import { Product } from '../../entities/Product.entity';
 
+interface Queries{
+    category?: string;
+    keyword?: string;
+    productStatus?: string | undefined;
+}
 export interface IProductsRepository{
     addProduct(user: Product) : Promise <Product>;
-    removeProduct(user: Product) : Promise <void>;
+    deleteProduct(productId: string) : Promise <void>;
     updateProduct(productId: string, changes: object) : Promise <Product | null>;
-    updateRating(productId: string, rating: string) : Promise <Product | null>;
     findById(productId: string) : Promise <Product | null>;
-    findByCategories(category: string) : Promise <Product[]>;
-    findByStatus(productStatus: string) : Promise <Product[]>;
-    findByKeyword(keyword: string) : Promise <Product[]>;
-    getAll() : Promise <Product[]>;
+    find(queries: Queries) : Promise <Product[]>;
+    findAdmin(queries: Queries) : Promise <Product[]>;
 }

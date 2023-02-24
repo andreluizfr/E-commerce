@@ -16,9 +16,9 @@ export class UsersRepository implements IUsersRepository{
         return createdUser;
     };
 
-    async deleteUser(user: User){
+    async deleteUser(userId: string){
         const usersRepository = AppDataSource.getRepository(User);
-        await usersRepository.remove(user);
+        await usersRepository.delete({userId: userId});
     };
 
     async updateRefreshToken(email: string, newRefreshToken: string){
