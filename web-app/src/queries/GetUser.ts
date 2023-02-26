@@ -3,18 +3,11 @@ import { useQuery } from 'react-query';
 import User from 'types/user';
 
 interface IGetUserResponse {
-    authenticated: boolean
-    refresh: boolean
-    message: string
-    user: object | null
+    refresh: boolean;
+    success: boolean;
+    message: string;
+    user: User | null;
 }
-
-interface IrefreshTokenResponse {
-	refreshed: boolean
-    newAccessToken: string | null
-    message: string
-}
-
 
 export default function GetUser () {
 
@@ -22,52 +15,17 @@ export default function GetUser () {
         
         const accessToken = localStorage.getItem("x-access-token");
 
-        if(accessToken){
-            const response = await axios.get('/user/getUser',  {headers: { Authorization: `Bearer ${accessToken}` }});
+        const response = await axios.get('/user/getUser',  {headers: { Authorization: `Bearer ${accessToken}` }});
 
-            const data = response.data as IGetUserResponse;
-            console.log(data.message);
+        const data = response.data as IGetUserResponse;
 
-            if (data.authenticated && data.refresh){
-
-                await refreshToken();
-                return null;
-
-            } else if (data.authenticated && !data.refresh){
-
-                return data.user as User;
-
-            } else {
-
-                localStorage.clear();
-                return null;
-
-            }
-        }
-
-        console.log("No access token found.");
-        return null;
+        return data;
 
     }, {
         refetchOnWindowFocus: false,
-        staleTime: 1000 * 3 //3 segundos
+        staleTime: 1000 * 5 //5 segundos
     });
 
     return getUserQuery;
-
-}
-
-async function refreshToken () {
-
-    const response = await axios.get('/user/refreshToken');
-
-    const data = response.data as IrefreshTokenResponse;
-    console.log(data.message);
-
-    if(data.refreshed && data.newAccessToken) {
-        localStorage.setItem("x-access-token", data.newAccessToken);
-        window.location.reload();
-    }
-    else localStorage.clear();
 
 }

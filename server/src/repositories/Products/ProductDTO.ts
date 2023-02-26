@@ -30,6 +30,7 @@ export const productDTO = z.object({
         z.literal("Eletrônicos"),
         z.literal("Utensílios para casa"),
         z.literal("Casa e decoração"),
+        z.literal("Bolsas e calçados"),
         z.literal("Jóias e relógios"),
         z.literal("Saúde e beleza"),
         z.literal("Pets"),
@@ -57,7 +58,7 @@ export const productDTO = z.object({
     productStatus: z.union([
         z.literal("rascunho"),
         z.literal("ativo"),
-        z.literal("desativo")
+        z.literal("desativado")
     ], {invalid_type_error: "O status recebido não é um status válido."}),
     ratingNumbers: z.object({
         "1": z.number(),

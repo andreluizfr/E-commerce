@@ -26,10 +26,13 @@ export default new class GetUserController{
                 phoneNumber: user.phoneNumber,
                 photoURL: user.photoURL,
                 emailVerified: user.emailVerified,
+                admin: user.admin,
+                created_at: user.created_at
             }
 
             return res.status(201).send({
-                authenticated: true,
+                refresh: false,
+                success: true,
                 message: "User fetching succesfull.",
                 user: publicUser
             });
@@ -38,7 +41,8 @@ export default new class GetUserController{
             const error = err as Error;
             
             return res.status(202).send({
-                authenticated: true,
+                refresh: false,
+                success: false,
                 message: error.message || 'Unexpected error.',
                 user: null
             });

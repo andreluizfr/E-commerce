@@ -1,0 +1,59 @@
+@import '../../../assets/css/variables';
+@import '../../../assets/css/_mixins';
+
+
+.AddProduct{
+    @include flex-column-start-center;
+    background-color: $white;
+    box-shadow: rgb(50 50 105 / 15%) 0px 2px 5px 0px, rgb(0 0 0 / 5%) 0px 1px 1px 0px;
+
+    .ComponentTitle{
+        font-size: $font-size-normal;
+        font-weight: 500;
+        margin: 1rem 0;
+    }
+
+    .AddProduct-form{
+        @include flex-column-start-center;
+        gap: 1rem;
+        padding: 1rem;
+        max-height: calc(100vh - 19rem); //tamanho maximo da tela - tamanho maximo do inicio da tela ate o componente - 1rem do padding do fundo
+        min-width: 350px;
+        overflow: auto;
+
+        .FormField{
+            @include flex-column-center-center;
+            gap: .5rem;
+
+            &-label{
+                font-size: $font-size-smaller;
+                color: $purple;
+                margin-right: 1rem;
+            }
+
+            &-inputs{
+                @include flex-row-start-center;
+                flex-wrap: wrap;
+                gap: .5rem;
+            }
+        }
+
+        .Submit-button{
+            background-color: $black;
+            padding: .5rem 1rem;
+            border: 1px solid $opaque-black;
+            border-radius: .2rem;
+            outline: none;
+
+            font-size: $font-size-small;
+            color: $white;
+            font-weight: 500;
+
+            transition: 200ms all;
+            cursor: pointer;
+        }
+        .Submit-button:hover{
+            background-color: $opaque-black;
+        }
+    }
+}

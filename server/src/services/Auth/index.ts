@@ -32,8 +32,9 @@ export function authentication (req : Request, res: Response, next: NextFunction
 
     if(!authHeader)
         return res.send({
-            authenticated: false,
-            refresh: false, message: 'No token provided.'
+            refresh: false,
+            success: false,
+            message: 'No token provided.'
         });
 
     const [ , accessToken] = authHeader.split(" ");
@@ -52,16 +53,16 @@ export function authentication (req : Request, res: Response, next: NextFunction
         if(error.name === 'TokenExpiredError') {
 
             return res.send({
-                authenticated: true,
                 refresh: true,
+                success: false,
                 message: 'You need to refresh your accessToken.'
             });
 
         } else {
 
             return res.send({
-                authenticated: false,
                 refresh: false,
+                success: false,
                 message: 'Invalid access token, you need logging again.'
             });
 
@@ -106,7 +107,7 @@ export function isAdmin(req : Request, res: Response, next: NextFunction){
         const error = err as Error;
 
         return res.status(202).send({
-            authenticated: true,
+            refresh: false,
             success: false,
             message: error.message || 'Unexpected error.',
         });

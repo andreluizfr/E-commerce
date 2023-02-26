@@ -1,7 +1,6 @@
-import Category from "./category";
-
 type Product = {
-    productId: string,
+    productId?: string,
+    productStatus?: string,
     title: string,
     description: string,
     midias: {
@@ -10,17 +9,20 @@ type Product = {
             }[],
     price: number,
     comparisonPrice: number | null,
-    category: Category,
-    subcategory: string | null,
+    costPerProduct?: number | null,
+    category: string,
+    subcategory?: string | null,
     hasAttributes: boolean,
     attributes: {
                     name: string,
                     values: string[]
                 }[] | null
-    variation: {
+    variation?: {
         [key: string]: string;
     } | null | undefined;
-    rating: number
+    providerURL?: string,
+    tags?: string[] | null,
+    rating?: number
     ratingNumbers: {
         "1": number,
         "2": number,

@@ -6,6 +6,7 @@ const productsRepository = new ProductsRepository();
 const getProductsService = new GetProductsService(productsRepository);
 
 interface Queries{
+    status?: string | undefined;
     category?: string | undefined;
     keyword?: string | undefined;
 }
@@ -16,10 +17,18 @@ export default new class GetProductsController{
 
     async handle(req: Request, res: Response): Promise<Response>{
         
-        const category = req.query.categoria as (string | undefined);
-        const keyword = req.query.keyword as (string | undefined);
+        const status = req.query.status as string;
+        const category = req.query.categoria as string;
+        const keyword = req.query.keyword as string;
+
+        console.log(status);
+        console.log(category);
+        console.log(keyword);
 
         const queries = {} as Queries;
+
+        if(status)
+            queries.status = status;
 
         if(category)
             queries.category = category;
@@ -31,6 +40,7 @@ export default new class GetProductsController{
             const { products } = await getProductsService.execute(queries);
 
             return res.status(201).send({
+                refresh: false,
                 success: true,
                 products: products,
                 message: "A busca foi um sucesso."
@@ -40,8 +50,9 @@ export default new class GetProductsController{
             const error = err as Error;
             
             return res.status(202).send({
+                refresh: false,
                 success: false,
-                products: null,
+                products: [],
                 message: error.message || 'Unexpected error.'
             });
 

@@ -24,23 +24,23 @@ body{
 }
 
 //o scroll inteiro
-body::-webkit-scrollbar {
+*::-webkit-scrollbar {
     width: 14px;
 }
 
 //o trilho que contem o thumb
-body::-webkit-scrollbar-track {
+*::-webkit-scrollbar-track {
     background: $white;
 }
 
 //a parte que voce arrasta
-body::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
     border: 2px solid $white;
     background: $gray;
     border-radius: 8px;
 
     transition: .2s all;
 }
-body::-webkit-scrollbar-thumb:hover {
+*::-webkit-scrollbar-thumb:hover {
     background: $black;
 }

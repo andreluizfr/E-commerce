@@ -36,6 +36,7 @@ export default new class GetProductsAdminController{
             const { products } = await getProductsAdminService.execute(queries);
 
             return res.status(201).send({
+                refresh: false,
                 success: true,
                 products: products,
                 message: "A busca foi um sucesso."
@@ -45,8 +46,9 @@ export default new class GetProductsAdminController{
             const error = err as Error;
             
             return res.status(202).send({
+                refresh: false,
                 success: false,
-                products: null,
+                products: [],
                 message: error.message || 'Unexpected error.'
             });
 

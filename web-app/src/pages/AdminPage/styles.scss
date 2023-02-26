@@ -2,5 +2,35 @@
 @import '../../assets/css/_mixins';
 
 .AdminPage{
+    @include flex-column-start-center;
+    height: 100vh;
+    min-width: calc(200px + 350px + 1rem + 1rem + 1rem); //largura do menu + largura minima do conteudo + padding da direita e esquerda + sobra de garantia
+    background-color: $lighter-gray;
+
+    .NavBar{
+        position: relative;
+        
+        &-banner{
+            &-sentence{
+                background: $purple;
+                background-clip: text;
+                -webkit-background-clip: text;
+                font-size: $font-size-normal;
+            
+                .Normal-word{
+                    color: $black;
+                }
+                .Coloured-word{
+                    color: transparent;
+                }
+            }
+        }
+    }
     
+    .AdminPage-container{
+        @include flex-row-start-start;
+        width: 100vw;
+        padding: 1rem;
+        gap: 1rem;
+    }
 }

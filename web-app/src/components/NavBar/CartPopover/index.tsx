@@ -159,7 +159,7 @@ export default function UserDropdownMenu () :JSX.Element {
 
                 <Popover.Portal>
                     <Popover.Content className="CartPopoverContent" sideOffset={5}>
-                        Nothing to see here...
+                        Seu carrinho está vazio...
                         <Popover.Arrow className="CartPopoverArrow" />
                     </Popover.Content>
                 </Popover.Portal>

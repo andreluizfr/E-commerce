@@ -3,7 +3,7 @@ import './styles.css';
 import { HTMLAttributes, useEffect, useRef } from "react";
 
 interface RatingProps extends HTMLAttributes<HTMLDivElement> {
-    rate: number;
+    rate?: number;
     size?: "small" | "medium" | "large";
 }
 
@@ -20,7 +20,7 @@ export default function RatingStars (props: RatingProps) : JSX.Element {
     useEffect(()=>{
         const stars = ratingRef.current?.getElementsByClassName("Star");
 
-        if(stars && stars.length === 5){
+        if(stars && stars.length === 5 && props.rate!==undefined){
             let productRating = props.rate;
         
             for(let i=0; i<5; i+=1){

@@ -59,7 +59,7 @@
     }
     
     input:focus + span{
-        font-size: $font-size-smaller;
+        font-size: $font-size-mini;
         font-weight: 500;
         color: $black;
         top: 0.2rem;
@@ -71,7 +71,7 @@
     }
 
     input:valid + span{
-        font-size: $font-size-smaller;
+        font-size: $font-size-mini;
         font-weight: 500;
         color: $black;  
         top: 0.2rem;
@@ -87,7 +87,7 @@
     }
     
     input:invalid[wasBlured="true"] + span{
-        font-size: $font-size-smaller;
+        font-size: $font-size-mini;
         font-weight: 500;
         color: $red;
         top: 0.2rem;

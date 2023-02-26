@@ -12,15 +12,15 @@ export default new class AddProductController{
     async handle(req: Request, res: Response): Promise<Response>{
         
         const { title, description, midias, price, comparisonPrice, costPerProduct, category,
-            providerURL, attributes, productStatus, ratingNumbers } = req.body;
+            providerURL, attributes, productStatus, ratingNumbers, tags } = req.body;
 
         try{
             const { product } = await addProductService.execute({ 
                 title, description, midias, price, comparisonPrice, costPerProduct, category,
-                providerURL, attributes, productStatus, ratingNumbers });
+                providerURL, attributes, productStatus, ratingNumbers, tags });
 
             return res.status(201).send({
-                authenticated: true,
+                refresh: false,
                 success: true,
                 product: product,
                 message: "O registro do produto foi um sucesso."
@@ -30,7 +30,7 @@ export default new class AddProductController{
             const error = err as Error;
             
             return res.status(202).send({
-                authenticated: true,
+                refresh: false,
                 success: false,
                 product: null,
                 message: error.message || 'Unexpected error.'

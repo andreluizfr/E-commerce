@@ -1,1 +1,32 @@
-/*# sourceMappingURL=styles.css.map */
+.AdminPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
+  min-width: calc(550px + 1rem + 1rem + 1rem);
+  background-color: #F3F3F3;
+}
+.AdminPage .NavBar {
+  position: relative;
+}
+.AdminPage .NavBar-banner-sentence {
+  background: rgb(100, 79, 193);
+  background-clip: text;
+  -webkit-background-clip: text;
+  font-size: 1.2rem;
+}
+.AdminPage .NavBar-banner-sentence .Normal-word {
+  color: rgb(0, 0, 0);
+}
+.AdminPage .NavBar-banner-sentence .Coloured-word {
+  color: transparent;
+}
+.AdminPage .AdminPage-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100vw;
+  padding: 1rem;
+  gap: 1rem;
+}/*# sourceMappingURL=styles.css.map */

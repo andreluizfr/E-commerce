@@ -28,7 +28,7 @@ export class SignupService{
             await sendVerificationLinkToEmail(createdUser.email, verificationEmailCode);
         } catch (err) {
             const error = err as Error;
-            await this.usersRepository.deleteUser(createdUser);
+            await this.usersRepository.deleteUser(createdUser.userId);
             throw new Error('Verificação de e-mail não está funcionando. Por favor, tente mais tarde. ' + error.message);
         }
 

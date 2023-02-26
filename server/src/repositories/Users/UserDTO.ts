@@ -13,7 +13,8 @@ export const userDTO = z.object({
     email: z.string({required_error: "E-mail não informado."})
         .email({message: "Um e-mail válido deve ser informado."})
         .min(1, {message: "O e-mail deve ter no mínimo 3 caracteres."})
-        .max(100, {message: "O e-mail deve ter no máximo 100 caracteres."}),
+        .max(100, {message: "O e-mail deve ter no máximo 100 caracteres."})
+        .refine(email => email.toLowerCase()),
     birthDate: z.date({required_error: "Data de aniversário não informada.", invalid_type_error: "A data não possui formato válido"})
         .min(new Date("1880-01-01"), { message: "Parabéns! Talvez deva ir se cadastrar no Guinness Book primeiro." })
         .max(new Date(new Date().getUTCFullYear() - 18, new Date().getUTCMonth(), new Date().getUTCDate()), { message: "Você deve ter mais de 18 anos para concluir o cadastro." }),

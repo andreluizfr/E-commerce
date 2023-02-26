@@ -8,13 +8,13 @@ import {
 import React, { useEffect } from 'react';
 
 import { useDispatch } from 'react-redux';
-import { newUser } from 'store/features/userSlice';
+import { newUser, removeUser } from 'store/features/userSlice';
 import { newCart } from 'store/features/cartSlice';
 
 import GetUser from 'queries/GetUser';
+import refreshToken from 'queries/RefreshToken';
 
 import LoadingPage from 'pages/LoadingPage';
-
 const AdminPage = React.lazy(() => import('pages/AdminPage'));
 const HomePage = React.lazy(() => import('pages/HomePage'));
 const LoginPage = React.lazy(() => import('pages/LoginPage'));
@@ -28,6 +28,7 @@ const ProductPage = React.lazy(() => import('pages/ProductPage'));
 function App() {
 
 	const dispatch = useDispatch();
+
 	const getUserQuery = GetUser();
 
 	//quando inciar app, ver se tinha carrinho salvo e passa pra store.
@@ -39,9 +40,18 @@ function App() {
 
 	//tenta salvar na store um usuario se ele está logado.
 	useEffect(()=>{
-		if(getUserQuery.data)
-			dispatch(newUser(getUserQuery.data));
-	}, [getUserQuery.data, dispatch]);
+		if(getUserQuery.data?.refresh)
+			refreshToken().then(response=>{
+				if(response.reload) getUserQuery.refetch();
+				else {
+					dispatch(removeUser());
+					localStorage.removeItem("x-access-token");
+				}
+			});
+		else if(getUserQuery.data?.success && getUserQuery.data?.user)
+			dispatch(newUser(getUserQuery.data.user));
+
+	}, [dispatch, getUserQuery, getUserQuery.data]);
 
 
     if(getUserQuery.isFetching)
@@ -68,18 +78,18 @@ function App() {
 			}/>
 		);
 
-    else if(getUserQuery.data && getUserQuery.data.admin === true)
+    else if(getUserQuery.data && getUserQuery.data.user?.admin === true)
 		return (
 			<React.Suspense fallback={<LoadingPage/>}>
 				<RouterProvider router={
 					createBrowserRouter([
 						{
-							path: "/admin",
-							element: <AdminPage/>,
-						},
-						{
 							path: "/",
 							element: <HomePage/>,
+						},
+						{
+							path: "/admin",
+							element: <AdminPage/>,
 						},
 						{
 							path: "/login",

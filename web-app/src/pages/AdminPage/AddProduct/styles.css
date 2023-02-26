@@ -1,0 +1,58 @@
+.AddProduct {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+}
+.AddProduct .ComponentTitle {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 1rem 0;
+}
+.AddProduct .AddProduct-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  max-height: calc(100vh - 19rem);
+  min-width: 350px;
+  overflow: auto;
+}
+.AddProduct .AddProduct-form .FormField {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+.AddProduct .AddProduct-form .FormField-label {
+  font-size: 0.9rem;
+  color: rgb(100, 79, 193);
+  margin-right: 1rem;
+}
+.AddProduct .AddProduct-form .FormField-inputs {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.AddProduct .AddProduct-form .Submit-button {
+  background-color: rgb(0, 0, 0);
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.85);
+  border-radius: 0.2rem;
+  outline: none;
+  font-size: 1rem;
+  color: rgb(255, 255, 255);
+  font-weight: 500;
+  transition: 200ms all;
+  cursor: pointer;
+}
+.AddProduct .AddProduct-form .Submit-button:hover {
+  background-color: rgba(0, 0, 0, 0.85);
+}/*# sourceMappingURL=styles.css.map */

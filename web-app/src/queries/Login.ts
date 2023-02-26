@@ -29,9 +29,7 @@ export default function Login (formDataInput: FormData) {
     
         if (data.success) {
             localStorage.setItem("x-access-token", data.accessToken);
-           // localStorage.setItem("user", data.user);
         }
-
 
         return data;
     

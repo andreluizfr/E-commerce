@@ -28,12 +28,14 @@ productRouter.get('/admin', authentication, isAdmin, (request: Request, response
     return getProductsAdminController.handle(request, response);
 });
 
+productRouter.get('/', (request: Request, response: Response)=>{
+    return getProductsController.handle(request, response);
+});
+
 productRouter.get('/:productId', (request: Request, response: Response)=>{
     return findProductByIdController.handle(request, response);
 });
 
-productRouter.get('/', (request: Request, response: Response)=>{
-    return getProductsController.handle(request, response);
-});
+
 
 export { productRouter };
