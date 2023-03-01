@@ -48,6 +48,10 @@ function App() {
 					localStorage.removeItem("x-access-token");
 				}
 			});
+		else if(getUserQuery.data?.login){
+			dispatch(removeUser());
+			localStorage.removeItem("x-access-token");
+		}
 		else if(getUserQuery.data?.success && getUserQuery.data?.user)
 			dispatch(newUser(getUserQuery.data.user));
 

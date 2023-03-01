@@ -4,6 +4,7 @@ import Product from 'types/product';
 
 interface IAddProductResponse {
     refresh: boolean;
+    login?: boolean;
     success: boolean;
     message: string;
     product?: Product;
@@ -23,7 +24,7 @@ export default function AddProductQuery (product: Product) {
 
     }, {
         refetchOnWindowFocus: false,
-        enabled: true
+        enabled: false
     });
 
     return addProductQuery;

@@ -21,7 +21,7 @@ export default new class EditProductController{
             const { updatedProduct } = await editProductService.execute({productId, changes});
 
             return res.status(201).send({
-                authenticated: true,
+                refresh: false,
                 success: true,
                 updatedProduct: updatedProduct,
                 message: "O produto foi atualizado com sucesso."
@@ -31,7 +31,7 @@ export default new class EditProductController{
             const error = err as Error;
             
             return res.status(202).send({
-                authenticated: true,
+                refresh: false,
                 success: false,
                 updatedProduct: null,
                 message: error.message || 'Unexpected error.'

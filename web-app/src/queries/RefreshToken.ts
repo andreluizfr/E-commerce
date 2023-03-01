@@ -1,9 +1,8 @@
 import axios from 'libs/axios';
 
 interface IrefreshTokenResponse {
-	refreshed: boolean;
     success: boolean;
-    newAccessToken: string | null;
+    accessToken: string | null;
     message: string;
 }
 
@@ -13,8 +12,8 @@ export default async function refreshToken () {
 
     const data = response.data as IrefreshTokenResponse;
 
-    if(data.refreshed && data.newAccessToken){
-        localStorage.setItem("x-access-token", data.newAccessToken);
+    if(data.success && data.accessToken){
+        localStorage.setItem("x-access-token", data.accessToken);
         return {reload: true};
     }
     else {

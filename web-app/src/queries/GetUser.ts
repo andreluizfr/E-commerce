@@ -4,9 +4,10 @@ import User from 'types/user';
 
 interface IGetUserResponse {
     refresh: boolean;
+    login?: boolean;
     success: boolean;
     message: string;
-    user: User | null;
+    user?: User | null;
 }
 
 export default function GetUser () {

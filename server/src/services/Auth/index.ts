@@ -63,6 +63,7 @@ export function authentication (req : Request, res: Response, next: NextFunction
             return res.send({
                 refresh: false,
                 success: false,
+                login: true,
                 message: 'Invalid access token, you need logging again.'
             });
 

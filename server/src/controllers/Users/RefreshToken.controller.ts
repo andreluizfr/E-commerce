@@ -22,19 +22,19 @@ export default new class RefreshTokenController{
                 expires: new Date(Date.now() + Number(process.env.JWT_REFRESH_TOKEN_EXP || "604800000") )
             });
 
-            return res.status(201).send(
-                {refreshed: true,
+            return res.status(201).send({
+                success: true,
                 message: "Access token refreshed.",
-                newAccessToken: newAccessToken
+                accessToken: newAccessToken
             });
 
         } catch (err) {
             const error = err as Error;
             
             return res.status(202).send({
-                refreshed: false,
+                success: false,
                 message: error.message || 'Unexpected error.',
-                newAccessToken: null
+                accessToken: null
             });
 
         } 

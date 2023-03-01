@@ -13,6 +13,7 @@ import ProductsList from './ProductsList.tsx';
 
 export default function Products () : JSX.Element {
 
+    const [query, setQuery] = useState("");
     const [queryObject, setQueryObject] = useState(
         {
             status: "",
@@ -20,23 +21,22 @@ export default function Products () : JSX.Element {
             keyword: ""
         }
     );
-    const [query, setQuery] = useState("");
     //transforma a queryObject em query
     useEffect(()=>{
-        let stringQuery = "?";
+        let queryString = "?";
 
         if(queryObject.status.length > 0){
-            stringQuery = stringQuery+"status="+queryObject.status+"&";
+            queryString = queryString+"status="+queryObject.status+"&";
         }
         if(queryObject.category.length > 0){
-            stringQuery = stringQuery+"categoria="+queryObject.category+"&";
+            queryString = queryString+"categoria="+queryObject.category+"&";
         }
         if(queryObject.keyword.length > 0){
-            stringQuery = stringQuery+"keyword="+queryObject.keyword+"&";
+            queryString = queryString+"keyword="+queryObject.keyword+"&";
         }
 
-        stringQuery = stringQuery.substring(0, stringQuery.length-1);
-        setQuery(stringQuery);
+        queryString = queryString.substring(0, queryString.length-1);
+        setQuery(queryString);
     }, [queryObject]);
 
     
@@ -54,7 +54,10 @@ export default function Products () : JSX.Element {
                     localStorage.removeItem("x-access-token");
                 }
             });
-
+        else if(getProductsAdminQuery.data?.login){
+            dispatch(removeUser());
+            localStorage.removeItem("x-access-token");
+        }
         else if(getProductsAdminQuery.data?.success && getProductsAdminQuery.data?.products)
             setProducts(getProductsAdminQuery.data.products);
             

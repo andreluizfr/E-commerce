@@ -18,10 +18,12 @@ export default function AddProduct () : JSX.Element {
             midias: [],
             price: 0.00,
             comparisonPrice: 0.00,
+            costPerProduct: 0.00,
             category: "Roupas masculinas",
             //subcategory: "",
             hasAttributes: false,
             attributes: [],
+            providerURL: "",
             tags: [],
             ratingNumbers: {
                 "5": 0,
@@ -45,7 +47,10 @@ export default function AddProduct () : JSX.Element {
                     localStorage.removeItem("x-access-token");
                 }
             });
-
+        else if(addProductQuery.data?.login){
+            dispatch(removeUser());
+            localStorage.removeItem("x-access-token");
+        }
         else if(addProductQuery.data?.success && addProductQuery.data?.product)
             console.log(addProductQuery.data.product);
 

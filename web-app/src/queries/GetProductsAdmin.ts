@@ -4,6 +4,7 @@ import Product from 'types/product';
 
 interface IGetProductsResponse {
     refresh: boolean;
+    login?: boolean;
     success: boolean;
     message: string;
     products?: Product[];

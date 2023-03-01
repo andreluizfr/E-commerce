@@ -17,7 +17,7 @@ export default new class DeleteProductController{
            await deleteProductService.execute(productId);
 
             return res.status(201).send({
-                authenticated: true,
+                refresh: false,
                 success: true,
                 message: "O produto foi excluído com sucesso."
             });
@@ -26,7 +26,7 @@ export default new class DeleteProductController{
             const error = err as Error;
             
             return res.status(202).send({
-                authenticated: true,
+                refresh: false,
                 success: false,
                 message: error.message || 'Unexpected error.'
             });
