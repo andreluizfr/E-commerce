@@ -45,6 +45,7 @@
   align-items: flex-start;
   width: 100%;
   padding: 0.5rem;
+  gap: 1rem;
 }
 .ProductsComponent .TabsRoot .TabsContent .Toolbar {
   display: flex;
@@ -55,6 +56,7 @@
 }
 .ProductsComponent .TabsRoot .TabsContent .Toolbar .KeywordInput {
   height: 1.8rem;
+  width: 100%;
   outline: none;
   border: 1px solid rgba(0, 0, 0, 0.24);
   border-radius: 0.2rem;

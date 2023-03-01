@@ -2,7 +2,7 @@ import './styles.css';
 
 import NavBar from 'components/NavBar';
 import Footer from 'components/Footer';
-import RatingStars from './RatingStars';
+import RatingStars from 'components/RatingStars';
 import NotFoundPage from 'pages/NotFoundPage';
 import ProgressionBar from './ProgressionBar';
 import Ratings from './Ratings';

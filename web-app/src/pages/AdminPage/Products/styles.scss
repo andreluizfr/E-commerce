@@ -48,6 +48,7 @@
             @include flex-column-start-start;
             width: 100%;
             padding: .5rem;
+            gap: 1rem;
     
             .Toolbar{
                 @include flex-row-center-center;
@@ -56,6 +57,7 @@
     
                 .KeywordInput{
                     height: 1.8rem;
+                    width: 100%;
                     outline: none;
                     border: 1px solid $thin-black;
                     border-radius: .2rem;

@@ -2,5 +2,45 @@
 @import '../../../../assets/css/_mixins';
 
 .ProductsList{
+    border: 1px solid $thinner-black;
+    padding: .5rem;
+    width: 100%;
+
+    .Product{
+        @include flex-row-start-center;
+        gap: 1rem;
+    }
+
+    .Table{
+        width: 100%;
+
+        .TableRow{
+            .TableHeader{
+                text-align: left;
+                font-size: $font-size-small;
+                font-weight: 500;
+            }
+    
+            .TableData{
+                text-align: left;
+                font-size: $font-size-smaller;
+                font-weight: 400;
+            }
+        }
+
+        .TableRowLink{
+            cursor: pointer;
+        }
+        .TableRowLink:hover::after{
+            content: "";
+            display: block;
+            position: relative;
+            bottom: 1px;
+            height: 1px;
+            width: 100%;
+            background-color: $green;
+            z-index: 10;
+        }
+    }
     
 }

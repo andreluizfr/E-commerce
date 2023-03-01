@@ -2,7 +2,7 @@ import './styles.css';
 
 import { HTMLAttributes, useEffect, useState } from "react";
 
-import RatingStars from '../RatingStars';
+import RatingStars from '../../../components/RatingStars';
 
 import Rating from 'types/rating';
 
