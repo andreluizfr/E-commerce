@@ -82,7 +82,7 @@ function App() {
 			}/>
 		);
 
-    else if(getUserQuery.data && getUserQuery.data.user?.admin === true)
+    else if(getUserQuery.data?.user?.admin === true)
 		return (
 			<React.Suspense fallback={<LoadingPage/>}>
 				<RouterProvider router={

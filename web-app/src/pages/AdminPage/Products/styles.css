@@ -1,8 +1,77 @@
-.AllProducts {
+.ProductsComponent {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   background-color: rgb(255, 255, 255);
   box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+  flex: 1;
+}
+.ProductsComponent .TabsRoot {
+  width: 100%;
+}
+.ProductsComponent .TabsRoot .TabsList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+.ProductsComponent .TabsRoot .TabsList .TabsTrigger {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 300;
+  cursor: pointer;
+}
+.ProductsComponent .TabsRoot .TabsList .TabsTrigger[data-state=active]::after {
+  content: "";
+  display: block;
+  position: relative;
+  top: 0.5rem;
+  width: 100%;
+  height: 1px;
+  background-color: rgb(0, 186, 124);
+}
+.ProductsComponent .TabsRoot .TabsContent[data-state=inactive] {
+  display: none;
+}
+.ProductsComponent .TabsRoot .TabsContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  padding: 0.5rem;
+}
+.ProductsComponent .TabsRoot .TabsContent .Toolbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+}
+.ProductsComponent .TabsRoot .TabsContent .Toolbar .KeywordInput {
+  height: 1.8rem;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.24);
+  border-radius: 0.2rem;
+  font-size: 0.9rem;
+}
+.ProductsComponent .TabsRoot .TabsContent .Toolbar .OrderSelect {
+  height: 1.8rem;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.24);
+  border-radius: 0.2rem;
+  font-size: 0.9rem;
+  color: rgb(83, 100, 113);
+}
+.ProductsComponent .TabsRoot .TabsContent .Toolbar .OrderSelect:focus-within {
+  border: 1px solid rgb(100, 79, 193);
+}
+.ProductsComponent .TabsRoot .TabsContent .Toolbar .ChevronDown {
+  width: 1rem;
+  height: 1rem;
 }/*# sourceMappingURL=styles.css.map */

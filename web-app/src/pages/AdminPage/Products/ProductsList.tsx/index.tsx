@@ -2,7 +2,7 @@ import Product from 'types/product';
 import './styles.css';
 
 export default function ProductsList (props: {products: Product[]}) : JSX.Element {
-
+    
     return(
         <div className='ProductsList'>
             {

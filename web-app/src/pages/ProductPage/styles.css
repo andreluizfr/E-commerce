@@ -38,6 +38,7 @@
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
+  height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
   padding: 0.5rem;

@@ -7,10 +7,10 @@ type Product = {
                 url: string,
                 attributeValue: string | null
             }[],
-    price: number,
+    price: number | null,
     comparisonPrice: number | null,
     costPerProduct?: number | null,
-    category: string,
+    category: string | null,
     subcategory?: string | null,
     hasAttributes: boolean,
     attributes: {
@@ -19,9 +19,9 @@ type Product = {
                 }[] | null
     variation?: {
         [key: string]: string;
-    } | null | undefined;
-    providerURL?: string,
-    tags?: string[] | null,
+    } | null;
+    providerURL?: string | null,
+    tags: string[],
     rating?: number
     ratingNumbers: {
         "1": number,

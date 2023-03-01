@@ -1,5 +1,7 @@
 import './styles.css';
 import * as Tabs from '@radix-ui/react-tabs';
+import Toolbar from './Toolbar';
+
 import { useState, useEffect } from 'react';
 
 import GetProductsAdmin from 'queries/GetProductsAdmin';
@@ -13,36 +15,48 @@ import ProductsList from './ProductsList.tsx';
 
 export default function Products () : JSX.Element {
 
-    const [query, setQuery] = useState("");
+    const [query, setQuery] = useState("?");
     const [queryObject, setQueryObject] = useState(
         {
             status: "",
             category: "",
-            keyword: ""
+            keyword: "",
+            order: "ASC"
         }
     );
+    const [products, setProducts] = useState <Product[]>([]);
+    
+    const getProductsAdminQuery = GetProductsAdmin(query);
+    const dispatch = useDispatch();
+
     //transforma a queryObject em query
     useEffect(()=>{
         let queryString = "?";
 
-        if(queryObject.status.length > 0){
+        if(queryObject.status.length > 0)
             queryString = queryString+"status="+queryObject.status+"&";
-        }
-        if(queryObject.category.length > 0){
-            queryString = queryString+"categoria="+queryObject.category+"&";
-        }
-        if(queryObject.keyword.length > 0){
-            queryString = queryString+"keyword="+queryObject.keyword+"&";
-        }
 
-        queryString = queryString.substring(0, queryString.length-1);
+        if(queryObject.category.length > 0)
+            queryString = queryString+"categoria="+queryObject.category+"&";
+        
+        if(queryObject.keyword.length > 0)
+            queryString = queryString+"keyword="+queryObject.keyword+"&";
+    
+        if(queryObject.order.length > 0)
+            queryString = queryString+"order="+queryObject.order+"&";
+
+        if(queryString[queryString.length-1] === "&")
+            queryString = queryString.substring(0, queryString.length-1);
         setQuery(queryString);
     }, [queryObject]);
 
-    
-    const getProductsAdminQuery = GetProductsAdmin(query);
-    const [products, setProducts] = useState <Product[]>([]);
-    const dispatch = useDispatch();
+    //atualizar produtos quando a query mudar
+    useEffect(()=>{
+        console.log(query);
+        getProductsAdminQuery.refetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [query]);
+
     //controlador da resposta da query getProductsAdmin
     useEffect(()=>{
 
@@ -62,29 +76,30 @@ export default function Products () : JSX.Element {
             setProducts(getProductsAdminQuery.data.products);
             
     }, [dispatch, getProductsAdminQuery, getProductsAdminQuery.data]);
+
     
     useEffect(()=>{
-        console.log(query);
-        getProductsAdminQuery.refetch();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [query]);
+        console.log(products);
+    }, [products]);
+
 
     function setStatusQuery (event: React.MouseEvent <HTMLButtonElement>){
         const statusValue = (event.target as HTMLButtonElement).innerText.toLocaleLowerCase();
 
-        setQueryObject({
-            ...queryObject,
-            status: statusValue
-        });
-    }
-
-    function setKeywordQuery (event: React.ChangeEvent <HTMLInputElement>){
-        const keywordValue = (event.target as HTMLInputElement).value;
-
-        setQueryObject({
-            ...queryObject,
-            keyword: keywordValue
-        });
+        if(statusValue === "Todos" || statusValue === "todos")
+            setQueryObject({
+                status: "",
+                category: "",
+                keyword: "",
+                order: "ASC"
+            });
+        else
+            setQueryObject({
+                status: statusValue,
+                category: "",
+                keyword: "",
+                order: "ASC"
+            });
     }
 
     return(
@@ -92,14 +107,7 @@ export default function Products () : JSX.Element {
             <Tabs.Root className="TabsRoot" defaultValue="Todos">
 
                 <Tabs.List className="TabsList">
-                    <Tabs.Trigger className="TabsTrigger" value="Todos" 
-                        onClick={()=>
-                            setQueryObject({
-                                status: "",
-                                category: "",
-                                keyword: ""
-                            })}
-                    >
+                    <Tabs.Trigger className="TabsTrigger" value="Todos" onClick={setStatusQuery}>
                         Todos
                     </Tabs.Trigger>
                     <Tabs.Trigger className="TabsTrigger" value="Rascunho" onClick={setStatusQuery}>
@@ -114,30 +122,22 @@ export default function Products () : JSX.Element {
                 </Tabs.List>
 
                 <Tabs.Content className="TabsContent" value="Todos">
-                    <div>
-                        <input placeholder='keyword' onChange={setKeywordQuery}/>
-                    </div>
+                    <Toolbar queryObject={queryObject} setQueryObject={setQueryObject}/>
                     <ProductsList products={products}/>
                 </Tabs.Content>
 
                 <Tabs.Content className="TabsContent" value="Rascunho">
-                    <div>
-                        <input placeholder='keyword' onChange={setKeywordQuery}/>
-                    </div>
+                    <Toolbar queryObject={queryObject} setQueryObject={setQueryObject}/>
                     <ProductsList products={products}/>
                 </Tabs.Content>
 
                 <Tabs.Content className="TabsContent" value="Ativo">
-                    <div>
-                        <input placeholder='keyword' onChange={setKeywordQuery}/>
-                    </div>
+                    <Toolbar queryObject={queryObject} setQueryObject={setQueryObject}/>
                     <ProductsList products={products}/>
                 </Tabs.Content>
                     
                 <Tabs.Content className="TabsContent" value="Desativado">
-                    <div>
-                        <input placeholder='keyword' onChange={setKeywordQuery}/>
-                    </div>
+                    <Toolbar queryObject={queryObject} setQueryObject={setQueryObject}/>
                     <ProductsList products={products}/>
                 </Tabs.Content>
 

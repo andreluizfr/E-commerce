@@ -17,18 +17,13 @@ export default new class GetProductsController{
 
     async handle(req: Request, res: Response): Promise<Response>{
         
-        const status = req.query.status as string;
         const category = req.query.categoria as string;
         const keyword = req.query.keyword as string;
 
-        console.log(status);
         console.log(category);
         console.log(keyword);
 
         const queries = {} as Queries;
-
-        if(status)
-            queries.status = status;
 
         if(category)
             queries.category = category;

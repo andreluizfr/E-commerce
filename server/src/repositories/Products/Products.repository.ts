@@ -1,7 +1,7 @@
 import { Product } from "../../entities/Product.entity";
 import { IProductsRepository } from "./IProducts.repository";
 import { AppDataSource } from "../../database/data-source";
-import { ArrayContains, Like } from "typeorm";
+import { ArrayContains, FindOptionsOrderValue, Like } from "typeorm";
 
 import { productDTO } from "./ProductDTO";
 
@@ -9,6 +9,7 @@ interface Queries{
     category?: string | undefined;
     keyword?: string | undefined;
     productStatus?: string | undefined;
+    order?: FindOptionsOrderValue | undefined;
 }
 
 export class ProductsRepository implements IProductsRepository{
@@ -138,10 +139,17 @@ export class ProductsRepository implements IProductsRepository{
         let products = [] as Product[];
         if(where.length > 0)
             products = await productsRepository.find({
-                where: where
+                where: where,
+                order: {
+                    productId: queries.order
+                }
             });
         else
-            products = await productsRepository.find();
+            products = await productsRepository.find({
+                order: {
+                    productId: queries.order
+                }
+            });
         
         return products;
     }

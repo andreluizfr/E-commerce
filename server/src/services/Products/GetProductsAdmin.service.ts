@@ -4,6 +4,7 @@ interface Queries{
     category?: string | undefined;
     keyword?: string | undefined;
     productStatus?: string | undefined;
+    order?: string | undefined;
 }
 
 //contains the business logic
