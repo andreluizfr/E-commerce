@@ -1,7 +1,9 @@
 import './styles.css';
 import RatingStars from 'components/RatingStars';
+import * as Dialog from '@radix-ui/react-dialog';
 
 import Product from 'types/product';
+import DeleteAlertDialog from './DeleteAlertDialog';
 
 
 export default function ProductsList (props: {products: Product[]}) : JSX.Element {
@@ -9,7 +11,6 @@ export default function ProductsList (props: {products: Product[]}) : JSX.Elemen
     return(
         <div className='ProductsList'>
             <table className="Table">
-                <colgroup span={6} className="TableColumns"></colgroup>
                 <tr className="TableRow">
                     <th className="TableHeader">Id</th>
                     <th className="TableHeader">Título</th>
@@ -21,13 +22,14 @@ export default function ProductsList (props: {products: Product[]}) : JSX.Elemen
                 {
                     props.products.map(product=>{
                         return (
-                            <tr className="TableRow TableRowLink">
+                            <tr className="TableRow TableRowLink" key={product.productId}>
                                 <td className="TableData">{product.productId}</td>
                                 <td className="TableData">{product.title}</td>
                                 <td className="TableData">{product.price}</td>
                                 <td className="TableData">{product.category}</td>
                                 <td className="TableData"><RatingStars rate={product.rating} size="small"/></td>
                                 <td className="TableData">{product.providerURL}</td>
+                                <td><DeleteAlertDialog productId={product.productId}/></td>
                             </tr>
                         );
                     })

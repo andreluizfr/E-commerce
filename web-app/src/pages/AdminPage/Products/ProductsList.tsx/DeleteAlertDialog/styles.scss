@@ -1,0 +1,135 @@
+@import '../../../../../assets/css/variables';
+@import '../../../../../assets/css/_mixins';
+
+.DeleteAlertDialog{
+
+    .DeleteButton{
+        padding: .5rem 1rem;
+        border-radius: 4px;
+        background-color: $white;
+        border: 1px solid $thin-black;
+
+        font-size: $font-size-smaller;
+        line-height: 1;
+        font-weight: 500;
+        color: $red !important;
+
+        transition: 200ms all;
+        cursor: pointer;
+        @include no-motion{
+            transition: none;
+        }
+    }
+
+    .DeleteButton:hover{
+        background-color: $light-red;
+        border: 1px solid rgba($red, 0.24);
+        color: $white !important;
+    }
+
+}
+
+.AlertDialogOverlay{
+    background-color: $thin-black;
+    position: fixed;
+    inset: 0;
+    top: 0;
+    left: 0;
+    animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+    @include no-motion{
+        animation: none;
+    }
+}
+
+.AlertDialogContent{
+    @include flex-column-start-start;
+    gap: 1rem;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: .4rem;
+    box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+    background-color: white;
+    width: 90vw;
+    max-width: 500px;
+    max-height: 85vh;
+    padding: 1.5rem;
+    animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+    @include no-motion{
+        animation: none;
+    }
+
+    .AlertDialogTitle{
+        font-size: $font-size-small;
+        font-weight: 500;
+    }
+
+    .AlertDialogDescription{
+        font-size: $font-size-mini;
+        line-height: 1.5;
+    }
+
+    .AlertDialogButtons{
+        @include flex-row-end-center;
+        width: 100%;
+        gap: .5rem;
+
+        .Button{
+            padding: .5rem;
+            border-radius: 4px;
+            background-color: $white;
+            border: 1px solid $thin-black;
+
+            font-size: $font-size-mini;
+            line-height: 1;
+            font-weight: 500;
+
+            transition: 200ms all;
+            cursor: pointer;
+            @include no-motion{
+                transition: none;
+            }
+        }
+
+        .CancelButton{
+            background-color: $lighter-gray;
+            color: $darker-gray;
+        }
+        .CancelButton:hover{
+            background-color: $light-gray;
+        }
+
+        .ConfirmButton{
+            background-color: $light-red;
+            color: $dark-red;
+        }
+        .ConfirmButton:hover{
+            background-color: rgba($red, 0.48);
+        }
+    }
+
+}
+
+
+
+@keyframes overlayShow {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes contentShow {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -48%) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+  

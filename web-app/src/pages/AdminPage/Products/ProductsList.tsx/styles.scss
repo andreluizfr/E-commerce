@@ -13,8 +13,13 @@
 
     .Table{
         width: 100%;
+        border-collapse: separate;  
+        border-spacing: .5rem 1rem;
 
         .TableRow{
+            width: 100%;
+            background-color: $white;
+
             .TableHeader{
                 text-align: left;
                 font-size: $font-size-small;
@@ -29,17 +34,21 @@
         }
 
         .TableRowLink{
+            position: relative;
             cursor: pointer;
         }
-        .TableRowLink:hover::after{
+        .TableRowLink::after{
             content: "";
             display: block;
-            position: relative;
-            bottom: 1px;
+            position: absolute;
+            bottom: -4px;
+            left: 0;
             height: 1px;
+            border-bottom: 1px solid $thinner-black;
             width: 100%;
-            background-color: $green;
-            z-index: 10;
+        }
+        .TableRowLink:hover *{
+            color: $deep-sky-blue;
         }
     }
     
