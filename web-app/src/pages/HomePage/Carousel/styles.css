@@ -26,7 +26,8 @@
   display: flex;
   counter-reset: item;
   overflow-x: hidden;
-  scroll-snap-type: x mandatory;
+  -ms-scroll-snap-type: x mandatory;
+      scroll-snap-type: x mandatory;
   height: auto;
   width: 100%;
   position: relative;
@@ -99,18 +100,18 @@
 }
 @media only screen and (max-width: 1000px) {
   .HomePage-carousel::before,
-  .HomePage-carousel::after,
-  .carousel__prev,
-  .carousel__next {
+.HomePage-carousel::after,
+.carousel__prev,
+.carousel__next {
     width: 2.5rem;
     height: 2.5rem;
   }
 }
 @media only screen and (max-width: 576px) {
   .HomePage-carousel::before,
-  .HomePage-carousel::after,
-  .carousel__prev,
-  .carousel__next {
+.HomePage-carousel::after,
+.carousel__prev,
+.carousel__next {
     width: 0rem;
     height: 0rem;
   }

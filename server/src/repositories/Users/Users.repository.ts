@@ -2,6 +2,7 @@ import { User } from "../../entities/User.entity";
 import { IUsersRepository } from "./IUsers.repository";
 import { AppDataSource } from "../../database/data-source";
 import { userDTO } from "./UserDTO";
+
 export class UsersRepository implements IUsersRepository{
 
     async createUser(user: User){

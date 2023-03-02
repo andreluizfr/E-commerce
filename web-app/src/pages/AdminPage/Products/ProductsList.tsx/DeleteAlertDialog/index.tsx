@@ -1,11 +1,19 @@
 import './styles.css';
 import * as AlertDialog from '@radix-ui/react-alert-dialog';
+import DeleteProductQuery from 'queries/DeleteProduct';
+import { useEffect } from 'react';
 
 export default function DeleteAlertDialog ({productId}: {productId: string | undefined}) : JSX.Element {
 
+    const deleteProductQuery = DeleteProductQuery(productId);
+
     function deleteProduct(){
-        console.log(productId);
+        deleteProductQuery.refetch();
     }
+
+    useEffect(()=>{
+        console.log(deleteProductQuery.data?.message);
+    }, [deleteProductQuery.data]);
     
     return(
         <div className="DeleteAlertDialog">
