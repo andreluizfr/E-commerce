@@ -3,7 +3,12 @@ import * as AlertDialog from '@radix-ui/react-alert-dialog';
 import DeleteProductQuery from 'queries/DeleteProduct';
 import { useEffect } from 'react';
 
-export default function DeleteAlertDialog ({productId}: {productId: string | undefined}) : JSX.Element {
+interface Props{
+    productId: string | undefined;
+    setRefreshProducts: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function DeleteAlertDialog ({productId, setRefreshProducts}: Props) : JSX.Element {
 
     const deleteProductQuery = DeleteProductQuery(productId);
 
@@ -12,7 +17,11 @@ export default function DeleteAlertDialog ({productId}: {productId: string | und
     }
 
     useEffect(()=>{
-        console.log(deleteProductQuery.data?.message);
+        if(deleteProductQuery.data?.success){
+            console.log(deleteProductQuery.data.message);
+            setRefreshProducts(true);
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [deleteProductQuery.data]);
     
     return(

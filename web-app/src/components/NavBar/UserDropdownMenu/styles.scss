@@ -50,6 +50,10 @@
     .UserDropdownMenuItem:hover{
         opacity: 0.8;
     }
+
+    .UserDropdownMenuItem:focus-visible{
+        outline: none;
+    }
     
     .UserDropdownMenuSeparator{
         height: 1px;

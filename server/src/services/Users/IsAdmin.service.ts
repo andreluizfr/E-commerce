@@ -11,7 +11,7 @@ export class IsAdminService{
 
         if(user){
             if(user.admin) return true;
-            else throw new Error("Não é administrador.");
+            else return false;
         } 
         else throw new Error("Usuário não encontrado.");
 

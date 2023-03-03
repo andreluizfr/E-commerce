@@ -77,11 +77,6 @@ export default function Products () : JSX.Element {
             
     }, [dispatch, getProductsAdminQuery, getProductsAdminQuery.data]);
 
-    
-    useEffect(()=>{
-        console.log(products);
-    }, [products]);
-
 
     function setStatusQuery (event: React.MouseEvent <HTMLButtonElement>){
         const statusValue = (event.target as HTMLButtonElement).innerText.toLocaleLowerCase();
@@ -101,6 +96,16 @@ export default function Products () : JSX.Element {
                 order: "ASC"
             });
     }
+
+    //sempre que um produto for excluido, vai buscar os produtos novamente
+    const [refreshProducts, setRefreshProducts] = useState(false);
+    useEffect(()=>{
+        if(refreshProducts === true){
+            getProductsAdminQuery.refetch();
+            setRefreshProducts(false);
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [refreshProducts]);
 
     return(
         <div className='ProductsComponent'>
@@ -123,22 +128,22 @@ export default function Products () : JSX.Element {
 
                 <Tabs.Content className="TabsContent" value="Todos">
                     <Toolbar queryObject={queryObject} setQueryObject={setQueryObject}/>
-                    <ProductsList products={products}/>
+                    <ProductsList products={products} setRefreshProducts={setRefreshProducts}/>
                 </Tabs.Content>
 
                 <Tabs.Content className="TabsContent" value="Rascunho">
                     <Toolbar queryObject={queryObject} setQueryObject={setQueryObject}/>
-                    <ProductsList products={products}/>
+                    <ProductsList products={products} setRefreshProducts={setRefreshProducts}/>
                 </Tabs.Content>
 
                 <Tabs.Content className="TabsContent" value="Ativo">
                     <Toolbar queryObject={queryObject} setQueryObject={setQueryObject}/>
-                    <ProductsList products={products}/>
+                    <ProductsList products={products} setRefreshProducts={setRefreshProducts}/>
                 </Tabs.Content>
                     
                 <Tabs.Content className="TabsContent" value="Desativado">
                     <Toolbar queryObject={queryObject} setQueryObject={setQueryObject}/>
-                    <ProductsList products={products}/>
+                    <ProductsList products={products} setRefreshProducts={setRefreshProducts}/>
                 </Tabs.Content>
 
             </Tabs.Root>

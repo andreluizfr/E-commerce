@@ -46,6 +46,9 @@
 .UserDropdownMenuContent .UserDropdownMenuItem:hover {
   opacity: 0.8;
 }
+.UserDropdownMenuContent .UserDropdownMenuItem:focus-visible {
+  outline: none;
+}
 .UserDropdownMenuContent .UserDropdownMenuSeparator {
   height: 1px;
   background-color: rgba(0, 0, 0, 0.24);

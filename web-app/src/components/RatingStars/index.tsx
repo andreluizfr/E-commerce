@@ -15,7 +15,7 @@ export default function RatingStars (props: RatingProps) : JSX.Element {
         if(props.size){
             ratingRef.current?.setAttribute("size", props.size);
         }
-    }, []);
+    }, [props.size]);
 
     useEffect(()=>{
         const stars = ratingRef.current?.getElementsByClassName("Star");

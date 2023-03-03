@@ -92,7 +92,7 @@ export function verifyRefreshToken(refreshToken: string){
 
 }
 
-export function isAdmin(req : Request, res: Response, next: NextFunction){
+export async function isAdmin(req : Request, res: Response, next: NextFunction){
 
     const usersRepository = new UsersRepository();
     const isAdminService = new IsAdminService(usersRepository);
@@ -100,9 +100,16 @@ export function isAdmin(req : Request, res: Response, next: NextFunction){
     try{
         const { email } = req.body;
 
-        const isAdmin = isAdminService.execute(email);
+        const isAdmin = await isAdminService.execute(email);
 
-        next();
+        if(isAdmin)
+            next();
+        else 
+            return res.status(202).send({
+                refresh: false,
+                success: false,
+                message: 'Usuário não é administrador.',
+            });
         
     } catch (err) {
         const error = err as Error;

@@ -18,7 +18,7 @@ export default function DeleteProductQuery (productId: string | undefined) {
 
             const accessToken = localStorage.getItem("x-access-token");
 
-            const response = await axios.post('/product/admin/deleteProduct',  {productId: productId}, {headers: { Authorization: `Bearer ${accessToken}` }});
+            const response = await axios.put('/product/admin/deleteProduct',  {productId: productId}, {headers: { Authorization: `Bearer ${accessToken}` }});
         
             const data = response.data as IDeleteProductResponse;
 
