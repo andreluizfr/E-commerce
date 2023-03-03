@@ -2,9 +2,13 @@ import './styles.css';
 
 import RatingStars from 'components/RatingStars';
 import DeleteAlertDialog from './DeleteAlertDialog';
-//import * as Dialog from '@radix-ui/react-dialog'; //pra editar produto futuramente
+import EditProduct from './EditProduct';
+
+import { useState } from 'react';
 
 import Product from 'types/product';
+
+
 
 interface Props {
     products: Product[];
@@ -13,6 +17,12 @@ interface Props {
 
 export default function ProductsList ({products, setRefreshProducts}: Props) : JSX.Element {
     
+    const [productToBeEdited, setProductToBeEdited] = useState <Product | null>(null);
+
+    function editProduct (product: Product){
+        setProductToBeEdited(product);
+    }
+
     return(
         <div className='ProductsList'>
             <table className="Table">
@@ -31,7 +41,11 @@ export default function ProductsList ({products, setRefreshProducts}: Props) : J
                     {
                         products.map(product=>{
                             return (
-                                <tr className="TableRow TableRowLink" key={product.productId}>
+                                <tr 
+                                    className="TableRow TableRowLink" 
+                                    key={product.productId} 
+                                    onClick={()=>editProduct(product)}
+                                >
                                     <td className="TableData">{product.productId}</td>
                                     <td className="TableData">{product.title}</td>
                                     <td className="TableData">{product.price}</td>
@@ -51,6 +65,8 @@ export default function ProductsList ({products, setRefreshProducts}: Props) : J
                     }
                 </tbody>
             </table>
+
+            <EditProduct product={productToBeEdited} setProductToBeEdited={setProductToBeEdited}/>
         </div>
     );
 }

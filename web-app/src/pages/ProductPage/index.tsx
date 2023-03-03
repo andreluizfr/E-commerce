@@ -44,7 +44,7 @@ const productMock = {
     price: 10000000.00,
     comparisonPrice: 999999.98,
     category: "Ferramentas e construção",
-    subcategory: null,
+    subcategory: "",
     hasAttributes: true,
     attributes: [
         {
@@ -56,6 +56,7 @@ const productMock = {
             values: ["azul", "amarelo", "verde", "preto", "roxo", "branco"]
         }
     ],
+    tags: [],
     rating: 4.567,
     ratingNumbers:{
         "5": 400,

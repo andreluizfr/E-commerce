@@ -60,17 +60,21 @@ export default function Products () : JSX.Element {
     //controlador da resposta da query getProductsAdmin
     useEffect(()=>{
 
+        if(getProductsAdminQuery.data)
+            console.log(getProductsAdminQuery.data?.message);
+            
         if(getProductsAdminQuery.data?.refresh)
             refreshToken().then(response=>{
                 if(response.reload) getProductsAdminQuery.refetch();
                 else {
                     dispatch(removeUser());
-                    localStorage.removeItem("x-access-token");
+                    setTimeout(()=>window.location.reload(), 2000);
                 }
             });
         else if(getProductsAdminQuery.data?.login){
             dispatch(removeUser());
             localStorage.removeItem("x-access-token");
+            setTimeout(()=>window.location.reload(), 2000);
         }
         else if(getProductsAdminQuery.data?.success && getProductsAdminQuery.data?.products)
             setProducts(getProductsAdminQuery.data.products);

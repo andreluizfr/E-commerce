@@ -10,7 +10,7 @@ interface ProgressionBarProps extends HTMLAttributes<HTMLDivElement> {
         "3": number,
         "2": number,
         "1": number
-    }
+    } | undefined
 }
 
 export default function ProgressionBar (props: ProgressionBarProps) : JSX.Element {
@@ -19,14 +19,17 @@ export default function ProgressionBar (props: ProgressionBarProps) : JSX.Elemen
 
     useEffect(()=>{
         if(progressionBarRef.current && props.number){
-            const percentage = props.ratingNumbers[props.number] / 
-                            (
-                                props.ratingNumbers["1"] + 
-                                props.ratingNumbers["2"] + 
-                                props.ratingNumbers["3"] + 
-                                props.ratingNumbers["4"] + 
-                                props.ratingNumbers["5"]
-                            ) * 100;
+            let percentage = 0;
+            
+            if(props.ratingNumbers)
+                percentage = props.ratingNumbers[props.number] / 
+                                (
+                                    props.ratingNumbers["1"] + 
+                                    props.ratingNumbers["2"] + 
+                                    props.ratingNumbers["3"] + 
+                                    props.ratingNumbers["4"] + 
+                                    props.ratingNumbers["5"]
+                                ) * 100;
 
             const bar = progressionBarRef.current.firstChild as HTMLDivElement;
             bar.style.width = String(percentage.toFixed(2)) + "%";

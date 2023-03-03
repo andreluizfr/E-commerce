@@ -10,20 +10,20 @@ type Product = {
     price: number | null,
     comparisonPrice: number | null,
     costPerProduct?: number | null,
-    category: string | null,
-    subcategory?: string | null,
+    category: string,
+    subcategory: string,
     hasAttributes: boolean,
     attributes: {
                     name: string,
                     values: string[]
-                }[] | null
+                }[]
     variation?: {
         [key: string]: string;
     } | null;
-    providerURL?: string | null,
+    providerURL?: string,
     tags: string[],
     rating?: number
-    ratingNumbers: {
+    ratingNumbers?: {
         "1": number,
         "2": number,
         "3": number,

@@ -24,7 +24,8 @@ export default function UserDropdownMenu () :JSX.Element {
 
     function logout(){
         dispatch(removeUser());
-        localStorage.clear();
+        localStorage.removeItem('x-access-token');
+        window.location.reload();
     }
 
     if(user && user.logged)

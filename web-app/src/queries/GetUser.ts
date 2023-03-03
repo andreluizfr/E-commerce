@@ -20,6 +20,8 @@ export default function GetUser () {
 
         const data = response.data as IGetUserResponse;
 
+        console.log(response.data.message);
+        
         return data;
 
     }, {

@@ -40,12 +40,16 @@ function App() {
 
 	//tenta salvar na store um usuario se ele está logado.
 	useEffect(()=>{
+		
+		if(getUserQuery.data)
+			console.log(getUserQuery.data?.message);
+			
 		if(getUserQuery.data?.refresh)
 			refreshToken().then(response=>{
 				if(response.reload) getUserQuery.refetch();
 				else {
 					dispatch(removeUser());
-					localStorage.removeItem("x-access-token");
+            		setTimeout(()=>window.location.reload(), 2000);
 				}
 			});
 		else if(getUserQuery.data?.login){
@@ -54,6 +58,7 @@ function App() {
 		}
 		else if(getUserQuery.data?.success && getUserQuery.data?.user)
 			dispatch(newUser(getUserQuery.data.user));
+			
 
 	}, [dispatch, getUserQuery, getUserQuery.data]);
 

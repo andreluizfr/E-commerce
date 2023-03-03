@@ -12,12 +12,12 @@ export default new class AddProductController{
     async handle(req: Request, res: Response): Promise<Response>{
         
         const { title, description, midias, price, comparisonPrice, costPerProduct, category,
-            providerURL, attributes, productStatus, ratingNumbers, tags } = req.body;
+            subcategory, providerURL, attributes, hasAttributes, productStatus, tags } = req.body;
 
         try{
             const { product } = await addProductService.execute({ 
                 title, description, midias, price, comparisonPrice, costPerProduct, category,
-                providerURL, attributes, productStatus, ratingNumbers, tags });
+                subcategory, providerURL, attributes, hasAttributes, productStatus, tags });
 
             return res.status(201).send({
                 refresh: false,

@@ -1,0 +1,87 @@
+.EditProduct {
+  z-index: 1001;
+}
+.EditProduct .EditProductOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85);
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
+  z-index: 1002;
+}
+.EditProduct .EditProduct-form {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  max-height: 80%;
+  min-width: 350px;
+  max-width: 80%;
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+  overflow: auto;
+  z-index: 1003;
+}
+.EditProduct .EditProduct-form .ComponentTitle {
+  width: 100%;
+  text-align: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.24);
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.EditProduct .EditProduct-form .FormField {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+.EditProduct .EditProduct-form .FormField-label {
+  font-size: 0.9rem;
+  color: rgb(100, 79, 193);
+  margin-right: 1rem;
+}
+.EditProduct .EditProduct-form .FormField-inputs {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.EditProduct .EditProduct-form .Submit-button {
+  background-color: rgb(0, 0, 0);
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.85);
+  border-radius: 0.2rem;
+  outline: none;
+  font-size: 1rem;
+  color: rgb(255, 255, 255);
+  font-weight: 500;
+  transition: 200ms all;
+  cursor: pointer;
+}
+.EditProduct .EditProduct-form .Submit-button:hover {
+  background-color: rgba(0, 0, 0, 0.85);
+}
+.EditProduct .EditProduct-form .ServerResponse {
+  display: none;
+}
+.EditProduct .EditProduct-form .ServerResponse[visible=true] {
+  display: block;
+}
+
+.EditProduct[visible=false] {
+  display: none;
+}/*# sourceMappingURL=styles.css.map */

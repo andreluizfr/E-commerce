@@ -2,6 +2,7 @@ import { Entity, Column, CreateDateColumn, PrimaryColumn, BeforeInsert, OneToMan
 import { v4 as uuidv4 } from 'uuid';
 import * as bcrypt from 'bcrypt';
 import { Rating } from './Rating.entity';
+import { UserDTO } from '../repositories/Users/UserDTO';
 
 @Entity("Users")
 export class User{
@@ -53,7 +54,7 @@ export class User{
 
 
     constructor(
-        props: Pick <User, 'firstName' | 'lastName' | 'email' | 'birthDate' | 'cpf' | 'phoneNumber' | 'password'>,
+        props: UserDTO,
         verificationEmailCode: string,
         admin: boolean
     ){
@@ -62,7 +63,6 @@ export class User{
         //always create here
         this.userId = uuidv4();
         this.emailVerified = false;
-        //received from controller
         this.verificationEmailCode = verificationEmailCode;
         this.admin = admin;
     }

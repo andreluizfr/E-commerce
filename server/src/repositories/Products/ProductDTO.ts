@@ -1,26 +1,20 @@
 import { z } from 'zod';
 
 export const productDTO = z.object({
+    productId: z.number()
+        .optional(),
     title: z.string({required_error: "Título do produto não informado."}),
-    description: z.string()
-        .optional()
-        .nullable(),
+    description: z.string(),
     midias: z.array(z.object({
-            attributeValue: z.string().nullable(),
-            type: z.string(),
-            url: z.string().url({ message: "url inválida" })
-        }))
-        .optional()
-        .nullable(),
+            attributeValue: z.string().optional(),
+            type: z.string().optional(),
+            url: z.string().optional()
+        })),
     price: z.number()
-        .optional()
         .nullable(),
     comparisonPrice: z.number()
-        .optional()
         .nullable(),
     costPerProduct: z.number()
-        .refine(cost => cost.toFixed(2))
-        .optional()
         .nullable(),
     category: z.union([
         z.literal("Roupas masculinas"),
@@ -38,40 +32,25 @@ export const productDTO = z.object({
         z.literal("infantil"),
         z.literal("Esportes"),
         z.literal("Ferramentas e construção")
-        ], {invalid_type_error: "A categoria recebida não é um categoria válida."})
-        .optional()
-        .nullable(),
-    subcategory: z.string() //trocar pra tipo de subcategorias depois
-        .optional()
-        .nullable(),
-    providerURL: z.string()
-        .url({ message: "url inválida" })
-        .optional()
-        .nullable(),
+        ], {invalid_type_error: "A categoria recebida não é um categoria válida."}),
+    subcategory: z.string(),
+    providerURL: z.string(),
     attributes: z.array(z.object({
-        name: z.string({required_error: "Nome do atributo precisa ser informado."}),
+        name: z.string({required_error: "Nome do atributo precisa ser informado."}).optional(),
         values: z.array(z.string({required_error: "Lista com valores do atributo precisam ser informados."})
             .min(1, {message: "A lista dos valores não pode ser vazia."})
-        )}))
-        .optional()
-        .nullable(),
+        )}).optional()),
+    hasAttributes: z.boolean(),
     productStatus: z.union([
-        z.literal("rascunho"),
-        z.literal("ativo"),
-        z.literal("desativado")
-    ], {invalid_type_error: "O status recebido não é um status válido."}),
-    ratingNumbers: z.object({
-        "1": z.number(),
-        "2": z.number(),
-        "3": z.number(),
-        "4": z.number(),
-        "5": z.number()
-    })
-    .optional()
-    .nullable(),
-    tags: z.array(z.string())
-        .optional()
-        .nullable()
+            z.literal("rascunho"),
+            z.literal("ativo"),
+            z.literal("desativado")
+        ], {invalid_type_error: "O status recebido não é um status válido."}),
+    tags: z.array(z.string()),
+    ratings: z.array(z.string())
+        .optional(),
+    created_at: z.date()
+        .optional(),
 });
 
 export type ProductDTO = z.infer<typeof productDTO>;

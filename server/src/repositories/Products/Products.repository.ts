@@ -15,11 +15,8 @@ interface Queries{
 export class ProductsRepository implements IProductsRepository{
 
     async addProduct(product: Product){
-        const parseResponse = productDTO.safeParse(product);
-        if(!parseResponse.success)
-            throw new Error(parseResponse.error.issues[0].message);
+        productDTO.parse(product);
 
-        console.log(product);
         const productsRepository = AppDataSource.getRepository(Product);
         const createdProduct = await productsRepository.save(product);
 
@@ -48,9 +45,7 @@ export class ProductsRepository implements IProductsRepository{
                 ) / 5).toFixed(2)); 
             }
 
-            const parseResponse = productDTO.safeParse(product);
-            if(!parseResponse.success)
-                throw new Error(parseResponse.error.issues[0].message);
+            productDTO.parse(product);
 
             const updatedProduct = await productsRepository.save(product);
             return updatedProduct;

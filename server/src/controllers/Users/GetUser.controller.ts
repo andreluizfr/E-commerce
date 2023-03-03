@@ -33,7 +33,7 @@ export default new class GetUserController{
             return res.status(201).send({
                 refresh: false,
                 success: true,
-                message: "User fetching succesfull.",
+                message: "Usuário buscado com sucesso.",
                 user: publicUser
             });
 

@@ -7,6 +7,7 @@ import refreshToken from 'queries/RefreshToken';
 
 import { useDispatch } from 'react-redux';
 import { removeUser } from 'store/features/userSlice';
+import Product from 'types/product';
 
 export default function AddProduct () : JSX.Element {
 
@@ -20,43 +21,17 @@ export default function AddProduct () : JSX.Element {
             comparisonPrice: null,
             costPerProduct: null,
             category: "Roupas masculinas",
-            //subcategory: "",
+            subcategory: "",
             hasAttributes: false,
             attributes: [],
-            providerURL: null,
-            tags: [],
-            ratingNumbers: {
-                "5": 0,
-                "4": 0,
-                "3": 0,
-                "2": 0,
-                "1": 0
-            }
-        }
+            providerURL: "",
+            tags: []
+        } as Product
     );
-
     const addProductQuery = AddProductQuery(formData);
     const dispatch = useDispatch();
-    //controladora da resposta da query addProductQuery
-    useEffect(()=>{
-        if(addProductQuery.data?.refresh)
-            refreshToken().then(response=>{
-                if(response.reload) addProductQuery.refetch();
-                else {
-                    dispatch(removeUser());
-                    localStorage.removeItem("x-access-token");
-                }
-            });
-        else if(addProductQuery.data?.login){
-            dispatch(removeUser());
-            localStorage.removeItem("x-access-token");
-        }
-        else if(addProductQuery.data?.success && addProductQuery.data?.product)
-            console.log(addProductQuery.data.product);
+    
 
-    }, [dispatch, addProductQuery, addProductQuery.data]);
-    
-    
     function updateFormDataFromSelect (event: React.ChangeEvent<HTMLSelectElement>) {
         setFormData({
             ...formData,
@@ -66,45 +41,46 @@ export default function AddProduct () : JSX.Element {
 
     function updateFormData (event: React.ChangeEvent<HTMLInputElement>) {
 
-        let value = event.target.value as (string | number);
-        const type = (event.target as HTMLElement).getAttribute("type");
-        if(type === "number")
-            value = Number(value);
+        const input = event.target;
+        let inputValue = input.value as (string | number);
+        const inputType = input.getAttribute("type");
+
+        if(inputType === "number")
+            inputValue = Number(inputValue);
 
         setFormData({
             ...formData,
-            [event.target.name]: value
+            [event.target.name]: inputValue
         });
     }
     
     function updateFormDataAttributes (event: React.ChangeEvent<HTMLInputElement>) {
 
-        const inputValue = event.target.value;
+        const input = event.target;
+        const inputValue = input.value;
 
         if(inputValue.charAt(inputValue.length-1) === ";"){
-
             const refinedInputValue = inputValue.substring(0, inputValue.length - 1);
             const pieces = refinedInputValue.split(":");
             const name = pieces[0];
+            console.log("name",name)
             const values = pieces[1].split(",");
+            console.log("values",values)
 
             setFormData({
                 ...formData,
-                [event.target.name]: [...formData.attributes, {name: name, values: values}]
-            });
-
-            setFormData({
-                ...formData,
+                [event.target.name]: [...formData.attributes, {name: name, values: values}],
                 hasAttributes: true
             });
 
-            (event.target as HTMLElement).setAttribute("disabled", "true");
+            input.setAttribute("disabled", "true");
         }
     }
 
     function updateFormDataMidias (event: React.ChangeEvent<HTMLInputElement>) {
 
-        const inputValue = event.target.value;
+        const input = event.target;
+        const inputValue = input.value;
 
         if(inputValue.charAt(inputValue.length-1) === ";"){
 
@@ -118,14 +94,15 @@ export default function AddProduct () : JSX.Element {
                 [event.target.name]: [...formData.midias, {url: url, attributeValue: attributeValue}]
             });
 
-            (event.target as HTMLElement).setAttribute("disabled", "true");
+            input.setAttribute("disabled", "true");
         }
 
     }
 
     function updateFormDataTags (event: React.ChangeEvent<HTMLInputElement>) {
 
-        const inputValue = event.target.value;
+        const input = event.target;
+        const inputValue = input.value;
 
         if(inputValue.charAt(inputValue.length-1) === ";"){
             const refinedInputValue = inputValue.substring(0, inputValue.length - 1);
@@ -136,23 +113,39 @@ export default function AddProduct () : JSX.Element {
                 [event.target.name]: tags
             });
 
+            input.setAttribute("disabled", "true");
         }
     }
 
-    function updateFormDataRating (event: React.ChangeEvent<HTMLInputElement>, n: number) {
-
-        const value = Number(event.target.value);
-
-        setFormData({
-            ...formData,
-            ratingNumbers: {...formData.ratingNumbers, [n]: value}
-        });
-    }
-
     function handleSubmit(event: React.FormEvent<HTMLFormElement>){
+        console.log(formData)
         event.preventDefault();
         addProductQuery.refetch();
     }
+
+     //controladora da resposta da query addProductQuery
+     useEffect(()=>{
+
+        if(addProductQuery.data)
+            console.log(addProductQuery.data?.message);
+            
+        if(addProductQuery.data?.refresh)
+            refreshToken().then(response=>{
+                if(response.reload) addProductQuery.refetch();
+                else {
+                    dispatch(removeUser());
+                    setTimeout(()=>window.location.reload(), 3000);
+                }
+            });
+        else if(addProductQuery.data?.login){
+            dispatch(removeUser());
+            localStorage.removeItem("x-access-token");
+            setTimeout(()=>window.location.reload(), 3000);
+        }
+        else if(addProductQuery.data?.success && addProductQuery.data?.product)
+            console.log("Produto adicionado - ", addProductQuery.data.product);
+
+    }, [dispatch, addProductQuery, addProductQuery.data]);
 
 
     return(
@@ -254,33 +247,6 @@ export default function AddProduct () : JSX.Element {
                 <div className="FormField">
                     <label className="FormField-label" htmlFor="tags">Tags (Ex:roupa,gola;)</label>
                     <input name="tags" onChange={updateFormDataTags}/>
-                </div>
-
-                <div className="FormField">
-                    <header className="FormField-label">Quantidade de avaliações</header>
-
-                    <div className='FormField-inputs'>
-                        <div>
-                            <label className="FormField-label" htmlFor="ratingNumbers5">5 estrelas</label>
-                            <input name="ratingNumbers5" onChange={(e)=>updateFormDataRating(e,5)} defaultValue="0" required/>
-                        </div>
-                        <div>
-                            <label className="FormField-label" htmlFor="ratingNumbers4">4 estrelas</label>
-                            <input name="ratingNumbers4" onChange={(e)=>updateFormDataRating(e,4)} defaultValue="0" required/>
-                        </div>
-                        <div>
-                            <label className="FormField-label" htmlFor="ratingNumbers3">3 estrelas</label>
-                            <input name="ratingNumbers3" onChange={(e)=>updateFormDataRating(e,3)} defaultValue="0" required/>
-                        </div>
-                        <div>
-                            <label className="FormField-label" htmlFor="ratingNumbers2">2 estrelas</label>
-                            <input name="ratingNumbers2" onChange={(e)=>updateFormDataRating(e,2)} defaultValue="0" required/>
-                        </div>
-                        <div>
-                            <label className="FormField-label" htmlFor="ratingNumbers1">1 estrela</label>
-                            <input name="ratingNumbers1" onChange={(e)=>updateFormDataRating(e,1)} defaultValue="0" required/>
-                        </div>
-                    </div>
                 </div>
 
                 <button className="Submit-button" type="submit">Salvar</button>
