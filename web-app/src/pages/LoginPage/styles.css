@@ -38,6 +38,8 @@
   border-radius: 0.5rem;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   background-color: rgb(255, 255, 255);
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
 }
 @media only screen and (max-width: 576px) {
   .LoginPage .InfoLogin {
@@ -124,7 +126,6 @@
   border-radius: 0.5rem;
   padding: 0.5rem;
   margin-bottom: 0.5rem;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   cursor: help;
 }
 .LoginPage .Login-with-google-facebook img {

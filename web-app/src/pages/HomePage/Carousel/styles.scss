@@ -71,7 +71,7 @@
 	transition: .5s left;
 
 	@include no-motion{
-		transition: 0 left;
+		transition: none;
 	}
 }
 
@@ -79,63 +79,9 @@
 	transition: .5s left;
 
 	@include no-motion{
-		transition: 0 left;
+		transition: none;
 	}
 }
-
-.HomePage-carousel::before,
-.HomePage-carousel::after,
-.carousel__prev,
-.carousel__next {
-	position: absolute;
-	top: 40%;
-	width: 3.5rem;
-	height: 3.5rem;
-	border-radius: 50%;
-	font-size: 0;
-	outline: 0;
-	z-index: 999999999;
-
-	@include mq-large {
-		width: 2.5rem;
-		height: 2.5rem;
-	}
-
-	@include mq-small {
-		width: 0rem;
-		height: 0rem;
-	}
-
-}
-
-.HomePage-carousel::before,
-.carousel__prev {
-	left: 1rem;
-}
-
-.HomePage-carousel::after,
-.carousel__next {
-	right: 1rem;
-}
-
-.HomePage-carousel::before {
-	background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='0,50 80,100 80,0' fill='%23fff'/%3E%3C/svg%3E");
-	opacity: 0.7;
-}
-
-.HomePage-carousel::after {
-	background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='100,50 20,100 20,0' fill='%23fff'/%3E%3C/svg%3E");
-	opacity: 0.7;
-}
-
-.HomePage-carousel:has(.carousel__prev:hover)::before{
-	opacity: 1;
-}
-
-.HomePage-carousel:has(.carousel__next:hover)::after{
-	opacity: 1;
-}
-
 
 .carousel__navigation-list {
 	position: absolute;
@@ -159,9 +105,9 @@
 
 .carousel__navigation-button {
 	display: inline-block;
-	width: 1.5rem;
-	height: 1.5rem;
-	background-color: #333;
+	width: 1.2rem;
+	height: 1.2rem;
+	background-color: $thin-black;
 	background-clip: content-box;
 	border: 0.25rem solid transparent;
 	border-radius: 50%;
@@ -169,13 +115,22 @@
 	transition: transform 0.1s;
 
 	@include mq-large {
-		width: 1.2rem;
-		height: 1.2rem;
+		width: 1rem;
+		height: 1rem;
 	}
 
-	@include mq-small {
+	@include mq-medium {
 		width: 0.9rem;
 		height: 0.9rem;
 	}
+
+	@include mq-small {
+		width: 0.8rem;
+		height: 0.8rem;
+	}
+}
+
+.carousel__navigation-button[active="true"]{
+	background-color: $black;
 }
 

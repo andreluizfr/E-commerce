@@ -44,6 +44,7 @@
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     
         background-color: $white;
+        backdrop-filter: blur(2px);
 
         @include mq-small{
             width: 100%;
@@ -132,7 +133,7 @@
         border-radius: .5rem;
         padding: .5rem;
         margin-bottom: .5rem;
-        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+        //filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
         cursor: help;
 
