@@ -30,6 +30,11 @@
                 text-align: left;
                 font-size: $font-size-smaller;
                 font-weight: 400;
+
+                max-width: 2rem;
+                white-space: nowrap;
+                overflow-x: hidden;
+                text-overflow: ellipsis;
             }
         }
 

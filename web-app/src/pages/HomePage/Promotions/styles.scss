@@ -4,16 +4,27 @@
 .HomePage-promotions{
     @include flex-column-center-center;
     width: 100%;
-    background-color: $lighter-gray;
-
+    background-color: $white;
+    margin: .5rem 0;
+    
     @include mq-medium{
         background-color: transparent;
+    }
+
+    .Container-title{
+        width: 100%;
+        padding: 1rem 0;
+
+        text-align: center;
+        font-size: $font-size-normal;
+        font-weight: 500;
     }
 
     &-banners{
         @include flex-row-space-around-center;
         width: 100%;
-        margin: 3% 0;
+        margin: 0 0 3% 0;
+        filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.2));
 
         @include mq-medium{
             @include flex-column-start-center;

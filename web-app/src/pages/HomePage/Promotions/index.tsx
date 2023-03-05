@@ -7,6 +7,7 @@ import promocaoPapelaria from 'assets/images/banners/promocao_papelaria.png';
 export default function Promotions () :JSX.Element {
     return(
         <section className='HomePage-promotions'>
+            <div className='Container-title'>Promoções</div>
 
             <div className='HomePage-promotions-banners'>
                 <img 

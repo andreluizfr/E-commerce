@@ -7,7 +7,7 @@
 	width: 100%;
 	display: flex;
 	justify-content: center;
-	margin: 1rem 0;
+	margin: .5rem 0;
 }
 
 .HomePage-carousel::before,
@@ -48,12 +48,14 @@
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
+
+	cursor: help;
 }
 .carousel__slide:nth-child(1) {
 	background-image: url("https://cdna.artstation.com/p/assets/images/images/041/593/288/large/alexander-akan-frete-gratis-20-08.jpg?1632151313");
 }
 .carousel__slide:nth-child(2) {
-	background-image: url("https://marcusmarques.com.br/wp-content/uploads/2017/03/promocao.jpg");
+	background-image: url("http://www.sanctuaryrecordsgroup.com/wp-content/uploads/2017/05/banner-eCommerce-Solutions.jpg");
 }
 .carousel__slide:nth-child(3) {
 	background-image: url("https://static.vecteezy.com/ti/vetor-gratis/p2/2294859-banner-flash-venda-web-design-e-commerce-on-line-shopping-header-or-footer-banner-gratis-vetor.jpg");

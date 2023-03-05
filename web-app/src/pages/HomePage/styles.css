@@ -4,6 +4,7 @@
   justify-content: flex-start;
   align-items: center;
   min-height: 100vh;
+  background-color: #F3F3F3;
 }
 
 .HomePage-container {
@@ -13,5 +14,4 @@
   align-items: center;
   width: 70%;
   flex-grow: 1;
-  background-color: rgb(255, 255, 255);
 }/*# sourceMappingURL=styles.css.map */

@@ -27,6 +27,10 @@
   text-align: left;
   font-size: 0.9rem;
   font-weight: 400;
+  max-width: 2rem;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 }
 .ProductsList .Table .TableRowLink {
   position: relative;

@@ -4,10 +4,15 @@
 .HomePage-categories{
     @include flex-column-center-center;
     width: 100%;
-    margin-top: 1rem;
+    margin: .5rem 0;
+    background-color: $white;
 
     .Container-title{
-        font-size: $font-size-medium;
+        width: 100%;
+        padding: 1rem 0;
+
+        text-align: center;
+        font-size: $font-size-normal;
         font-weight: 500;
     }
 
@@ -15,14 +20,12 @@
         display: grid;
         grid-template-columns: repeat(auto-fill,minmax(100px, 1fr));
         width: 100%;
-        max-width: 800px;
-        margin: 1rem 0 4rem 0;
 
         .Categorie-card{
             @include flex-column-center-center;
             gap: 5%;
             height: 8rem;
-            background-color: $lighter-gray;
+            background-color: $white;
             border: 1px solid $thinner-black;
 
             transition: 100ms;
@@ -41,7 +44,7 @@
         }
 
         .Categorie-card:hover{
-            background-color: $light-gray;
+            filter: drop-shadow(0 0 5px #0003);
             cursor: pointer;
         }
     }

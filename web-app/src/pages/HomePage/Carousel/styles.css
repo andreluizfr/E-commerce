@@ -4,7 +4,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  margin: 1rem 0;
+  margin: 0.5rem 0;
 }
 
 .HomePage-carousel::before,
@@ -44,6 +44,7 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  cursor: help;
 }
 
 .carousel__slide:nth-child(1) {
@@ -51,7 +52,7 @@
 }
 
 .carousel__slide:nth-child(2) {
-  background-image: url("https://marcusmarques.com.br/wp-content/uploads/2017/03/promocao.jpg");
+  background-image: url("http://www.sanctuaryrecordsgroup.com/wp-content/uploads/2017/05/banner-eCommerce-Solutions.jpg");
 }
 
 .carousel__slide:nth-child(3) {
