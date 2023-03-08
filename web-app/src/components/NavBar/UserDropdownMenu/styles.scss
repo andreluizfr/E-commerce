@@ -7,17 +7,17 @@
     margin: 0;
     border: 0;
     outline: 0;
-    
-    .UserDropdownMenuIcon{
-        @include icon-medium;
-        filter: invert(100%);
-        transition: .1s;
-        cursor: pointer;
-    }
-    
-    .UserDropdownMenuIcon:hover{
-        opacity: .7;
-    }
+}
+
+.UserDropdownMenuIcon{
+    @include icon-medium;
+    filter: invert(100%);
+    transition: .1s;
+    cursor: pointer;
+}
+
+.UserDropdownMenuIcon:hover{
+    opacity: .7;
 }
 
 .UserDropdownMenuContent{

@@ -9,7 +9,7 @@ export class Collection{
     @PrimaryColumn()
     public readonly collectionId!: string;
 
-    @ManyToMany(() => Product, (product: Product)=> product.productId)
+    @ManyToMany(() => Product, (product: Product)=> product)
     public products!: Product[];
     
     @Column({ unique: true })

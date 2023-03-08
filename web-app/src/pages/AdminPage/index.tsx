@@ -7,6 +7,7 @@ import LoadingPage from 'pages/LoadingPage';
 const Start = React.lazy(() => import('./Start'));
 const Products = React.lazy(() => import('./Products'));
 const AddProduct = React.lazy(() => import('./AddProduct'));
+const Collections = React.lazy(() => import('./Collections'));
 
 export default function AdminPage () : JSX.Element {
 
@@ -26,6 +27,7 @@ export default function AdminPage () : JSX.Element {
                     {pageState === "Start"? <Start/> : null}
                     {pageState === "Products"? <Products/> : null}
                     {pageState === "AddProduct"? <AddProduct/> : null}
+                    {pageState === "Collections"? <Collections/> : null}
                 </React.Suspense>
             </div>
         </div>

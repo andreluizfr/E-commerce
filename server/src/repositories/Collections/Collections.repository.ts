@@ -9,7 +9,7 @@ export class CollectionsRepository implements ICollectionsRepository{
 
     async createCollection(collection: Collection){
         collectionDTO.parse(collection);
-
+        console.log(collection);
         const collectionsRepository = AppDataSource.getRepository(Collection);
         const createdCollection = await collectionsRepository.save(collection);
 
