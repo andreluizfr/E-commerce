@@ -18,7 +18,7 @@ import { AppDataSource } from './database/data-source';
 
 import { userRouter } from './routes/User.routes';
 import { productRouter } from './routes/Product.routes';
-
+import { collectionRouter } from './routes/Collection.routes';
 
 
 
@@ -76,7 +76,7 @@ if(process.env.NODE_ENV === "development")
 //    ****  routes  ****    //
 app.use('/user', userRouter);
 app.use('/product', productRouter);
-
+app.use('/collection', collectionRouter);
 
 
 //    ****  connecting with database  ****    //

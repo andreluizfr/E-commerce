@@ -1,7 +1,6 @@
 import { Collection } from "../../entities/Collection.entity";
 import { ICollectionsRepository } from "./ICollections.repository";
 import { AppDataSource } from "../../database/data-source";
-import { ArrayContains, FindOptionsOrderValue, Like } from "typeorm";
 
 import { collectionDTO } from "./CollectionDTO";
 
