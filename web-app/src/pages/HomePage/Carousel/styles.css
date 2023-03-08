@@ -26,7 +26,8 @@
   display: flex;
   counter-reset: item;
   overflow-x: hidden;
-  scroll-snap-type: x mandatory;
+  -ms-scroll-snap-type: x mandatory;
+      scroll-snap-type: x mandatory;
   height: auto;
   width: 100%;
   position: relative;

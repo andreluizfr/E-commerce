@@ -4,7 +4,6 @@
 .CartPopoverTrigger .ShoppingCart-icon {
   width: 1.6rem;
   height: 1.6rem;
-  margin-top: 0.2rem;
   filter: invert(100%);
   transition: 0.1s;
 }
@@ -13,7 +12,19 @@
   cursor: pointer;
 }
 .CartPopoverTrigger .ShoppingCart-icon[animate=true] {
-  animation: little-shake 0.2s;
+  -webkit-animation: little-shake 0.2s;
+          animation: little-shake 0.2s;
+}
+@-webkit-keyframes little-shake {
+  33% {
+    transform: translateX(0.2rem) rotateZ(5deg) translateY(-0.2rem);
+  }
+  66% {
+    transform: translateX(-0.2rem) rotateZ(-5deg) translateY(-0.2rem);
+  }
+  100% {
+    transform: translateX(0rem) rotateZ(0deg) translateY(0rem);
+  }
 }
 @keyframes little-shake {
   33% {

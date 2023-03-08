@@ -1,32 +1,37 @@
 @import '../../../assets/css/variables';
 @import '../../../assets/css/_mixins';
 
-.UserDropdownMenuIcon{
-    @include icon-medium;
-    filter: invert(100%);
-    transition: .1s;
-    cursor: pointer;
-}
-
-.UserDropdownMenuIcon:hover{
-    opacity: .7;
+.UserDropdownMenu{
+    background-color: black;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    outline: 0;
+    
+    .UserDropdownMenuIcon{
+        @include icon-medium;
+        filter: invert(100%);
+        transition: .1s;
+        cursor: pointer;
+    }
+    
+    .UserDropdownMenuIcon:hover{
+        opacity: .7;
+    }
 }
 
 .UserDropdownMenuContent{
     z-index: 999999999;
-    padding: .2rem 0;
+    padding: .2rem;
     border: 1px solid $thin-black;
     border-top: none;
     border-radius: .2rem;
     background-color: $almost-white;
 
-    .SomeMarginAround{
-        margin: .5rem 1rem;
-    }
-
     .UserDropdownMenuItem{
         @include flex-row-start-center;
-        gap: 1rem;
+        padding: .5rem 1rem;
+        gap: .5rem;
     
         font-size: $font-size-smaller;
         text-align: left;
@@ -52,7 +57,7 @@
     }
 
     .UserDropdownMenuItem:focus-visible{
-        outline: none;
+        outline: 1px solid $black;
     }
     
     .UserDropdownMenuSeparator{

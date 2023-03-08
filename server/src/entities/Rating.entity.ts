@@ -12,7 +12,7 @@ export class Rating{
     public user!: User;
 
     @ManyToOne(() => Product, (product) => product.ratings, {cascade: true})
-    public product!: Product;
+    public productId!: Product;
 
     @Column({type: 'json'})
     public variation!: object;

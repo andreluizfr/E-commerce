@@ -1,6 +1,6 @@
-import { Entity, Column, CreateDateColumn, PrimaryColumn, ManyToMany, JoinTable} from 'typeorm';
+import { Entity, Column, CreateDateColumn, PrimaryColumn, ManyToMany} from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
-import * as bcrypt from 'bcrypt';
+import { CollectionDTO } from '../repositories/Collections/CollectionDTO';
 import { Product } from './Product.entity';
 
 @Entity("Collections")
@@ -8,6 +8,9 @@ export class Collection{
 
     @PrimaryColumn()
     public readonly collectionId!: string;
+
+    @ManyToMany(() => Product, (product: Product)=> product.productId)
+    public products!: Product[];
     
     @Column({ unique: true })
     public title!: string;
@@ -15,22 +18,12 @@ export class Collection{
     @Column({nullable: true})
     public description!: string;
 
-    @ManyToMany(() => Product, {cascade: true})
-    @JoinTable()
-    public products!: Product[];
-
-    @Column({nullable: true})
-    public subcategory!: string;
-
-    @Column({nullable: true})
-    public providerURL!: string;
-
     @CreateDateColumn()
     public created_at!: Date;
 
 
     constructor(
-        props: Omit <Product, 'productId' | 'created_at'>,
+        props: CollectionDTO,
     ){
         //received from client
         Object.assign(this, props);
