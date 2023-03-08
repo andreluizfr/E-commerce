@@ -58,7 +58,8 @@ morganBody(app, {
 	logReqUserAgent: false,
 	logRequestBody: true,
 	stream: log,
-	noColors: true
+	noColors: true,
+	logIP: true
 });
 
 //logs on console

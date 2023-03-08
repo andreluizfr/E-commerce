@@ -54,7 +54,7 @@ export default function AddProduct () : JSX.Element {
         });
     }
     
-    function updateFormDataAttributes (event: React.ChangeEvent<HTMLInputElement>) {
+    function updateFormDataAttributes (event: React.ChangeEvent<HTMLInputElement>, index: number) {
 
         const input = event.target;
         const inputValue = input.value;
@@ -65,19 +65,35 @@ export default function AddProduct () : JSX.Element {
             const name = pieces[0];
             console.log("name",name)
             const values = pieces[1].split(",");
-            console.log("values",values)
+            console.log("values",values);
 
-            setFormData({
-                ...formData,
-                [event.target.name]: [...formData.attributes, {name: name, values: values}],
-                hasAttributes: true
+            let exists = false;
+            formData.attributes.forEach(attribute=>{
+                if(attribute.name === name){
+                    alert("Atributo já existe");
+                    input.value = "";
+                    input.disabled = false;
+                    exists = true;
+                    return;
+                }
             });
 
-            input.setAttribute("disabled", "true");
+            if(!exists){
+                const attributes = [...formData.attributes];
+                attributes[index] = {name: name, values: values};
+
+                setFormData({
+                    ...formData,
+                    [event.target.name]: attributes,
+                    hasAttributes: true
+                });
+
+                input.disabled = true;
+            }
         }
     }
 
-    function updateFormDataMidias (event: React.ChangeEvent<HTMLInputElement>) {
+    function updateFormDataMidias (event: React.ChangeEvent<HTMLInputElement>, index: number) {
 
         const input = event.target;
         const inputValue = input.value;
@@ -89,14 +105,29 @@ export default function AddProduct () : JSX.Element {
             const url = pieces[0];
             const attributeValue = pieces[1];
 
-            setFormData({
-                ...formData,
-                [event.target.name]: [...formData.midias, {url: url, attributeValue: attributeValue}]
+            let exists = false;
+            formData.midias.forEach(midia=>{
+                if(midia.attributeValue === attributeValue){
+                    alert("Mídia já adicionada a este atributo.");
+                    input.value = "";
+                    exists = true;
+                    return;
+                }
             });
 
-            input.setAttribute("disabled", "true");
-        }
+            if(!exists){
+                const midias = [...formData.midias];
+                midias[index] = {url: url, attributeValue: attributeValue};
 
+                setFormData({
+                    ...formData,
+                    [event.target.name]: midias
+                });
+
+                input.disabled = true;
+            }
+        } 
+        
     }
 
     function updateFormDataTags (event: React.ChangeEvent<HTMLInputElement>) {
@@ -113,7 +144,7 @@ export default function AddProduct () : JSX.Element {
                 [event.target.name]: tags
             });
 
-            input.setAttribute("disabled", "true");
+            input.disabled = true;
         }
     }
 
@@ -201,26 +232,26 @@ export default function AddProduct () : JSX.Element {
                 <div className="FormField">
                     <label className="FormField-label" htmlFor="attributes">Atributos (Ex: tamanho:P,M,G;) (máximo 4)</label>
                     <div className='FormField-inputs'>
-                        <input name="attributes" onChange={updateFormDataAttributes}/>
-                        <input name="attributes" onChange={updateFormDataAttributes}/>
-                        <input name="attributes" onChange={updateFormDataAttributes}/>
-                        <input name="attributes" onChange={updateFormDataAttributes}/>
+                        <input name="attributes" onChange={(e)=>updateFormDataAttributes(e,0)}/>
+                        <input name="attributes" onChange={(e)=>updateFormDataAttributes(e,1)}/>
+                        <input name="attributes" onChange={(e)=>updateFormDataAttributes(e,2)}/>
+                        <input name="attributes" onChange={(e)=>updateFormDataAttributes(e,3)}/>
                     </div>
                 </div>
 
                 <div className="FormField">
                     <label className="FormField-label" htmlFor="midias">Mídias (Ex: www.google.com:azul;) (máximo 10)</label>
                     <div className='FormField-inputs'>
-                        <input name="midias" onChange={updateFormDataMidias}/>
-                        <input name="midias" onChange={updateFormDataMidias}/>
-                        <input name="midias" onChange={updateFormDataMidias}/>
-                        <input name="midias" onChange={updateFormDataMidias}/>
-                        <input name="midias" onChange={updateFormDataMidias}/>
-                        <input name="midias" onChange={updateFormDataMidias}/>
-                        <input name="midias" onChange={updateFormDataMidias}/>
-                        <input name="midias" onChange={updateFormDataMidias}/>
-                        <input name="midias" onChange={updateFormDataMidias}/>
-                        <input name="midias" onChange={updateFormDataMidias}/>
+                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,0)}/>
+                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,1)}/>
+                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,2)}/>
+                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,3)}/>
+                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,4)}/>
+                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,5)}/>
+                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,6)}/>
+                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,7)}/>
+                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,8)}/>
+                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,9)}/>
                     </div> 
                 </div>         
 

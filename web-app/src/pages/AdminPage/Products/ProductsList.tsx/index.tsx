@@ -66,7 +66,7 @@ export default function ProductsList ({products, setRefreshProducts}: Props) : J
                 </tbody>
             </table>
 
-            <EditProduct product={productToBeEdited} setProductToBeEdited={setProductToBeEdited}/>
+            <EditProduct productToBeEdited={productToBeEdited} setProductToBeEdited={setProductToBeEdited}/>
         </div>
     );
 }
