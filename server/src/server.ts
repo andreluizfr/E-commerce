@@ -1,4 +1,4 @@
-import './configs/env.config';
+import './configs/getEnv.config';
 
 import express from 'express';
 import "reflect-metadata";
