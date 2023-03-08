@@ -9,23 +9,29 @@ import locationIcon from 'assets/svg/location.png';
 import logoutIcon from 'assets/svg/logout.png';
 import loginIcon from 'assets/svg/login.png';
 import signup from 'assets/svg/signup.png';
+import admin from 'assets/svg/admin.png';
 
 //import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { StoreState } from 'store';
 import { removeUser } from 'store/features/userSlice';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function UserDropdownMenu () :JSX.Element {
     
     const user = useSelector((state: StoreState) => state.user);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     function logout(){
         dispatch(removeUser());
         localStorage.removeItem('x-access-token');
         window.location.reload();
+    }
+
+    function navigateAdmin(){
+        navigate('/admin');
     }
 
     if(user && user.logged)
@@ -66,6 +72,17 @@ export default function UserDropdownMenu () :JSX.Element {
                         </div>
 
                         <DropdownMenu.Separator className="UserDropdownMenuSeparator"/>
+
+                        {user.value?.admin?
+                            <div className='SomeMarginAround'>
+                                <DropdownMenu.Item className="UserDropdownMenuItem" onClick={navigateAdmin}>
+                                    <img className="Icon" src={admin} alt='usuario com engrenagem' loading="lazy"/>
+                                    admin
+                                </DropdownMenu.Item>
+                            </div>
+                            :
+                            null
+                        }
 
                         <div className='SomeMarginAround'>
                             <DropdownMenu.Item className="UserDropdownMenuItem" onClick={logout}>
