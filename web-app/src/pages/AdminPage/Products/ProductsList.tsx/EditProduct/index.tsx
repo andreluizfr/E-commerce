@@ -1,6 +1,6 @@
 import './styles.css';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { removeUser } from 'store/features/userSlice';
 
@@ -10,35 +10,38 @@ import refreshToken from 'queries/RefreshToken';
 import Product from 'types/product';
 
 interface Props {
-    product: Product |  null;
+    productToBeEdited: Product |  null;
     setProductToBeEdited: React.Dispatch<React.SetStateAction<Product | null>>;
 }
 
-export default function EditProduct ({product, setProductToBeEdited}: Props) : JSX.Element {
+export default function EditProduct ({productToBeEdited, setProductToBeEdited}: Props) : JSX.Element {
 
-    const [formData, setFormData] = useState(product);
-    const editProductQuery = EditProductQuery(formData);
+    const editProductQuery = EditProductQuery(productToBeEdited);
     const dispatch = useDispatch();
 
     useEffect(()=>{
-        if(product){
+ 
+        if(productToBeEdited){
+            console.log(productToBeEdited);
+
             const editProductContainer = document.getElementsByClassName("EditProduct")[0] as HTMLElement;
             editProductContainer.setAttribute("visible", "true");
         } else {
             const editProductContainer = document.getElementsByClassName("EditProduct")[0] as HTMLElement;
             editProductContainer.setAttribute("visible", "false");
         }
-    }, [product]);
+    }, [productToBeEdited]);
 
     function abortEdit(){
         setProductToBeEdited(null);
         editProductQuery.data = null;
+        editProductQuery.remove();
     }
 
     function updateFormDataFromSelect (event: React.ChangeEvent<HTMLSelectElement>) {
-        if(formData)
-            setFormData({
-                ...formData,
+        if(productToBeEdited)
+            setProductToBeEdited({
+                ...productToBeEdited,
                 [event.target.name]: event.target.value
             });
     }
@@ -49,20 +52,20 @@ export default function EditProduct ({product, setProductToBeEdited}: Props) : J
         const inputValue = input.value as (string | number);
         const type = input.getAttribute("type");
 
-        if(type === "number" && formData)
-            setFormData({
-                ...formData,
+        if(type === "number" && productToBeEdited)
+            setProductToBeEdited({
+                ...productToBeEdited,
                 [event.target.name]: Number(inputValue)
             });
 
-        else if(formData)
-            setFormData({
-                ...formData,
+        else if(productToBeEdited)
+            setProductToBeEdited({
+                ...productToBeEdited,
                 [event.target.name]: inputValue
             });
     }
     
-    function updateFormDataAttributes (event: React.ChangeEvent<HTMLInputElement>) {
+    function updateFormDataAttributes (event: React.ChangeEvent<HTMLInputElement>, index: number) {
 
         const input = event.target;
         const inputValue = input.value;
@@ -74,19 +77,37 @@ export default function EditProduct ({product, setProductToBeEdited}: Props) : J
             const name = pieces[0];
             const values = pieces[1].split(",");
 
-            if(formData){
-                setFormData({
-                    ...formData,
-                    [event.target.name]: [...formData.attributes, {name: name, values: values}],
-                    hasAttributes: true
-                });
-            }
+            if(productToBeEdited){
 
-            input.setAttribute("disabled", "true");
+                let exists = false;
+                productToBeEdited.attributes.forEach(attribute=>{
+                    if(attribute.name === name){
+                        alert("Atributo já existe");
+                        input.value = "";
+                        exists = true;
+                        return;
+                    }
+                });
+
+                if(!exists){
+                    const attributes = [...productToBeEdited.attributes];
+                    attributes[index] = {name: name, values: values};
+
+                    setProductToBeEdited({
+                        ...productToBeEdited,
+                        [event.target.name]: attributes,
+                        hasAttributes: true
+                    });
+
+                    input.disabled = true;
+                }
+
+            }
+            
         }
     }
 
-    function updateFormDataMidias (event: React.ChangeEvent<HTMLInputElement>) {
+    function updateFormDataMidias (event: React.ChangeEvent<HTMLInputElement>, index: number) {
 
         const input = event.target;
         const inputValue = input.value;
@@ -98,18 +119,35 @@ export default function EditProduct ({product, setProductToBeEdited}: Props) : J
             const url = pieces[0];
             const attributeValue = pieces[1];
 
-            if(formData)
-                setFormData({
-                    ...formData,
-                    [event.target.name]: [...formData.midias, {url: url, attributeValue: attributeValue}]
+            if(productToBeEdited){
+
+                let exists = false;
+                productToBeEdited.midias.forEach(midia=>{
+                    if(midia.attributeValue === attributeValue){
+                        alert("Mídia já adicionada a este atributo.");
+                        input.value = "";
+                        exists = true;
+                        return;
+                    }
                 });
 
-            input.setAttribute("disabled", "true");
-        }
+                if(!exists){
+                    const midias = [...productToBeEdited.midias];
+                    midias[index] = {url: url, attributeValue: attributeValue};
+
+                    setProductToBeEdited({
+                        ...productToBeEdited,
+                        [event.target.name]: midias
+                    });
+
+                    input.disabled = true;
+                }
+            }
+        } 
 
     }
 
-    function updateFormDataTags (event: React.ChangeEvent<HTMLInputElement>) {
+    function updateFormDataTags (event: React.ChangeEvent<HTMLTextAreaElement>) {
 
         const input = event.target;
         const inputValue = input.value;
@@ -118,13 +156,13 @@ export default function EditProduct ({product, setProductToBeEdited}: Props) : J
             const refinedInputValue = inputValue.substring(0, inputValue.length - 1);
             const tags = refinedInputValue.split(",");
 
-            if(formData)
-                setFormData({
-                    ...formData,
+            if(productToBeEdited)
+                setProductToBeEdited({
+                    ...productToBeEdited,
                     [event.target.name]: tags
                 });
 
-            input.setAttribute("disabled", "true");
+            input.disabled = true;
         }
     }
 
@@ -135,7 +173,7 @@ export default function EditProduct ({product, setProductToBeEdited}: Props) : J
         let string = "";
 
         if(attribute)
-            string = attribute.name + ":" + attribute.values.join(",") + ";";
+            string = attribute.name + ":" + attribute.values.join(",");
     
         return string;
     }
@@ -147,7 +185,7 @@ export default function EditProduct ({product, setProductToBeEdited}: Props) : J
         let string = "";
 
         if(midia)
-            string += midia.url + ":" + midia.attributeValue + ";";
+            string += midia.url + ":" + midia.attributeValue;
 
         return string;
     }
@@ -163,7 +201,6 @@ export default function EditProduct ({product, setProductToBeEdited}: Props) : J
     }
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>){
-
         event.preventDefault();
         editProductQuery.refetch();
     }
@@ -207,7 +244,7 @@ export default function EditProduct ({product, setProductToBeEdited}: Props) : J
 
                 <div className="FormField">
                     <label className="FormField-label" htmlFor="productStatus">Status do produto</label>
-                    <select name="productStatus" defaultValue={product?.productStatus} onChange={updateFormDataFromSelect} required>
+                    <select name="productStatus" defaultValue={productToBeEdited?.productStatus} onChange={updateFormDataFromSelect} required>
                         <option value="rascunho">Rascunho</option>
                         <option value="ativo">Ativo</option>
                         <option value="desativado">Desativado</option>
@@ -216,17 +253,17 @@ export default function EditProduct ({product, setProductToBeEdited}: Props) : J
 
                 <div className="FormField">
                     <label className="FormField-label" htmlFor="title">Título</label>
-                    <input name="title" onChange={updateFormData} defaultValue={product?.title} required/>
+                    <input name="title" onChange={updateFormData} defaultValue={productToBeEdited?.title} required/>
                 </div>
 
                 <div className="FormField">
                     <label className="FormField-label" htmlFor="description">Descrição</label>
-                    <input name="description" defaultValue={product?.description} onChange={updateFormData}/>
+                    <input name="description" defaultValue={productToBeEdited?.description} onChange={updateFormData}/>
                 </div>
 
                 <div className="FormField">
                     <label className="FormField-label" htmlFor="category">Categoria</label>
-                    <select name="category" defaultValue={product?.category} onChange={updateFormDataFromSelect}>
+                    <select name="category" defaultValue={productToBeEdited?.category} onChange={updateFormDataFromSelect}>
                         <option value="Roupas masculinas">Roupas masculinas</option>
                         <option value="Roupas femininas">Roupas femininas</option>
                         <option value="Telefonia">Telefonia</option>
@@ -251,38 +288,38 @@ export default function EditProduct ({product, setProductToBeEdited}: Props) : J
                 <div className="FormField">
                     <label className="FormField-label" htmlFor="attributes">Atributos (Ex: tamanho:P,M,G;) (máximo 4)</label>
                     <div className='FormField-inputs'>
-                        <input name="attributes" onChange={updateFormDataAttributes} defaultValue={convertAttributeToString(product?.attributes[0])}/>
-                        <input name="attributes" onChange={updateFormDataAttributes} defaultValue={convertAttributeToString(product?.attributes[1])}/>
-                        <input name="attributes" onChange={updateFormDataAttributes} defaultValue={convertAttributeToString(product?.attributes[2])}/>
-                        <input name="attributes" onChange={updateFormDataAttributes} defaultValue={convertAttributeToString(product?.attributes[3])}/>
+                        <input name="attributes" onChange={(e)=>updateFormDataAttributes(e,0)} defaultValue={convertAttributeToString(productToBeEdited?.attributes[0])}/>
+                        <input name="attributes" onChange={(e)=>updateFormDataAttributes(e,1)} defaultValue={convertAttributeToString(productToBeEdited?.attributes[1])}/>
+                        <input name="attributes" onChange={(e)=>updateFormDataAttributes(e,2)} defaultValue={convertAttributeToString(productToBeEdited?.attributes[2])}/>
+                        <input name="attributes" onChange={(e)=>updateFormDataAttributes(e,3)} defaultValue={convertAttributeToString(productToBeEdited?.attributes[3])}/>
                     </div>
                 </div>
 
                 <div className="FormField">
                     <label className="FormField-label" htmlFor="midias">Mídias (Ex: www.google.com:azul;) (máximo 10)</label>
                     <div className='FormField-inputs'>
-                        <input name="midias" onChange={updateFormDataMidias} defaultValue={convertMidiaToString(product?.midias[0])}/>
-                        <input name="midias" onChange={updateFormDataMidias} defaultValue={convertMidiaToString(product?.midias[1])}/>
-                        <input name="midias" onChange={updateFormDataMidias} defaultValue={convertMidiaToString(product?.midias[2])}/>
-                        <input name="midias" onChange={updateFormDataMidias} defaultValue={convertMidiaToString(product?.midias[3])}/>
-                        <input name="midias" onChange={updateFormDataMidias} defaultValue={convertMidiaToString(product?.midias[4])}/>
-                        <input name="midias" onChange={updateFormDataMidias} defaultValue={convertMidiaToString(product?.midias[5])}/>
-                        <input name="midias" onChange={updateFormDataMidias} defaultValue={convertMidiaToString(product?.midias[6])}/>
-                        <input name="midias" onChange={updateFormDataMidias} defaultValue={convertMidiaToString(product?.midias[7])}/>
-                        <input name="midias" onChange={updateFormDataMidias} defaultValue={convertMidiaToString(product?.midias[8])}/>
-                        <input name="midias" onChange={updateFormDataMidias} defaultValue={convertMidiaToString(product?.midias[9])}/>
+                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,0)} defaultValue={convertMidiaToString(productToBeEdited?.midias[0])}/>
+                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,1)} defaultValue={convertMidiaToString(productToBeEdited?.midias[1])}/>
+                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,2)} defaultValue={convertMidiaToString(productToBeEdited?.midias[2])}/>
+                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,3)} defaultValue={convertMidiaToString(productToBeEdited?.midias[3])}/>
+                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,4)} defaultValue={convertMidiaToString(productToBeEdited?.midias[4])}/>
+                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,5)} defaultValue={convertMidiaToString(productToBeEdited?.midias[5])}/>
+                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,6)} defaultValue={convertMidiaToString(productToBeEdited?.midias[6])}/>
+                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,7)} defaultValue={convertMidiaToString(productToBeEdited?.midias[7])}/>
+                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,8)} defaultValue={convertMidiaToString(productToBeEdited?.midias[8])}/>
+                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,9)} defaultValue={convertMidiaToString(productToBeEdited?.midias[9])}/>
                     </div> 
                 </div>         
 
                 <div className="FormField">
                     <label className="FormField-label" htmlFor="providerURL">Link do provedor</label>
-                    <input name="providerURL" onChange={updateFormData} defaultValue={product?.providerURL}/>
+                    <input name="providerURL" onChange={updateFormData} defaultValue={productToBeEdited?.providerURL}/>
                 </div>
 
                 <div className="FormField">
                     <label className="FormField-label" htmlFor="price">Preço</label>
-                    {(product?.price !== null)?
-                        <input name="price" type="number" onChange={updateFormData} defaultValue={product?.price}/>
+                    {(productToBeEdited?.price !== null)?
+                        <input name="price" type="number" onChange={updateFormData} defaultValue={productToBeEdited?.price}/>
                         :
                         <input name="price" type="number" onChange={updateFormData}/>
                     }
@@ -290,8 +327,8 @@ export default function EditProduct ({product, setProductToBeEdited}: Props) : J
 
                 <div className="FormField">
                     <label className="FormField-label" htmlFor="comparisonPrice">Comparação de preço</label>
-                    {(product?.comparisonPrice !== null)?
-                        <input name="comparisonPrice" type="number" onChange={updateFormData} defaultValue={product?.comparisonPrice}/>
+                    {(productToBeEdited?.comparisonPrice !== null)?
+                        <input name="comparisonPrice" type="number" onChange={updateFormData} defaultValue={productToBeEdited?.comparisonPrice}/>
                         :
                         <input name="comparisonPrice" type="number" onChange={updateFormData}/>
                     }
@@ -299,8 +336,8 @@ export default function EditProduct ({product, setProductToBeEdited}: Props) : J
 
                 <div className="FormField">
                     <label className="FormField-label" htmlFor="costPerProduct">Custo por produto</label>
-                    {(product?.costPerProduct !== null)?
-                        <input name="costPerProduct" type="number" onChange={updateFormData} defaultValue={product?.costPerProduct}/>
+                    {(productToBeEdited?.costPerProduct !== null)?
+                        <input name="costPerProduct" type="number" onChange={updateFormData} defaultValue={productToBeEdited?.costPerProduct}/>
                         :
                         <input name="costPerProduct" type="number" onChange={updateFormData}/>
                     }
@@ -308,7 +345,14 @@ export default function EditProduct ({product, setProductToBeEdited}: Props) : J
 
                 <div className="FormField">
                     <label className="FormField-label" htmlFor="tags">Tags (Ex: roupa,gola;)</label>
-                    <input name="tags" onChange={updateFormDataTags} defaultValue={convertTagsToString(product?.tags)}/>
+                    <textarea 
+                        cols={30} 
+                        rows={5}
+                        className="Tags"
+                        name="tags"
+                        onChange={updateFormDataTags}
+                        defaultValue={convertTagsToString(productToBeEdited?.tags)}
+                    ></textarea>
                 </div>
 
                 <button className="Submit-button" type="submit">Salvar</button>

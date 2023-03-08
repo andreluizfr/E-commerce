@@ -1,4 +1,4 @@
-import './configs/env.config';
+import './configs/getEnv.config';
 
 import express from 'express';
 import "reflect-metadata";
@@ -58,7 +58,8 @@ morganBody(app, {
 	logReqUserAgent: false,
 	logRequestBody: true,
 	stream: log,
-	noColors: true
+	noColors: true,
+	logIP: true
 });
 
 //logs on console

@@ -46,6 +46,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
   gap: 0.5rem;
 }
 .EditProduct .EditProduct-form .FormField-label {
@@ -59,6 +60,13 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 0.5rem;
+}
+.EditProduct .EditProduct-form .FormField .Tags {
+  width: 50%;
+  height: 3rem;
+  white-space: wrap;
+  overflow: hidden;
+  word-break: break-all;
 }
 .EditProduct .EditProduct-form .Submit-button {
   background-color: rgb(0, 0, 0);
