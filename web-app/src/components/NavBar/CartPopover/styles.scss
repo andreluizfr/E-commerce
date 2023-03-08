@@ -7,7 +7,6 @@
 
     .ShoppingCart-icon{
         @include icon-medium2;
-        margin-top: 0.2rem;
         filter: invert(100%);
         transition: .1s;
     }

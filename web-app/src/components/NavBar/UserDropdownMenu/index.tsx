@@ -16,13 +16,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { StoreState } from 'store';
 import { removeUser } from 'store/features/userSlice';
 
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function UserDropdownMenu () :JSX.Element {
     
     const user = useSelector((state: StoreState) => state.user);
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+    const dispatch = useDispatch();;
 
     function logout(){
         dispatch(removeUser());
@@ -30,14 +29,11 @@ export default function UserDropdownMenu () :JSX.Element {
         window.location.reload();
     }
 
-    function navigateAdmin(){
-        navigate('/admin');
-    }
 
     if(user && user.logged)
         return(
             <DropdownMenu.Root>
-                <DropdownMenu.Trigger asChild>
+                <DropdownMenu.Trigger className='UserDropdownMenu'>
                     <img 
                         className='UserDropdownMenuIcon'
                         alt='icone de usuário' 
@@ -48,48 +44,38 @@ export default function UserDropdownMenu () :JSX.Element {
                 <DropdownMenu.Portal>
                     <DropdownMenu.Content className="UserDropdownMenuContent" sideOffset={5}>
 
-                        <div className='SomeMarginAround'>
-                            <DropdownMenu.Item className="UserDropdownMenuItem">
-                                <img className="Icon" src={userOutline} alt='icone de usuário' loading="lazy"/>
-                                ver minha conta
-                            </DropdownMenu.Item>
-                        </div>
+                        <DropdownMenu.Item className="UserDropdownMenuItem">
+                            <img className="Icon" src={userOutline} alt='icone de usuário' loading="lazy"/>
+                            ver minha conta
+                        </DropdownMenu.Item>
 
                         <DropdownMenu.Separator className="UserDropdownMenuSeparator"/>
 
-                        <div className='SomeMarginAround'>
-                            <DropdownMenu.Item className="UserDropdownMenuItem">
-                                <img className="Icon" src={packageBox} alt='prancheta de pedidos ao lado de uma caixa' loading="lazy"/>
-                                pedidos
-                            </DropdownMenu.Item>
-                        </div>
+                        <DropdownMenu.Item className="UserDropdownMenuItem">
+                            <img className="Icon" src={packageBox} alt='prancheta de pedidos ao lado de uma caixa' loading="lazy"/>
+                            pedidos
+                        </DropdownMenu.Item>
 
-                        <div className='SomeMarginAround'>
-                            <DropdownMenu.Item className="UserDropdownMenuItem">
-                                <img className="Icon" src={locationIcon} alt='símbolo de localização' loading="lazy"/>
-                                endereços
-                            </DropdownMenu.Item>
-                        </div>
+                        <DropdownMenu.Item className="UserDropdownMenuItem">
+                            <img className="Icon" src={locationIcon} alt='símbolo de localização' loading="lazy"/>
+                            endereços
+                        </DropdownMenu.Item>
 
                         <DropdownMenu.Separator className="UserDropdownMenuSeparator"/>
 
                         {user.value?.admin?
-                            <div className='SomeMarginAround'>
-                                <DropdownMenu.Item className="UserDropdownMenuItem" onClick={navigateAdmin}>
-                                    <img className="Icon" src={admin} alt='usuario com engrenagem' loading="lazy"/>
-                                    admin
-                                </DropdownMenu.Item>
-                            </div>
+                            <DropdownMenu.Item className="UserDropdownMenuItem">
+                                <img className="Icon" src={admin} alt='usuario com engrenagem' loading="lazy"/>
+                                <Link to='/admin'>admin</Link>
+                            </DropdownMenu.Item>
                             :
                             null
                         }
 
-                        <div className='SomeMarginAround'>
-                            <DropdownMenu.Item className="UserDropdownMenuItem" onClick={logout}>
-                                <img className="Icon" src={logoutIcon} alt='porta pra sair' loading="lazy"/>
-                                sair da conta
-                            </DropdownMenu.Item>
-                        </div>
+                        <DropdownMenu.Item className="UserDropdownMenuItem" onClick={logout}>
+                            <img className="Icon" src={logoutIcon} alt='porta pra sair' loading="lazy"/>
+                            sair da conta
+                        </DropdownMenu.Item>
 
                         <DropdownMenu.Arrow className="UserDropdownMenuArrow" />
 
@@ -111,21 +97,17 @@ export default function UserDropdownMenu () :JSX.Element {
                 <DropdownMenu.Portal>
                     <DropdownMenu.Content className="UserDropdownMenuContent" sideOffset={5}>
 
-                        <div className='SomeMarginAround'>
-                            <DropdownMenu.Item className="UserDropdownMenuItem">
-                                <img className="Icon" src={loginIcon} alt='porta pra entrar' loading="lazy"/>
-                                <Link to='/login'>fazer login</Link>
-                            </DropdownMenu.Item>
-                        </div>
+                        <DropdownMenu.Item className="UserDropdownMenuItem">
+                            <img className="Icon" src={loginIcon} alt='porta pra entrar' loading="lazy"/>
+                            <Link to='/login'>fazer login</Link>
+                        </DropdownMenu.Item>
 
                         <DropdownMenu.Separator className="UserDropdownMenuSeparator"/>
 
-                        <div className='SomeMarginAround'>
-                            <DropdownMenu.Item className="UserDropdownMenuItem">
-                                <img className="Icon" src={signup} alt='usuário com símbolo de mais' loading="lazy"/>
-                                <Link to='/cadastro'>cadastrar-se</Link>
-                            </DropdownMenu.Item>
-                        </div>
+                        <DropdownMenu.Item className="UserDropdownMenuItem">
+                            <img className="Icon" src={signup} alt='usuário com símbolo de mais' loading="lazy"/>
+                            <Link to='/cadastro'>cadastrar-se</Link>
+                        </DropdownMenu.Item>
 
                         <DropdownMenu.Arrow className="UserDropdownMenuArrow" />
 

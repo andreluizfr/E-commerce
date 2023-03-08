@@ -1,31 +1,35 @@
-.UserDropdownMenuIcon {
+.UserDropdownMenu {
+  background-color: black;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: 0;
+}
+.UserDropdownMenu .UserDropdownMenuIcon {
   width: 1.4rem;
   height: 1.4rem;
   filter: invert(100%);
   transition: 0.1s;
   cursor: pointer;
 }
-
-.UserDropdownMenuIcon:hover {
+.UserDropdownMenu .UserDropdownMenuIcon:hover {
   opacity: 0.7;
 }
 
 .UserDropdownMenuContent {
   z-index: 999999999;
-  padding: 0.2rem 0;
+  padding: 0.2rem;
   border: 1px solid rgba(0, 0, 0, 0.24);
   border-top: none;
   border-radius: 0.2rem;
   background-color: rgb(247, 249, 249);
 }
-.UserDropdownMenuContent .SomeMarginAround {
-  margin: 0.5rem 1rem;
-}
 .UserDropdownMenuContent .UserDropdownMenuItem {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 1rem;
+  padding: 0.5rem 1rem;
+  gap: 0.5rem;
   font-size: 0.9rem;
   text-align: left;
   text-decoration: none;
@@ -47,7 +51,7 @@
   opacity: 0.8;
 }
 .UserDropdownMenuContent .UserDropdownMenuItem:focus-visible {
-  outline: none;
+  outline: 1px solid rgb(0, 0, 0);
 }
 .UserDropdownMenuContent .UserDropdownMenuSeparator {
   height: 1px;
