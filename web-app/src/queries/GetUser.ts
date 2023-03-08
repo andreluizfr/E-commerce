@@ -19,8 +19,6 @@ export default function GetUser () {
         const response = await axios.get('/user/getUser',  {headers: { Authorization: `Bearer ${accessToken}` }});
 
         const data = response.data as IGetUserResponse;
-
-        console.log(response.data.message);
         
         return data;
 

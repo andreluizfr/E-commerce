@@ -38,7 +38,7 @@ export default function EditProduct ({productToBeEdited, setProductToBeEdited}: 
         editProductQuery.remove();
     }
 
-    function updateFormDataFromSelect (event: React.ChangeEvent<HTMLSelectElement>) {
+    function updateFormData (event: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) {
         if(productToBeEdited)
             setProductToBeEdited({
                 ...productToBeEdited,
@@ -46,123 +46,125 @@ export default function EditProduct ({productToBeEdited, setProductToBeEdited}: 
             });
     }
 
-    function updateFormData (event: React.ChangeEvent<HTMLInputElement>) {
-
-        const input = event.target;
-        const inputValue = input.value as (string | number);
-        const type = input.getAttribute("type");
-
-        if(type === "number" && productToBeEdited)
-            setProductToBeEdited({
-                ...productToBeEdited,
-                [event.target.name]: Number(inputValue)
-            });
-
-        else if(productToBeEdited)
-            setProductToBeEdited({
-                ...productToBeEdited,
-                [event.target.name]: inputValue
-            });
-    }
-    
     function updateFormDataAttributes (event: React.ChangeEvent<HTMLInputElement>, index: number) {
+        if(productToBeEdited){
 
-        const input = event.target;
-        const inputValue = input.value;
+            const input = event.target;
+            if(input.value.charAt(input.value.length-1) === ";"){ //um input valido termina com ;
 
-        if(inputValue.charAt(inputValue.length-1) === ";"){
+                const pieces = input.value.substring(0, input.value.length - 1).split(":");
+                const name = pieces[0];
+                const values = pieces[1].split(",");
 
-            const refinedInputValue = inputValue.substring(0, inputValue.length - 1);
-            const pieces = refinedInputValue.split(":");
-            const name = pieces[0];
-            const values = pieces[1].split(",");
-
-            if(productToBeEdited){
-
-                let exists = false;
-                productToBeEdited.attributes.forEach(attribute=>{
+                //se existir atributo com mesmo ele vai ser sobrescrito porque index vai pegar a posição do repetido
+                let repeated = false;
+                productToBeEdited.attributes.forEach((attribute, i)=>{
                     if(attribute.name === name){
-                        alert("Atributo já existe");
-                        input.value = "";
-                        exists = true;
-                        return;
+                        repeated = true;
+                        index = i;
                     }
                 });
 
-                if(!exists){
-                    const attributes = [...productToBeEdited.attributes];
-                    attributes[index] = {name: name, values: values};
+                let updatedAttributes = [...productToBeEdited.attributes];
+                updatedAttributes[index] = {name: name, values: values};
 
+                setProductToBeEdited({
+                    ...productToBeEdited,
+                    [event.target.name]: updatedAttributes,
+                    hasAttributes: true
+                });
+
+                if(repeated)
+                    input.value = "";
+                
+            } else if(input.value.length === 0){ //caso tenha apagado o input
+                const updatedAttributes = [...productToBeEdited.attributes];
+                updatedAttributes.splice(index, 1);
+
+                if(updatedAttributes.length === 0)
                     setProductToBeEdited({
                         ...productToBeEdited,
-                        [event.target.name]: attributes,
-                        hasAttributes: true
+                        [event.target.name]: updatedAttributes,
+                        hasAttributes: false
                     });
+                else
+                    setProductToBeEdited({
+                        ...productToBeEdited,
+                        [event.target.name]: updatedAttributes,
+                    });
+            }
+        }
+    }
+    
+    function updateFormDataMidias (event: React.ChangeEvent<HTMLInputElement>, index: number) {
+        if(productToBeEdited){
 
-                    input.disabled = true;
+            const input = event.target;
+            if(input.value.charAt(input.value.length-1) === ";"){ //um input valido termina com ;
+ 
+                const pieces = input.value.substring(0, input.value.length - 1).split(":");
+                const attributeValue = pieces[0];
+                const url = pieces[1];
+
+                //checando se existe nos atributos se o attributeValue a ser colocado existe 
+                let exists = false;
+                productToBeEdited.attributes.forEach(attribute=>{
+                    if(attribute.values.includes(attributeValue))
+                        exists = true;
+                });
+                if(!exists){ //se não existir, da alerta e limpa input
+                    alert("Esse atributo não existe nesse produto.");
+                    input.value = "";
+                    return ;
                 }
 
+                //se existir atributoValue com mesmo nome sobrescreve no index o i do atributo repetido
+                let repeated = false;
+                productToBeEdited.midias.forEach((midia, i)=>{
+                    if(midia.attributeValue === attributeValue){
+                        repeated = true;
+                        index = i;
+                    }
+                });
+
+                let updatedMidias = [...productToBeEdited.midias];
+                updatedMidias[index] = { attributeValue: attributeValue, url: url};
+
+                setProductToBeEdited({
+                    ...productToBeEdited,
+                    [event.target.name]: updatedMidias
+                });
+
+                if(repeated)
+                    input.value = "";
+                
+            } else if(input.value.length === 0){//caso tenha apagado o input
+                const updatedMidias = [...productToBeEdited.midias];
+                updatedMidias.splice(index, 1);
+
+                setProductToBeEdited({
+                    ...productToBeEdited,
+                    [event.target.name]: updatedMidias
+                });
             }
-            
         }
     }
 
-    function updateFormDataMidias (event: React.ChangeEvent<HTMLInputElement>, index: number) {
-
-        const input = event.target;
-        const inputValue = input.value;
-
-        if(inputValue.charAt(inputValue.length-1) === ";"){
-
-            const refinedInputValue = inputValue.substring(0, inputValue.length - 1);
-            const pieces = refinedInputValue.split(":");
-            const url = pieces[0];
-            const attributeValue = pieces[1];
-
-            if(productToBeEdited){
-
-                let exists = false;
-                productToBeEdited.midias.forEach(midia=>{
-                    if(midia.attributeValue === attributeValue){
-                        alert("Mídia já adicionada a este atributo.");
-                        input.value = "";
-                        exists = true;
-                        return;
-                    }
-                });
-
-                if(!exists){
-                    const midias = [...productToBeEdited.midias];
-                    midias[index] = {url: url, attributeValue: attributeValue};
-
-                    setProductToBeEdited({
-                        ...productToBeEdited,
-                        [event.target.name]: midias
-                    });
-
-                    input.disabled = true;
-                }
-            }
-        } 
-
-    }
-
     function updateFormDataTags (event: React.ChangeEvent<HTMLTextAreaElement>) {
+        if(productToBeEdited){
 
-        const input = event.target;
-        const inputValue = input.value;
+            const input = event.target;
+            const inputValue = input.value;
 
-        if(inputValue.charAt(inputValue.length-1) === ";"){
-            const refinedInputValue = inputValue.substring(0, inputValue.length - 1);
-            const tags = refinedInputValue.split(",");
+            if(inputValue.charAt(inputValue.length-1) === ";"){ //só é valido se terminar com ;
+                const refinedInputValue = inputValue.substring(0, inputValue.length - 1);
+                const tags = refinedInputValue.split(",");
 
-            if(productToBeEdited)
                 setProductToBeEdited({
                     ...productToBeEdited,
                     [event.target.name]: tags
                 });
-
-            input.disabled = true;
+            }
         }
     }
 
@@ -185,7 +187,7 @@ export default function EditProduct ({productToBeEdited, setProductToBeEdited}: 
         let string = "";
 
         if(midia)
-            string += midia.url + ":" + midia.attributeValue;
+            string += midia.attributeValue + ":" + midia.url;
 
         return string;
     }
@@ -244,7 +246,7 @@ export default function EditProduct ({productToBeEdited, setProductToBeEdited}: 
 
                 <div className="FormField">
                     <label className="FormField-label" htmlFor="productStatus">Status do produto</label>
-                    <select name="productStatus" defaultValue={productToBeEdited?.productStatus} onChange={updateFormDataFromSelect} required>
+                    <select name="productStatus" defaultValue={productToBeEdited?.productStatus} onChange={updateFormData} required>
                         <option value="rascunho">Rascunho</option>
                         <option value="ativo">Ativo</option>
                         <option value="desativado">Desativado</option>
@@ -263,7 +265,7 @@ export default function EditProduct ({productToBeEdited, setProductToBeEdited}: 
 
                 <div className="FormField">
                     <label className="FormField-label" htmlFor="category">Categoria</label>
-                    <select name="category" defaultValue={productToBeEdited?.category} onChange={updateFormDataFromSelect}>
+                    <select name="category" defaultValue={productToBeEdited?.category} onChange={updateFormData}>
                         <option value="Roupas masculinas">Roupas masculinas</option>
                         <option value="Roupas femininas">Roupas femininas</option>
                         <option value="Telefonia">Telefonia</option>
@@ -288,26 +290,32 @@ export default function EditProduct ({productToBeEdited, setProductToBeEdited}: 
                 <div className="FormField">
                     <label className="FormField-label" htmlFor="attributes">Atributos (Ex: tamanho:P,M,G;) (máximo 4)</label>
                     <div className='FormField-inputs'>
-                        <input name="attributes" onChange={(e)=>updateFormDataAttributes(e,0)} defaultValue={convertAttributeToString(productToBeEdited?.attributes[0])}/>
-                        <input name="attributes" onChange={(e)=>updateFormDataAttributes(e,1)} defaultValue={convertAttributeToString(productToBeEdited?.attributes[1])}/>
-                        <input name="attributes" onChange={(e)=>updateFormDataAttributes(e,2)} defaultValue={convertAttributeToString(productToBeEdited?.attributes[2])}/>
-                        <input name="attributes" onChange={(e)=>updateFormDataAttributes(e,3)} defaultValue={convertAttributeToString(productToBeEdited?.attributes[3])}/>
+                        {
+                            new Array(4).fill(0,0,4).map((value, index)=>
+                                <input 
+                                    name="attributes" 
+                                    key={JSON.stringify(productToBeEdited?.attributes[index])?JSON.stringify(productToBeEdited?.attributes[index]):"undefinedAttribute"+index} 
+                                    defaultValue={convertAttributeToString(productToBeEdited?.attributes[index])}
+                                    onChange={(e)=>updateFormDataAttributes(e,index)}
+                                />
+                            )
+                        }
                     </div>
                 </div>
 
                 <div className="FormField">
-                    <label className="FormField-label" htmlFor="midias">Mídias (Ex: www.google.com:azul;) (máximo 10)</label>
+                    <label className="FormField-label" htmlFor="midias">Mídias (Ex: azul:www.google.com;) (máximo 10)</label>
                     <div className='FormField-inputs'>
-                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,0)} defaultValue={convertMidiaToString(productToBeEdited?.midias[0])}/>
-                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,1)} defaultValue={convertMidiaToString(productToBeEdited?.midias[1])}/>
-                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,2)} defaultValue={convertMidiaToString(productToBeEdited?.midias[2])}/>
-                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,3)} defaultValue={convertMidiaToString(productToBeEdited?.midias[3])}/>
-                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,4)} defaultValue={convertMidiaToString(productToBeEdited?.midias[4])}/>
-                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,5)} defaultValue={convertMidiaToString(productToBeEdited?.midias[5])}/>
-                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,6)} defaultValue={convertMidiaToString(productToBeEdited?.midias[6])}/>
-                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,7)} defaultValue={convertMidiaToString(productToBeEdited?.midias[7])}/>
-                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,8)} defaultValue={convertMidiaToString(productToBeEdited?.midias[8])}/>
-                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,9)} defaultValue={convertMidiaToString(productToBeEdited?.midias[9])}/>
+                        {
+                            new Array(10).fill(0,0,10).map((value, index)=>
+                                <input 
+                                    name="midias" 
+                                    key={JSON.stringify(productToBeEdited?.midias[index])?JSON.stringify(productToBeEdited?.midias[index]):"undefinedMidia"+index}
+                                    defaultValue={convertMidiaToString(productToBeEdited?.midias[index])}
+                                    onChange={(e)=>updateFormDataMidias(e,index)} 
+                                />
+                            )
+                        }
                     </div> 
                 </div>         
 

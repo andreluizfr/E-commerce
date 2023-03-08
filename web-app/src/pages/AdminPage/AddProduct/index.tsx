@@ -30,8 +30,11 @@ export default function AddProduct () : JSX.Element {
     );
     const addProductQuery = AddProductQuery(formData);
     const dispatch = useDispatch();
-    
 
+    useEffect(()=>{
+        console.log(formData);
+    }, [formData]);
+    
     function updateFormDataFromSelect (event: React.ChangeEvent<HTMLSelectElement>) {
         setFormData({
             ...formData,
@@ -54,78 +57,78 @@ export default function AddProduct () : JSX.Element {
         });
     }
     
-    function updateFormDataAttributes (event: React.ChangeEvent<HTMLInputElement>, index: number) {
+    function updateFormDataAttributes (event: React.ChangeEvent<HTMLInputElement>) {
 
         const input = event.target;
         const inputValue = input.value;
 
         if(inputValue.charAt(inputValue.length-1) === ";"){
-            const refinedInputValue = inputValue.substring(0, inputValue.length - 1);
-            const pieces = refinedInputValue.split(":");
+            const pieces = inputValue.substring(0, inputValue.length - 1).split(":");
             const name = pieces[0];
-            console.log("name",name)
             const values = pieces[1].split(",");
-            console.log("values",values);
 
             let exists = false;
             formData.attributes.forEach(attribute=>{
-                if(attribute.name === name){
-                    alert("Atributo já existe");
-                    input.value = "";
-                    input.disabled = false;
-                    exists = true;
-                    return;
-                }
+                if(attribute.name === name) exists = true;
             });
 
-            if(!exists){
-                const attributes = [...formData.attributes];
-                attributes[index] = {name: name, values: values};
-
+            if(exists){
+                alert("Atributo já existe");
+                input.value = "";
+            }
+            else{
                 setFormData({
                     ...formData,
-                    [event.target.name]: attributes,
+                    [event.target.name]: [...formData.attributes, {name: name, values: values}],
                     hasAttributes: true
                 });
-
                 input.disabled = true;
             }
         }
     }
 
-    function updateFormDataMidias (event: React.ChangeEvent<HTMLInputElement>, index: number) {
+    function updateFormDataMidias (event: React.ChangeEvent<HTMLInputElement>) {
 
         const input = event.target;
         const inputValue = input.value;
 
         if(inputValue.charAt(inputValue.length-1) === ";"){
 
-            const refinedInputValue = inputValue.substring(0, inputValue.length - 1);
-            const pieces = refinedInputValue.split(":");
-            const url = pieces[0];
-            const attributeValue = pieces[1];
+            const pieces = inputValue.substring(0, inputValue.length - 1).split(":");
+            const attributeValue = pieces[0];
+            const url = pieces[1];
 
+            //checando se existe nos atributos se o attributeValue a ser colocado existe 
             let exists = false;
-            formData.midias.forEach(midia=>{
-                if(midia.attributeValue === attributeValue){
-                    alert("Mídia já adicionada a este atributo.");
-                    input.value = "";
+            formData.attributes.forEach(attribute=>{
+                if(attribute.values.includes(attributeValue))
                     exists = true;
-                    return;
-                }
+            });
+            if(!exists){ //se não existir, da alerta e limpa input
+                alert("Esse atributo não existe nesse produto.");
+                input.value = "";
+                return ;
+            }
+
+            //checando se já não existe outra midia com mesmo valor attributeValue
+            exists = false;
+            formData.midias.forEach(midia=>{
+                if(midia.attributeValue === attributeValue)
+                    exists = true;
             });
 
-            if(!exists){
-                const midias = [...formData.midias];
-                midias[index] = {url: url, attributeValue: attributeValue};
-
+            if(exists){ //se existir midia com mesmo valor da alerta e limpa input
+                alert("Mídia já adicionada a este atributo.");
+                input.value = "";
+            }  
+            else{ //se não existir adiciona normalmente
                 setFormData({
                     ...formData,
-                    [event.target.name]: midias
+                    [event.target.name]: [...formData.midias, {attributeValue: attributeValue, url: url}]
                 });
-
                 input.disabled = true;
             }
+
         } 
         
     }
@@ -232,26 +235,26 @@ export default function AddProduct () : JSX.Element {
                 <div className="FormField">
                     <label className="FormField-label" htmlFor="attributes">Atributos (Ex: tamanho:P,M,G;) (máximo 4)</label>
                     <div className='FormField-inputs'>
-                        <input name="attributes" onChange={(e)=>updateFormDataAttributes(e,0)}/>
-                        <input name="attributes" onChange={(e)=>updateFormDataAttributes(e,1)}/>
-                        <input name="attributes" onChange={(e)=>updateFormDataAttributes(e,2)}/>
-                        <input name="attributes" onChange={(e)=>updateFormDataAttributes(e,3)}/>
+                        <input name="attributes" onChange={updateFormDataAttributes}/>
+                        <input name="attributes" onChange={updateFormDataAttributes}/>
+                        <input name="attributes" onChange={updateFormDataAttributes}/>
+                        <input name="attributes" onChange={updateFormDataAttributes}/>
                     </div>
                 </div>
 
                 <div className="FormField">
-                    <label className="FormField-label" htmlFor="midias">Mídias (Ex: www.google.com:azul;) (máximo 10)</label>
+                    <label className="FormField-label" htmlFor="midias">Mídias (Ex: azul:www.google.com;) (máximo 10)</label>
                     <div className='FormField-inputs'>
-                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,0)}/>
-                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,1)}/>
-                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,2)}/>
-                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,3)}/>
-                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,4)}/>
-                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,5)}/>
-                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,6)}/>
-                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,7)}/>
-                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,8)}/>
-                        <input name="midias" onChange={(e)=>updateFormDataMidias(e,9)}/>
+                        <input name="midias" onChange={updateFormDataMidias}/>
+                        <input name="midias" onChange={updateFormDataMidias}/>
+                        <input name="midias" onChange={updateFormDataMidias}/>
+                        <input name="midias" onChange={updateFormDataMidias}/>
+                        <input name="midias" onChange={updateFormDataMidias}/>
+                        <input name="midias" onChange={updateFormDataMidias}/>
+                        <input name="midias" onChange={updateFormDataMidias}/>
+                        <input name="midias" onChange={updateFormDataMidias}/>
+                        <input name="midias" onChange={updateFormDataMidias}/>
+                        <input name="midias" onChange={updateFormDataMidias}/>
                     </div> 
                 </div>         
 
