@@ -1,4 +1,4 @@
-import { Entity, Column, CreateDateColumn, PrimaryColumn, ManyToMany} from 'typeorm';
+import { Entity, Column, CreateDateColumn, PrimaryColumn, ManyToMany, JoinTable} from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
 import { CollectionDTO } from '../repositories/Collections/CollectionDTO';
 import { Product } from './Product.entity';
@@ -9,7 +9,8 @@ export class Collection{
     @PrimaryColumn()
     public readonly collectionId!: string;
 
-    @ManyToMany(() => Product, (product: Product)=> product)
+    @ManyToMany(() => Product)
+    @JoinTable()
     public products!: Product[];
     
     @Column({ unique: true })

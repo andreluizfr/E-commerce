@@ -38,14 +38,25 @@ export class CollectionsRepository implements ICollectionsRepository{
 
     async findById(collectionId: string){
         const collectionsRepository = AppDataSource.getRepository(Collection)
-        const collection = await collectionsRepository.findOneBy({collectionId: collectionId});
+        const collections = await collectionsRepository.find({
+            relations: {
+                products: true
+            },
+            where:{
+                collectionId: collectionId
+            }
+        });
         
-        return collection;
+        return collections[0];
     }
 
     async getCollections(){
         const collectionsRepository = AppDataSource.getRepository(Collection)
-        const collections = await collectionsRepository.find();
+        const collections = await collectionsRepository.find({
+            relations: {
+                products: true
+            }
+        });
         
         return collections;
     }

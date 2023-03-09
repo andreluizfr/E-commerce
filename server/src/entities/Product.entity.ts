@@ -1,6 +1,5 @@
 import { Entity, Column, CreateDateColumn, PrimaryGeneratedColumn, OneToMany, ManyToMany} from 'typeorm';
 import { ProductDTO } from '../repositories/Products/ProductDTO';
-import { Collection } from './Collection.entity';
 import { Rating } from './Rating.entity';
 
 @Entity("Products")
@@ -11,9 +10,6 @@ export class Product{
 
     @OneToMany(() => Rating, (rating: Rating) => rating.productId)
     public ratings!: Rating[];
-
-    @ManyToMany(() => Collection, (collection: Collection)=> collection.collectionId)
-    public collections!: Collection[];
     
     @Column({ unique: true })
     public title!: string;
