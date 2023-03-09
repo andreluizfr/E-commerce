@@ -41,18 +41,16 @@ export default function ProductsList ({products, setRefreshProducts}: Props) : J
                     {
                         products.map(product=>{
                             return (
-                                <tr 
-                                    className="TableRow TableRowLink" 
-                                    key={product.productId} 
-                                    onClick={()=>editProduct(product)}
-                                >
-                                    <td className="TableData">{product.productId}</td>
-                                    <td className="TableData">{product.title}</td>
-                                    <td className="TableData">{product.price}</td>
-                                    <td className="TableData">{product.category}</td>
-                                    <td className="TableData"><RatingStars rate={product.rating} size="small"/></td>
-                                    <td className="TableData">{product.providerURL}</td>
-                                    <td className="TableData">{product.productStatus}</td>
+                                <tr className="TableRow TableRowLink" key={product.productId}>
+                                    <td className="TableData" onClick={()=>editProduct(product)}>{product.productId}</td>
+                                    <td className="TableData" onClick={()=>editProduct(product)}>{product.title}</td>
+                                    <td className="TableData" onClick={()=>editProduct(product)}>{product.price}</td>
+                                    <td className="TableData" onClick={()=>editProduct(product)}>{product.category}</td>
+                                    <td className="TableData" onClick={()=>editProduct(product)}>
+                                        <RatingStars rate={product.rating} size="small"/>
+                                    </td>
+                                    <td className="TableData" onClick={()=>editProduct(product)}>{product.providerURL}</td>
+                                    <td className="TableData" onClick={()=>editProduct(product)}>{product.productStatus}</td>
                                     <td>
                                         <DeleteAlertDialog 
                                             productId={product.productId} 

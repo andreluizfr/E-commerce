@@ -12,6 +12,7 @@ import Product from 'types/product';
 import { useDispatch } from 'react-redux';
 import { removeUser } from 'store/features/userSlice';
 import { map } from 'zod';
+import ProductCard from 'components/ProductCard';
 
 interface Props {
     create: boolean;
@@ -147,11 +148,7 @@ export default function CreateCollection ({create, setCreate}: Props) : JSX.Elem
                 <div className="ProductsTable">
                     {
                         collectionToBeCreated.products.map((product, index)=>
-                            <article key={"collectionToBeCreatedProduct"+index} className='ProductCard'>
-                                <span className="ProductId">{product.productId}</span>
-                                <span className="Title">{product.title}</span>
-                                <img className="Image" alt='imagem do produto' src={"http://"+product.midias[0].url}/>
-                            </article>
+                            <ProductCard product={product} key={"collectionToBeCreatedProduct"+index}/>
                         )
                     }
                 </div>
@@ -161,11 +158,9 @@ export default function CreateCollection ({create, setCreate}: Props) : JSX.Elem
                     {
                         productsToAdd.map((product, index)=>{
                             if(product.productId && !productsAdded.includes(product.productId)) //adicionar condição productStatus = ativo
-                                return(<article key={"Product"+index} className='ProductCard' onClick={()=>addProductToCollection(product)}>
-                                    <span className="ProductId">{product.productId}</span>
-                                    <span className="Title">{product.title}</span>
-                                    <img className="Image" alt='imagem do produto' src={"http://"+product.midias[0].url}/>
-                                </article>)
+                                return(
+                                    <ProductCard product={product} key={"collectionToBeCreatedProduct"+index} onClick={()=>addProductToCollection(product)}/>
+                                )
                             else
                                 return <></>
                         })

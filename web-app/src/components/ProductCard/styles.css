@@ -1,0 +1,16 @@
+.ProductCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 0.5rem;
+}
+.ProductCard .ProductId, .ProductCard .Title {
+  font-size: 1rem;
+  font-weight: 500;
+}
+.ProductCard .Image {
+  width: 5rem;
+  height: auto;
+}/*# sourceMappingURL=styles.css.map */

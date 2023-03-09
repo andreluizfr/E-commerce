@@ -1,0 +1,17 @@
+@import '../../assets/css/variables';
+@import '../../assets/css/_mixins';
+
+.ProductCard{
+    @include flex-column-center-center;
+    border: 1px solid $thinner-black;
+    padding: .5rem;
+
+    .ProductId, .Title{
+        font-size: $font-size-small;
+        font-weight: 500;
+    }
+
+    .Image{
+        @include image-small;
+    }
+}

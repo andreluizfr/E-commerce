@@ -104,18 +104,20 @@ export default function EditProduct ({productToBeEdited, setProductToBeEdited}: 
  
                 const pieces = input.value.substring(0, input.value.length - 1).split(":");
                 const attributeValue = pieces[0];
-                const url = pieces[1];
+                const url = pieces[1] + ":" + pieces[2];
 
                 //checando se existe nos atributos se o attributeValue a ser colocado existe 
-                let exists = false;
-                productToBeEdited.attributes.forEach(attribute=>{
-                    if(attribute.values.includes(attributeValue))
-                        exists = true;
-                });
-                if(!exists){ //se não existir, da alerta e limpa input
-                    alert("Esse atributo não existe nesse produto.");
-                    input.value = "";
-                    return ;
+                if(attributeValue !== "none"){
+                    let exists = false;
+                    productToBeEdited.attributes.forEach(attribute=>{
+                        if(attribute.values.includes(attributeValue))
+                            exists = true;
+                    });
+                    if(!exists){ //se não existir, da alerta e limpa input
+                        alert("Esse atributo não existe nesse produto.");
+                        input.value = "";
+                        return ;
+                    }
                 }
 
                 //se existir atributoValue com mesmo nome sobrescreve no index o i do atributo repetido

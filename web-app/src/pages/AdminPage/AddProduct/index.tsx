@@ -96,22 +96,24 @@ export default function AddProduct () : JSX.Element {
 
             const pieces = inputValue.substring(0, inputValue.length - 1).split(":");
             const attributeValue = pieces[0];
-            const url = pieces[1];
+            const url = pieces[1] + ":" + pieces[2];
 
             //checando se existe nos atributos se o attributeValue a ser colocado existe 
-            let exists = false;
-            formData.attributes.forEach(attribute=>{
-                if(attribute.values.includes(attributeValue))
-                    exists = true;
-            });
-            if(!exists){ //se não existir, da alerta e limpa input
-                alert("Esse atributo não existe nesse produto.");
-                input.value = "";
-                return ;
+            if(attributeValue !== "none"){
+                let exists = false;
+                formData.attributes.forEach(attribute=>{
+                    if(attribute.values.includes(attributeValue))
+                        exists = true;
+                });
+                if(!exists){ //se não existir, da alerta e limpa input
+                    alert("Esse atributo não existe nesse produto.");
+                    input.value = "";
+                    return ;
+                }
             }
 
             //checando se já não existe outra midia com mesmo valor attributeValue
-            exists = false;
+            let exists = false;
             formData.midias.forEach(midia=>{
                 if(midia.attributeValue === attributeValue)
                     exists = true;

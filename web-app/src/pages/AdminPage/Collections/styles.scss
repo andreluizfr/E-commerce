@@ -6,4 +6,37 @@
     background-color: $white;
     box-shadow: rgb(50 50 105 / 15%) 0px 2px 5px 0px, rgb(0 0 0 / 5%) 0px 1px 1px 0px;
     flex: 1;
+    gap: 1rem;
+
+    .ComponentTitle{
+        width: 100%;
+        font-size: $font-size-normal;
+        font-weight: 500;
+        text-align: center;
+    }
+
+    .CollectionsContainer{
+        @include flex-column-start-center;
+        width: 100%;
+        padding: .5rem;
+        border: 1px solid $thin-black;
+
+        .Collection{
+            @include flex-column-start-center;
+            width: 100%;
+            gap: 1rem;
+
+            .CollectionTitle{
+                width: 100%;
+                font-size: $font-size-small;
+                font-weight: 500;
+                text-align: center;
+            }
+
+            .CollectionProducts{
+                @include flex-row-start-center;
+                width: 100%;
+            }
+        }
+    }
 }
