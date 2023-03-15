@@ -4,8 +4,8 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { removeUser } from 'store/features/userSlice';
 
-import EditProductQuery from 'queries/EditProduct';
-import refreshToken from 'queries/RefreshToken';
+import EditProductQuery from 'queries/Product/admin/EditProduct';
+import refreshToken from 'queries/User/public/RefreshToken';
 
 import Product from 'types/product';
 

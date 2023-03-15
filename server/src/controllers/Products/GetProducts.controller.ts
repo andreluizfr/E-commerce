@@ -9,6 +9,7 @@ interface Queries{
     status?: string | undefined;
     category?: string | undefined;
     keyword?: string | undefined;
+    order?: string | undefined;
 }
 
 //receive a request, calls the use-case, then send back a response
@@ -19,6 +20,7 @@ export default new class GetProductsController{
         
         const category = req.query.categoria as string;
         const keyword = req.query.keyword as string;
+        const order = req.query.ordem as (string | undefined);
 
         console.log(category);
         console.log(keyword);
@@ -30,6 +32,9 @@ export default new class GetProductsController{
         
         if(keyword)
             queries.keyword = keyword;
+
+        if(order)
+            queries.order = order;
 
         try{
             const { products } = await getProductsService.execute(queries);

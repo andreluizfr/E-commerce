@@ -6,7 +6,7 @@ import NotFoundPage from 'pages/NotFoundPage';
 
 import emailConfirmado from 'assets/images/email_confirmado.png';
 
-import VerifyEmail from 'queries/VerifyEmail';
+import VerifyEmail from 'queries/User/public/VerifyEmail';
 
 import { useParams, Link } from 'react-router-dom';
 

@@ -2,8 +2,8 @@ import './styles.css';
 
 import { useEffect, useState } from 'react';
 
-import AddProductQuery from 'queries/AddProduct';
-import refreshToken from 'queries/RefreshToken';
+import AddProductQuery from 'queries/Product/admin/AddProduct';
+import refreshToken from 'queries/User/public/RefreshToken';
 
 import { useDispatch } from 'react-redux';
 import { removeUser } from 'store/features/userSlice';

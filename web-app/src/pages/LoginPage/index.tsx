@@ -11,7 +11,7 @@ import HashLoader from "react-spinners/HashLoader";
 //import BarLoader from "react-spinners/BarLoader";
 
 import { useState, useEffect } from 'react';
-import Login from 'queries/Login';
+import Login from 'queries/User/public/Login';
 
 export default function LoginPage () : JSX.Element {
 

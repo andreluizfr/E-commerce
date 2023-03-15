@@ -2,9 +2,9 @@ import './styles.css';
 
 import { useState, useEffect } from 'react';
 
-import CreateCollectionQuery from 'queries/CreateCollection';
-import GetProductsAdmin from 'queries/GetProductsAdmin';
-import refreshToken from 'queries/RefreshToken';
+import CreateCollectionQuery from 'queries/Collection/admin/CreateCollection';
+import GetProductsAdmin from 'queries/Product/admin/GetProductsAdmin';
+import refreshToken from 'queries/User/public/RefreshToken';
 
 import Collection from 'types/collection';
 import Product from 'types/product';

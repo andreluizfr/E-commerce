@@ -2,11 +2,11 @@ import './styles.css';
 import * as AlertDialog from '@radix-ui/react-alert-dialog';
 import { useEffect } from 'react';
 
-import refreshToken from 'queries/RefreshToken';
+import refreshToken from 'queries/User/public/RefreshToken';
 import { removeUser } from 'store/features/userSlice';
 import { useDispatch } from 'react-redux';
 
-import DeleteProductQuery from 'queries/DeleteProduct';
+import DeleteProductQuery from 'queries/Product/admin/DeleteProduct';
 
 interface Props{
     productId: string | undefined;

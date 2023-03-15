@@ -6,7 +6,7 @@ import DeleteAlertDialog from './DeleteAlertDialog';
 
 import { useState, useEffect } from 'react';
 
-import GetCollections from 'queries/GetCollections';
+import GetCollections from 'queries/Collection/public/GetCollections';
 
 import Collection from 'types/collection';
 
@@ -38,7 +38,7 @@ export default function Collections () : JSX.Element {
             getCollectionsQuery.refetch();
             setRefreshCollections(false);
         }
-    }, [refreshCollections]);
+    }, [refreshCollections, getCollectionsQuery]);
 
     function showCreateContainer(){
         setCreate(true);

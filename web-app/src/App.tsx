@@ -11,8 +11,8 @@ import { useDispatch } from 'react-redux';
 import { newUser, removeUser } from 'store/features/userSlice';
 import { newCart } from 'store/features/cartSlice';
 
-import GetUser from 'queries/GetUser';
-import refreshToken from 'queries/RefreshToken';
+import GetUser from 'queries/User/logged/GetUser';
+import refreshToken from 'queries/User/public/RefreshToken';
 
 import LoadingPage from 'pages/LoadingPage';
 const AdminPage = React.lazy(() => import('pages/AdminPage'));
@@ -23,7 +23,7 @@ const SignupNextStepPage = React.lazy(() => import('pages/SignupNextStepPage'));
 const EmailVerificationPage = React.lazy(() => import('pages/EmailVerificationPage'));
 const NotFoundPage = React.lazy(() => import('pages/NotFoundPage'));
 const ProductPage = React.lazy(() => import('pages/ProductPage'));
-
+const ProductsPage = React.lazy(() => import('pages/ProductsPage'));
 
 function App() {
 
@@ -117,6 +117,10 @@ function App() {
 							element: <EmailVerificationPage/>,
 						},
 						{
+							path: "/produtos",
+							element: <ProductsPage/>,
+						},
+						{
 							path: "/produto/:productId",
 							element: <ProductPage/>,
 						},
@@ -153,6 +157,10 @@ function App() {
 						{
 							path: "/verificacao/:verificationEmailCode",
 							element: <EmailVerificationPage/>,
+						},
+						{
+							path: "/produtos",
+							element: <ProductsPage/>,
 						},
 						{
 							path: "/produto/:productId",

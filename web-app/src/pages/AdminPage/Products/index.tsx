@@ -4,8 +4,8 @@ import Toolbar from './Toolbar';
 
 import { useState, useEffect } from 'react';
 
-import GetProductsAdmin from 'queries/GetProductsAdmin';
-import refreshToken from 'queries/RefreshToken';
+import GetProductsAdmin from 'queries/Product/admin/GetProductsAdmin';
+import refreshToken from 'queries/User/public/RefreshToken';
 import Product from 'types/product';
 
 import { useDispatch } from 'react-redux';

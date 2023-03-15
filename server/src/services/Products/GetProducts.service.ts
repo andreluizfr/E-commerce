@@ -3,6 +3,7 @@ import { IProductsRepository } from "../../repositories/Products/IProducts.repos
 interface Queries{
     category?: string | undefined;
     keyword?: string | undefined;
+    order?: string | undefined;
 }
 
 //contains the business logic

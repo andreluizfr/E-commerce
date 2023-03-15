@@ -2,11 +2,11 @@ import './styles.css';
 import * as AlertDialog from '@radix-ui/react-alert-dialog';
 import { HTMLAttributes, useEffect } from 'react';
 
-import refreshToken from 'queries/RefreshToken';
+import refreshToken from 'queries/User/public/RefreshToken';
 import { removeUser } from 'store/features/userSlice';
 import { useDispatch } from 'react-redux';
 
-import DeleteCollectionQuery from 'queries/DeleteCollection';
+import DeleteCollectionQuery from 'queries/Collection/admin/DeleteCollection';
 
 interface Props extends HTMLAttributes<HTMLDivElement>{
     collectionId: string | undefined;
@@ -80,7 +80,3 @@ export default function DeleteAlertDialog ({collectionId, setRefreshCollections}
         </div>
     );
 }
-function dispatch(arg0: any) {
-    throw new Error('Function not implemented.');
-}
-

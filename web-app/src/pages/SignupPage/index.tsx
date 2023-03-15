@@ -12,8 +12,8 @@ import HashLoader from "react-spinners/HashLoader";
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Signup from 'queries/Signup';
-import EmailExists from 'queries/EmailExists';
+import Signup from 'queries/User/public/Signup';
+import EmailExists from 'queries/User/public/EmailExists';
 
 
 

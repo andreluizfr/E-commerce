@@ -90,10 +90,17 @@ export class ProductsRepository implements IProductsRepository{
         let products = [] as Product[];
         if(where.length > 0)
             products = await productsRepository.find({
-                where: where
+                where: where,
+                order: {
+                    created_at: queries.order
+                }
             });
         else
-            products = await productsRepository.find();
+            products = await productsRepository.find({
+                order: {
+                    created_at: queries.order
+                }
+            });
         
         return products;
     }
