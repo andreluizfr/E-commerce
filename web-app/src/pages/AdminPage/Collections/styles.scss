@@ -47,6 +47,7 @@
             .CollectionProducts{
                 @include flex-row-start-center;
                 width: 100%;
+                gap: .5rem;
             }
         }
     }
