@@ -11,7 +11,6 @@ import Product from 'types/product';
 
 import { useDispatch } from 'react-redux';
 import { removeUser } from 'store/features/userSlice';
-import { map } from 'zod';
 import ProductCard from 'components/ProductCard';
 
 interface Props {

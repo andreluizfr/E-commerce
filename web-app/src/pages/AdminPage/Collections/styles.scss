@@ -7,6 +7,7 @@
     box-shadow: rgb(50 50 105 / 15%) 0px 2px 5px 0px, rgb(0 0 0 / 5%) 0px 1px 1px 0px;
     flex: 1;
     gap: 1rem;
+    padding: 1rem;
 
     .ComponentTitle{
         width: 100%;
@@ -18,19 +19,29 @@
     .CollectionsContainer{
         @include flex-column-start-center;
         width: 100%;
+        gap: 1rem;
         padding: .5rem;
-        border: 1px solid $thin-black;
 
         .Collection{
             @include flex-column-start-center;
             width: 100%;
             gap: 1rem;
+            padding: .5rem;
+            border: 1px solid $thinner-black;
+            border-radius: .2rem;
+            box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 
             .CollectionTitle{
                 width: 100%;
-                font-size: $font-size-small;
-                font-weight: 500;
+                font-size: $font-size-normal;
+                font-weight: 600;
                 text-align: center;
+            }
+
+            .CollectionDescription{
+                max-width: 100%;
+                font-size: $font-size-smaller;
+                word-break: break-all;
             }
 
             .CollectionProducts{
@@ -39,4 +50,55 @@
             }
         }
     }
+
+    .CreateButton{
+        padding: .5rem 1rem;
+        border-radius: 4px;
+        background-color: $white;
+        border: 1px solid $thin-black;
+
+        font-size: $font-size-smaller;
+        line-height: 1;
+        font-weight: 500;
+        color: $green !important;
+
+        transition: 200ms all;
+        cursor: pointer;
+        @include no-motion{
+            transition: none;
+        }
+    }
+
+    .CreateButton:hover{
+        background-color: $light-green;
+        border: 1px solid $thin-black;
+        //text-shadow: 2px 0 $green, -2px 0 $green, 0 2px $green, 0 -2px $green,
+        //            1px 1px $green, -1px -1px $green, 1px -1px $green, -1px 1px $green;
+        //-webkit-text-stroke: 1px $green;
+    }
+    /*
+    .CreateButton{
+        padding: .5rem 1rem;
+        border-radius: 4px;
+        background-color: $white;
+        border: 1px solid $thin-black;
+
+        font-size: $font-size-smaller;
+        line-height: 1;
+        font-weight: 500;
+        color: $blue !important;
+
+        transition: 200ms all;
+        cursor: pointer;
+        @include no-motion{
+            transition: none;
+        }
+    }
+
+    .CreateButton:hover{
+        background-color: $light-blue;
+        border: 1px solid rgba($default-blue, 0.24);
+        color: $white !important;
+    }
+    */
 }

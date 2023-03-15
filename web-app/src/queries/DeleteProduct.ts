@@ -1,13 +1,11 @@
 import { useQuery } from 'react-query';
 import axios from 'libs/axios';
-import Product from 'types/product';
 
 interface IDeleteProductResponse {
     refresh: boolean;
     login?: boolean;
     success: boolean;
     message: string;
-    product?: Product;
 }
 
 export default function DeleteProductQuery (productId: string | undefined) {

@@ -7,6 +7,32 @@
   box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
   flex: 1;
   gap: 1rem;
+  padding: 1rem;
+  /*
+  .CreateButton{
+      padding: .5rem 1rem;
+      border-radius: 4px;
+      background-color: $white;
+      border: 1px solid $thin-black;
+
+      font-size: $font-size-smaller;
+      line-height: 1;
+      font-weight: 500;
+      color: $blue !important;
+
+      transition: 200ms all;
+      cursor: pointer;
+      @include no-motion{
+          transition: none;
+      }
+  }
+
+  .CreateButton:hover{
+      background-color: $light-blue;
+      border: 1px solid rgba($default-blue, 0.24);
+      color: $white !important;
+  }
+  */
 }
 .Collections .ComponentTitle {
   width: 100%;
@@ -20,8 +46,8 @@
   justify-content: flex-start;
   align-items: center;
   width: 100%;
+  gap: 1rem;
   padding: 0.5rem;
-  border: 1px solid rgba(0, 0, 0, 0.24);
 }
 .Collections .CollectionsContainer .Collection {
   display: flex;
@@ -30,16 +56,46 @@
   align-items: center;
   width: 100%;
   gap: 1rem;
+  padding: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 0.2rem;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 .Collections .CollectionsContainer .Collection .CollectionTitle {
   width: 100%;
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 1.2rem;
+  font-weight: 600;
   text-align: center;
+}
+.Collections .CollectionsContainer .Collection .CollectionDescription {
+  max-width: 100%;
+  font-size: 0.9rem;
+  word-break: break-all;
 }
 .Collections .CollectionsContainer .Collection .CollectionProducts {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   width: 100%;
+}
+.Collections .CreateButton {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgba(0, 0, 0, 0.24);
+  font-size: 0.9rem;
+  line-height: 1;
+  font-weight: 500;
+  color: rgb(0, 186, 124) !important;
+  transition: 200ms all;
+  cursor: pointer;
+}
+@media (prefers-reduced-motion: reduce) {
+  .Collections .CreateButton {
+    transition: none;
+  }
+}
+.Collections .CreateButton:hover {
+  background-color: rgb(194, 255, 194);
+  border: 1px solid rgba(0, 0, 0, 0.24);
 }/*# sourceMappingURL=styles.css.map */

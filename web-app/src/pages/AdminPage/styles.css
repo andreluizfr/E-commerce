@@ -26,7 +26,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  width: 100vw;
+  width: 100%;
   padding: 1rem;
   gap: 1rem;
 }/*# sourceMappingURL=styles.css.map */

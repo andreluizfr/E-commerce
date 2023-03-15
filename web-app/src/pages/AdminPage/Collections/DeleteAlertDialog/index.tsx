@@ -1,49 +1,48 @@
 import './styles.css';
 import * as AlertDialog from '@radix-ui/react-alert-dialog';
-import { useEffect } from 'react';
+import { HTMLAttributes, useEffect } from 'react';
 
 import refreshToken from 'queries/RefreshToken';
 import { removeUser } from 'store/features/userSlice';
 import { useDispatch } from 'react-redux';
 
-import DeleteProductQuery from 'queries/DeleteProduct';
+import DeleteCollectionQuery from 'queries/DeleteCollection';
 
-interface Props{
-    productId: string | undefined;
-    setRefreshProducts: React.Dispatch<React.SetStateAction<boolean>>;
+interface Props extends HTMLAttributes<HTMLDivElement>{
+    collectionId: string | undefined;
+    setRefreshCollections: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function DeleteAlertDialog ({productId, setRefreshProducts}: Props) : JSX.Element {
-    
-    const dispatch = useDispatch();
-    const deleteProductQuery = DeleteProductQuery(productId);
+export default function DeleteAlertDialog ({collectionId, setRefreshCollections}: Props) : JSX.Element {
 
-    function deleteProduct(){
-        deleteProductQuery.refetch();
+    const dispatch = useDispatch();
+    const deleteCollectionQuery = DeleteCollectionQuery(collectionId);
+
+    function deleteCollection(){
+        deleteCollectionQuery.refetch();
     }
 
     useEffect(()=>{
 
-        if(deleteProductQuery.data)
-            console.log(deleteProductQuery.data?.message);
+        if(deleteCollectionQuery.data)
+            console.log(deleteCollectionQuery.data?.message);
             
-        if(deleteProductQuery.data?.refresh)
+        if(deleteCollectionQuery.data?.refresh)
             refreshToken().then(response=>{
-                if(response.reload) deleteProductQuery.refetch();
+                if(response.reload) deleteCollectionQuery.refetch();
                 else {
                     dispatch(removeUser());
                     setTimeout(()=>window.location.reload(), 2000);
                 }
             });
-        else if(deleteProductQuery.data?.login){
+        else if(deleteCollectionQuery.data?.login){
             dispatch(removeUser());
             localStorage.removeItem("x-access-token");
             setTimeout(()=>window.location.reload(), 2000);
         }
-        else if(deleteProductQuery.data?.success)
-            setRefreshProducts(true);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [deleteProductQuery.data]);
+    }, [deleteCollectionQuery.data]);
     
     return(
         <div className="DeleteAlertDialog">
@@ -63,7 +62,7 @@ export default function DeleteAlertDialog ({productId, setRefreshProducts}: Prop
 
                         <AlertDialog.Description className="AlertDialogDescription">
                             Esta ação não pode ser desfeita. 
-                            Isto irá deletar permanantemente este produto do banco de dados e em suas relações.
+                            Isto irá deletar permanantemente esta coleção do banco de dados.
                         </AlertDialog.Description>
 
                         <div className="AlertDialogButtons">
@@ -71,7 +70,7 @@ export default function DeleteAlertDialog ({productId, setRefreshProducts}: Prop
                                 <button className="Button CancelButton">Cancelar</button>
                             </AlertDialog.Cancel>
                             <AlertDialog.Action asChild>
-                                <button className="Button ConfirmButton" onClick={deleteProduct}>Sim, excluir produto.</button>
+                                <button className="Button ConfirmButton" onClick={deleteCollection}>Sim, excluir coleção.</button>
                             </AlertDialog.Action>
                         </div>
 
@@ -81,3 +80,7 @@ export default function DeleteAlertDialog ({productId, setRefreshProducts}: Prop
         </div>
     );
 }
+function dispatch(arg0: any) {
+    throw new Error('Function not implemented.');
+}
+
