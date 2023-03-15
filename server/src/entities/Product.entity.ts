@@ -59,6 +59,9 @@ export class Product{
         "5": number
     };
 
+    @Column()
+    public sales!: number;
+
     @Column({array: true})
     public tags!: string;
 
@@ -69,15 +72,16 @@ export class Product{
 
         Object.assign(this, props);
         
-        const ratingNumbers2 = {
+        const ratingNumbersInitial = {
             "1": 0,
             "2": 0,
             "3": 0,
             "4": 0,
             "5": 0
         }
-        this.ratingNumbers = ratingNumbers2;
+        this.ratingNumbers = ratingNumbersInitial;
         this.rating = 0;
+        this.sales = 0;
         
     }
 

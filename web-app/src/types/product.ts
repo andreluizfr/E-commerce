@@ -29,7 +29,8 @@ type Product = {
         "3": number,
         "4": number,
         "5": number
-    }
+    },
+    sales?: number
 };
 
 export default Product;

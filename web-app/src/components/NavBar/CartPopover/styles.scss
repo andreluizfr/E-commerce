@@ -4,6 +4,8 @@
 
 .CartPopoverTrigger{
     background-color: $black;
+    border: none;
+    outline: none;
 
     .ShoppingCart-icon{
         @include icon-medium2;

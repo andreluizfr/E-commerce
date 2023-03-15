@@ -1,25 +1,31 @@
 .ProductCard {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   width: 200px;
   height: 300px;
   border: 1px solid rgba(0, 0, 0, 0.08);
-  position: relative;
+  transition: 200ms all;
+  cursor: pointer;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ProductCard {
+    transition: none;
+  }
 }
 .ProductCard .Image {
   width: 100%;
   height: 200px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-  margin-bottom: 0.2rem;
+  margin-bottom: 3px;
 }
 .ProductCard .Title {
   width: 100%;
-  padding: 0 0.5rem;
-  margin-bottom: 1rem;
+  padding: 0 8px;
   text-align: left;
-  font-size: 0.8rem;
+  font-size: 13px;
+  font-weight: 500;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -32,13 +38,60 @@
     -webkit-box-orient: vertical;
   }
 }
-.ProductCard .Price {
-  font-size: 0.9rem;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 500;
+.ProductCard .Card-infos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 8px;
 }
-.ProductCard .Rating {
-  position: absolute;
-  bottom: 0.5rem;
-  left: 0.5rem;
-}/*# sourceMappingURL=styles.css.map */
+.ProductCard .Card-infos .Price {
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  color: rgb(255, 0, 0);
+}
+.ProductCard .Card-infos .RatingSales-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.ProductCard .Card-infos .RatingSales-wrapper .Sales {
+  font-size: 13px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #B3B3B3;
+}
+
+.ProductCard:hover {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 2px;
+  transform: translateY(-5px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ProductCard:hover {
+    transform: none;
+  }
+}
+
+/*
+.ProductCard:hover{
+    border: 1px solid;
+    border-image: linear-gradient(
+        #ff512f,
+        #dd2476,
+        #1c64ff
+    ) 1;
+    animation: rotate 2.5s ease-in infinite;
+}
+
+@keyframes rotate {
+    50%{
+        border-image: linear-gradient(
+            360deg,
+            #ff512f,
+            #dd2476,
+            #1c64ff) 1;
+    }
+}
+*//*# sourceMappingURL=styles.css.map */

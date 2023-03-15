@@ -13,10 +13,18 @@ export default function ProductCard(props:Prop) : JSX.Element{
 
     return (
         <article className='ProductCard' {...rest}>
-            <img className="Image" alt='imagem do produto' src={product.midias[0].url}/>
-            <span className="Title">{product.title}</span>
-            <span className="Price">R$ {product.price}</span>
-            <span className="Rating"><RatingStars rate={product.rating} size="small"/></span>
+            <div>
+                <img className="Image" alt='imagem do produto' src={product.midias[0].url}/>
+                <span className="Title">{product.title}</span>
+            </div>
+            <div className="Card-infos">
+                <span className="Price">R$ {product.price}</span>
+
+                <div className="RatingSales-wrapper">
+                    <span className="Sales">{product.sales} vendidos</span>
+                    <span className="Rating"><RatingStars rate={product.rating} size="small"/></span>
+                </div>
+            </div>
         </article>
     )
 

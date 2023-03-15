@@ -49,6 +49,8 @@ export const productDTO = z.object({
     tags: z.array(z.string()),
     ratings: z.array(z.string())
         .optional(),
+    sales: z.number()
+        .optional(),
     created_at: z.date()
         .optional(),
 });

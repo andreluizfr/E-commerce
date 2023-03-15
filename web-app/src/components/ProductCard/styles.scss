@@ -2,25 +2,30 @@
 @import '../../assets/css/_mixins';
 
 .ProductCard{
-    @include flex-column-start-center;
+    @include flex-column-space-between-center;
     width: 200px;
     height: 300px;
     border: 1px solid $thinner-black;
-    position: relative;
+    transition: 200ms all;
+    cursor: pointer;
+
+    @include no-motion{
+        transition: none;
+    }
     
     .Image{
         width: 100%;
         height: 200px;
         border-bottom: 1px solid $thinner-black;
-        margin-bottom: .2rem;
+        margin-bottom: 3px;
     }
 
     .Title{
         width: 100%;
-        padding: 0 .5rem;
-        margin-bottom: 1rem;
+        padding: 0 8px;
         text-align: left;
-        font-size: $font-size-mini;
+        font-size: 13px;
+        font-weight: 500;
 
         overflow: hidden;
         white-space: nowrap;
@@ -35,16 +40,61 @@
         
     }
 
-    .Price{
-        font-size: $font-size-smaller;
-        font-family: Arial, Helvetica, sans-serif;
-        font-weight: 500;
-    }
-    
-    .Rating{
-        position: absolute;
-        bottom: .5rem;
-        left: .5rem;
+    .Card-infos{
+        @include flex-row-space-between-center;
+        width: 100%;
+        padding: 8px;
+
+        .Price{
+            font-size: 14px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 600;
+            color: $red;
+        }
+
+        .RatingSales-wrapper{   
+            @include flex-column-center-center;
+
+            .Sales{    
+                font-size: 13px;
+                font-family: Arial, Helvetica, sans-serif;
+                color: $second-gray;
+            }
+            
+        }   
+        
     }
     
 }
+
+.ProductCard:hover{
+    border: 1px solid rgba($black, 0.5);
+    border-radius: 2px;
+    transform: translateY(-5px);
+
+    @include no-motion{
+        transform: none;
+    }
+}
+
+/*
+.ProductCard:hover{
+    border: 1px solid;
+    border-image: linear-gradient(
+        #ff512f,
+        #dd2476,
+        #1c64ff
+    ) 1;
+    animation: rotate 2.5s ease-in infinite;
+}
+
+@keyframes rotate {
+    50%{
+        border-image: linear-gradient(
+            360deg,
+            #ff512f,
+            #dd2476,
+            #1c64ff) 1;
+    }
+}
+*/
