@@ -27,6 +27,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
   gap: 0.5rem;
 }
 .AddProduct .AddProduct-form .FormField-label {
@@ -40,6 +41,13 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 0.5rem;
+}
+.AddProduct .AddProduct-form .FormField .Tags {
+  width: 50%;
+  height: 3rem;
+  white-space: wrap;
+  overflow: hidden;
+  word-break: break-all;
 }
 .AddProduct .AddProduct-form .Submit-button {
   background-color: rgb(0, 0, 0);
@@ -55,4 +63,10 @@
 }
 .AddProduct .AddProduct-form .Submit-button:hover {
   background-color: rgba(0, 0, 0, 0.85);
+}
+.AddProduct .AddProduct-form .ServerResponse {
+  display: none;
+}
+.AddProduct .AddProduct-form .ServerResponse[visible=true] {
+  display: block;
 }/*# sourceMappingURL=styles.css.map */

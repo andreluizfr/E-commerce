@@ -135,7 +135,7 @@ export default function AddProduct () : JSX.Element {
         
     }
 
-    function updateFormDataTags (event: React.ChangeEvent<HTMLInputElement>) {
+    function updateFormDataTags (event: React.ChangeEvent<HTMLTextAreaElement>) {
 
         const input = event.target;
         const inputValue = input.value;
@@ -162,8 +162,12 @@ export default function AddProduct () : JSX.Element {
      //controladora da resposta da query addProductQuery
      useEffect(()=>{
 
-        if(addProductQuery.data)
+        if(addProductQuery.data){
             console.log(addProductQuery.data?.message);
+            const serverResponseEl = document.getElementsByClassName("ServerResponse")[0];
+            serverResponseEl?.setAttribute("visible", "true");
+            setTimeout(()=>{serverResponseEl?.setAttribute("visible", "false")}, 3000);
+        }
             
         if(addProductQuery.data?.refresh)
             refreshToken().then(response=>{
@@ -282,7 +286,13 @@ export default function AddProduct () : JSX.Element {
 
                 <div className="FormField">
                     <label className="FormField-label" htmlFor="tags">Tags (Ex:roupa,gola;)</label>
-                    <input name="tags" onChange={updateFormDataTags}/>
+                    <textarea 
+                        cols={30} 
+                        rows={5}
+                        className="Tags"
+                        name="tags"
+                        onChange={updateFormDataTags}
+                    ></textarea>
                 </div>
 
                 <button className="Submit-button" type="submit">Salvar</button>

@@ -26,9 +26,9 @@
   align-items: center;
   gap: 1rem;
   padding: 1rem;
-  max-height: 80%;
+  max-height: 95%;
   min-width: 350px;
-  max-width: 80%;
+  max-width: 90%;
   background-color: rgb(255, 255, 255);
   box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
   overflow: auto;
@@ -41,6 +41,7 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.24);
   font-size: 1.2rem;
   font-weight: 500;
+  color: rgb(100, 79, 193);
 }
 .CreateCollection .CreateCollection-form .FormField {
   display: flex;
@@ -50,16 +51,34 @@
   width: 100%;
   gap: 0.5rem;
 }
-.CreateCollection .CreateCollection-form .FormField .Title, .CreateCollection .CreateCollection-form .FormField .Description {
-  font-size: 0.9rem;
-  color: rgb(100, 79, 193);
-  margin-right: 1rem;
+.CreateCollection .CreateCollection-form .FormField .CollectionTitle, .CreateCollection .CreateCollection-form .FormField .CollectionDescription {
+  font-size: 1rem;
+  font-weight: 500;
 }
-.CreateCollection .CreateCollection-form .ProductsTable {
+.CreateCollection .CreateCollection-form .ProductsContainer-info {
+  font-size: 1rem;
+  font-weight: 500;
+}
+.CreateCollection .CreateCollection-form .ProductsContainer {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   width: 100%;
+  min-height: calc(1rem + 300px);
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 0.2rem;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+.CreateCollection .CreateCollection-form .ProductsContainer .Empty-message {
+  display: none;
+  width: 100%;
+  text-align: center;
+  font-size: 1rem;
+}
+.CreateCollection .CreateCollection-form .ProductsContainer .Empty-message:only-child {
+  display: block;
 }
 .CreateCollection .CreateCollection-form .Submit-button {
   background-color: rgb(0, 0, 0);
@@ -75,6 +94,12 @@
 }
 .CreateCollection .CreateCollection-form .Submit-button:hover {
   background-color: rgba(0, 0, 0, 0.85);
+}
+.CreateCollection .CreateCollection-form .ServerResponse {
+  display: none;
+}
+.CreateCollection .CreateCollection-form .ServerResponse[visible=true] {
+  display: block;
 }
 
 .CreateCollection[visible=false] {

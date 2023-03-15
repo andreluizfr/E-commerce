@@ -59,7 +59,7 @@ export class Product{
         "5": number
     };
 
-    @Column()
+    @Column({nullable: true}) //retirar depois quando apagar esses produtos atuais
     public sales!: number;
 
     @Column({array: true})

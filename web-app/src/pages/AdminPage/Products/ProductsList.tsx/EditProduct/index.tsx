@@ -215,8 +215,8 @@ export default function EditProduct ({productToBeEdited, setProductToBeEdited}: 
         if(editProductQuery.data){
             console.log(editProductQuery.data.message)
             const serverResponseEl = document.getElementsByClassName("ServerResponse")[0];
-            serverResponseEl.setAttribute("visible", "true");
-            setTimeout(()=>{serverResponseEl.setAttribute("visible", "false")}, 3000);
+            serverResponseEl?.setAttribute("visible", "true");
+            setTimeout(()=>{serverResponseEl?.setAttribute("visible", "false")}, 3000);
         }
             
         if(editProductQuery.data?.refresh)

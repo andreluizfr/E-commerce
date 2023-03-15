@@ -53,8 +53,12 @@ export default function CreateCollection ({create, setCreate}: Props) : JSX.Elem
     //controlador da resposta da query getProductsAdmin
     useEffect(()=>{
 
-        if(getProductsAdminQuery.data)
+        if(getProductsAdminQuery.data){
             console.log(getProductsAdminQuery.data?.message);
+            const serverResponseEl = document.getElementsByClassName("ServerResponse")[0];
+            serverResponseEl?.setAttribute("visible", "true");
+            setTimeout(()=>{serverResponseEl?.setAttribute("visible", "false")}, 3000);
+        }
             
         if(getProductsAdminQuery.data?.refresh)
             refreshToken().then(response=>{
@@ -95,6 +99,27 @@ export default function CreateCollection ({create, setCreate}: Props) : JSX.Elem
         }
     }
 
+    function removeProductFromCollection(productToBeRemoved: Product){
+        if(productToBeRemoved.productId){
+            //procurando e removendo o produto que esta na coleção que vai ser criada
+            const newCollectionProducts = [...collectionToBeCreated.products];
+            const index = newCollectionProducts.findIndex(collectionProduct=> collectionProduct.productId === productToBeRemoved.productId);
+            newCollectionProducts.splice(index, 1);
+
+            setCollectionToBeCreated({
+                ...collectionToBeCreated,
+                products: [...newCollectionProducts]
+            });
+
+            //procurando e removendo o produto que esta na lista de ids de produtos adicionados na coleção 
+            const newProductsAdded = [...productsAdded];
+            const index2 = newProductsAdded.findIndex(productAddedId=> productAddedId === productToBeRemoved.productId);
+            newProductsAdded.splice(index2, 1);
+
+            setProductsAdded([...newProductsAdded]);
+        }
+    }
+
     function createCollection(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault();
         createCollectionQuery.refetch();
@@ -120,7 +145,7 @@ export default function CreateCollection ({create, setCreate}: Props) : JSX.Elem
             setTimeout(()=>window.location.reload(), 2000);
         }
 
-    }, [createCollectionQuery, createCollectionQuery.data]);
+    }, [dispatch, createCollectionQuery, createCollectionQuery.data]);
 
     function hideCreateContainer(){
         setCreate(false);
@@ -134,26 +159,27 @@ export default function CreateCollection ({create, setCreate}: Props) : JSX.Elem
                 <div className='Title'>Criar Coleção</div>
 
                 <div className="FormField">
-                    <label htmlFor='title'>Título</label>
+                    <label htmlFor='title' className='CollectionTitle'>Título</label>
                     <input name="title" onChange={updateCollectionToBeCreated}/>
                 </div>
 
                 <div className="FormField">
-                    <label htmlFor='description'>Descrição</label>
+                    <label htmlFor='description' className='CollectionDescription'>Descrição</label>
                     <input name="description" onChange={updateCollectionToBeCreated}/>
                 </div>
 
-                <div>Produtos para serem adicionados na lista</div>
-                <div className="ProductsTable">
+                <div className="ProductsContainer-info">Todos os produtos da coleção</div>
+                <div className="ProductsContainer">
                     {
                         collectionToBeCreated.products.map((product, index)=>
-                            <ProductCard product={product} key={"collectionToBeCreatedProduct"+index}/>
+                            <ProductCard product={product} key={"collectionToBeCreatedProduct"+index} onClick={()=>removeProductFromCollection(product)}/>
                         )
                     }
+                    <div className="Empty-message">Não existem produtos aqui</div>
                 </div>
                 
-                <div>Todos os produtos disponíveis para adicionar a coleçãos</div>
-                <div className="ProductsTable">
+                <div className="ProductsContainer-info">Todos os produtos disponíveis para adicionar a coleção</div>
+                <div className="ProductsContainer">
                     {
                         productsToAdd.map((product, index)=>{
                             if(product.productId && !productsAdded.includes(product.productId)) //adicionar condição productStatus = ativo
@@ -164,6 +190,7 @@ export default function CreateCollection ({create, setCreate}: Props) : JSX.Elem
                                 return <></>
                         })
                     }
+                    <div className="Empty-message">Não existem produtos aqui</div>
                 </div>
 
                 <button className="Submit-button">Salvar</button>

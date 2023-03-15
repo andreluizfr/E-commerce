@@ -23,6 +23,7 @@
 
         .FormField{
             @include flex-column-center-center;
+            width: 100%;
             gap: .5rem;
 
             &-label{
@@ -35,6 +36,15 @@
                 @include flex-row-start-center;
                 flex-wrap: wrap;
                 gap: .5rem;
+            }
+
+            .Tags{
+                width: 50%;
+                height: 3rem;
+
+                white-space: wrap;
+                overflow: hidden;
+                word-break: break-all;
             }
         }
 
@@ -54,6 +64,13 @@
         }
         .Submit-button:hover{
             background-color: $opaque-black;
+        }
+
+        .ServerResponse{
+            display: none;
+        }
+        .ServerResponse[visible="true"]{
+            display: block;
         }
     }
 }

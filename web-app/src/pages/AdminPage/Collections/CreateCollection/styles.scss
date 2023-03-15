@@ -27,9 +27,9 @@
         @include flex-column-start-center;
         gap: 1rem;
         padding: 1rem;
-        max-height: 80%; //tamanho maximo da tela - tamanho maximo do inicio da tela ate o componente - 1rem do padding do fundo
+        max-height: 95%; //tamanho maximo da tela - tamanho maximo do inicio da tela ate o componente - 1rem do padding do fundo
         min-width: 350px;
-        max-width: 80%;
+        max-width: 90%;
         background-color: $white;
         box-shadow: rgb(50 50 105 / 15%) 0px 2px 5px 0px, rgb(0 0 0 / 5%) 0px 1px 1px 0px;
 
@@ -44,6 +44,7 @@
 
             font-size: $font-size-normal;
             font-weight: 500;
+            color: $purple;
         }
 
         .FormField{
@@ -51,16 +52,37 @@
             width: 100%;
             gap: .5rem;
 
-            .Title, .Description{
-                font-size: $font-size-smaller;
-                color: $purple;
-                margin-right: 1rem;
+            .CollectionTitle, .CollectionDescription{
+                font-size: $font-size-small;
+                font-weight: 500;
             }
         }
 
-        .ProductsTable{
+        .ProductsContainer-info{
+            font-size: $font-size-small;
+            font-weight: 500;
+        }
+
+        .ProductsContainer{
             @include flex-row-start-center;
             width: 100%;
+            min-height: calc(1rem + 300px); //altura do card + paddings verticais
+            gap: .5rem;
+            padding: .5rem;
+            border: 1px solid $thinner-black;
+            border-radius: .2rem;
+            box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+
+            .Empty-message{
+                display: none;
+                width: 100%;
+                text-align: center;
+                font-size: $font-size-small;
+            }
+
+            .Empty-message:only-child{
+                display: block;
+            }
         }
 
         .Submit-button{
@@ -79,6 +101,13 @@
         }
         .Submit-button:hover{
             background-color: $opaque-black;
+        }
+
+        .ServerResponse{
+            display: none;
+        }
+        .ServerResponse[visible="true"]{
+            display: block;
         }
     }
 }
