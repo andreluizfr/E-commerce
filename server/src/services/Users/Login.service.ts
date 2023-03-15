@@ -33,10 +33,7 @@ export class LoginService{
                     const accessToken = createAccessToken(data.email);
                     const refreshToken = createRefreshToken(data.email);
 
-                    const updatedUser = await this.usersRepository.updateRefreshToken(data.email, refreshToken);
-
-                    if(updatedUser) return {accessToken: accessToken, refreshToken: refreshToken};
-                    else throw new Error("Não foi possível autenticar.");
+                    return {accessToken: accessToken, refreshToken: refreshToken};
 
                 } else throw new Error("Aguardando verificação por e-mail.");
 

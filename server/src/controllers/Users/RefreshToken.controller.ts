@@ -1,9 +1,7 @@
 import { Request, Response } from 'express';
 import { RefreshTokenService } from '../../services/Users/RefreshToken.service';
-import { UsersRepository } from "../../repositories/Users/Users.repository";
 
-const usersRepository = new UsersRepository();
-const refreshTokenService = new RefreshTokenService(usersRepository);
+const refreshTokenService = new RefreshTokenService();
 
 //receive a request, calls the use-case, then send back a response
 export default new class RefreshTokenController{

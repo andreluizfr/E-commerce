@@ -43,9 +43,6 @@ export class User{
     @Column()
     public admin!: boolean;
 
-    @Column({ nullable: true })
-    public refreshToken!: string;
-
     @OneToMany(() => Rating, (rating: Rating) => rating.user)
     public ratings!: Rating[];
 
