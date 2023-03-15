@@ -61,21 +61,6 @@
         .ProductsTable{
             @include flex-row-start-center;
             width: 100%;
-
-            .ProductCard{
-                @include flex-column-center-center;
-                border: 1px solid $thinner-black;
-                padding: .5rem;
-
-                .ProductId, .Title{
-                    font-size: $font-size-small;
-                    font-weight: 500;
-                }
-
-                .Image{
-                    @include image-small;
-                }
-            }
         }
 
         .Submit-button{
