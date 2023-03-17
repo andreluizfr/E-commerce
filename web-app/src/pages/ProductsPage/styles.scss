@@ -2,5 +2,224 @@
 @import '../../assets/css/_mixins';
 
 .ProductsPage{
-    
+    @include flex-column-start-center;
+    min-height: 100vh; 
+    background-color: $lighter-gray;
+
+    .ProductsPage-container{
+        @include flex-column-start-end;
+        min-width: 1042px;
+        flex-grow: 1;
+        padding: .5rem;
+        background-color: $white;
+
+        .ClassifyBy-options{
+            @include flex-row-start-center;
+            gap: .5rem;
+            padding: .5rem;
+            background-color: $almost-white;
+
+            .ClassifyBy-title{
+                font-size: $font-size-small;
+                font-weight: 500;
+            }
+
+            .Classify-button{
+                padding: .5rem;
+                outline: none;
+                border: 1px solid $thin-black;
+                border-radius: .2rem;
+                background-color: $white;
+                
+                color: $black;
+                font-size: $font-size-smaller;
+
+                transition: 200ms;
+                cursor: pointer;
+            }
+            .Classify-button:hover{
+                background-color: $thinner-black;
+            }
+            .Classify-button[active="true"]{
+                color: $white;
+                background-color: $black;
+            }
+        }
+
+        .Products-container{
+            @include flex-row-start-start;
+            width: 100%;
+
+            .Products-menu{
+                @include flex-column-start-center;
+                gap: 2rem;
+                margin-right: 1rem;
+
+                .Categories{
+                    @include flex-column-start-start;
+                    width: 100%;
+                    gap: .2rem;
+
+                    &-title{
+                        font-size: $font-size-normal;
+                        font-weight: 600;
+                        margin-bottom: 1rem;
+                    }
+
+                    .Category{
+                        margin-left: 1rem;
+
+                        color: $black;
+                        font-size: $font-size-smaller;
+                        font-weight: 500;
+
+                        transition: 200ms all;
+                        cursor: pointer;
+                    }
+                    .Category:hover{
+                        opacity: 0.7;
+                        transform: scale(1.1);
+                    }
+                    .Category[active="true"]{
+                        color: $red;
+                    }
+                    .Category[active="true"]::before{
+                        content: "";
+                        display: inline;
+                        background-image: url("");
+                    }
+                }
+
+                .Filters{
+                    @include flex-column-start-start;
+                    width: 100%;
+                    gap: 1rem;
+
+                    &-title{
+                        font-size: $font-size-normal;
+                        font-weight: 600;
+                        margin-bottom: .2rem;
+                    }
+
+                    .Price-section{
+                        @include flex-column-start-start;
+                        gap: .5rem;
+                        margin-left: .5rem;
+
+                        &-title{
+                            font-size: $font-size-small;
+                            font-weight: 500;
+                        }
+
+                        .Prices{
+                            @include flex-row-center-center;
+                            gap: .5rem;
+
+                            .Price{
+                                width: 4rem;
+                                outline: none;
+                                border: 1px solid $thin-black;
+                                border-radius: .1rem;
+                                padding: .2rem;
+
+                                font-size: $font-size-smaller;
+                                color: black;
+                            }
+
+                            .Separator{
+                                width: 2rem;
+                                height: 1px;
+                                border-bottom: 1px solid $thin-black;
+                            }
+
+                        }
+
+                        .PriceFilter-button{
+                            width: 100%;
+                            padding: .2rem .5rem;
+                            outline: none;
+                            border: 1px solid $thin-black;
+                            border-radius: .2rem;
+                            background-color: $black;
+                            color: $white;
+                            font-size: $font-size-smaller;
+
+                            transition: 200ms;
+                            cursor: pointer;
+                        }
+                        .PriceFilter-button:hover{
+                            background-color: $opaque-black;
+                        }
+                    }
+
+                    .Brand-section{
+                        @include flex-column-start-start;
+                        gap: .5rem;
+                        margin-left: .5rem;
+
+                        &-title{
+                            font-size: $font-size-small;
+                            font-weight: 500;
+                        }
+
+                        .Brand-wrapper{
+                            @include flex-row-start-center;
+                            gap: .5rem;
+
+                            .Brand-checkbox{
+                                border-radius: 50%;
+                            }
+
+                            .Brand{
+                                font-size: $font-size-smaller;
+                            }
+                        }
+                    }
+
+                    .Rating-section{
+                        @include flex-column-start-start;
+                        gap: .5rem;
+                        margin-left: .5rem;
+
+                        &-title{
+                            font-size: $font-size-small;
+                            font-weight: 500;
+                        }
+
+                        .RatingStars{
+                            transition: 200ms;
+                            cursor: pointer;
+                        }
+                        .RatingStars:hover{
+                            opacity: 0.7;
+                        }
+                        .RatingStars:nth-child(2)[active="true"] .Star:nth-child(-n+5){
+                            filter: hue-rotate(120deg) invert(1);
+                        }
+                        .RatingStars:nth-child(3)[active="true"] .Star:nth-child(-n+4){
+                            filter: hue-rotate(120deg) invert(1);
+                        }
+                        .RatingStars:nth-child(4)[active="true"] .Star:nth-child(-n+3){
+                            filter: hue-rotate(120deg) invert(1);
+                        }
+                        .RatingStars:nth-child(5)[active="true"] .Star:nth-child(-n+2){
+                            filter: hue-rotate(120deg) invert(1);
+                        }
+                        .RatingStars:nth-child(6)[active="true"] .Star:nth-child(-n+1){
+                            filter: hue-rotate(120deg) invert(1);
+                        }
+                    }
+                }
+            }
+
+            .Products{
+                display: grid;
+                grid-template-columns: 200px 200px 200px 200px;
+                grid-column-gap: 4px;
+                margin-top: 1rem;
+
+            }
+        }
+    }
 }
+

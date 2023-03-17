@@ -118,7 +118,7 @@ export default function SignupPage () : JSX.Element {
             <div className='SignupPage'>
                 <NavBar/>
 
-                <div className='SignupBG'>
+                <main className='SignupBG'>
                     <div className='InfoSignup'>
 
                         <h1>Cadastre-se</h1>
@@ -160,7 +160,7 @@ export default function SignupPage () : JSX.Element {
                         </p>
 
                     </div>
-                </div>
+                </main>
 
                 <Footer/>
             </div>
@@ -173,7 +173,7 @@ export default function SignupPage () : JSX.Element {
             <div className='SignupPage'>
                 <NavBar/>
 
-                <div className='SignupBG'>
+                <main className='SignupBG'>
                     <form className='InfoSignup' onSubmit={handleSignup}>
 
                         <h1>Cadastre-se</h1>
@@ -275,7 +275,7 @@ export default function SignupPage () : JSX.Element {
                             }
                         </div>
                     </form>
-                </div>
+                </main>
 
                 <Footer/>
             </div>

@@ -5,12 +5,14 @@
     @include flex-column-start-center;
     min-height: 100vh; 
     background-color: $lighter-gray;
+
+    .HomePage-container{
+        @include flex-column-start-center;
+        width: 70%;
+        flex-grow: 1;
+        //background: radial-gradient(ellipse at right bottom, #EEB1BF 5%, #d42dab 25%, #4d1d63 50%, #030243 100%);
+        //background: radial-gradient(ellipse at right bottom, #b3178c 0%, #400f57 50%, #030243 100%);
+    }
 }
 
-.HomePage-container{
-    @include flex-column-start-center;
-    width: 70%;
-    flex-grow: 1;
-    //background: radial-gradient(ellipse at right bottom, #EEB1BF 5%, #d42dab 25%, #4d1d63 50%, #030243 100%);
-    //background: radial-gradient(ellipse at right bottom, #b3178c 0%, #400f57 50%, #030243 100%);
-}
+

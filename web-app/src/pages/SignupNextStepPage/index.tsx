@@ -13,7 +13,7 @@ export default function SignupNextStepPage () : JSX.Element {
         <div className='SignupNextStepPage'>
             <NavBar/>
 
-            <div className='SignupNextStepPage-background'> 
+            <main className='SignupNextStepPage-background'> 
 
                     <img 
                         className='ConfirmYourEmail' 
@@ -27,7 +27,7 @@ export default function SignupNextStepPage () : JSX.Element {
                         </Link>
                     </button>
                     
-            </div>
+            </main>
 
             <Footer/>
         </div>

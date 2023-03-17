@@ -23,7 +23,7 @@ export default function EmailVerificationPage () : JSX.Element {
             <div className='EmailVerificationPage'>
                 <NavBar/>
 
-                <div className='EmailVerificationPage-background'> 
+                <main className='EmailVerificationPage-background'> 
 
 
                     {verifyEmailQuery.isFetching?
@@ -59,7 +59,7 @@ export default function EmailVerificationPage () : JSX.Element {
                                 null
                     }
 
-                </div>
+                </main>
 
                 <Footer/>
             </div>

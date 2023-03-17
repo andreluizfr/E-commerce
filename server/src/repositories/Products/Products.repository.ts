@@ -61,7 +61,7 @@ export class ProductsRepository implements IProductsRepository{
     }
 
     async find(queries: Queries){
-        const productsRepository = AppDataSource.getRepository(Product)
+        const productsRepository = AppDataSource.getRepository(Product);
 
         const where = [
             {

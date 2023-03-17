@@ -6,8 +6,7 @@
   min-height: 100vh;
   background-color: #F3F3F3;
 }
-
-.HomePage-container {
+.HomePage .HomePage-container {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

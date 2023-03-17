@@ -100,6 +100,13 @@
     align-items: flex-start;
 }
 
+@mixin flex-column-start-end{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
 @mixin flex-column-space-around-center{
     display: flex;
     flex-direction: column;

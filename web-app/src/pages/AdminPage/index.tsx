@@ -20,7 +20,7 @@ export default function AdminPage () : JSX.Element {
     return(
         <div className='AdminPage'>
             <NavBar/>
-            <div className='AdminPage-container'>
+            <main className='AdminPage-container'>
                 <MenuAccordion setPageState={setPageState}/>
 
                 <React.Suspense fallback={<LoadingPage/>}>
@@ -29,7 +29,7 @@ export default function AdminPage () : JSX.Element {
                     {pageState === "AddProduct"? <AddProduct/> : null}
                     {pageState === "Collections"? <Collections/> : null}
                 </React.Suspense>
-            </div>
+            </main>
         </div>
     );
 }

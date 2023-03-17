@@ -51,7 +51,7 @@ export default function LoginPage () : JSX.Element {
         <div className='LoginPage'>
             <NavBar/>
 
-            <div className='LoginBG'>
+            <main className='LoginBG'>
                 <form className='InfoLogin' onSubmit={handleLogin} noValidate> 
                     <h1>Login</h1>
             
@@ -117,7 +117,7 @@ export default function LoginPage () : JSX.Element {
                     </div>
 
                 </form>
-            </div>
+            </main>
 
             <Footer/>
         </div>    

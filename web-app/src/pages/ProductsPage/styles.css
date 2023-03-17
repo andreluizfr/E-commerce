@@ -1,1 +1,219 @@
-/*# sourceMappingURL=styles.css.map */
+.ProductsPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #F3F3F3;
+}
+.ProductsPage .ProductsPage-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+  min-width: 1042px;
+  flex-grow: 1;
+  padding: 0.5rem;
+  background-color: rgb(255, 255, 255);
+}
+.ProductsPage .ProductsPage-container .ClassifyBy-options {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: rgb(247, 249, 249);
+}
+.ProductsPage .ProductsPage-container .ClassifyBy-options .ClassifyBy-title {
+  font-size: 1rem;
+  font-weight: 500;
+}
+.ProductsPage .ProductsPage-container .ClassifyBy-options .Classify-button {
+  padding: 0.5rem;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.24);
+  border-radius: 0.2rem;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  font-size: 0.9rem;
+  transition: 200ms;
+  cursor: pointer;
+}
+.ProductsPage .ProductsPage-container .ClassifyBy-options .Classify-button:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+.ProductsPage .ProductsPage-container .ClassifyBy-options .Classify-button[active=true] {
+  color: rgb(255, 255, 255);
+  background-color: rgb(0, 0, 0);
+}
+.ProductsPage .ProductsPage-container .Products-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+}
+.ProductsPage .ProductsPage-container .Products-container .Products-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2rem;
+  margin-right: 1rem;
+}
+.ProductsPage .ProductsPage-container .Products-container .Products-menu .Categories {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  gap: 0.2rem;
+}
+.ProductsPage .ProductsPage-container .Products-container .Products-menu .Categories-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.ProductsPage .ProductsPage-container .Products-container .Products-menu .Categories .Category {
+  margin-left: 1rem;
+  color: rgb(0, 0, 0);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: 200ms all;
+  cursor: pointer;
+}
+.ProductsPage .ProductsPage-container .Products-container .Products-menu .Categories .Category:hover {
+  opacity: 0.7;
+  transform: scale(1.1);
+}
+.ProductsPage .ProductsPage-container .Products-container .Products-menu .Categories .Category[active=true] {
+  color: rgb(255, 0, 0);
+}
+.ProductsPage .ProductsPage-container .Products-container .Products-menu .Categories .Category[active=true]::before {
+  content: "";
+  display: inline;
+  background-image: url("");
+}
+.ProductsPage .ProductsPage-container .Products-container .Products-menu .Filters {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  gap: 1rem;
+}
+.ProductsPage .ProductsPage-container .Products-container .Products-menu .Filters-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+.ProductsPage .ProductsPage-container .Products-container .Products-menu .Filters .Price-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-left: 0.5rem;
+}
+.ProductsPage .ProductsPage-container .Products-container .Products-menu .Filters .Price-section-title {
+  font-size: 1rem;
+  font-weight: 500;
+}
+.ProductsPage .ProductsPage-container .Products-container .Products-menu .Filters .Price-section .Prices {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+.ProductsPage .ProductsPage-container .Products-container .Products-menu .Filters .Price-section .Prices .Price {
+  width: 4rem;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.24);
+  border-radius: 0.1rem;
+  padding: 0.2rem;
+  font-size: 0.9rem;
+  color: black;
+}
+.ProductsPage .ProductsPage-container .Products-container .Products-menu .Filters .Price-section .Prices .Separator {
+  width: 2rem;
+  height: 1px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.24);
+}
+.ProductsPage .ProductsPage-container .Products-container .Products-menu .Filters .Price-section .PriceFilter-button {
+  width: 100%;
+  padding: 0.2rem 0.5rem;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.24);
+  border-radius: 0.2rem;
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  font-size: 0.9rem;
+  transition: 200ms;
+  cursor: pointer;
+}
+.ProductsPage .ProductsPage-container .Products-container .Products-menu .Filters .Price-section .PriceFilter-button:hover {
+  background-color: rgba(0, 0, 0, 0.85);
+}
+.ProductsPage .ProductsPage-container .Products-container .Products-menu .Filters .Brand-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-left: 0.5rem;
+}
+.ProductsPage .ProductsPage-container .Products-container .Products-menu .Filters .Brand-section-title {
+  font-size: 1rem;
+  font-weight: 500;
+}
+.ProductsPage .ProductsPage-container .Products-container .Products-menu .Filters .Brand-section .Brand-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+}
+.ProductsPage .ProductsPage-container .Products-container .Products-menu .Filters .Brand-section .Brand-wrapper .Brand-checkbox {
+  border-radius: 50%;
+}
+.ProductsPage .ProductsPage-container .Products-container .Products-menu .Filters .Brand-section .Brand-wrapper .Brand {
+  font-size: 0.9rem;
+}
+.ProductsPage .ProductsPage-container .Products-container .Products-menu .Filters .Rating-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-left: 0.5rem;
+}
+.ProductsPage .ProductsPage-container .Products-container .Products-menu .Filters .Rating-section-title {
+  font-size: 1rem;
+  font-weight: 500;
+}
+.ProductsPage .ProductsPage-container .Products-container .Products-menu .Filters .Rating-section .RatingStars {
+  transition: 200ms;
+  cursor: pointer;
+}
+.ProductsPage .ProductsPage-container .Products-container .Products-menu .Filters .Rating-section .RatingStars:hover {
+  opacity: 0.7;
+}
+.ProductsPage .ProductsPage-container .Products-container .Products-menu .Filters .Rating-section .RatingStars:nth-child(2)[active=true] .Star:nth-child(-n+5) {
+  filter: hue-rotate(120deg) invert(1);
+}
+.ProductsPage .ProductsPage-container .Products-container .Products-menu .Filters .Rating-section .RatingStars:nth-child(3)[active=true] .Star:nth-child(-n+4) {
+  filter: hue-rotate(120deg) invert(1);
+}
+.ProductsPage .ProductsPage-container .Products-container .Products-menu .Filters .Rating-section .RatingStars:nth-child(4)[active=true] .Star:nth-child(-n+3) {
+  filter: hue-rotate(120deg) invert(1);
+}
+.ProductsPage .ProductsPage-container .Products-container .Products-menu .Filters .Rating-section .RatingStars:nth-child(5)[active=true] .Star:nth-child(-n+2) {
+  filter: hue-rotate(120deg) invert(1);
+}
+.ProductsPage .ProductsPage-container .Products-container .Products-menu .Filters .Rating-section .RatingStars:nth-child(6)[active=true] .Star:nth-child(-n+1) {
+  filter: hue-rotate(120deg) invert(1);
+}
+.ProductsPage .ProductsPage-container .Products-container .Products {
+  display: grid;
+  grid-template-columns: 200px 200px 200px 200px;
+  grid-column-gap: 4px;
+  margin-top: 1rem;
+}/*# sourceMappingURL=styles.css.map */

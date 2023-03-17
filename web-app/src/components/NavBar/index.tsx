@@ -56,7 +56,7 @@ export default function NavBar() : JSX.Element{
 
                 <div className='NavBar-container-background'>
 
-                    <div className='NavBar-container'>
+                    <nav className='NavBar-container'>
 
                         <div className='NavBar-searchBar'>
                             <input 
@@ -64,7 +64,7 @@ export default function NavBar() : JSX.Element{
                                 placeholder='Procure um produto...'
                                 onChange={saveInput}
                             />
-                            <Link to={'/busca?keyword='+searchInputContent} onClick={search}>
+                            <Link to={'/produtos?keyword='+searchInputContent} onClick={search}>
                                 <SearchIcon className='SearchBar-icon'/>
                             </Link>
                         </div>
@@ -74,7 +74,7 @@ export default function NavBar() : JSX.Element{
                             <CartPopover/>
                         </div>
 
-                    </div>
+                    </nav>
                 
                 </div>
 
@@ -98,15 +98,15 @@ export default function NavBar() : JSX.Element{
 
                 <div className='NavBar-container-background'>
 
-                    <div className='NavBar-container'>
+                    <nav className='NavBar-container'>
 
-                    <Link to='/'>
-                        <img 
-                            className='NavBar-logo'
-                            alt='logo da empresa' 
-                            src={logo}
-                        />
-                    </Link>
+                        <Link to='/'>
+                            <img 
+                                className='NavBar-logo'
+                                alt='logo da empresa' 
+                                src={logo}
+                            />
+                        </Link>
 
                         <div className='NavBar-searchBar'>
                             <input 
@@ -125,7 +125,7 @@ export default function NavBar() : JSX.Element{
                             <CartPopover/>
                         </div>
 
-                    </div>
+                    </nav>
                     
                 </div>
 

@@ -13,13 +13,13 @@ export default function NotFoundPage () : JSX.Element {
         <div className='NotFoundPage'>
             <NavBar/>
 
-                <div className='NotFoundPage-background'>
+                <main className='NotFoundPage-background'>
                     <img 
                         className='NotFoundImg' 
                         alt='imagem com menino e interrogações flutuante indicando que página não foi encontrada' 
                         src={notFound}
                     />
-                </div>
+                </main>
 
             <Footer/>
         </div>

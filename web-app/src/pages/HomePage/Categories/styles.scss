@@ -6,6 +6,7 @@
     width: 100%;
     margin: .5rem 0;
     background-color: $white;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.2));
 
     .Container-title{
         width: 100%;
@@ -30,6 +31,7 @@
 
             transition: 100ms;
             overflow: hidden;
+            cursor: pointer;
 
             .Card-image{
                 width: 70%;
@@ -45,7 +47,6 @@
 
         .Categorie-card:hover{
             filter: drop-shadow(0 0 5px #0003);
-            cursor: pointer;
         }
     }
 }

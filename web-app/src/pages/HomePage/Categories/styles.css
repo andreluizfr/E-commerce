@@ -6,6 +6,7 @@
   width: 100%;
   margin: 0.5rem 0;
   background-color: rgb(255, 255, 255);
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.2));
 }
 .HomePage-categories .Container-title {
   width: 100%;
@@ -30,6 +31,7 @@
   border: 1px solid rgba(0, 0, 0, 0.08);
   transition: 100ms;
   overflow: hidden;
+  cursor: pointer;
 }
 .HomePage-categories .Categories-cards-wrapper .Categorie-card .Card-image {
   width: 70%;
@@ -43,5 +45,4 @@
 }
 .HomePage-categories .Categories-cards-wrapper .Categorie-card:hover {
   filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.2));
-  cursor: pointer;
 }/*# sourceMappingURL=styles.css.map */
