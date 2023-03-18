@@ -1,5 +1,7 @@
 # Loja
 
+## Descrição
+
 ## Stacks utilizadas
 
 ### Backend
