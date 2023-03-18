@@ -7,10 +7,6 @@
     background-color: $white;
     margin: .5rem 0;
     filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.2));
-    
-    @include mq-medium{
-        background-color: transparent;
-    }
 
     .Container-title{
         width: 100%;

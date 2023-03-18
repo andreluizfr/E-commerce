@@ -20,6 +20,11 @@
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   width: 100%;
 }
+@media only screen and (max-width: 576px) {
+  .HomePage-categories .Categories-cards-wrapper {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  }
+}
 .HomePage-categories .Categories-cards-wrapper .Categorie-card {
   display: flex;
   flex-direction: column;
@@ -32,6 +37,11 @@
   transition: 100ms;
   overflow: hidden;
   cursor: pointer;
+}
+@media only screen and (max-width: 576px) {
+  .HomePage-categories .Categories-cards-wrapper .Categorie-card {
+    height: 6.5rem;
+  }
 }
 .HomePage-categories .Categories-cards-wrapper .Categorie-card .Card-image {
   width: 70%;

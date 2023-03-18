@@ -4,7 +4,7 @@
   justify-content: flex-start;
   align-items: center;
   height: 100vh;
-  min-width: calc(550px + 1rem + 1rem + 1rem);
+  min-width: 876px;
   background-color: #F3F3F3;
 }
 .AdminPage .NavBar {

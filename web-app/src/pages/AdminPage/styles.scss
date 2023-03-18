@@ -4,7 +4,7 @@
 .AdminPage{
     @include flex-column-start-center;
     height: 100vh;
-    min-width: calc(200px + 350px + 1rem + 1rem + 1rem); //largura do menu + largura minima do conteudo + padding da direita e esquerda + sobra de garantia
+    min-width: 876px;
     background-color: $lighter-gray;
 
     .NavBar{

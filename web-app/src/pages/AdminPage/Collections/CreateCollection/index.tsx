@@ -172,7 +172,7 @@ export default function CreateCollection ({create, setCreate}: Props) : JSX.Elem
                 <div className="ProductsContainer">
                     {
                         collectionToBeCreated.products.map((product, index)=>
-                            <ProductCard product={product} key={"collectionToBeCreatedProduct"+index} onClick={()=>removeProductFromCollection(product)}/>
+                            <ProductCard product={product} key={"collectionToBeCreatedProduct"+String(index)} onClick={()=>removeProductFromCollection(product)}/>
                         )
                     }
                     <div className="Empty-message">Não existem produtos aqui</div>
@@ -184,7 +184,7 @@ export default function CreateCollection ({create, setCreate}: Props) : JSX.Elem
                         productsToAdd.map((product, index)=>{
                             if(product.productId && !productsAdded.includes(product.productId)) //adicionar condição productStatus = ativo
                                 return(
-                                    <ProductCard product={product} key={"collectionToBeCreatedProduct"+index} onClick={()=>addProductToCollection(product)}/>
+                                    <ProductCard product={product} key={"collectionToBeCreatedProduct"+String(index)} onClick={()=>addProductToCollection(product)}/>
                                 )
                             else
                                 return <></>

@@ -37,6 +37,10 @@
     &-logo{
         @include image-small;
         margin: .5rem;
+
+        @include mq-small{
+            @include image-smaller;
+        }
     }
 
     .NavBar-container-background{
