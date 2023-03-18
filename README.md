@@ -1,19 +1,24 @@
 # Loja
 
-## server
+## Como iniciar a aplicação
 
-### rodar em desenvolvimento (porta 5000)
+### server
+
+#### rodar em desenvolvimento (porta 5000)
+```npm install```
 ```npm run dev```
 
-### rodar em produção (porta 8080)
+#### rodar em produção (porta 8080)
+```npm install```
 ```npm start```
 
-## web-app
+### web-app
 
-### rodar em desenvolvimento (porta 3000)
+#### rodar em desenvolvimento (porta 3000)
+```npm install```
 ```npm start```
 
-### rodar em produção (porta 3000)
+#### rodar em produção (porta 3000)
+```npm install```
 ```npm run build```
-
 ```serve -s build```
