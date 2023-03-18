@@ -5,23 +5,25 @@ import { HTMLAttributes, useEffect, useRef } from "react";
 interface RatingProps extends HTMLAttributes<HTMLDivElement> {
     rate?: number;
     size?: "small" | "medium" | "large";
+    active?: "true" | "false";
 }
 
 export default function RatingStars (props: RatingProps) : JSX.Element {
 
     const ratingRef = useRef<HTMLDivElement | null>(null);
+    const {size, rate, ...rest} = props;
 
     useEffect(()=>{
-        if(props.size){
-            ratingRef.current?.setAttribute("size", props.size);
+        if(size){
+            ratingRef.current?.setAttribute("size", size);
         }
-    }, [props.size]);
+    }, [size]);
 
     useEffect(()=>{
         const stars = ratingRef.current?.getElementsByClassName("Star");
 
-        if(stars && stars.length === 5 && props.rate!==undefined){
-            let productRating = props.rate;
+        if(stars && stars.length === 5 && rate!==undefined){
+            let productRating = rate;
         
             for(let i=0; i<5; i+=1){
                 productRating-=1;
@@ -44,10 +46,10 @@ export default function RatingStars (props: RatingProps) : JSX.Element {
             }
         }
 
-    }, [props.rate]);
+    }, [rate]);
 
     return(
-        <div className='RatingStars' ref={ratingRef}>
+        <div className='RatingStars' ref={ratingRef} {...rest}>
             <div className='Star'></div>
             <div className='Star'></div>
             <div className='Star'></div>

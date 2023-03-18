@@ -7,7 +7,7 @@ interface IGetProductsResponse {
     login?: boolean;
     success: boolean;
     message: string;
-    products?: Product[];
+    products: Product[];
 }
 
 export default function GetProducts (query: string) {
@@ -22,7 +22,7 @@ export default function GetProducts (query: string) {
     
     }, {
         refetchOnWindowFocus: false,
-        enabled: false
+        enabled: true
     });
 
     return getProductsQuery;

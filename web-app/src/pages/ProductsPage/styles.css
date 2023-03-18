@@ -74,6 +74,7 @@
   margin-bottom: 1rem;
 }
 .ProductsPage .ProductsPage-container .Products-container .Products-menu .Categories .Category {
+  position: relative;
   margin-left: 1rem;
   color: rgb(0, 0, 0);
   font-size: 0.9rem;
@@ -90,8 +91,20 @@
 }
 .ProductsPage .ProductsPage-container .Products-container .Products-menu .Categories .Category[active=true]::before {
   content: "";
-  display: inline;
-  background-image: url("");
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  bottom: 50%;
+  left: -0.8rem;
+  margin: auto;
+  width: 0.6rem;
+  height: 0.6rem;
+  background-image: url("../../assets/svg/right-arrow.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: saturate(0%) brightness(0%) invert(50%) opacity(1);
+  filter: url('data:image/svg+xml;utf8,      <svg xmlns="http://www.w3.org/2000/svg">        <filter id="recolor" color-interpolation-filters="sRGB">          <feColorMatrix type="matrix" values="            0 0 0 0 1            0 0 0 0 0            0 0 0 0 0            0 0 0 1 0          "/>        </filter>      </svg>      #recolor');
 }
 .ProductsPage .ProductsPage-container .Products-container .Products-menu .Filters {
   display: flex;
@@ -197,23 +210,38 @@
   opacity: 0.7;
 }
 .ProductsPage .ProductsPage-container .Products-container .Products-menu .Filters .Rating-section .RatingStars:nth-child(2)[active=true] .Star:nth-child(-n+5) {
-  filter: hue-rotate(120deg) invert(1);
+  filter: saturate(0%) brightness(0%) invert(50%) opacity(1);
+  filter: url('data:image/svg+xml;utf8,      <svg xmlns="http://www.w3.org/2000/svg">        <filter id="recolor" color-interpolation-filters="sRGB">          <feColorMatrix type="matrix" values="            0 0 0 0 1            0 0 0 0 0            0 0 0 0 0            0 0 0 1 0          "/>        </filter>      </svg>      #recolor');
 }
 .ProductsPage .ProductsPage-container .Products-container .Products-menu .Filters .Rating-section .RatingStars:nth-child(3)[active=true] .Star:nth-child(-n+4) {
-  filter: hue-rotate(120deg) invert(1);
+  filter: saturate(0%) brightness(0%) invert(50%) opacity(1);
+  filter: url('data:image/svg+xml;utf8,      <svg xmlns="http://www.w3.org/2000/svg">        <filter id="recolor" color-interpolation-filters="sRGB">          <feColorMatrix type="matrix" values="            0 0 0 0 1            0 0 0 0 0            0 0 0 0 0            0 0 0 1 0          "/>        </filter>      </svg>      #recolor');
 }
 .ProductsPage .ProductsPage-container .Products-container .Products-menu .Filters .Rating-section .RatingStars:nth-child(4)[active=true] .Star:nth-child(-n+3) {
-  filter: hue-rotate(120deg) invert(1);
+  filter: saturate(0%) brightness(0%) invert(50%) opacity(1);
+  filter: url('data:image/svg+xml;utf8,      <svg xmlns="http://www.w3.org/2000/svg">        <filter id="recolor" color-interpolation-filters="sRGB">          <feColorMatrix type="matrix" values="            0 0 0 0 1            0 0 0 0 0            0 0 0 0 0            0 0 0 1 0          "/>        </filter>      </svg>      #recolor');
 }
 .ProductsPage .ProductsPage-container .Products-container .Products-menu .Filters .Rating-section .RatingStars:nth-child(5)[active=true] .Star:nth-child(-n+2) {
-  filter: hue-rotate(120deg) invert(1);
+  filter: saturate(0%) brightness(0%) invert(50%) opacity(1);
+  filter: url('data:image/svg+xml;utf8,      <svg xmlns="http://www.w3.org/2000/svg">        <filter id="recolor" color-interpolation-filters="sRGB">          <feColorMatrix type="matrix" values="            0 0 0 0 1            0 0 0 0 0            0 0 0 0 0            0 0 0 1 0          "/>        </filter>      </svg>      #recolor');
 }
 .ProductsPage .ProductsPage-container .Products-container .Products-menu .Filters .Rating-section .RatingStars:nth-child(6)[active=true] .Star:nth-child(-n+1) {
-  filter: hue-rotate(120deg) invert(1);
+  filter: saturate(0%) brightness(0%) invert(50%) opacity(1);
+  filter: url('data:image/svg+xml;utf8,      <svg xmlns="http://www.w3.org/2000/svg">        <filter id="recolor" color-interpolation-filters="sRGB">          <feColorMatrix type="matrix" values="            0 0 0 0 1            0 0 0 0 0            0 0 0 0 0            0 0 0 1 0          "/>        </filter>      </svg>      #recolor');
 }
 .ProductsPage .ProductsPage-container .Products-container .Products {
   display: grid;
   grid-template-columns: 200px 200px 200px 200px;
   grid-column-gap: 4px;
   margin-top: 1rem;
+}
+.ProductsPage .ProductsPage-container .Products-container .Loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 812px;
+}
+.ProductsPage .ProductsPage-container .AlignCenter {
+  align-items: center;
 }/*# sourceMappingURL=styles.css.map */

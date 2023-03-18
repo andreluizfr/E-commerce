@@ -67,6 +67,7 @@
                     }
 
                     .Category{
+                        position: relative;
                         margin-left: 1rem;
 
                         color: $black;
@@ -85,8 +86,19 @@
                     }
                     .Category[active="true"]::before{
                         content: "";
-                        display: inline;
-                        background-image: url("");
+                        display: inline-block;
+                        position: absolute;
+                        top: 50%;
+                        bottom: 50%;
+                        left: -.8rem;
+                        margin: auto;
+
+                        @include icon-smallest;
+                        background-image: url("../../assets/svg/right-arrow.png");
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        @include recolor($red, 1.0);
                     }
                 }
 
@@ -194,19 +206,19 @@
                             opacity: 0.7;
                         }
                         .RatingStars:nth-child(2)[active="true"] .Star:nth-child(-n+5){
-                            filter: hue-rotate(120deg) invert(1);
+                            @include recolor($red, 1.0);
                         }
                         .RatingStars:nth-child(3)[active="true"] .Star:nth-child(-n+4){
-                            filter: hue-rotate(120deg) invert(1);
+                            @include recolor($red, 1.0);
                         }
                         .RatingStars:nth-child(4)[active="true"] .Star:nth-child(-n+3){
-                            filter: hue-rotate(120deg) invert(1);
+                            @include recolor($red, 1.0);
                         }
                         .RatingStars:nth-child(5)[active="true"] .Star:nth-child(-n+2){
-                            filter: hue-rotate(120deg) invert(1);
+                            @include recolor($red, 1.0);
                         }
                         .RatingStars:nth-child(6)[active="true"] .Star:nth-child(-n+1){
-                            filter: hue-rotate(120deg) invert(1);
+                            @include recolor($red, 1.0);
                         }
                     }
                 }
@@ -219,6 +231,15 @@
                 margin-top: 1rem;
 
             }
+
+            .Loading{
+                @include flex-column-center-center;
+                min-width: 812px;
+            }
+        }
+
+        .AlignCenter{
+            align-items: center;
         }
     }
 }

@@ -30,7 +30,8 @@ type Product = {
         "4": number,
         "5": number
     },
-    sales?: number
+    sales?: number,
+    created_at?: Date
 };
 
 export default Product;
