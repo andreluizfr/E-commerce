@@ -29,12 +29,11 @@ export default function ProductPage () : JSX.Element {
     const [animateCart, setAnimateCart] = useState(false);
 
     useEffect(()=>{
-        console.log(getProductQuery.data?.message);
         if(getProductQuery.data?.success && getProductQuery.data.product){
+            console.log(getProductQuery.data?.message);
             console.log(getProductQuery.data.product);
             setProduct(getProductQuery.data.product);
         }
-            
     }, [getProductQuery.data]);
 
     function selectValue (event: React.MouseEvent<HTMLElement>){

@@ -38,7 +38,7 @@ export default function EditProduct ({productToBeEdited, setProductToBeEdited}: 
         editProductQuery.remove();
     }
 
-    function updateFormData (event: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) {
+    function updateFormData (event: React.ChangeEvent <HTMLSelectElement | HTMLInputElement>) {
         if(productToBeEdited)
             setProductToBeEdited({
                 ...productToBeEdited,
@@ -104,11 +104,13 @@ export default function EditProduct ({productToBeEdited, setProductToBeEdited}: 
  
                 const pieces = input.value.substring(0, input.value.length - 1).split(":");
                 const attributeValue = pieces[0];
-                const url = pieces[1] + ":" + pieces[2];
+                const url = pieces[1] + ":" + pieces[2]; //por causa do http:// que também foi dividido
 
-                //checando se existe nos atributos se o attributeValue a ser colocado existe 
+                let exists = false;
+                let repeated = false;
+
+                //checar se existe nos atributos se o attributeValue a ser colocado existe 
                 if(attributeValue !== "none"){
-                    let exists = false;
                     productToBeEdited.attributes.forEach(attribute=>{
                         if(attribute.values.includes(attributeValue))
                             exists = true;
@@ -118,16 +120,15 @@ export default function EditProduct ({productToBeEdited, setProductToBeEdited}: 
                         input.value = "";
                         return ;
                     }
-                }
 
-                //se existir atributoValue com mesmo nome sobrescreve no index o i do atributo repetido
-                let repeated = false;
-                productToBeEdited.midias.forEach((midia, i)=>{
-                    if(midia.attributeValue === attributeValue){
-                        repeated = true;
-                        index = i;
-                    }
-                });
+                    //se existir atributoValue com mesmo nome sobrescreve no index o i do atributo repetido
+                    productToBeEdited.midias.forEach((midia, i)=>{
+                        if(midia.attributeValue === attributeValue){
+                            repeated = true;
+                            index = i;
+                        }
+                    });
+                }
 
                 let updatedMidias = [...productToBeEdited.midias];
                 updatedMidias[index] = { attributeValue: attributeValue, url: url};
@@ -312,7 +313,7 @@ export default function EditProduct ({productToBeEdited, setProductToBeEdited}: 
                             new Array(10).fill(0,0,10).map((value, index)=>
                                 <input 
                                     name="midias" 
-                                    key={JSON.stringify(productToBeEdited?.midias[index])?JSON.stringify(productToBeEdited?.midias[index]):"undefinedMidia"+index}
+                                    key={JSON.stringify(productToBeEdited?.midias[index])?JSON.stringify(productToBeEdited?.midias[index])+index:"undefinedMidia"+index}
                                     defaultValue={convertMidiaToString(productToBeEdited?.midias[index])}
                                     onChange={(e)=>updateFormDataMidias(e,index)} 
                                 />
@@ -350,6 +351,13 @@ export default function EditProduct ({productToBeEdited, setProductToBeEdited}: 
                         <input name="costPerProduct" type="number" onChange={updateFormData} defaultValue={productToBeEdited?.costPerProduct}/>
                         :
                         <input name="costPerProduct" type="number" onChange={updateFormData}/>
+                    }
+                </div>
+
+                <div className="FormField">
+                    <label className="FormField-label" htmlFor="sales">Número de vendas</label>
+                    {(productToBeEdited?.sales !== undefined) &&
+                        <input name="sales" type="number" onChange={updateFormData} defaultValue={productToBeEdited?.sales}/>
                     }
                 </div>
 

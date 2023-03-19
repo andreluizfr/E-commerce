@@ -12,10 +12,10 @@ export default new class EditProductController{
     async handle(req: Request, res: Response): Promise<Response>{
         
         const { productId, title, description, midias, price, comparisonPrice, costPerProduct, category,
-            providerURL, attributes, productStatus, ratingNumbers } = req.body;
+            providerURL, attributes, productStatus, ratingNumbers, sales } = req.body;
         
         const changes = { title, description, midias, price, comparisonPrice, costPerProduct, category,
-            providerURL, attributes, productStatus, ratingNumbers };
+            providerURL, attributes, productStatus, ratingNumbers, sales };
 
         try{
             const { updatedProduct } = await editProductService.execute({productId, changes});

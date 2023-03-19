@@ -23,7 +23,6 @@ export default function GetProduct (productId: string | undefined) {
 
     }, {
         refetchOnWindowFocus: false,
-        staleTime: 1000 * 5, //5 segundos
         enabled: true
     });
 

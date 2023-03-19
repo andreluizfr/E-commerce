@@ -64,7 +64,7 @@
                 grid-column-start: 2;
                 grid-column-end: 3;
 
-                @include flex-column-center-start;
+                @include flex-column-start-start;
                 padding: .5rem;
                 gap: 1rem;
 

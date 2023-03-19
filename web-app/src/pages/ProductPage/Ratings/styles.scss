@@ -12,7 +12,12 @@
         object-fit: cover;
         border-radius: 50%;
         margin-right: .5rem;
-    }   
+
+        transition: all 200ms;
+    }
+    .User-picture:hover{
+        filter: grayscale(30%);
+    }
 
     .Rows{
         @include flex-column-center-start;
@@ -72,18 +77,14 @@
                 
                     img{
                         @include image-small;
-                        transition: none;
+                        transition: all 200ms;
                         cursor: pointer;
                     }
-    
-                    button{
-                        display: none;
+                    img:hover{
+                        filter: grayscale(30%);
                     }
                 }
-    
-                :hover{
-                    opacity: 0.9;
-                }
+ 
             }
 
             .OpenMidia{

@@ -13,6 +13,10 @@
      object-fit: cover;
   border-radius: 50%;
   margin-right: 0.5rem;
+  transition: all 200ms;
+}
+.Rating-container .User-picture:hover {
+  filter: grayscale(30%);
 }
 .Rating-container .Rows {
   display: flex;
@@ -69,14 +73,11 @@
 .Rating-container .Rows .Row-5 .Midias .Midia img {
   width: 5rem;
   height: auto;
-  transition: none;
+  transition: all 200ms;
   cursor: pointer;
 }
-.Rating-container .Rows .Row-5 .Midias .Midia button {
-  display: none;
-}
-.Rating-container .Rows .Row-5 .Midias :hover {
-  opacity: 0.9;
+.Rating-container .Rows .Row-5 .Midias .Midia img:hover {
+  filter: grayscale(30%);
 }
 .Rating-container .Rows .Row-5 .OpenMidia {
   display: none;

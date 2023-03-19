@@ -21,7 +21,8 @@ export default function EditProductQuery (product: Product | null) {
                 ...product,
                 price: (product.price === null)?null:Number(product.price),
                 comparisonPrice: (product.comparisonPrice === null)?null:Number(product.comparisonPrice),
-                costPerProduct: (product.costPerProduct === null)?null:Number(product.costPerProduct)
+                costPerProduct: (product.costPerProduct === null)?null:Number(product.costPerProduct),
+                sales: Number(product.sales)
             }
 
             const response = await axios.post('/product/admin/editProduct',  product, {headers: { Authorization: `Bearer ${accessToken}` }});
