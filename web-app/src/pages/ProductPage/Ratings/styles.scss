@@ -61,195 +61,41 @@
         }
 
         .Row-5{
-            @include flex-row-start-center;
+            @include flex-column-start-start;
             gap: .2rem;
-            transition: none;
 
-            .Midia{
+            .Midias{
+                @include flex-row-start-center;
+                gap: .2rem;
+
+                .Midia{
                 
-                img{
-                    @include image-small;
-                    transition: none;
-                    cursor: pointer;
-                }
-
-                button{
-                    display: none;
-                }
-            }
-
-            :hover{
-                opacity: 0.9;
-            }
-        }
-
-        .Row-5[carousel="true"]{
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 999999999999;
-            transition: 200ms all;
-
-            background-color: rgba($darker-gray, 0.7);
-
-            .Midia{
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100vw;
-                height: 100vh;
-                transition: 200ms all;
-                
-                img{
-                    width: 80%;
-                    height: auto;
-
-                    position: absolute;
-                    top: 0;
-                    bottom: 0;
-                    left: 0;
-                    right: 0;
-                    margin: auto;
-
-                }
-
-                button{
-                    display: block;
-                    position: absolute;
-                    top: 48%;
-                    z-index: 9999999999999;
-
-                    border-radius: 50%;
-                    border: none;
-                    outline: none;
-
-                    @include icon-large;
-                    background-color: $white;
-                    
-                    text-align: center;
-
-                    transition: 200ms all;
-                    cursor: pointer;
-                }
-
-                button:hover{
-                    opacity: 0.8;
-                }
-
-                .Left{
-                    left: 2rem;
-                    @include mq-medium{
-                        left: 1.5rem;
+                    img{
+                        @include image-small;
+                        transition: none;
+                        cursor: pointer;
                     }
-                    @include mq-small{
-                        left: .5rem;
+    
+                    button{
+                        display: none;
                     }
                 }
-
-                .Right{
-                    right: 2rem;
-                    @include mq-medium{
-                        right: 1.5rem;
-                    }
-                    @include mq-small{
-                        right: .5rem;
-                    }
+    
+                :hover{
+                    opacity: 0.9;
                 }
-                
             }
 
-            :hover{
-                opacity: 1;
+            .OpenMidia{
+                display: none;
+                width: 100%;
+                height: auto;
             }
-
-        }
-
-        //desabilitando botão left da primeira mídia e botão right da útima mídia
-        .Row-5{
-            .Midia:first-child button:first-child{
-                background-color: rgba($gray, 0.8);
-                cursor: default;
+            .OpenMidia[data-state="open"]{
+                display: block;
             }
-            .Midia:first-child button:first-child:hover{
-                opacity: 1;
-            }
-
-            .Midia:last-child button:last-child{
-                background-color: rgba($gray, 0.8);
-                cursor: default;
-            }
-            .Midia:last-child button:last-child:hover{
-                opacity: 1;
-            }
-        }
-
-        .Row-5[index="1"]{
-            .Midia:nth-child(1){
-                left: 0;
-            }
-            .Midia:nth-child(2){
-                left: 100%;
-            }
-            .Midia:nth-child(3){
-                left: 200%;
-            }
-            .Midia:nth-child(4){
-                left: 300%;
-            }
-        }
-
-        .Row-5[index="2"]{
-            .Midia:nth-child(1){
-                left: -160%;
-            }
-            .Midia:nth-child(2){
-                left: 0;
-            }
-            .Midia:nth-child(3){
-                left: 100%;
-            }
-            .Midia:nth-child(4){
-                left: 200%;
-            }
-        }
-
-        .Row-5[index="3"]{
-            .Midia:nth-child(1){
-                left: -200%;
-            }
-            .Midia:nth-child(2){
-                left: -100%;
-            }
-            .Midia:nth-child(3){
-                left: 0;
-            }
-            .Midia:nth-child(4){
-                left: 100%;
-            }
-        }
-
-        .Row-5[index="4"]{
-            .Midia:nth-child(1){
-                left: -300%;
-            }
-            .Midia:nth-child(2){
-                left: -200%;
-            }
-            .Midia:nth-child(3){
-                left: -100%;
-            }
-            .Midia:nth-child(4){
-                left: 0;
-            }
+            
         }
 
     }
-    
-    
-}
-
-body:has(.Row-5[carousel="true"]){
-    overflow: hidden;
 }

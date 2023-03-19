@@ -18,23 +18,31 @@ export default function ProgressionBar (props: ProgressionBarProps) : JSX.Elemen
     const progressionBarRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(()=>{
-        if(progressionBarRef.current && props.number){
-            let percentage = 0;
-            
-            if(props.ratingNumbers)
-                percentage = props.ratingNumbers[props.number] / 
-                                (
-                                    props.ratingNumbers["1"] + 
-                                    props.ratingNumbers["2"] + 
-                                    props.ratingNumbers["3"] + 
-                                    props.ratingNumbers["4"] + 
-                                    props.ratingNumbers["5"]
-                                ) * 100;
 
+        let percentage = 0;
+
+        if(props.number && props.ratingNumbers && (
+        props.ratingNumbers["1"] + 
+        props.ratingNumbers["2"] + 
+        props.ratingNumbers["3"] + 
+        props.ratingNumbers["4"] + 
+        props.ratingNumbers["5"] ) > 0){
+            percentage = props.ratingNumbers[props.number] / 
+            (
+                props.ratingNumbers["1"] + 
+                props.ratingNumbers["2"] + 
+                props.ratingNumbers["3"] + 
+                props.ratingNumbers["4"] + 
+                props.ratingNumbers["5"]
+            ) * 100;
+        }
+        
+        if(progressionBarRef.current){
             const bar = progressionBarRef.current.firstChild as HTMLDivElement;
             bar.style.width = String(percentage.toFixed(2)) + "%";
             bar.style.setProperty('--content', String('"' + percentage.toFixed(2)) + '%"');
         }
+
     }, [props.number, props.ratingNumbers]);
 
     return(

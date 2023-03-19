@@ -29,7 +29,7 @@ export default function NavBar(props: Props) : JSX.Element{
     function search (event: React.MouseEvent<HTMLAnchorElement>){
         event.preventDefault();
         if(searchInputContent.length > 0)
-            navigate("/busca?keyword="+searchInputContent);
+            navigate("/produtos?keyword="+searchInputContent);
     }
 
     if(isMedium)

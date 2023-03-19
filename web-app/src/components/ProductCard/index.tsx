@@ -1,7 +1,8 @@
 import './styles.css';
+import RatingStars from 'components/RatingStars';
+
 import Product from 'types/product';
 import { HTMLAttributes } from 'react';
-import RatingStars from 'components/RatingStars';
 
 interface Prop extends  HTMLAttributes<HTMLDivElement>{
     product: Product;   

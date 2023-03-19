@@ -8,74 +8,34 @@ import ProgressionBar from './ProgressionBar';
 import Ratings from './Ratings';
 
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 import { addProduct } from 'store/features/cartSlice';
 
 import Product from 'types/product';
-
-const productMock = {
-    productId: "123",
-    title: "Prédio do Banco central",
-    description: "<div>meu ovo</div> <div>meu ovo 2</div>",
-    midias: [
-        {
-            url: "https://live.staticflickr.com/4577/37942236145_78d9979517_b.jpg",
-            attributeValue: null
-        },
-        {
-            url: "https://live.staticflickr.com/4577/37942236145_78d9979517_b.jpg",
-            attributeValue: null
-        },
-        {
-            url: "https://live.staticflickr.com/4577/37942236145_78d9979517_b.jpg",
-            attributeValue: null
-        },
-        {
-            url: "https://live.staticflickr.com/4577/37942236145_78d9979517_b.jpg",
-            attributeValue: null
-        },
-        {
-            url: "https://live.staticflickr.com/4577/37942236145_78d9979517_b.jpg",
-            attributeValue: null
-        }
-    ],
-    price: 10000000.00,
-    comparisonPrice: 999999.98,
-    category: "Ferramentas e construção",
-    subcategory: "",
-    hasAttributes: true,
-    attributes: [
-        {
-            name: "tamanho",
-            values: ["P", "M", "G"]
-        },
-        {
-            name: "cor",
-            values: ["azul", "amarelo", "verde", "preto", "roxo", "branco"]
-        }
-    ],
-    tags: [],
-    rating: 4.567,
-    ratingNumbers:{
-        "5": 400,
-        "4": 34,
-        "3": 43,
-        "2": 12,
-        "1": 0
-    }
-
-} as Product;
+import GetProduct from 'queries/Product/public/GetProduct';
 
 export default function ProductPage () : JSX.Element {
 
     let { productId } = useParams();
-    const [product, setProduct] = useState <Product>(productMock);
+
+    const getProductQuery = GetProduct(productId);
+    const [product, setProduct] = useState <Product | null>(null);
     const [selectedAttributes, setSelectedAttributes] = useState<{[key: string]: string}>({});
+
     const dispatch = useDispatch();
 
     const [animateCart, setAnimateCart] = useState(false);
+
+    useEffect(()=>{
+        console.log(getProductQuery.data?.message);
+        if(getProductQuery.data?.success && getProductQuery.data.product){
+            console.log(getProductQuery.data.product);
+            setProduct(getProductQuery.data.product);
+        }
+            
+    }, [getProductQuery.data]);
 
     function selectValue (event: React.MouseEvent<HTMLElement>){
 
@@ -102,7 +62,7 @@ export default function ProductPage () : JSX.Element {
     }
 
     function addToCart () {
-        if(product.hasAttributes){
+        if(product && product.hasAttributes){
             if(Object.keys(selectedAttributes).length === product.attributes?.length){
                 setProduct({...product, variation: selectedAttributes});
                 dispatch(addProduct({...product, variation: selectedAttributes}));
@@ -117,7 +77,7 @@ export default function ProductPage () : JSX.Element {
         }
     }
 
-    if(productId === product.productId)
+    if(product)
         return(
             <div className='ProductPage'>
                 <NavBar animateCart={animateCart}/>
@@ -150,7 +110,7 @@ export default function ProductPage () : JSX.Element {
                             </div>
 
                             <div className="Row-3">
-                                {product.attributes?
+                                {product.hasAttributes &&
                                     <div className="Attributes-container">
                                         {   
                                             product.attributes.map((attribute)=>
@@ -182,8 +142,6 @@ export default function ProductPage () : JSX.Element {
                                             )
                                         }
                                     </div>
-                                    :
-                                    null
                                 }
                             </div>
 
@@ -267,7 +225,7 @@ export default function ProductPage () : JSX.Element {
                         </section>
 
                         <section className="Fifth-section">
-                            <Ratings/>
+                            <Ratings productId={product.productId}/>
                         </section>
 
                     </div>
