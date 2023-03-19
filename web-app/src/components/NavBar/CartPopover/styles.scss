@@ -16,21 +16,6 @@
         opacity: .7;
         cursor: pointer;
     }
-    .ShoppingCart-icon[animate="true"]{
-        animation: little-shake .2s;
-    }
-
-    @keyframes little-shake {
-        33%  {
-            transform: translateX(.2rem) rotateZ(5deg) translateY(-.2rem);
-        }
-        66%  {
-            transform: translateX(-.2rem) rotateZ(-5deg) translateY(-.2rem);
-        }
-        100%  {
-            transform: translateX(0rem) rotateZ(0deg) translateY(0rem);
-        }
-    }
     
 }
 
