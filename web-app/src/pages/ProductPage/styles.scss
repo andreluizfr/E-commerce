@@ -9,7 +9,7 @@
 
     .ProductPage-container{
         flex: 1;
-        padding: 1rem 15%;
+        padding: 1rem 18%;
         background-color: $lighter-gray;
 
         @include mq-large{
@@ -189,6 +189,18 @@
                 }
 
                 .Row-5{
+                    .NotAllAttributesSelectedWarning{
+                        display: none;
+                        width: 100%;
+                        font-size: $font-size-small;
+                        color: $red;
+                    }
+                    .NotAllAttributesSelectedWarning[visible="true"]{
+                        display: block;
+                    }
+                }
+
+                .Row-6{
                     @include flex-column-center-center;
                     width: 100%;
 

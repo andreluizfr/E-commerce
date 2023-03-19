@@ -69,10 +69,15 @@ export default function ProductPage () : JSX.Element {
                 setAnimateCart(true);
                 setTimeout(()=>setAnimateCart(false), 1000);
             } else{
-                alert("Selecione todos atributos do produto");
+                const notAllAttributesSelected = document.getElementsByClassName("NotAllAttributesSelectedWarning")[0];
+                notAllAttributesSelected.setAttribute("visible", "true");
+                setTimeout(()=>notAllAttributesSelected.setAttribute("visible", "false"), 3000);
             }
-        } else {
+        } else if(product){
             dispatch(addProduct(product));
+
+            setAnimateCart(true);
+            setTimeout(()=>setAnimateCart(false), 1000);
         }
     }
 
@@ -155,11 +160,15 @@ export default function ProductPage () : JSX.Element {
                             </div>
 
                             <div className="Row-5">
-                                <div className="Warning">
+                                <p className="NotAllAttributesSelectedWarning">Por favor, selecione todos atributos do produto!</p>
+                            </div>
+
+                            <div className="Row-6">
+                                <p className="Warning">
                                     Os prazos de entrega contam a partir da confirmação do 
                                     pagamento podendo variar dependendo da quantidadede
                                     um mesmo produto. 
-                                </div>
+                                </p>
                             </div>
                             
                         </section>

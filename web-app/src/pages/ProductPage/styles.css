@@ -6,7 +6,7 @@
 }
 .ProductPage .ProductPage-container {
   flex: 1;
-  padding: 1rem 15%;
+  padding: 1rem 18%;
   background-color: #F3F3F3;
 }
 @media only screen and (max-width: 1000px) {
@@ -181,14 +181,23 @@
 .ProductPage .ProductPage-container .Grid-wrapper .Second-section .Row-4 .Buy:hover {
   background-color: rgba(0, 0, 0, 0.85);
 }
-.ProductPage .ProductPage-container .Grid-wrapper .Second-section .Row-5 {
+.ProductPage .ProductPage-container .Grid-wrapper .Second-section .Row-5 .NotAllAttributesSelectedWarning {
+  display: none;
+  width: 100%;
+  font-size: 1rem;
+  color: rgb(255, 0, 0);
+}
+.ProductPage .ProductPage-container .Grid-wrapper .Second-section .Row-5 .NotAllAttributesSelectedWarning[visible=true] {
+  display: block;
+}
+.ProductPage .ProductPage-container .Grid-wrapper .Second-section .Row-6 {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
 }
-.ProductPage .ProductPage-container .Grid-wrapper .Second-section .Row-5 .Warning {
+.ProductPage .ProductPage-container .Grid-wrapper .Second-section .Row-6 .Warning {
   width: 100%;
   font-size: 0.9rem;
   text-align: justify;

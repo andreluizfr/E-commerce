@@ -63,7 +63,7 @@ function App() {
 	}, [dispatch, getUserQuery, getUserQuery.data]);
 
 
-    if(getUserQuery.isFetching)
+    if(getUserQuery.isFetching || getUserQuery.isLoading)
 		return(
 			<RouterProvider router={
 				createBrowserRouter([
