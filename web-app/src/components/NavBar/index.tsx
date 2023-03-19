@@ -11,7 +11,11 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { useState } from 'react';
 
-export default function NavBar() : JSX.Element{
+interface Props{
+    animateCart?: boolean
+}
+
+export default function NavBar(props: Props) : JSX.Element{
 
     const isMedium = useMediaQuery({ query: '(max-width: 720px)' });
     const [searchInputContent, updateSearchInputContent] = useState <string>("");
@@ -71,7 +75,7 @@ export default function NavBar() : JSX.Element{
                         
                         <div className='NavBar-user-toolbar'>
                             <UserDropdownMenu/>
-                            <CartPopover/>
+                            <CartPopover animateCart={props.animateCart}/>
                         </div>
 
                     </nav>
@@ -122,7 +126,7 @@ export default function NavBar() : JSX.Element{
                         
                         <div className='NavBar-user-toolbar'>
                             <UserDropdownMenu/>
-                            <CartPopover/>
+                            <CartPopover animateCart={props.animateCart}/>
                         </div>
 
                     </nav>

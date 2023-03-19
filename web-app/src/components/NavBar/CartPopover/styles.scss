@@ -3,6 +3,7 @@
 
 
 .CartPopoverTrigger{
+    position: relative;
     background-color: $black;
     border: none;
     outline: none;
@@ -15,6 +16,13 @@
     .ShoppingCart-icon:hover{
         opacity: .7;
         cursor: pointer;
+    }
+
+    .ShoppingCart-icon-add-remove{
+        position: absolute;
+        right: -.6rem;
+        @include icon-smaller; 
+        filter: invert(100%);
     }
     
 }

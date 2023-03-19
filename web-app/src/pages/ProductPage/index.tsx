@@ -75,6 +75,8 @@ export default function ProductPage () : JSX.Element {
     const [selectedAttributes, setSelectedAttributes] = useState<{[key: string]: string}>({});
     const dispatch = useDispatch();
 
+    const [animateCart, setAnimateCart] = useState(false);
+
     function selectValue (event: React.MouseEvent<HTMLElement>){
 
         const value = (event.target as HTMLElement);
@@ -104,6 +106,9 @@ export default function ProductPage () : JSX.Element {
             if(Object.keys(selectedAttributes).length === product.attributes?.length){
                 setProduct({...product, variation: selectedAttributes});
                 dispatch(addProduct({...product, variation: selectedAttributes}));
+                
+                setAnimateCart(true);
+                setTimeout(()=>setAnimateCart(false), 1000);
             } else{
                 alert("Selecione todos atributos do produto");
             }
@@ -113,10 +118,9 @@ export default function ProductPage () : JSX.Element {
     }
 
     if(productId === product.productId)
-
         return(
             <div className='ProductPage'>
-                <NavBar/>
+                <NavBar animateCart={animateCart}/>
 
                 <main className='ProductPage-container'>
                     <div className="Grid-wrapper">

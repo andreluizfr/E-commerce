@@ -6,8 +6,10 @@ import { motion, useAnimation } from 'framer-motion';
 import shoppingCart from 'assets/svg/shopping-cart.png'; //trocar pra svg
 import addToCart from 'assets/svg/add-to-cart.png'; //trocar pra svg
 import removeFromCart from 'assets/svg/remove-from-cart.png'; //trocar pra svg
+import plusOne from 'assets/svg/plus-one.png'; //trocar pra svg
+import minusOne from 'assets/svg/minus-one.png'; //trocar pra svg
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { StoreState } from 'store';
 import { addProduct, removeProduct, clearCart } from 'store/features/cartSlice';
@@ -16,13 +18,18 @@ import Product from 'types/product';
 
 import { Link } from 'react-router-dom';
 
+interface Props {
+    animateCart?: boolean
+}
 
-export default function UserDropdownMenu () :JSX.Element {
+export default function UserDropdownMenu (props: Props) :JSX.Element {
     
     const cart = useSelector((state: StoreState) => state.cart);
     const dispatch = useDispatch();
 
     const cartIconControls = useAnimation();
+    const [showPlusIcon, setShowPlusIcon] = useState(false);
+    const [showMinusIcon, setShowMinusIcon] = useState(false);
 
     //sempre que carrinho store atualizar, atualizar o localStorage como backup.
 	useEffect(()=>{
@@ -41,9 +48,30 @@ export default function UserDropdownMenu () :JSX.Element {
         dispatch(clearCart());
     }
 
-    function animateCartIcon() {
+    function animateAddProduct (){
         cartIconControls.start({rotate: [45, -45, 45, 0]});
-    }
+
+        setShowPlusIcon(true);
+        setTimeout(()=>setShowPlusIcon(false), 1000);
+    };
+
+    function animateRemoveProduct (){
+        cartIconControls.start({rotate: [45, -45, 45, 0]});
+
+        setShowMinusIcon(true);
+        setTimeout(()=>setShowMinusIcon(false), 1000);
+    };
+
+    function animateClearCart (){
+        cartIconControls.start({rotate: [0, 180, 225, 135, 225, 135, 225, 135, 0], transition: {duration: 0.8, ease: "easeIn"}});
+    };
+
+    useEffect(()=>{
+        if(props.animateCart)
+            animateAddProduct();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [props.animateCart]);
+
 
     if(cart && cart.value.length > 0)
         return(
@@ -57,6 +85,26 @@ export default function UserDropdownMenu () :JSX.Element {
                         transition={{type:'spring', bounce: 0.8}}
                     >
                     </motion.img>
+                    {showPlusIcon &&
+                        <motion.img
+                            className='ShoppingCart-icon-add-remove'
+                            alt='icone de sinalizando que produto entrou no carrinho'
+                            src={plusOne}
+                            initial={{opacity: 0.5, scale: 0, translateY: "0"}}
+                            animate={{opacity: 1, scale: 1, translateY: "-.6rem", transition: { type: "spring", duration: 0.3 }}}
+                        >
+                        </motion.img>
+                    }
+                    {showMinusIcon &&
+                        <motion.img
+                            className='ShoppingCart-icon-add-remove'
+                            alt='icone de sinalizando que produto foi removido do carrinho'
+                            src={minusOne}
+                            initial={{opacity: 0.5, scale: 0, translateY: "0"}}
+                            animate={{opacity: 1, scale: 1, translateY: "-.6rem", transition: { type: "spring", duration: 0.3 }}}
+                        >
+                        </motion.img>
+                    }
                 </Popover.Trigger>
 
                 <Popover.Portal>
@@ -117,7 +165,7 @@ export default function UserDropdownMenu () :JSX.Element {
                                                     alt="icone de adicionar no carrinho"
                                                     onClick={()=>{
                                                         addProductToCart(productState.product);
-                                                        animateCartIcon();
+                                                        animateAddProduct();
                                                     }}
                                                 />
 
@@ -127,7 +175,7 @@ export default function UserDropdownMenu () :JSX.Element {
                                                     alt="icone de adicionar no carrinho"
                                                     onClick={()=>{
                                                         removeProductFromCart(productState.product);
-                                                        animateCartIcon();
+                                                        animateRemoveProduct();
                                                     }}
                                                 />
                                             </div>
@@ -142,7 +190,7 @@ export default function UserDropdownMenu () :JSX.Element {
                                     className="Clear-button Button" 
                                     onClick={()=>{
                                         clear();
-                                        animateCartIcon();
+                                        animateClearCart();
                                     }}>
                                     Limpar carrinho
                                 </button>

@@ -1,4 +1,5 @@
 .CartPopoverTrigger {
+  position: relative;
   background-color: rgb(0, 0, 0);
   border: none;
   outline: none;
@@ -12,6 +13,13 @@
 .CartPopoverTrigger .ShoppingCart-icon:hover {
   opacity: 0.7;
   cursor: pointer;
+}
+.CartPopoverTrigger .ShoppingCart-icon-add-remove {
+  position: absolute;
+  right: -0.6rem;
+  width: 0.8rem;
+  height: 0.8rem;
+  filter: invert(100%);
 }
 
 .CartPopoverContent {
