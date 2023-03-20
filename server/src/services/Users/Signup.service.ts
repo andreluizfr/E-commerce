@@ -14,7 +14,7 @@ export class SignupService{
     async execute(data: UserDTO){
 
         const verificationEmailCode = generateRandomString(30);
-        const user = new User(data, verificationEmailCode, false);
+        const user = new User(data, verificationEmailCode);
         
         const emailExists = await this.usersRepository.findByEmail(user.email);
         if (emailExists) throw new Error("E-mail já cadastrado.");

@@ -25,14 +25,11 @@ export class User{
     @Column({ unique: true })
     public cpf!: string;
 
-    @Column({ nullable: true }) //colunas inseridas posteriormente exigem que contenha nullable pra não dar erro nas antigas informações do DB
+    @Column()
     public phoneNumber!: string;
 
     @Column()
     public password!: string;
-
-    @Column({ nullable: true })
-    public photoURL!: string;
 
     @Column()
     public emailVerified!: boolean;
@@ -42,6 +39,22 @@ export class User{
 
     @Column()
     public admin!: boolean;
+
+    @Column({type: "jsonb", nullable: true})
+    public addresses!: {
+        default: boolean,
+        receiverName: string,
+        streetName: string,
+        houseNumber: number
+        district: string,
+        city: string,
+        state: string,
+        cep: string,
+        phoneNumber: string
+    }[];
+
+    @Column({ nullable: true }) //posteriormente tirar nullable
+    public photoURL!: string;
 
     @OneToMany(() => Rating, (rating: Rating) => rating.user)
     public ratings!: Rating[];
@@ -53,7 +66,6 @@ export class User{
     constructor(
         props: UserDTO,
         verificationEmailCode: string,
-        admin: boolean
     ){
         //received from client
         Object.assign(this, props);
@@ -61,7 +73,10 @@ export class User{
         this.userId = uuidv4();
         this.emailVerified = false;
         this.verificationEmailCode = verificationEmailCode;
-        this.admin = admin;
+        this.admin = false;
+        this.addresses = [];
+        this.photoURL = "";
+
     }
 
     @BeforeInsert()

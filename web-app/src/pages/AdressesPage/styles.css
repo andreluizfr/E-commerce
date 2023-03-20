@@ -1,0 +1,94 @@
+.AddressesPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #F3F3F3;
+}
+.AddressesPage .AddressesPage-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 70%;
+  background: rgb(255, 255, 255);
+}
+.AddressesPage .AddressesPage-container .Page-title {
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin: 2rem 0;
+}
+.AddressesPage .AddressesPage-container .AddAddress-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  width: 18rem;
+  height: 13rem;
+  border: 1px dashed rgb(0, 0, 0);
+  border-radius: 0.4rem;
+  margin: 0.5rem 0;
+  cursor: pointer;
+}
+.AddressesPage .AddressesPage-container .AddAddress-box .AddIcon {
+  width: 3rem;
+  height: 3rem;
+}
+.AddressesPage .AddressesPage-container .AddAddress-box .Message {
+  font-size: 1.2rem;
+}
+.AddressesPage .AddressesPage-container .Address-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1rem;
+  min-width: 18rem;
+  height: 13rem;
+  padding: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.24);
+  border-radius: 0.4rem;
+  margin: 0.5rem 0;
+}
+.AddressesPage .AddressesPage-container .Address-box .DefaultAddress {
+  font-size: 0.8rem;
+  color: rgb(83, 100, 113);
+  text-decoration: underline;
+}
+.AddressesPage .AddressesPage-container .Address-box-infos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.2rem;
+}
+.AddressesPage .AddressesPage-container .Address-box-infos .info {
+  font-size: 0.9rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.AddressesPage .AddressesPage-container .Address-box-infos .ReceiverName {
+  font-weight: 600;
+}
+.AddressesPage .AddressesPage-container .Address-box-toolbar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.2rem;
+}
+.AddressesPage .AddressesPage-container .Address-box-toolbar .Button {
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.24);
+  border-radius: 0.2rem;
+  padding: 0.2rem;
+  background-color: #E3E3E3;
+  font-weight: 500;
+  transition: all 200ms;
+  cursor: pointer;
+}
+.AddressesPage .AddressesPage-container .Address-box-toolbar .Button:hover {
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+}/*# sourceMappingURL=styles.css.map */

@@ -2,8 +2,11 @@ import { z } from "zod";
 
 const cpfRegex = RegExp(/(\d{3}\.\d{3}\.\d{3}-\d{2})|(\d{3}\d{3}\d{3}\d{2})/);
 const phoneNumberRegex = RegExp(/[1-9]{2}9[6-9]{1}[0-9]{7}/);
+const cepRegex = RegExp(/^[0-9]{5}-[0-9]{3}$/);
 
 export const userDTO = z.object({
+    userId: z.string()
+        .optional(),
     firstName: z.string({required_error: "Primeiro nome não informado."})
         .min(1, {message: "O primeiro nome não deve ser vazio."})
         .max(100, {message: "O primeiro nome deve ter no máximo 100 caracteres."}),
@@ -28,7 +31,42 @@ export const userDTO = z.object({
         .regex(/(?=.*[a-z])/)
         .regex(/(?=.*[A-Z])/)
         .regex(/(?=.*\d)/)
-        .regex(/(?=.*[!@#$%&*()])/)
+        .regex(/(?=.*[!@#$%&*()])/),
+    emailVerified: z.boolean()
+        .optional(),
+    verificationEmailCode: z.boolean()
+        .optional(),
+    admin: z.boolean()
+        .optional(),
+    addresses: z.array(z.object({
+        default: z.boolean({required_error: "Propriedade default não informada."}),
+        receiverName: z.string({required_error: "Propriedade receiverName não informada."})
+            .min(1, {message: "O Nome não deve ser vazio."})
+            .max(100, {message: "O nome deve ter no máximo 100 caracteres."}),
+        streetName: z.string({required_error: "Propriedade streetName não informada."})
+            .min(1, {message: "O campo não deve ser vazio."})
+            .max(100, {message: "O campo deve ter no máximo 100 caracteres."}),
+        houseNumber: z.number({required_error: "Propriedade houseNumber não informada."}),
+        district: z.string({required_error: "Propriedade district não informada."})
+            .min(1, {message: "O campo não deve ser vazio."})
+            .max(100, {message: "O campo deve ter no máximo 100 caracteres."}),
+        city: z.string({required_error: "Propriedade city não informada."})
+            .min(1, {message: "O campo não deve ser vazio."})
+            .max(100, {message: "O campo deve ter no máximo 100 caracteres."}),
+        state: z.string({required_error: "Propriedade state não informada."})
+            .min(1, {message: "O campo não deve ser vazio."})
+            .max(100, {message: "O campo deve ter no máximo 100 caracteres."}),
+        cep: z.string({required_error: "Propriedade cep não informada."})
+            .regex(cepRegex, {message: "O cep deve possuir formato 99999-99."}),
+        phoneNumber: z.string({required_error: "Propriedade phoneNumber não informada."})
+            .regex(phoneNumberRegex, {message: "O número do celular deve possuir formato DDD+9+número. Totalizando 11 dígitos."})
+    })).optional(),
+    photoURL: z.string()
+        .optional(),
+    ratings: z.array(z.object({}))
+        .optional(),
+    created_at: z.date()
+        .optional()
 });
 
 export type UserDTO = z.infer<typeof userDTO>;

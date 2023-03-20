@@ -65,7 +65,7 @@ export default function UserDropdownMenu () :JSX.Element {
 
                                 <DropdownMenu.Item className="UserDropdownMenuItem">
                                     <img className="Icon" src={locationIcon} alt='símbolo de localização' loading="lazy"/>
-                                    endereços
+                                    <Link to='/endereços'>endereços</Link>
                                 </DropdownMenu.Item>
 
                                 <DropdownMenu.Separator className="UserDropdownMenuSeparator"/>

@@ -24,6 +24,7 @@ const EmailVerificationPage = React.lazy(() => import('pages/EmailVerificationPa
 const NotFoundPage = React.lazy(() => import('pages/NotFoundPage'));
 const ProductPage = React.lazy(() => import('pages/ProductPage'));
 const ProductsPage = React.lazy(() => import('pages/ProductsPage'));
+const AdressesPage = React.lazy(() => import('pages/AdressesPage'));
 
 function App() {
 
@@ -125,6 +126,10 @@ function App() {
 							element: <ProductPage/>,
 						},
 						{
+							path: "/endereços",
+							element: <AdressesPage/>,
+						},
+						{
 							path: "*",
 							element: <NotFoundPage/>,
 						},
@@ -165,6 +170,10 @@ function App() {
 						{
 							path: "/produto/:productId",
 							element: <ProductPage/>,
+						},
+						{
+							path: "/endereços",
+							element: <AdressesPage/>,
 						},
 						{
 							path: "*",

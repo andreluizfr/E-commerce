@@ -7,6 +7,7 @@ import signupController from '../controllers/Users/Signup.controller';
 import verifyEmailController from '../controllers/Users/VerifyEmail.controller';
 import refreshTokenController from '../controllers/Users/RefreshToken.controller';
 import getUserController from '../controllers/Users/GetUser.controller';
+import updateUserController from '../controllers/Users/UpdateUser.controller';
 
 import { authentication } from '../services/Auth';
 
@@ -34,6 +35,10 @@ userRouter.get('/refreshToken', (request: Request, response: Response)=>{
 
 userRouter.get('/getUser', authentication, (request: Request, response: Response)=>{
     return getUserController.handle(request, response);
+});
+
+userRouter.post('/updateUser', authentication, (request: Request, response: Response)=>{
+    return updateUserController.handle(request, response);
 });
 
 export { userRouter };

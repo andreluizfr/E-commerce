@@ -22,6 +22,20 @@ export class UsersRepository implements IUsersRepository{
         await usersRepository.delete({userId: userId});
     };
 
+    async updateUser(userId: string, changes: object){
+        const usersRepository = AppDataSource.getRepository(User);
+        const user = await usersRepository.findOneBy({userId: userId});
+
+        if (user){
+            Object.assign(user, changes);
+            userDTO.parse(user);
+
+            const updatedUser = await usersRepository.save(user);
+            return updatedUser;
+        } 
+        else return null;
+    }
+
     async verifyEmail(verificationEmailCode: string){
         if(verificationEmailCode==="null")
             throw new Error("Código de verificação de e-mail não registrado no sistema.");
@@ -35,6 +49,13 @@ export class UsersRepository implements IUsersRepository{
             const updatedUser = await usersRepository.save(user);
             return updatedUser;
         } else return null;
+    }
+
+    async findById(userId: string){
+        const usersRepository = AppDataSource.getRepository(User)
+        const user = await usersRepository.findOneBy({userId: userId});
+
+        return user;
     }
 
     async findByEmail(email: string){
