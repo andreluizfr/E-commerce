@@ -233,10 +233,11 @@
 
                 @include flex-column-center-center;
                 width: 100%;
+                padding: 1rem 0;
 
                 .Title{
                     text-align: center;
-                    font-size: $font-size-medium;
+                    font-size: $font-size-normal;
                     font-weight: 500;
 
                     margin-bottom: 1rem;
@@ -253,6 +254,8 @@
 
                 @include flex-column-center-center;
                 width: 100%;
+                padding: 1rem 0;
+                border-top: 1px solid $thinner-black;
 
                 .Title{
                     text-align: center;
@@ -273,6 +276,10 @@
 
                         .Value{
                             font-size: $font-size-medium;
+                            font-weight: 500;
+                        }
+                        .Value-warning{
+                            font-size: $font-size-small;
                             font-weight: 500;
                         }
                     }
@@ -307,6 +314,8 @@
                 grid-column-start: 1;
                 grid-column-end: 3;
                 width: 100%;
+                padding-top: 1rem;
+                border-top: 1px solid $thinner-black;
             }
 
         }

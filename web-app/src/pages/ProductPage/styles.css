@@ -225,10 +225,11 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  padding: 1rem 0;
 }
 .ProductPage .ProductPage-container .Grid-wrapper .Third-section .Title {
   text-align: center;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 500;
   margin-bottom: 1rem;
 }
@@ -243,6 +244,8 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  padding: 1rem 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 .ProductPage .ProductPage-container .Grid-wrapper .Fourth-section .Title {
   text-align: center;
@@ -265,6 +268,10 @@
 }
 .ProductPage .ProductPage-container .Grid-wrapper .Fourth-section .Ratings .Rating-value .Value {
   font-size: 1.4rem;
+  font-weight: 500;
+}
+.ProductPage .ProductPage-container .Grid-wrapper .Fourth-section .Ratings .Rating-value .Value-warning {
+  font-size: 1rem;
   font-weight: 500;
 }
 .ProductPage .ProductPage-container .Grid-wrapper .Fourth-section .Ratings .Rating-data {
@@ -293,4 +300,6 @@
   grid-column-start: 1;
   grid-column-end: 3;
   width: 100%;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
 }/*# sourceMappingURL=styles.css.map */

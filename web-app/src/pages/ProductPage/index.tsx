@@ -215,9 +215,9 @@ export default function ProductPage () : JSX.Element {
 
                                 <div className='Rating-value'>
                                     {product.rating?
-                                        <span className='Value'>{product.rating.toFixed(2)}</span>
+                                        <span className='Value'>{product.rating?.toFixed(2)}</span>
                                         :
-                                        null
+                                        <span className='Value-warning'>Ainda sem valiações</span>
                                     }
                                     <RatingStars rate={product.rating} size="large"/>
                                 </div>
