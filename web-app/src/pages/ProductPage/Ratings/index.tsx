@@ -43,9 +43,10 @@ const ratingsMock = [
         comment: "achei bonito.",
         hasMidia: true,
         midias: [
-            {type:"image", url:"https://live.staticflickr.com/4577/37942236145_78d9979517_b.jpg"},
-            {type:"image", url:"https://live.staticflickr.com/4577/37942236145_78d9979517_b.jpg"},
-            {type:"image", url:"https://live.staticflickr.com/4577/37942236145_78d9979517_b.jpg"}
+            {type:"image", url:"https://images.tcdn.com.br/img/img_prod/747002/chinelo_slide_hoshwear_arco_iris_unissex_635_1_20220718102049.jpg"},
+            {type:"image", url:"https://images.tcdn.com.br/img/img_prod/747002/chinelo_slide_hoshwear_arco_iris_unissex_635_2_20220718102104.jpg"},
+            {type:"image", url:"https://images.tcdn.com.br/img/editor/up/747002/cat_hswr_web_214xc7_6.jpg"},
+            {type:"image", url:"https://cf.shopee.com.br/file/32ee0ddb6b5b00d16bea44b4a0bee2bf"}
         ],
         created_at: new Date("Sat Feb 18 2023 22:17:27 GMT-0300 (Horário Padrão de Brasília)")
     }
@@ -59,12 +60,23 @@ export default function Ratings (props: RatingsProps) : JSX.Element {
 
     }, []);
 
-    function openMidia(midiaUrl: string, ratingId: string){
+    function openMidia(event: React.MouseEvent <HTMLImageElement>, midiaUrl: string, ratingId: string){
+        //tirar selected de todas as midias do site
+        const midias = document.getElementsByClassName("Midia");
+        Array.from(midias).forEach(midia=>{
+            midia.setAttribute("selected", "false");
+        });
+        //colocando selected pra true na midia que foi selecionada para aplicar borda vermelha so nela pelo css
+        const midiaSelected = event.target as HTMLImageElement;
+        midiaSelected.setAttribute("selected", "true");
+
+        //fechar todas as midias abertas pelo site
         const openMidiaElements = document.getElementsByClassName("OpenMidia");
         Array.from(openMidiaElements).forEach(openMidiaElement=>{
             openMidiaElement.setAttribute("data-state", "close");
         });
 
+        //mudando data-state pra open pra deixar elemento visivel pelo css e atribuindo a url certa
         const midiaElement = document.getElementById("openMidia"+ratingId) as HTMLImageElement;
         midiaElement.src = midiaUrl;
         midiaElement.setAttribute("data-state", "open");
@@ -131,14 +143,13 @@ export default function Ratings (props: RatingsProps) : JSX.Element {
                                             {
                                                 rating.midias.map((midia, index)=>{
                                                     return (
-                                                        <div className="Midia" key={index}>
-                                                            <img 
-                                                                src={midia.url} 
-                                                                alt="imagem de avaliação" 
-                                                                key={rating.userId+(index+1)}
-                                                                onClick={()=>openMidia(midia.url, rating.ratingId)}
-                                                            />
-                                                        </div>
+                                                        <img
+                                                            className="Midia"
+                                                            src={midia.url} 
+                                                            alt="imagem de avaliação" 
+                                                            key={rating.userId+(index+1)}
+                                                            onClick={(e)=>openMidia(e,midia.url, rating.ratingId)}
+                                                        />
                                                     )
                                                 })
                                             }

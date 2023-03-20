@@ -35,11 +35,9 @@
   grid-column-start: 1;
   grid-column-end: 2;
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
-  flex-wrap: wrap;
-  height: -moz-max-content;
-  height: max-content;
+  align-items: flex-start;
   padding: 0.5rem;
 }
 @media only screen and (max-width: 720px) {
@@ -47,19 +45,36 @@
     grid-column-end: 3;
   }
 }
-.ProductPage .ProductPage-container .Grid-wrapper .First-section img {
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  cursor: pointer;
-}
-.ProductPage .ProductPage-container .Grid-wrapper .First-section :nth-child(1) {
+.ProductPage .ProductPage-container .Grid-wrapper .First-section .MainMidia {
+  flex: 1;
   width: 100%;
   height: auto;
+  aspect-ratio: 1/1;
+  -o-object-fit: contain;
+     object-fit: contain;
   margin-bottom: 1rem;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
-.ProductPage .ProductPage-container .Grid-wrapper .First-section :nth-child(n+2) {
+.ProductPage .ProductPage-container .Grid-wrapper .First-section .OthersMidias {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.ProductPage .ProductPage-container .Grid-wrapper .First-section .OthersMidias .SecondaryMidia {
   width: 20%;
   height: auto;
+  aspect-ratio: 1/1;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border: 2px solid rgb(255, 255, 255);
   margin: 0.2rem;
+  transition: all 200ms;
+  cursor: pointer;
+}
+.ProductPage .ProductPage-container .Grid-wrapper .First-section .OthersMidias .SecondaryMidia[selected=true] {
+  border: 2px solid rgb(255, 0, 0);
 }
 .ProductPage .ProductPage-container .Grid-wrapper .Second-section {
   grid-column-start: 2;

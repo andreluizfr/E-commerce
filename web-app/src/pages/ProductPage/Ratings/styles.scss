@@ -63,30 +63,32 @@
 
         .Row-5{
             @include flex-column-start-start;
-            gap: .2rem;
+            gap: .5rem;
 
             .Midias{
                 @include flex-row-start-center;
                 gap: .2rem;
 
                 .Midia{
-                
-                    img{
-                        @include image-small;
-                        transition: all 200ms;
-                        cursor: pointer;
-                    }
-                    img:hover{
-                        filter: grayscale(30%);
-                    }
+                    @include image-small;
+                    border: 2px solid $white;
+
+                    transition: all 200ms;
+                    cursor: zoom-in; 
+                }
+                .Midia[selected="true"]{
+                    border: 2px solid $red;
+                    cursor: zoom-out; 
                 }
  
             }
 
             .OpenMidia{
                 display: none;
-                width: 100%;
+                width: 50%;
                 height: auto;
+                aspect-ratio: 1/1;
+                object-fit: contain;
             }
             .OpenMidia[data-state="open"]{
                 display: block;

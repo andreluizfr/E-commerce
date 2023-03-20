@@ -34,29 +34,43 @@
             .First-section{
                 grid-column-start: 1;
                 grid-column-end: 2;
-
-                @include flex-row-start-center;
-                flex-wrap: wrap;
-                height: max-content;
+                @include flex-column-start-start;
                 padding: .5rem;
 
                 @include mq-medium{
                     grid-column-end: 3;
                 }
 
-                img{
-                    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-                    cursor: pointer;
-                }
-                :nth-child(1){
+                .MainMidia{
+                    flex: 1;
                     width: 100%;
                     height: auto;
+                    aspect-ratio: 1/1;
+                    object-fit: contain;
+
                     margin-bottom: 1rem;
-                }
-                :nth-child(n+2){
-                    width: 20%;
-                    height: auto;
-                    margin: .2rem;
+                    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+                }   
+                .OthersMidias{
+                    @include flex-row-start-center;
+                    flex-wrap: wrap;
+                    width: 100%;
+
+                    .SecondaryMidia{
+                        width: 20%;
+                        height: auto;
+                        aspect-ratio: 1/1;
+                        object-fit: contain;
+
+                        border: 2px solid $white;
+                        margin: .2rem;
+
+                        transition: all 200ms;
+                        cursor: pointer;
+                    }
+                    .SecondaryMidia[selected="true"]{
+                        border: 2px solid $red;
+                    }
                 }
             }
 

@@ -27,6 +27,7 @@ export default function ProductPage () : JSX.Element {
     const dispatch = useDispatch();
 
     const [animateCart, setAnimateCart] = useState(false);
+    const [mainMidiaIndex, setMainMidiaIndex] = useState(0);
 
     useEffect(()=>{
         if(getProductQuery.data?.success && getProductQuery.data.product){
@@ -35,6 +36,16 @@ export default function ProductPage () : JSX.Element {
             setProduct(getProductQuery.data.product);
         }
     }, [getProductQuery.data]);
+
+    function setMidiaToMain(event: React.MouseEvent <HTMLImageElement>, index: number){
+        const secondaryMidias = document.getElementsByClassName("SecondaryMidia");
+        Array.from(secondaryMidias).forEach(secondaryMidia=>secondaryMidia.setAttribute("selected", "false"));
+
+        const secondaryMidiaElement = event.target as HTMLImageElement;
+        secondaryMidiaElement.setAttribute("selected", "true");
+        
+        setMainMidiaIndex(index);
+    }
 
     function selectValue (event: React.MouseEvent<HTMLElement>){
 
@@ -90,16 +101,26 @@ export default function ProductPage () : JSX.Element {
                     <div className="Grid-wrapper">
 
                         <section className="First-section">
-                            {
-                                product.midias.map((midia, index)=>
-                                    <img 
-                                        src={midia.url} 
-                                        alt={product.title+index} 
-                                        className={"Picture "+midia.attributeValue}
-                                        key={"img"+index}
-                                    />
-                                )
-                            }
+                            <img 
+                                src={product.midias[mainMidiaIndex].url} 
+                                alt={product.title+mainMidiaIndex} 
+                                className={"MainMidia MidiaAttribute-"+product.midias[mainMidiaIndex].attributeValue}
+                                key={"midia"+mainMidiaIndex}
+                            />
+                            <div className='OthersMidias'>
+                                {
+                                    product.midias.map((midia, index)=>
+                                        <img 
+                                            src={midia.url} 
+                                            alt={product.title+index} 
+                                            className={"SecondaryMidia MidiaAttribute-"+midia.attributeValue}
+                                            key={"midia"+index}
+                                            onClick={(e)=>setMidiaToMain(e, index)}
+                                            onMouseOver={(e)=>setMidiaToMain(e, index)}
+                                        />
+                                    )
+                                }
+                            </div>
                         </section>
 
                         <section className="Second-section">
