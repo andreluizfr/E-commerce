@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 import { UpdateUserService } from '../../services/Users/UpdateUser.service';
 import { UsersRepository } from "../../repositories/Users/Users.repository";
-import { UserDTO } from '../../repositories/Users/UserDTO';
 
 const usersRepository = new UsersRepository();
 const updateUserService = new UpdateUserService(usersRepository);
@@ -12,15 +11,13 @@ export default new class UpdateProductController{
 
     async handle(req: Request, res: Response): Promise<Response>{
         
-        const { userId, firstName, lastName, email, birthDate, cpf, phoneNumber, password, emailVerified, verificationEmailCode,
-            admin, addresses, photoURL, ratings, created_at } : UserDTO = req.body;
+        const { userId, email, ...rest } = req.body; //o email vem pelo middleware de autenticação
         
-        const changes = { firstName, lastName, email, birthDate, cpf, phoneNumber, password, emailVerified, verificationEmailCode,
-            admin, addresses, photoURL, ratings, created_at } as UserDTO;
+        const changes = { ...rest };
 
         try{
             if(userId){
-                const { updatedUser } = await updateUserService.execute({userId, changes});
+                const { updatedUser } = await updateUserService.execute({userId, changes, email});
 
                 return res.status(201).send({
                     refresh: false,
@@ -28,6 +25,7 @@ export default new class UpdateProductController{
                     updatedUser: updatedUser,
                     message: "O usuário foi atualizado com sucesso."
                 });
+                
             }
             else
                 return res.status(201).send({

@@ -1,9 +1,9 @@
 import { IUsersRepository } from "../../repositories/Users/IUsers.repository";
-import { UserDTO } from "../../repositories/Users/UserDTO";
 
 interface IUpdateUserRequestDTO{
     userId: string;
-    changes: UserDTO;
+    email: string;
+    changes: object;
 }
 
 //contains the business logic
@@ -13,7 +13,7 @@ export class UpdateUserService{
 
     async execute(data: IUpdateUserRequestDTO){
 
-        const userWhoMadeRequest = await this.usersRepository.findByEmail(data.changes.email);
+        const userWhoMadeRequest = await this.usersRepository.findByEmail(data.email);
         const userToUpdate = await this.usersRepository.findById(data.userId);
 
         if(userWhoMadeRequest && userToUpdate){

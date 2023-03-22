@@ -1,0 +1,68 @@
+@import '../../../assets/css/variables';
+@import '../../../assets/css/_mixins';
+
+
+.Address-box{
+    @include flex-column-center-start;
+    gap: 1rem;
+    min-width: 18rem;
+    height: 13rem;
+    padding: 1rem;
+    border: 1px solid $thin-black;
+    border-radius: .4rem;
+    margin: .5rem 0;
+
+    .DefaultAddress{
+        font-size: $font-size-mini;
+        color: $dark-gray;
+
+        text-decoration: underline;
+    }
+
+    &-infos{
+        @include flex-column-center-start;
+        gap: .2rem;
+
+        .info{
+            font-size: $font-size-smaller;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .ReceiverName{
+            font-weight: 600;
+        }
+    }
+
+    &-toolbar{
+        @include flex-row-start-center;
+        gap: .2rem;
+
+        .Button{
+            outline: none;
+            padding: .2rem;
+            border: 1px solid $thin-black;
+            border-radius: .2rem;
+            filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+            background-color: $black;
+
+            color: $white;
+            font-weight: 500;   
+
+            transition: all 200ms;
+            cursor: pointer;
+        }
+        .Button:hover{
+            background-color: $white;
+            color: $black
+        }
+
+        .Button:nth-child(n+2){
+            background-color: $white;
+            color: $black;
+        }   
+        .Button:nth-child(n+2):hover{
+            background-color: $black;
+            color: $white;
+        }   
+    }
+}

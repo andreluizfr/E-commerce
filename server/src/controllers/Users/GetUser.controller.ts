@@ -18,15 +18,18 @@ export default new class GetUserController{
             const { user }  = await getUserService.execute(email);
 
             const publicUser = {
+                userId: user.userId,
                 firstName: user.firstName,
                 lastName: user.lastName,
                 email: user.email,
                 birthDate: user.birthDate,
                 cpf: user.cpf,
                 phoneNumber: user.phoneNumber,
-                photoURL: user.photoURL,
+                //password: user.password,
                 emailVerified: user.emailVerified,
                 admin: user.admin,
+                addresses: user.addresses,
+                photoURL: user.photoURL,
                 created_at: user.created_at
             }
 

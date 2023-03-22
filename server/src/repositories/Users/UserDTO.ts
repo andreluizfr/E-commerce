@@ -2,7 +2,7 @@ import { z } from "zod";
 
 const cpfRegex = RegExp(/(\d{3}\.\d{3}\.\d{3}-\d{2})|(\d{3}\d{3}\d{3}\d{2})/);
 const phoneNumberRegex = RegExp(/[1-9]{2}9[6-9]{1}[0-9]{7}/);
-const cepRegex = RegExp(/^[0-9]{5}-[0-9]{3}$/);
+const cepRegex = RegExp(/([0-9]{5}-[0-9]{3})|([0-9]{5}[0-9]{3})/);
 
 export const userDTO = z.object({
     userId: z.string()
@@ -34,7 +34,7 @@ export const userDTO = z.object({
         .regex(/(?=.*[!@#$%&*()])/),
     emailVerified: z.boolean()
         .optional(),
-    verificationEmailCode: z.boolean()
+    verificationEmailCode: z.string()
         .optional(),
     admin: z.boolean()
         .optional(),
@@ -46,7 +46,9 @@ export const userDTO = z.object({
         streetName: z.string({required_error: "Propriedade streetName não informada."})
             .min(1, {message: "O campo não deve ser vazio."})
             .max(100, {message: "O campo deve ter no máximo 100 caracteres."}),
-        houseNumber: z.number({required_error: "Propriedade houseNumber não informada."}),
+        houseNumber: z.string({required_error: "Propriedade houseNumber não informada."})
+            .min(1, {message: "O campo não deve ser vazio."})
+            .max(100, {message: "O campo deve ter no máximo 100 caracteres."}),
         district: z.string({required_error: "Propriedade district não informada."})
             .min(1, {message: "O campo não deve ser vazio."})
             .max(100, {message: "O campo deve ter no máximo 100 caracteres."}),
@@ -62,7 +64,8 @@ export const userDTO = z.object({
             .regex(phoneNumberRegex, {message: "O número do celular deve possuir formato DDD+9+número. Totalizando 11 dígitos."})
     })).optional(),
     photoURL: z.string()
-        .optional(),
+        .optional()
+        .nullable(),
     ratings: z.array(z.object({}))
         .optional(),
     created_at: z.date()

@@ -57,8 +57,11 @@ function App() {
 			dispatch(removeUser());
 			localStorage.removeItem("x-access-token");
 		}
-		else if(getUserQuery.data?.success && getUserQuery.data?.user)
+		else if(getUserQuery.data?.success && getUserQuery.data?.user){
+			console.log(getUserQuery.data.user);
 			dispatch(newUser(getUserQuery.data.user));
+		}
+			
 			
 
 	}, [dispatch, getUserQuery, getUserQuery.data]);
