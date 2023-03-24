@@ -1,0 +1,157 @@
+@import '../../../../assets/css/variables';
+@import '../../../../assets/css/_mixins';
+
+@keyframes overlayShow {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+}
+
+@keyframes contentShow {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -48%) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+
+.EditAddress{
+
+    .DialogOverlay{
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+
+        background-color: $opaque-black;
+            
+        animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .DialogContent{
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        z-index: 10001;
+
+        @include flex-column-start-center;
+
+        min-width: 450px;
+        overflow-y: scroll;
+        padding: 1.5rem;
+        box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+        border-radius: 6px;
+
+        background-color: white;
+        
+        transform: translate(-50%, -50%);
+        animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+
+        @include mq-small{
+            @include flex-column-center-center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .DialogTitle {
+            margin-bottom: 1rem;
+
+            font-size: $font-size-normal;
+            font-weight: 500;
+            color: $black;
+        }
+
+        .Fieldset{
+            outline: none;
+            border: none;
+            width: 100%;
+
+            .Label{
+                display: block;
+                width: 100%;
+                margin-bottom: .2rem;
+
+                text-align: left;
+                font-size: $font-size-smaller;
+                color: $black;
+            }
+
+            .Input{
+                width: 100%;
+                height: 2rem;
+                padding: .4rem;
+                outline: none;
+                border: none;
+                border-radius: .2rem;
+                box-shadow: 0 0 0 1px hsl(252 71.0% 83.7%);
+
+                font-size: $font-size-smaller;
+                color: hsl(250 43.0% 48.0%);
+            }
+            .Input:focus {
+                box-shadow: 0 0 0 2px hsl(252 68.6% 76.3%);
+            }
+        }
+
+        .AddButton {
+            padding: .6rem 1rem;
+
+            outline: none;
+            border: none;
+
+            border-radius: .4rem;
+            
+            font-size: $font-size-small;
+            line-height: 1;
+            font-weight: 500;
+
+            background-color: hsl(140 48.7% 91.0%);
+            color: hsl(153 67.0% 28.5%);
+
+            cursor: pointer;
+        }
+        .AddButton:hover {
+            background-color: hsl(141 43.7% 86.0%);
+        }
+        .AddButton:focus {
+            box-shadow: 0 0 0 2px hsl(146 38.5% 69.0%);
+        }
+
+        .CloseButton {
+            position: absolute;
+            top: .4rem;
+            right: .4rem;
+
+            @include icon-large;
+            padding: .4rem;
+            border-radius: 100%;
+
+            color: hsl(250 43.0% 48.0%);
+
+            cursor: pointer;
+        }
+        .CloseButton:hover {
+            background-color: hsl(252 91.5% 95.5%);
+        }
+        .CloseButton:focus {
+            box-shadow: 0 0 0 2px hsl(252 71.0% 83.7%);
+        }
+
+        .Server-response{
+            margin-top: 1rem;
+
+            color: $black;
+            font-size: $font-size-small;
+        }
+
+    }
+    .DialogContent:focus {
+        outline: none;
+    }
+}

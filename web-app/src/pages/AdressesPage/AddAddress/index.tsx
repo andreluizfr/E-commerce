@@ -43,28 +43,24 @@ export default function AddAddress  () : JSX.Element {
     useEffect(()=>{
         console.log(address);
         if(user.value){
-            if(user.value.addresses){
-                const newAdresses = [...user.value.addresses];
-                newAdresses.push(address);
+            const newAdresses = [...user.value.addresses];
+            newAdresses.push(address);
 
-                setUpdateAddressesQueryParams({userId: user.value.userId, addresses: newAdresses});
-            }
-            else{
-                const newAdresses = [address];
-                setUpdateAddressesQueryParams({userId: user.value.userId, addresses: newAdresses});
-            }
+            setUpdateAddressesQueryParams({userId: user.value.userId, addresses: newAdresses});
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [address]);
 
     function updateAddresses(event: React.MouseEvent <HTMLButtonElement>){
         event.preventDefault();
-
         console.log(updateAddressesQueryParams);
+        
         if(updateAddressesQueryParams)
             updateAddressesQuery.refetch();
-        else
-            alert("Nenhum campo preenchido.");
+        else{
+            setServerResponse("Nenhum campo preenchido.");
+            setTimeout(()=>setServerResponse(" "), 3000);
+        }
     }
 
     //controladora da query de atualizar usuario
@@ -86,7 +82,7 @@ export default function AddAddress  () : JSX.Element {
             if(updateAddressesQuery.data){
                 console.log(updateAddressesQuery.data.message);
                 setServerResponse(updateAddressesQuery.data.message);
-                setTimeout(()=>setServerResponse(" "), 3000);
+                setTimeout(()=>window.location.reload(), 3000);
 
                 const inputs = document.getElementsByClassName("Input");
                 Array.from(inputs).forEach(input=>(input as HTMLInputElement).value="");
