@@ -13,7 +13,7 @@ interface Props{
     setRefreshProducts: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function DeleteAlertDialog ({productId, setRefreshProducts}: Props) : JSX.Element {
+export default function DeleteProductDialog ({productId, setRefreshProducts}: Props) : JSX.Element {
     
     const dispatch = useDispatch();
     const deleteProductQuery = DeleteProductQuery(productId);

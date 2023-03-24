@@ -1,10 +1,12 @@
 import './styles.css';
 
 import EditAddress from './EditAddress';
+import DeleteAddressDialog from './DeleteAddressDialog';
 
 import { useSelector } from 'react-redux';
 import { StoreState } from 'store';
 import { useState } from 'react';
+
 
 export default function AddressBoxes  () : JSX.Element {
 
@@ -36,7 +38,8 @@ export default function AddressBoxes  () : JSX.Element {
 
                     <div className='Address-box-toolbar'>
                         <button className='Button' onClick={()=>openEditAddress(index)}>Alterar</button>
-                        <button className='Button'>Excluir</button>
+
+                        <DeleteAddressDialog addressIndex={index}/>
                         {!address.default &&
                             <button className='Button'>Definir como padrão</button>
                         }

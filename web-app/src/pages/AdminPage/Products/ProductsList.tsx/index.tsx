@@ -1,7 +1,7 @@
 import './styles.css';
 
 import RatingStars from 'components/RatingStars';
-import DeleteAlertDialog from './DeleteAlertDialog';
+import DeleteProductDialog from './DeleteProductDialog';
 import EditProduct from './EditProduct';
 
 import { useState } from 'react';
@@ -52,7 +52,7 @@ export default function ProductsList ({products, setRefreshProducts}: Props) : J
                                     <td className="TableData" onClick={()=>editProduct(product)}>{product.providerURL}</td>
                                     <td className="TableData" onClick={()=>editProduct(product)}>{product.productStatus}</td>
                                     <td>
-                                        <DeleteAlertDialog 
+                                        <DeleteProductDialog 
                                             productId={product.productId} 
                                             setRefreshProducts={setRefreshProducts}
                                         />
