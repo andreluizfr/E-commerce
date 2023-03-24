@@ -106,82 +106,79 @@ export default function EditAddress ({addressIndex, visible, setVisible}: Props)
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [updateAddressesQuery.data]);
 
-    if(visible)
-        return (
-            <div  className='EditAddress'>
-                <div className="DialogOverlay"/>
+    return (
+        <div  className='EditAddress'>
+            <div className="DialogOverlay"/>
 
-                <div className="DialogContent">
+            <div className="DialogContent">
 
-                    <header className="DialogTitle">Alterar endereço</header>
+                <header className="DialogTitle">Alterar endereço</header>
 
-                    <fieldset className="Fieldset">
-                        <label className="Label" htmlFor="receiverName">
-                            Nome do destinatário
-                        </label>
-                        <input className="Input" name="receiverName" onChange={addFieldToAddress} defaultValue={address?.receiverName}/>
-                    </fieldset>
+                <fieldset className="Fieldset">
+                    <label className="Label" htmlFor="receiverName">
+                        Nome do destinatário
+                    </label>
+                    <input className="Input" name="receiverName" onChange={addFieldToAddress} defaultValue={address?.receiverName}/>
+                </fieldset>
 
-                    <fieldset className="Fieldset">
-                        <label className="Label" htmlFor="state">
-                            Estado
-                        </label>
-                        <input className="Input" name="state" onChange={addFieldToAddress} defaultValue={address?.state}/>
-                    </fieldset>
+                <fieldset className="Fieldset">
+                    <label className="Label" htmlFor="state">
+                        Estado
+                    </label>
+                    <input className="Input" name="state" onChange={addFieldToAddress} defaultValue={address?.state}/>
+                </fieldset>
 
-                    <fieldset className="Fieldset">
-                        <label className="Label" htmlFor="city">
-                            Cidade
-                        </label>
-                        <input className="Input" name="city" onChange={addFieldToAddress} defaultValue={address?.city}/>
-                    </fieldset>
+                <fieldset className="Fieldset">
+                    <label className="Label" htmlFor="city">
+                        Cidade
+                    </label>
+                    <input className="Input" name="city" onChange={addFieldToAddress} defaultValue={address?.city}/>
+                </fieldset>
 
-                    <fieldset className="Fieldset">
-                        <label className="Label" htmlFor="district">
-                            Bairro
-                        </label>
-                        <input className="Input" name="district" onChange={addFieldToAddress} defaultValue={address?.district}/>
-                    </fieldset>
+                <fieldset className="Fieldset">
+                    <label className="Label" htmlFor="district">
+                        Bairro
+                    </label>
+                    <input className="Input" name="district" onChange={addFieldToAddress} defaultValue={address?.district}/>
+                </fieldset>
 
-                    <fieldset className="Fieldset">
-                        <label className="Label" htmlFor="streetName">
-                            Nome da rua
-                        </label>
-                        <input className="Input" name="streetName" onChange={addFieldToAddress} defaultValue={address?.streetName}/>
-                    </fieldset>
+                <fieldset className="Fieldset">
+                    <label className="Label" htmlFor="streetName">
+                        Nome da rua
+                    </label>
+                    <input className="Input" name="streetName" onChange={addFieldToAddress} defaultValue={address?.streetName}/>
+                </fieldset>
 
-                    <fieldset className="Fieldset">
-                        <label className="Label" htmlFor="houseNumber">
-                            Número da casa/apartamento
-                        </label>
-                        <input className="Input" name="houseNumber" onChange={addFieldToAddress} defaultValue={address?.houseNumber}/>
-                    </fieldset>
+                <fieldset className="Fieldset">
+                    <label className="Label" htmlFor="houseNumber">
+                        Número da casa/apartamento
+                    </label>
+                    <input className="Input" name="houseNumber" onChange={addFieldToAddress} defaultValue={address?.houseNumber}/>
+                </fieldset>
 
-                    <fieldset className="Fieldset">
-                        <label className="Label" htmlFor="cep">
-                            CEP
-                        </label>
-                        <input className="Input" name="cep" onChange={addFieldToAddress} defaultValue={address?.cep}/>
-                    </fieldset>
+                <fieldset className="Fieldset">
+                    <label className="Label" htmlFor="cep">
+                        CEP
+                    </label>
+                    <input className="Input" name="cep" onChange={addFieldToAddress} defaultValue={address?.cep}/>
+                </fieldset>
 
-                    <fieldset className="Fieldset">
-                        <label className="Label" htmlFor="phoneNumber">
-                            Número do celular/Whatsapp
-                        </label>
-                        <input className="Input" name="phoneNumber" onChange={addFieldToAddress} defaultValue={address?.phoneNumber}/>
-                    </fieldset>
+                <fieldset className="Fieldset">
+                    <label className="Label" htmlFor="phoneNumber">
+                        Número do celular/Whatsapp
+                    </label>
+                    <input className="Input" name="phoneNumber" onChange={addFieldToAddress} defaultValue={address?.phoneNumber}/>
+                </fieldset>
 
-                    <button className="AddButton" onClick={updateAddresses}>Salvar endereço</button>
+                <button className="AddButton" onClick={updateAddresses}>Salvar endereço</button>
 
-                    <img className="CloseButton" src={closeIcon} alt="icone de X" aria-label="Close" onClick={()=>setVisible(false)}/>
+                <img className="CloseButton" src={closeIcon} alt="icone de X" aria-label="Close" onClick={()=>setVisible(false)}/>
 
-                    <div className="Server-response">
-                        {serverResponse}
-                    </div>
-
+                <div className="Server-response">
+                    {serverResponse}
                 </div>
+
             </div>
-        );
-    else
-        return <></>
+        </div>
+    );
 }

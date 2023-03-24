@@ -12,11 +12,18 @@ export default function AddressBoxes  () : JSX.Element {
 
     const user = useSelector((state: StoreState) => state.user);
 
-    const [visible, setVisible] = useState(false);
+    const [visibleEditAddress, setVisibleEditAddress] = useState(false);
+    const [visibleDeleteAddress, setVisibleDeleteAddress] = useState(false);
+
     const [addressIndex, setAddressIndex] = useState(0);
 
     function openEditAddress(index: number){
-        setVisible(true);
+        setVisibleEditAddress(true);
+        setAddressIndex(index);
+    }
+
+    function openDeleteAddress(index: number){
+        setVisibleDeleteAddress(true);
         setAddressIndex(index);
     }
 
@@ -38,16 +45,18 @@ export default function AddressBoxes  () : JSX.Element {
 
                     <div className='Address-box-toolbar'>
                         <button className='Button' onClick={()=>openEditAddress(index)}>Alterar</button>
-
-                        <DeleteAddressDialog addressIndex={index}/>
+                        <button className='Button' onClick={()=>openDeleteAddress(index)}>Excluir</button>
                         {!address.default &&
                             <button className='Button'>Definir como padrão</button>
                         }
                     </div>
                 </div>
             )}
-            {visible &&
-                <EditAddress visible={visible} addressIndex={addressIndex} setVisible={setVisible}/>
+            {visibleEditAddress &&
+                <EditAddress visible={visibleEditAddress} addressIndex={addressIndex} setVisible={setVisibleEditAddress}/>
+            }
+            {visibleDeleteAddress &&
+                <DeleteAddressDialog visible={visibleDeleteAddress} addressIndex={addressIndex} setVisible={setVisibleDeleteAddress}/>
             }
         </>
     );

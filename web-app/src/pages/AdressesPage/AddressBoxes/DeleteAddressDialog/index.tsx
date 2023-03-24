@@ -1,5 +1,4 @@
 import './styles.css';
-import * as AlertDialog from '@radix-ui/react-alert-dialog';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { StoreState } from 'store';
@@ -9,11 +8,13 @@ import { useEffect, useState } from 'react';
 import UpdateAddressesQuery from 'queries/User/logged/UpdateAddresses';
 import refreshToken from 'queries/User/public/RefreshToken';
 
-interface Props{
-    addressIndex: number;
+interface Props {
+    addressIndex: number,
+    visible: boolean,
+    setVisible: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export default function DeleteAddressDialog ({addressIndex}: Props) : JSX.Element {
+export default function DeleteAddressDialog ({addressIndex, visible, setVisible}: Props) : JSX.Element {
     
     const user = useSelector((state: StoreState) => state.user);
     const dispatch = useDispatch();
@@ -23,6 +24,7 @@ export default function DeleteAddressDialog ({addressIndex}: Props) : JSX.Elemen
 
 
     useEffect(()=>{
+        console.log("addressIndex:", addressIndex);
         if(user.value){
             const newAdresses = [...user.value.addresses];
             newAdresses.splice(addressIndex, 1);
@@ -97,37 +99,28 @@ export default function DeleteAddressDialog ({addressIndex}: Props) : JSX.Elemen
     }
 // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [updateAddressesQuery.data]);
+
     return(
-        <AlertDialog.Root>
-            <AlertDialog.Trigger asChild>
-                <button className="Button">Excluir</button>
-            </AlertDialog.Trigger>
+        <div className="DeleteAlertDialog">
+            <div className="AlertDialogOverlay" />
+            
+            <div className="AlertDialogContent">
 
-            <AlertDialog.Portal>
-                <AlertDialog.Overlay className="AlertDialogOverlay" />
-                
-                <AlertDialog.Content className="AlertDialogContent">
+                <header className="AlertDialogTitle">
+                    Tem certeza disso?
+                </header>
 
-                    <AlertDialog.Title className="AlertDialogTitle">
-                        Tem certeza disso?
-                    </AlertDialog.Title>
+                <div className="AlertDialogDescription">
+                    Esta ação não pode ser desfeita. 
+                    Isto irá deletar permanantemente este endereço da sua conta.
+                </div>
 
-                    <AlertDialog.Description className="AlertDialogDescription">
-                        Esta ação não pode ser desfeita. 
-                        Isto irá deletar permanantemente este endereço da sua conta.
-                    </AlertDialog.Description>
+                <div className="AlertDialogButtons">
+                    <button className="Button CancelButton" onClick={()=>setVisible(false)}>Cancelar</button>
+                    <button className="Button ConfirmButton" onClick={deleteAddress}>Sim, excluir endereço.</button>
+                </div>
 
-                    <div className="AlertDialogButtons">
-                        <AlertDialog.Cancel asChild>
-                            <button className="Button CancelButton">Cancelar</button>
-                        </AlertDialog.Cancel>
-                        <AlertDialog.Action asChild>
-                            <button className="Button ConfirmButton" onClick={deleteAddress}>Sim, excluir endereço.</button>
-                        </AlertDialog.Action>
-                    </div>
-
-                </AlertDialog.Content>
-            </AlertDialog.Portal>
-        </AlertDialog.Root>
+            </div>
+        </div>
     );
 }
