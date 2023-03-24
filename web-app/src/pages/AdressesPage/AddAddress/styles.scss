@@ -165,6 +165,13 @@
         box-shadow: 0 0 0 2px hsl(252 71.0% 83.7%);
     }
 
+    .Server-response{
+        margin-top: 1rem;
+
+        color: $black;
+        font-size: $font-size-small;
+    }
+
 }
 .DialogContent:focus {
     outline: none;

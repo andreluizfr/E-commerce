@@ -10,7 +10,7 @@ interface IUpdateUserResponse {
     user?: User;
 }
 
-export default function UpdateUserQuery (params: {userId: string | undefined, addresses: object} | null) {
+export default function UpdateUserQuery (params: {userId: string | undefined, changes: object} | null) {
 
     const updateUserQuery = useQuery('updateUser', async () => {
 

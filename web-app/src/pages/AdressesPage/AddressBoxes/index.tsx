@@ -7,19 +7,18 @@ import { StoreState } from 'store';
 import { removeUser } from 'store/features/userSlice';
 import { useEffect, useState } from 'react';
 
-import UpdateUserQuery from 'queries/User/logged/UpdateUser';
+import UpdateAddressesQuery from 'queries/User/logged/UpdateAddresses';
 import refreshToken from 'queries/User/public/RefreshToken';
-import User from 'types/user';
 
 export default function AddressBoxes  () : JSX.Element {
 
     const user = useSelector((state: StoreState) => state.user);
     const dispatch = useDispatch();
 
-    const [updateUserQueryParams, setUpdateUserQueryParams] = useState<{userId: string | undefined, addresses: object} | null>(null);
-    const updateUserQuery = UpdateUserQuery(updateUserQueryParams);
+    const [updateAddressesQueryParams, setUpdateAddressesQueryParams] = useState<{userId: string | undefined, addresses: object} | null>(null);
+    const updateAddressesQuery = UpdateAddressesQuery(updateAddressesQueryParams);
 
-    const [addressToBeEdited, setAddressToBeEdited] = useState({} as {
+    const [address, setAddress] = useState({default: false} as {
         default: boolean,
         receiverName: string,
         streetName: string,
@@ -30,7 +29,10 @@ export default function AddressBoxes  () : JSX.Element {
         cep: string,
         phoneNumber: string
     });
+
     const [addressIndex, setAddressIndex] = useState<Number | null>(null);
+
+    const [serverResponse, setServerResponse] = useState("");
     /*
     function addFieldToAddress (event: React.ChangeEvent <HTMLInputElement>){
         const value = event.target.value;
@@ -48,35 +50,35 @@ export default function AddressBoxes  () : JSX.Element {
     }, [address]);
     */
 
-    function addAddress(){
-        if(updateUserQueryParams)
-            updateUserQuery.refetch();
+    function updateAddress(){
+        if(updateAddressesQueryParams)
+            updateAddressesQuery.refetch();
         else
             alert("Nenhum campo preenchido.")
     }
 
     //controladora da query de atualizar usuario
     useEffect(()=>{
-        if(updateUserQuery.data){
-            console.log(updateUserQuery.data.message)
+        if(updateAddressesQuery.data){
+            console.log(updateAddressesQuery.data.message)
         }
-        if(updateUserQuery.data?.refresh)
+        if(updateAddressesQuery.data?.refresh)
             refreshToken().then(response=>{
-                if(response.reload) updateUserQuery.refetch();
+                if(response.reload) updateAddressesQuery.refetch();
                 else {
                     dispatch(removeUser());
                     setTimeout(()=>window.location.reload(), 3000);
                 }
             });
-        else if(updateUserQuery.data?.login){
+        else if(updateAddressesQuery.data?.login){
             dispatch(removeUser());
             localStorage.removeItem("x-access-token");
             setTimeout(()=>window.location.reload(), 3000);
         }
-        else if(updateUserQuery.data?.success && updateUserQuery.data?.user)
-            console.log("Endereços atualizado - ", updateUserQuery.data.user.addresses);
+        else if(updateAddressesQuery.data?.success && updateAddressesQuery.data?.addresses)
+            console.log("Endereços atualizado - ", updateAddressesQuery.data.addresses);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [updateUserQuery, updateUserQuery.data]);
+    }, [updateAddressesQuery, updateAddressesQuery.data]);
 
     return (
         <>

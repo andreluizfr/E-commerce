@@ -9,7 +9,7 @@ import { StoreState } from 'store';
 import { removeUser } from 'store/features/userSlice';
 import { useEffect, useState } from 'react';
 
-import UpdateUserQuery from 'queries/User/logged/UpdateUser';
+import UpdateAddressesQuery from 'queries/User/logged/UpdateAddresses';
 import refreshToken from 'queries/User/public/RefreshToken';
 
 
@@ -18,12 +18,11 @@ export default function AddAddress  () : JSX.Element {
     const user = useSelector((state: StoreState) => state.user);
     const dispatch = useDispatch();
 
-    const [updateUserQueryParams, setUpdateUserQueryParams] = useState<{userId: string | undefined, addresses: object} | null>(null);
-    const updateUserQuery = UpdateUserQuery(updateUserQueryParams);
+    const [updateAddressesQueryParams, setUpdateAddressesQueryParams] = useState<{userId: string | undefined, addresses: object} | null>(null);
+    const updateAddressesQuery = UpdateAddressesQuery(updateAddressesQueryParams);
 
     const [address, setAddress] = useState({default: false} as {
         default: boolean,
-
         receiverName: string,
         streetName: string,
         houseNumber: number
@@ -33,6 +32,8 @@ export default function AddAddress  () : JSX.Element {
         cep: string,
         phoneNumber: string
     });
+
+    const [serverResponse, setServerResponse] = useState("");
 
     function addFieldToAddress (event: React.ChangeEvent <HTMLInputElement>){
         const value = event.target.value;
@@ -46,46 +47,56 @@ export default function AddAddress  () : JSX.Element {
                 const newAdresses = [...user.value.addresses];
                 newAdresses.push(address);
 
-                setUpdateUserQueryParams({userId: user.value.userId, addresses: newAdresses});
+                setUpdateAddressesQueryParams({userId: user.value.userId, addresses: newAdresses});
             }
             else{
                 const newAdresses = [address];
-                setUpdateUserQueryParams({userId: user.value.userId, addresses: newAdresses});
+                setUpdateAddressesQueryParams({userId: user.value.userId, addresses: newAdresses});
             }
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [address]);
 
-    function updateUser(){
-        console.log(updateUserQueryParams);
-        if(updateUserQueryParams)
-            updateUserQuery.refetch();
+    function updateAddresses(event: React.MouseEvent <HTMLButtonElement>){
+        event.preventDefault();
+
+        console.log(updateAddressesQueryParams);
+        if(updateAddressesQueryParams)
+            updateAddressesQuery.refetch();
         else
-            alert("Nenhum campo preenchido.")
+            alert("Nenhum campo preenchido.");
     }
 
     //controladora da query de atualizar usuario
     useEffect(()=>{
-        if(updateUserQuery.data){
-            console.log(updateUserQuery.data.message)
-        }
-        if(updateUserQuery.data?.refresh)
+        if(updateAddressesQuery.data?.refresh)
             refreshToken().then(response=>{
-                if(response.reload) updateUserQuery.refetch();
+                if(response.reload) updateAddressesQuery.refetch();
                 else {
                     dispatch(removeUser());
                     setTimeout(()=>window.location.reload(), 3000);
                 }
             });
-        else if(updateUserQuery.data?.login){
+        else if(updateAddressesQuery.data?.login){
             dispatch(removeUser());
             localStorage.removeItem("x-access-token");
             setTimeout(()=>window.location.reload(), 3000);
         }
-        else if(updateUserQuery.data?.success && updateUserQuery.data?.user)
-            console.log("Endereços atualizado - ", updateUserQuery.data.user.addresses);
+        else{
+            if(updateAddressesQuery.data){
+                console.log(updateAddressesQuery.data.message);
+                setServerResponse(updateAddressesQuery.data.message);
+                setTimeout(()=>setServerResponse(" "), 3000);
+
+                const inputs = document.getElementsByClassName("Input");
+                Array.from(inputs).forEach(input=>(input as HTMLInputElement).value="");
+            }
+            if(updateAddressesQuery.data?.success && updateAddressesQuery.data?.addresses){
+                console.log("Endereços atualizado - ", updateAddressesQuery.data.addresses);
+            }
+        }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [updateUserQuery, updateUserQuery.data]);
+    }, [updateAddressesQuery.data]);
 
 
     return (
@@ -162,12 +173,16 @@ export default function AddAddress  () : JSX.Element {
                         </fieldset>
 
                         <Dialog.Close asChild>
-                            <button className="AddButton" onClick={updateUser}>Salvar endereço</button>
+                            <button className="AddButton" onClick={(e)=>updateAddresses(e)}>Salvar endereço</button>
                         </Dialog.Close>
-                        
+
                         <Dialog.Close asChild>
                             <img className="CloseButton" src={closeIcon} alt="icone de X" aria-label="Close"/>
                         </Dialog.Close>
+
+                        <div className="Server-response">
+                            {serverResponse}
+                        </div>
 
                     </Dialog.Content>
                 </Dialog.Portal>
