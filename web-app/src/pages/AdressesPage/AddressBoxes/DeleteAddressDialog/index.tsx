@@ -26,10 +26,10 @@ export default function DeleteAddressDialog ({addressIndex, visible, setVisible}
     useEffect(()=>{
         console.log("addressIndex:", addressIndex);
         if(user.value){
-            const newAdresses = [...user.value.addresses];
-            newAdresses.splice(addressIndex, 1);
+            const newAddresses = [...user.value.addresses];
+            newAddresses.splice(addressIndex, 1);
 
-            setUpdateAddressesQueryParams({userId: user.value.userId, addresses: newAdresses});
+            setUpdateAddressesQueryParams({userId: user.value.userId, addresses: newAddresses});
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [addressIndex]);
@@ -46,7 +46,7 @@ export default function DeleteAddressDialog ({addressIndex, visible, setVisible}
             updateAddressesQuery.refetch();
     }
 
-    //controladora da query de atualizar usuario
+    //controladora da query de atualizar endereços
     useEffect(()=>{
         if(updateAddressesQuery.data?.refresh)
             refreshToken().then(response=>{

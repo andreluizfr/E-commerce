@@ -54,10 +54,10 @@ export default function EditAddress ({addressIndex, visible, setVisible}: Props)
     useEffect(()=>{
         console.log(address);
         if(user.value && address){
-            const newAdresses = [...user.value.addresses];
-            newAdresses[addressIndex] = address;
+            const newAddresses = [...user.value.addresses];
+            newAddresses[addressIndex] = address;
 
-            setUpdateAddressesQueryParams({userId: user.value.userId, addresses: newAdresses});
+            setUpdateAddressesQueryParams({userId: user.value.userId, addresses: newAddresses});
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [address]);
@@ -78,7 +78,7 @@ export default function EditAddress ({addressIndex, visible, setVisible}: Props)
         }
     }
 
-    //controladora da query de atualizar usuario
+    //controladora da query de atualizar endereços
     useEffect(()=>{
         if(updateAddressesQuery.data?.refresh)
             refreshToken().then(response=>{

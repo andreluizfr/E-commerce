@@ -43,10 +43,10 @@ export default function AddAddress  () : JSX.Element {
     useEffect(()=>{
         console.log(address);
         if(user.value){
-            const newAdresses = [...user.value.addresses];
-            newAdresses.push(address);
+            const newAddresses = [...user.value.addresses];
+            newAddresses.push(address);
 
-            setUpdateAddressesQueryParams({userId: user.value.userId, addresses: newAdresses});
+            setUpdateAddressesQueryParams({userId: user.value.userId, addresses: newAddresses});
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [address]);
@@ -63,7 +63,7 @@ export default function AddAddress  () : JSX.Element {
         }
     }
 
-    //controladora da query de atualizar usuario
+    //controladora da query de atualizar endereços
     useEffect(()=>{
         if(updateAddressesQuery.data?.refresh)
             refreshToken().then(response=>{
