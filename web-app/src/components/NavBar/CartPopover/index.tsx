@@ -122,7 +122,7 @@ export default function UserDropdownMenu (props: Props) :JSX.Element {
                                     return(
                                         <div className="Item-container" key={index}>
                                             
-                                            <Link to={'/produto/'+productState.product.productId}>
+                                            <Link to={'/produto/'+productState.product.id}>
                                                 <img 
                                                     className="Item-image"
                                                     src={productState.product.midias[0].url} 

@@ -1,18 +1,19 @@
-import { Entity, Column, CreateDateColumn, PrimaryGeneratedColumn, ManyToOne} from 'typeorm';
+import { Entity, Column, CreateDateColumn, PrimaryColumn, ManyToOne} from 'typeorm';
 import { Product } from './Product.entity';
 import { User } from './User.entity';
+import { v4 as uuidv4 } from 'uuid';
 
 @Entity("Ratings")
 export class Rating{
 
-    @PrimaryGeneratedColumn('increment')
-    public readonly ratingId!: string;
+    @PrimaryColumn()
+    public readonly id!: string;
     
     @ManyToOne(() => User, (user) => user.ratings, {cascade: true})
-    public user!: User;
+    public user!: string;
 
     @ManyToOne(() => Product, (product) => product.ratings, {cascade: true})
-    public productId!: Product;
+    public product!: string;
 
     @Column({type: 'json'})
     public variation!: object;
@@ -34,9 +35,10 @@ export class Rating{
 
 
     constructor(
-        props: Omit <Product, 'ratingId' | 'created_at'>,
+        props: Omit <Rating, 'id' | 'created_at'>,
     ){
         Object.assign(this, props);
+        this.id = uuidv4();
     }
 
 }

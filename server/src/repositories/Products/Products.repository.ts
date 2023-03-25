@@ -25,12 +25,12 @@ export class ProductsRepository implements IProductsRepository{
 
     async deleteProduct(productId: string){
         const productsRepository = AppDataSource.getRepository(Product);
-        await productsRepository.delete({productId: productId});
+        await productsRepository.delete({id: productId});
     };
 
     async updateProduct(productId: string, changes: object){
         const productsRepository = AppDataSource.getRepository(Product);
-        const product = await productsRepository.findOneBy({productId: productId});
+        const product = await productsRepository.findOneBy({id: productId});
 
         if (product){
             Object.assign(product, changes);
@@ -55,7 +55,7 @@ export class ProductsRepository implements IProductsRepository{
 
     async findById(productId: string){
         const productsRepository = AppDataSource.getRepository(Product)
-        const product = await productsRepository.findOneBy({productId: productId});
+        const product = await productsRepository.findOneBy({id: productId});
         
         return product;
     }
@@ -64,11 +64,13 @@ export class ProductsRepository implements IProductsRepository{
         const productsRepository = AppDataSource.getRepository(Product);
 
         const where = [
-            {
+            {   
+                productStatus: "ativo",
                 category: queries.category,
                 title: Like(`%${queries.keyword}%`)
             },
             {
+                productStatus: "ativo",
                 category: queries.category,
                 tags: ArrayContains([queries.keyword])
             }
@@ -97,6 +99,9 @@ export class ProductsRepository implements IProductsRepository{
             });
         else
             products = await productsRepository.find({
+                where: {
+                    productStatus: "ativo"
+                },
                 order: {
                     created_at: queries.order
                 }
@@ -143,13 +148,13 @@ export class ProductsRepository implements IProductsRepository{
             products = await productsRepository.find({
                 where: where,
                 order: {
-                    productId: queries.order
+                    id: queries.order
                 }
             });
         else
             products = await productsRepository.find({
                 order: {
-                    productId: queries.order
+                    id: queries.order
                 }
             });
         

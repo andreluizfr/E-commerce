@@ -1,5 +1,9 @@
+import Address from "./address";
+import Payment from "./payment";
+import Rating from "./rating";
+
 type User = {
-    userId?: string,
+    id?: string,
     firstName: string,
     lastName: string,
     email: string,
@@ -9,17 +13,9 @@ type User = {
     photoURL: string | null,
     emailVerified: boolean,
     admin: boolean,
-    addresses: {
-        default: boolean,
-        receiverName: string,
-        streetName: string,
-        houseNumber: number
-        district: string,
-        city: string,
-        state: string,
-        cep: string,
-        phoneNumber: string
-    }[],
+    addresses: Address[],
+    payments: Payment[],
+    ratings: Rating[],
     created_at: Date
 };
 

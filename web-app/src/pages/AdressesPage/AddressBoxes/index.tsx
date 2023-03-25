@@ -39,7 +39,7 @@ export default function AddressBoxes  () : JSX.Element {
         if(user.value){
             const newAddresses = [...user.value.addresses].map(address=>{ return {...address, default: false}});
             newAddresses.splice(index, 1, {...newAddresses[index], default: true});
-            setUpdateAddressesQueryParams({userId: user.value.userId, addresses: newAddresses});
+            setUpdateAddressesQueryParams({userId: user.value.id, addresses: newAddresses});
         }
     }
 

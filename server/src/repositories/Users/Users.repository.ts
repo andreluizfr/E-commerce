@@ -19,12 +19,12 @@ export class UsersRepository implements IUsersRepository{
 
     async deleteUser(userId: string){
         const usersRepository = AppDataSource.getRepository(User);
-        await usersRepository.delete({userId: userId});
+        await usersRepository.delete({id: userId});
     };
 
     async updateUser(userId: string, changes: object){
         const usersRepository = AppDataSource.getRepository(User);
-        const user = await usersRepository.findOneBy({userId: userId});
+        const user = await usersRepository.findOneBy({id: userId});
 
         if (user){
             Object.assign(user, changes);
@@ -53,23 +53,47 @@ export class UsersRepository implements IUsersRepository{
 
     async findById(userId: string){
         const usersRepository = AppDataSource.getRepository(User)
-        const user = await usersRepository.findOneBy({userId: userId});
+        const user = await usersRepository.find({
+            relations: {
+                payments: true,
+                ratings: true
+            },
+            where:{
+                id: userId
+            }
+        });
 
-        return user;
+        return user[0];
     }
 
     async findByEmail(email: string){
         const usersRepository = AppDataSource.getRepository(User)
-        const user = await usersRepository.findOneBy({email: email});
+        const user = await usersRepository.find({
+            relations: {
+                payments: true,
+                ratings: true
+            },
+            where:{
+                email: email
+            }
+        });
 
-        return user;
+        return user[0];
     }
 
     async findByCpf(cpf: string){
         const usersRepository = AppDataSource.getRepository(User)
-        const user = await usersRepository.findOneBy({cpf: cpf});
+        const user = await usersRepository.find({
+            relations: {
+                payments: true,
+                ratings: true
+            },
+            where:{
+                cpf: cpf
+            }
+        });
 
-        return user;
+        return user[0];
     }   
 
 }

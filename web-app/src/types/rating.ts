@@ -1,5 +1,5 @@
 type Rating = {
-    ratingId: string;
+    id: string;
     userId: string;
     productId: string;
     variation: {

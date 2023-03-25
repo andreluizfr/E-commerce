@@ -98,39 +98,38 @@ export default function AddProduct () : JSX.Element {
             const attributeValue = pieces[0];
             const url = pieces[1] + ":" + pieces[2];
 
-            //checando se existe nos atributos se o attributeValue a ser colocado existe 
+            //se for diferente de none tem que fazer as verificações abaixo antes de adicionar
             if(attributeValue !== "none"){
                 let exists = false;
                 formData.attributes.forEach(attribute=>{
                     if(attribute.values.includes(attributeValue))
                         exists = true;
                 });
-                if(!exists){ //se não existir, da alerta e limpa input
+                if(!exists){ //se não existir esse atributo na lista de atributs, da alerta e limpa input
                     alert("Esse atributo não existe nesse produto.");
                     input.value = "";
                     return ;
                 }
-            }
 
-            //checando se já não existe outra midia com mesmo valor attributeValue
-            let exists = false;
-            formData.midias.forEach(midia=>{
-                if(midia.attributeValue === attributeValue)
-                    exists = true;
-            });
-
-            if(exists){ //se existir midia com mesmo valor da alerta e limpa input
-                alert("Mídia já adicionada a este atributo.");
-                input.value = "";
-            }  
-            else{ //se não existir adiciona normalmente
-                setFormData({
-                    ...formData,
-                    [event.target.name]: [...formData.midias, {attributeValue: attributeValue, url: url}]
+                //checando se já não existe outra midia com mesmo valor attributeValue
+                let repeated = false;
+                formData.midias.forEach(midia=>{
+                    if(midia.attributeValue === attributeValue)
+                        repeated = true;
                 });
-                input.disabled = true;
+
+                if(repeated){ //se existir midia com mesmo valor da alerta e limpa input
+                    alert("Mídia já adicionada a este atributo.");
+                    input.value = "";
+                    return ;
+                }  
             }
 
+            setFormData({
+                ...formData,
+                [event.target.name]: [...formData.midias, {attributeValue: attributeValue, url: url}]
+            });
+            input.disabled = true;
         } 
         
     }
@@ -162,13 +161,9 @@ export default function AddProduct () : JSX.Element {
      //controladora da resposta da query addProductQuery
      useEffect(()=>{
 
-        if(addProductQuery.data){
+        if(addProductQuery.data)
             console.log(addProductQuery.data?.message);
-            const serverResponseEl = document.getElementsByClassName("ServerResponse")[0];
-            serverResponseEl?.setAttribute("visible", "true");
-            setTimeout(()=>{serverResponseEl?.setAttribute("visible", "false")}, 3000);
-        }
-            
+ 
         if(addProductQuery.data?.refresh)
             refreshToken().then(response=>{
                 if(response.reload) addProductQuery.refetch();
@@ -182,9 +177,13 @@ export default function AddProduct () : JSX.Element {
             localStorage.removeItem("x-access-token");
             setTimeout(()=>window.location.reload(), 3000);
         }
-        else if(addProductQuery.data?.success && addProductQuery.data?.product)
+        else if(addProductQuery.data?.success && addProductQuery.data?.product){
             console.log("Produto adicionado - ", addProductQuery.data.product);
-
+            const serverResponseEl = document.getElementsByClassName("ServerResponse")[0];
+            serverResponseEl?.setAttribute("visible", "true");
+            setTimeout(()=>{serverResponseEl?.setAttribute("visible", "false")}, 3000);
+        }
+            
     }, [dispatch, addProductQuery, addProductQuery.data]);
 
 

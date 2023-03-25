@@ -1,7 +1,7 @@
 import Product from "./product";
 
 type Collection = {
-    collectionId?: string,
+    id?: string,
     title: string,
     description: string,
     products: Product[],

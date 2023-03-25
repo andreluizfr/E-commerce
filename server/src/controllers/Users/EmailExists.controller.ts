@@ -27,7 +27,7 @@ export default new class EmailExistsController{
             
             return res.status(202).send({
                 exists: false,
-                message: "Erro ao buscar e-mail. Por favor, tente mais tarde."
+                message: error.message || "Erro ao buscar e-mail. Por favor, tente mais tarde."
             });
 
         } 

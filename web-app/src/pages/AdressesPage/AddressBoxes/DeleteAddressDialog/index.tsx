@@ -29,7 +29,7 @@ export default function DeleteAddressDialog ({addressIndex, visible, setVisible}
             const newAddresses = [...user.value.addresses];
             newAddresses.splice(addressIndex, 1);
 
-            setUpdateAddressesQueryParams({userId: user.value.userId, addresses: newAddresses});
+            setUpdateAddressesQueryParams({userId: user.value.id, addresses: newAddresses});
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [addressIndex]);

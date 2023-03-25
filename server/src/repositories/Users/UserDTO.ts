@@ -5,7 +5,7 @@ const phoneNumberRegex = RegExp(/[1-9]{2}9[6-9]{1}[0-9]{7}/);
 const cepRegex = RegExp(/([0-9]{5}-[0-9]{3})|([0-9]{5}[0-9]{3})/);
 
 export const userDTO = z.object({
-    userId: z.string()
+    id: z.string()
         .optional(),
     firstName: z.string({required_error: "Primeiro nome não informado."})
         .min(1, {message: "O primeiro nome não deve ser vazio."})
@@ -66,6 +66,8 @@ export const userDTO = z.object({
     photoURL: z.string()
         .optional()
         .nullable(),
+    payments: z.array(z.object({}))
+        .optional(),
     ratings: z.array(z.object({}))
         .optional(),
     created_at: z.date()

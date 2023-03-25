@@ -7,7 +7,7 @@ import { Product } from './Product.entity';
 export class Collection{
 
     @PrimaryColumn()
-    public readonly collectionId!: string;
+    public readonly id!: string;
 
     @ManyToMany(() => Product)
     @JoinTable()
@@ -28,7 +28,7 @@ export class Collection{
     ){
         //received from client
         Object.assign(this, props);
-        this.collectionId = uuidv4();
+        this.id = uuidv4();
     }
 
 

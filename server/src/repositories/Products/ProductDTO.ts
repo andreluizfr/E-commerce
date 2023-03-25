@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 export const productDTO = z.object({
-    productId: z.number()
+    id: z.string()
         .optional(),
     title: z.string({required_error: "Título do produto não informado."}),
     description: z.string(),

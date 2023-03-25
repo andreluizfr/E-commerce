@@ -1,14 +1,16 @@
 import { Entity, Column, CreateDateColumn, PrimaryColumn, BeforeInsert, OneToMany } from 'typeorm';
+import { Rating } from './Rating.entity';
+import { Payment } from './Payment.entity';
+import { UserDTO } from '../repositories/Users/UserDTO';
 import { v4 as uuidv4 } from 'uuid';
 import * as bcrypt from 'bcrypt';
-import { Rating } from './Rating.entity';
-import { UserDTO } from '../repositories/Users/UserDTO';
+
 
 @Entity("Users")
 export class User{
 
     @PrimaryColumn()
-    public readonly userId!: string;
+    public readonly id!: string;
     
     @Column()
     public firstName!: string;
@@ -56,6 +58,9 @@ export class User{
     @Column({ nullable: true }) //posteriormente tirar nullable
     public photoURL!: string;
 
+    @OneToMany(() => Payment, (payment: Payment) => payment.user)
+    public payments!: Payment[];
+
     @OneToMany(() => Rating, (rating: Rating) => rating.user)
     public ratings!: Rating[];
 
@@ -70,13 +75,12 @@ export class User{
         //received from client
         Object.assign(this, props);
         //always create here
-        this.userId = uuidv4();
+        this.id = uuidv4();
         this.emailVerified = false;
         this.verificationEmailCode = verificationEmailCode;
         this.admin = false;
         this.addresses = [];
         this.photoURL = "";
-
     }
 
     @BeforeInsert()

@@ -89,21 +89,21 @@ export default function CreateCollection ({create, setCreate}: Props) : JSX.Elem
     }
 
     function addProductToCollection(product: Product){
-        if(product.productId){
+        if(product.id){
             setCollectionToBeCreated({
                 ...collectionToBeCreated,
                 products: [...collectionToBeCreated.products, product]
             });
 
-            setProductsAdded([...productsAdded, product.productId]);
+            setProductsAdded([...productsAdded, product.id]);
         }
     }
 
     function removeProductFromCollection(productToBeRemoved: Product){
-        if(productToBeRemoved.productId){
+        if(productToBeRemoved.id){
             //procurando e removendo o produto que esta na coleção que vai ser criada
             const newCollectionProducts = [...collectionToBeCreated.products];
-            const index = newCollectionProducts.findIndex(collectionProduct=> collectionProduct.productId === productToBeRemoved.productId);
+            const index = newCollectionProducts.findIndex(collectionProduct=> collectionProduct.id === productToBeRemoved.id);
             newCollectionProducts.splice(index, 1);
 
             setCollectionToBeCreated({
@@ -113,7 +113,7 @@ export default function CreateCollection ({create, setCreate}: Props) : JSX.Elem
 
             //procurando e removendo o produto que esta na lista de ids de produtos adicionados na coleção 
             const newProductsAdded = [...productsAdded];
-            const index2 = newProductsAdded.findIndex(productAddedId=> productAddedId === productToBeRemoved.productId);
+            const index2 = newProductsAdded.findIndex(productAddedId=> productAddedId === productToBeRemoved.id);
             newProductsAdded.splice(index2, 1);
 
             setProductsAdded([...newProductsAdded]);
@@ -144,6 +144,8 @@ export default function CreateCollection ({create, setCreate}: Props) : JSX.Elem
             localStorage.removeItem("x-access-token");
             setTimeout(()=>window.location.reload(), 2000);
         }
+        else if(createCollectionQuery.data?.success)
+            setTimeout(()=>window.location.reload(), 1000);
 
     }, [dispatch, createCollectionQuery, createCollectionQuery.data]);
 
@@ -182,7 +184,7 @@ export default function CreateCollection ({create, setCreate}: Props) : JSX.Elem
                 <div className="ProductsContainer">
                     {
                         productsToAdd.map((product, index)=>{
-                            if(product.productId && !productsAdded.includes(product.productId)) //adicionar condição productStatus = ativo
+                            if(product.id && !productsAdded.includes(product.id)) //adicionar condição productStatus = ativo
                                 return(
                                     <ProductCard product={product} key={"collectionToBeCreatedProduct"+String(index)} onClick={()=>addProductToCollection(product)}/>
                                 )

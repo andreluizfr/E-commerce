@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 export const collectionDTO = z.object({
-    collectionId: z.string()
+    id: z.string()
         .optional(),
     title: z.string({required_error: "Título da coleção não informada."}),
     description: z.string(),

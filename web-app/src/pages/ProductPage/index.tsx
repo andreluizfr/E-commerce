@@ -254,7 +254,7 @@ export default function ProductPage () : JSX.Element {
                         </section>
 
                         <section className="Fifth-section">
-                            <Ratings productId={product.productId}/>
+                            <Ratings productId={product.id}/>
                         </section>
 
                     </div>

@@ -22,9 +22,6 @@ export default new class GetProductsController{
         const keyword = req.query.keyword as string;
         const order = req.query.ordem as (string | undefined);
 
-        console.log(category);
-        console.log(keyword);
-
         const queries = {} as Queries;
 
         if(category)

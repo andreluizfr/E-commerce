@@ -109,7 +109,7 @@ export default function EditProduct ({productToBeEdited, setProductToBeEdited}: 
                 let exists = false;
                 let repeated = false;
 
-                //checar se existe nos atributos se o attributeValue a ser colocado existe 
+                //se for diferente de none tem que fazer as verificações abaixo antes de adicionar
                 if(attributeValue !== "none"){
                     productToBeEdited.attributes.forEach(attribute=>{
                         if(attribute.values.includes(attributeValue))
@@ -249,7 +249,7 @@ export default function EditProduct ({productToBeEdited, setProductToBeEdited}: 
 
                 <div className="FormField">
                     <label className="FormField-label" htmlFor="productStatus">Status do produto</label>
-                    <select name="productStatus" defaultValue={productToBeEdited?.productStatus} onChange={updateFormData} required>
+                    <select name="productStatus" defaultValue={productToBeEdited?.productStatus} onChange={updateFormData} key={"productStatus"+productToBeEdited?.id} required>
                         <option value="rascunho">Rascunho</option>
                         <option value="ativo">Ativo</option>
                         <option value="desativado">Desativado</option>

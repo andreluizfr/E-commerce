@@ -18,12 +18,12 @@ export class CollectionsRepository implements ICollectionsRepository{
 
     async deleteCollection(collectionId: string){
         const collectionsRepository = AppDataSource.getRepository(Collection);
-        await collectionsRepository.delete({collectionId: collectionId});
+        await collectionsRepository.delete({id: collectionId});
     };
 
     async updateCollection(collectionId: string, changes: object){
         const collectionsRepository = AppDataSource.getRepository(Collection);
-        const collection = await collectionsRepository.findOneBy({collectionId: collectionId});
+        const collection = await collectionsRepository.findOneBy({id: collectionId});
 
         if (collection){
             Object.assign(collection, changes);
@@ -43,7 +43,7 @@ export class CollectionsRepository implements ICollectionsRepository{
                 products: true
             },
             where:{
-                collectionId: collectionId
+                id: collectionId
             }
         });
         

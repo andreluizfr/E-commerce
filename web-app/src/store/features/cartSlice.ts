@@ -31,10 +31,10 @@ const cartSlice = createSlice({
                             equalVariation = false;
                     })
 
-                    return (productInState.productId === productToAdd.productId) && equalVariation;
+                    return (productInState.id === productToAdd.id) && equalVariation;
                 }
                 else
-                    return (productInState.productId === productToAdd.productId);
+                    return (productInState.id === productToAdd.id);
             });
 
             if(productIndex >= 0)
@@ -60,10 +60,10 @@ const cartSlice = createSlice({
                             equalVariation = false;
                     })
 
-                    return (productInState.productId === productToRemove.productId) && equalVariation;
+                    return (productInState.id === productToRemove.id) && equalVariation;
                 }
                 else
-                    return (productInState.productId === productToRemove.productId);
+                    return (productInState.id === productToRemove.id);
             });
 
             if(productIndex >= 0){

@@ -8,8 +8,6 @@ import { useState } from 'react';
 
 import Product from 'types/product';
 
-
-
 interface Props {
     products: Product[];
     setRefreshProducts: React.Dispatch<React.SetStateAction<boolean>>;
@@ -41,8 +39,8 @@ export default function ProductsList ({products, setRefreshProducts}: Props) : J
                     {
                         products.map(product=>{
                             return (
-                                <tr className="TableRow TableRowLink" key={product.productId}>
-                                    <td className="TableData" onClick={()=>editProduct(product)}>{product.productId}</td>
+                                <tr className="TableRow TableRowLink" key={product.id}>
+                                    <td className="TableData" onClick={()=>editProduct(product)}>{product.id}</td>
                                     <td className="TableData" onClick={()=>editProduct(product)}>{product.title}</td>
                                     <td className="TableData" onClick={()=>editProduct(product)}>{product.price}</td>
                                     <td className="TableData" onClick={()=>editProduct(product)}>{product.category}</td>
@@ -53,7 +51,7 @@ export default function ProductsList ({products, setRefreshProducts}: Props) : J
                                     <td className="TableData" onClick={()=>editProduct(product)}>{product.productStatus}</td>
                                     <td>
                                         <DeleteProductDialog 
-                                            productId={product.productId} 
+                                            productId={product.id} 
                                             setRefreshProducts={setRefreshProducts}
                                         />
                                     </td>

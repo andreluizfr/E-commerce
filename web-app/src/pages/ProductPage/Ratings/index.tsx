@@ -13,7 +13,7 @@ interface RatingsProps extends HTMLAttributes<HTMLDivElement> {
 
 const ratingsMock = [
     {
-        ratingId: "1",
+        id: "1",
         userId: "5",
         productId: "123",
         variation: {cor: "azul", tamanho: "P"},
@@ -24,7 +24,7 @@ const ratingsMock = [
         created_at: new Date("Sat Feb 18 2023 22:17:27 GMT-0300 (Horário Padrão de Brasília)")
     },
     {
-        ratingId: "2",
+        id: "2",
         userId: "5",
         productId: "123",
         variation: {cor: "amarelo", tamanho: "M"},
@@ -35,7 +35,7 @@ const ratingsMock = [
         created_at: new Date("Sat Feb 18 2023 22:17:27 GMT-0300 (Horário Padrão de Brasília)")
     },
     {
-        ratingId: "3",
+        id: "3",
         userId: "5",
         productId: "123",
         variation: {cor: "preto", tamanho: "G"},
@@ -89,7 +89,7 @@ export default function Ratings (props: RatingsProps) : JSX.Element {
                 ratings.map(rating=>{
                     return(
                         
-                        <div className='Rating-container' key={rating.ratingId}>
+                        <div className='Rating-container' key={rating.id}>
 
                             <img className='User-picture' alt='imagem de perfil do usuário' src={'https://www.showmetech.com.br/wp-content/uploads//2021/02/capa-dog-1920x1024.jpg'}/>
 
@@ -148,7 +148,7 @@ export default function Ratings (props: RatingsProps) : JSX.Element {
                                                             src={midia.url} 
                                                             alt="imagem de avaliação" 
                                                             key={rating.userId+(index+1)}
-                                                            onClick={(e)=>openMidia(e,midia.url, rating.ratingId)}
+                                                            onClick={(e)=>openMidia(e,midia.url, rating.id)}
                                                         />
                                                     )
                                                 })
@@ -156,7 +156,7 @@ export default function Ratings (props: RatingsProps) : JSX.Element {
                                         </div>
                                         <img
                                             className='OpenMidia'
-                                            id={"openMidia"+rating.ratingId}
+                                            id={"openMidia"+rating.id}
                                             src={''}
                                             alt="imagem de avaliação ampliada" 
                                         />

@@ -1,17 +1,18 @@
-import { Entity, Column, CreateDateColumn, PrimaryGeneratedColumn, OneToMany, ManyToMany} from 'typeorm';
+import { Entity, Column, CreateDateColumn, PrimaryColumn, OneToMany } from 'typeorm';
 import { ProductDTO } from '../repositories/Products/ProductDTO';
 import { Rating } from './Rating.entity';
+import { v4 as uuidv4 } from 'uuid';
 
 @Entity("Products")
 export class Product{
 
-    @PrimaryGeneratedColumn('increment')
-    public readonly productId!: string;
+    @PrimaryColumn()
+    public readonly id!: string;
 
-    @OneToMany(() => Rating, (rating: Rating) => rating.productId)
+    @OneToMany(() => Rating, (rating: Rating) => rating.product)
     public ratings!: Rating[];
     
-    @Column({ unique: true })
+    @Column()
     public title!: string;
 
     @Column()
@@ -72,6 +73,7 @@ export class Product{
 
         Object.assign(this, props);
         
+        this.id = uuidv4();
         const ratingNumbersInitial = {
             "1": 0,
             "2": 0,

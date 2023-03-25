@@ -25,6 +25,7 @@ const NotFoundPage = React.lazy(() => import('pages/NotFoundPage'));
 const ProductPage = React.lazy(() => import('pages/ProductPage'));
 const ProductsPage = React.lazy(() => import('pages/ProductsPage'));
 const AdressesPage = React.lazy(() => import('pages/AdressesPage'));
+const PaymentPage = React.lazy(() => import('pages/PaymentPage'));
 
 function App() {
 
@@ -133,6 +134,10 @@ function App() {
 							element: <AdressesPage/>,
 						},
 						{
+							path: "/pagamento",
+							element: <PaymentPage/>,
+						},
+						{
 							path: "*",
 							element: <NotFoundPage/>,
 						},
@@ -177,6 +182,10 @@ function App() {
 						{
 							path: "/endereços",
 							element: <AdressesPage/>,
+						},
+						{
+							path: "/pagamento",
+							element: <PaymentPage/>,
 						},
 						{
 							path: "*",

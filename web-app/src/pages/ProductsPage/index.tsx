@@ -475,7 +475,7 @@ export default function ProductsPage () : JSX.Element {
                         :
                         <main className='Products'> 
                             {sortedProducts.map(product=>
-                                <ProductCard product={product} key={product.productId} onClick={()=>navigate('/produto/'+product.productId)}/>
+                                <ProductCard product={product} key={product.id} onClick={()=>navigate('/produto/'+product.id)}/>
                             )}
                         </main>
                     }

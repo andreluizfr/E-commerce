@@ -10,10 +10,9 @@ import DeleteCollectionQuery from 'queries/Collection/admin/DeleteCollection';
 
 interface Props extends HTMLAttributes<HTMLDivElement>{
     collectionId: string | undefined;
-    setRefreshCollections: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function DeleteAlertDialog ({collectionId, setRefreshCollections}: Props) : JSX.Element {
+export default function DeleteAlertDialog ({collectionId}: Props) : JSX.Element {
 
     const dispatch = useDispatch();
     const deleteCollectionQuery = DeleteCollectionQuery(collectionId);
@@ -40,6 +39,8 @@ export default function DeleteAlertDialog ({collectionId, setRefreshCollections}
             localStorage.removeItem("x-access-token");
             setTimeout(()=>window.location.reload(), 2000);
         }
+        else if(deleteCollectionQuery.data?.success)
+            setTimeout(()=>window.location.reload(), 1000);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [deleteCollectionQuery.data]);

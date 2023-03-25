@@ -57,7 +57,7 @@ export default function EditAddress ({addressIndex, visible, setVisible}: Props)
             const newAddresses = [...user.value.addresses];
             newAddresses[addressIndex] = address;
 
-            setUpdateAddressesQueryParams({userId: user.value.userId, addresses: newAddresses});
+            setUpdateAddressesQueryParams({userId: user.value.id, addresses: newAddresses});
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [address]);
