@@ -18,7 +18,7 @@ export default new class GetUserController{
             const { user }  = await getUserService.execute(email);
 
             const publicUser = {
-                userId: user.id,
+                id: user.id,
                 firstName: user.firstName,
                 lastName: user.lastName,
                 email: user.email,

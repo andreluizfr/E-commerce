@@ -34,7 +34,7 @@
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     border-radius: .2rem;
     background-color: $almost-white;
-    gap: 1rem;
+    gap: .5rem;
 
     .Item-container{
         @include flex-row-start-center;
@@ -42,7 +42,9 @@
         gap: 1rem;
 
         .Item-image{
-            @include image-small;
+            width: 5rem;
+            height: 5rem;
+            object-fit: contain;
             transition: 200ms;
             cursor: pointer;
         }
@@ -52,12 +54,12 @@
 
         .TitleVariation-wrapper{
             @include flex-column-center-start;
-
+           
             .Title{
                 font-size: $font-size-smaller;
                 font-weight: 500;
 
-                max-width: 12rem;
+                width: 8rem;
                 white-space: nowrap;
                 overflow-x: hidden;
                 text-overflow: ellipsis;
@@ -65,6 +67,10 @@
 
             .Variation{
                 font-size: $font-size-smaller;
+                width: 8rem;
+                white-space: nowrap;
+                overflow-x: hidden;
+                text-overflow: ellipsis;
             }
         }
 

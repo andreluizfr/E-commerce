@@ -1,43 +1,48 @@
 import { Request, Response } from 'express';
-import { AddProductService } from '../../services/Products/AddProduct.service';
-import { ProductsRepository } from "../../repositories/Products/Products.repository";
+import { CreatePreferenceService } from '../../services/Payments/CreatePreference.service';
 
-const productsRepository = new ProductsRepository();
-const addProductService = new AddProductService(productsRepository);
+const createPreferenceService = new CreatePreferenceService();
 
-//receive a request, calls the use-case, then send back a response
-export default new class AddProductController{
+export default new class CreatePreferenceController{
     constructor (){}
 
     async handle(req: Request, res: Response): Promise<Response>{
         
-        const { title, description, midias, price, comparisonPrice, costPerProduct, category,
-            subcategory, providerURL, attributes, hasAttributes, productStatus, tags } = req.body;
+        const { cart, userId } = req.body;
 
-        try{
-            const { product } = await addProductService.execute({ 
-                title, description, midias, price, comparisonPrice, costPerProduct, category,
-                subcategory, providerURL, attributes, hasAttributes, productStatus, tags });
+        if(cart && userId){
+            try{
 
-            return res.status(201).send({
-                refresh: false,
-                success: true,
-                product: product,
-                message: "O registro do produto foi um sucesso."
-            });
+                const { preferenceId } = await createPreferenceService.execute(cart, userId);
 
-        } catch (err) {
-            const error = err as Error;
-            
+                return res.status(201).send({
+                    refresh: false,
+                    success: true,
+                    preferenceId: preferenceId,
+                    message: 'Criação de preferencias bem sucedida.'
+                });
+
+            } catch (err) {
+                const error = err as Error;
+                
+                return res.status(202).send({
+                    refresh: false,
+                    success: false,
+                    preferenceId: null,
+                    message: error.message || 'Unexpected error.'
+                });
+
+            } 
+
+        }
+
+        else
             return res.status(202).send({
                 refresh: false,
                 success: false,
-                product: null,
-                message: error.message || 'Unexpected error.'
+                preferenceId: null,
+                message: 'Você não pode pagar sem ter produtos no carrinho ou sem informar o Id do usuário.'
             });
-
-        } 
-
     } 
 
 }

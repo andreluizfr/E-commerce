@@ -133,9 +133,12 @@ export default function UserDropdownMenu (props: Props) :JSX.Element {
                                             <div className="TitleVariation-wrapper">
                                                 <span className='Title'>{productState.product.title}</span>
                                                 <span className='Variation'>
-                                                    Variação:
+                                                    {
+                                                        productState.product.variation &&
+                                                            "Variação:"
+                                                    }
                                                     {   
-                                                        productState.product.variation?
+                                                        productState.product.variation &&
                                                             Object.keys(productState.product.variation).map(key=>{
                                                                 if(productState.product.variation && productState.product.variation[key])
                                                                     return(" " + productState.product.variation[key] + ", ");
@@ -147,8 +150,6 @@ export default function UserDropdownMenu (props: Props) :JSX.Element {
                                                                 else
                                                                     return variationString;
                                                             })
-                                                            :
-                                                            null
                                                     }
                                                 </span>
                                             </div>

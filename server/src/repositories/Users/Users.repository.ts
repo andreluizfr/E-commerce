@@ -55,7 +55,7 @@ export class UsersRepository implements IUsersRepository{
         const usersRepository = AppDataSource.getRepository(User)
         const user = await usersRepository.find({
             relations: {
-                payments: true,
+                orders: true,
                 ratings: true
             },
             where:{
@@ -70,7 +70,7 @@ export class UsersRepository implements IUsersRepository{
         const usersRepository = AppDataSource.getRepository(User)
         const user = await usersRepository.find({
             relations: {
-                payments: true,
+                orders: true,
                 ratings: true
             },
             where:{
@@ -85,7 +85,7 @@ export class UsersRepository implements IUsersRepository{
         const usersRepository = AppDataSource.getRepository(User)
         const user = await usersRepository.find({
             relations: {
-                payments: true,
+                orders: true,
                 ratings: true
             },
             where:{

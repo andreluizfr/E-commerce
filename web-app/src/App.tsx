@@ -63,8 +63,6 @@ function App() {
 			dispatch(newUser(getUserQuery.data.user));
 		}
 			
-			
-
 	}, [dispatch, getUserQuery, getUserQuery.data]);
 
 

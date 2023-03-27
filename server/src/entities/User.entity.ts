@@ -1,7 +1,9 @@
 import { Entity, Column, CreateDateColumn, PrimaryColumn, BeforeInsert, OneToMany } from 'typeorm';
 import { Rating } from './Rating.entity';
-import { Payment } from './Payment.entity';
+import { Order } from './Order.entity';
+
 import { UserDTO } from '../repositories/Users/UserDTO';
+
 import { v4 as uuidv4 } from 'uuid';
 import * as bcrypt from 'bcrypt';
 
@@ -55,11 +57,11 @@ export class User{
         phoneNumber: string
     }[];
 
-    @Column({ nullable: true }) //posteriormente tirar nullable
+    @Column({ nullable: true })
     public photoURL!: string;
 
-    @OneToMany(() => Payment, (payment: Payment) => payment.user)
-    public payments!: Payment[];
+    @OneToMany(() => Order, (order: Order) => order.user)
+    public orders!: Order[];
 
     @OneToMany(() => Rating, (rating: Rating) => rating.user)
     public ratings!: Rating[];

@@ -17,6 +17,7 @@
     .CardImage{
         width: 100%;
         height: 200px;
+        object-fit: contain;
         border-bottom: 1px solid $thinner-black;
         margin-bottom: 3px;
     }

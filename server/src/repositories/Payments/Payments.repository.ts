@@ -31,15 +31,4 @@ export class PaymentsRepository implements IPaymentsRepository{
         return payment;
     }
 
-    async getByUser(userId: string){
-        const paymentsRepository = AppDataSource.getRepository(Payment)
-        const payments = await paymentsRepository.find({
-            where: {
-                user: userId
-            }
-        });
-        
-        return payments;
-    }
-
 }

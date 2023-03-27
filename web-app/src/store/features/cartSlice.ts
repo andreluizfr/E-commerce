@@ -1,7 +1,7 @@
 import { createSlice, current } from '@reduxjs/toolkit';
 import Product from 'types/product';
 
-interface ProductState {
+export interface ProductState {
     quantity: number;
     product: Product;
 }
@@ -22,8 +22,10 @@ const cartSlice = createSlice({
             const productIndex = state.value.findIndex(productState =>{
                 const productInState = current(productState.product);
                 const productToAdd = action.payload;
-
-                if(productInState.hasAttributes && productInState.variation){
+                
+                //o produto salvo e o produto a ser adicionado so entram no if pra checar se sao a mesmo variação se os dois possuem
+                //a propriedade hasAttributes como true e se possuem a propriedade variation, caso contrario so ira ser checado se os ids sao iguais
+                if(productInState.hasAttributes && productInState.variation && productToAdd.hasAttributes && productToAdd.hasAttributes ){
                     let equalVariation = true;
                     
                     Object.keys(productInState.variation).forEach(name=>{
