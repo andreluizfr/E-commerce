@@ -30,6 +30,8 @@ export default new class GetUserController{
                 admin: user.admin,
                 addresses: user.addresses,
                 photoURL: user.photoURL,
+                orders: user.orders,
+                ratings: user.ratings,
                 created_at: user.created_at
             }
 

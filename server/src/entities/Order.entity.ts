@@ -22,8 +22,9 @@ export class Order{
 
     @Column({type: "jsonb"})
     public items!: {
-        title: string, 
-        unit_price: number,
+        id: string,
+        title: string,
+        price: number,
         quantity: number
     }[];
 

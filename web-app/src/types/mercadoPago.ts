@@ -8,6 +8,12 @@ export default interface MercadoPago{
             label?: string
         }
     }) => any;
+    cardForm: (input:{
+        amount: string,
+        iframe: boolean,
+        form: object,
+        callbacks: object
+    }) => any;
 }
 
 interface Constructable<T> {

@@ -1,25 +1,22 @@
 import { Request, Response } from 'express';
-import { FeedbackService } from '../../services/Payments/Feedback.service';
+import { CreatePaymentService } from '../../services/Payments/CreatePayment.service';
 import { PaymentsRepository } from "../../repositories/Payments/Payments.repository";
 import { OrdersRepository } from "../../repositories/Orders/Orders.repository";
 
 const paymentsRepository = new PaymentsRepository();
 const ordersRepository = new OrdersRepository();
-const feedbackService = new FeedbackService(paymentsRepository, ordersRepository);
+const createPaymentService = new CreatePaymentService(paymentsRepository, ordersRepository);
 
-export default new class FeedbackController{
+export default new class CreatePaymentController{
     constructor (){}
 
     async handle(req: Request, res: Response): Promise<Response>{
 
-        const paymentId = String(req.query.payment_id);
-        const paymentStatus = String(req.query.status);
-        const paymentType = String(req.query.payment_type);
-        const preferenceId = String(req.query.preference_id);
+        const { paymentForm, cart, userId } = req.body;
         
         try{
 
-            const { order } = await feedbackService.execute(paymentId, paymentStatus, paymentType, preferenceId)
+            const { order } = await createPaymentService.execute(paymentForm, cart, userId);
 
             return res.status(201).send({
                 refresh: false,

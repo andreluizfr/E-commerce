@@ -9,13 +9,16 @@ export class Payment{
     public readonly id!: string;
 
     @Column()
-    public preferenceId!: string;
+    public type!: string; //credit_card 
+
+    @Column()
+    public method!: string; //visa | master | account_money
 
     @Column()
     public status!: string;
 
     @Column()
-    public type!: string;
+    public statusDetail!: string;
 
     @CreateDateColumn()
     public created_at!: Date;

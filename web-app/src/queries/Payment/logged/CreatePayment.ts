@@ -2,24 +2,24 @@ import { useQuery } from 'react-query';
 import axios from 'libs/axios';
 import { ProductState } from 'store/features/cartSlice';
 
-interface ICreatePreferenceResponse {
+interface ICreatePaymentResponse {
     refresh: boolean;
     login?: boolean;
     success: boolean;
     message: string;
-    preferenceId?: string;
+    order?: object | null;
 }
 
-export default function CreatePreferenceQuery (cart: ProductState[], userId: string | undefined) {
+export default function CreatePreferenceQuery (paymentForm: object | null, cart: ProductState[], userId: string | undefined) {
 
     const createPreferenceQuery = useQuery('createPreference', async () => {
 
-        if(userId && cart.length>0){
+        if(paymentForm && userId && cart.length>0){
             const accessToken = localStorage.getItem("x-access-token");
 
-            const response = await axios.post('/payment/createPreference',  {cart: cart, userId: userId}, {headers: { Authorization: `Bearer ${accessToken}` }});
+            const response = await axios.post('/payment/createPayment',  {paymentForm: paymentForm, cart: cart, userId: userId}, {headers: { Authorization: `Bearer ${accessToken}` }});
         
-            const data = response.data as ICreatePreferenceResponse;
+            const data = response.data as ICreatePaymentResponse;
 
             return data;
         }
@@ -27,7 +27,7 @@ export default function CreatePreferenceQuery (cart: ProductState[], userId: str
 
     }, {
         refetchOnWindowFocus: false,
-        enabled: true
+        enabled: false
     });
 
     return createPreferenceQuery;
