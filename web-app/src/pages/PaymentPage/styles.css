@@ -1,13 +1,40 @@
-#form-checkout {
+.PaymentPage {
   display: flex;
   flex-direction: column;
-  max-width: 600px;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
-
-.container {
-  height: 18px;
+.PaymentPage button,
+.PaymentPage fieldset,
+.PaymentPage input {
+  all: unset;
+}
+.PaymentPage .Payment-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.PaymentPage .Payment-container #form-checkout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  max-height: 30rem;
+  gap: 1rem;
+  padding: 5rem 1rem 1rem 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.24);
+  border-radius: 0.2rem;
+}
+.PaymentPage .Payment-container #form-checkout .input {
   display: inline-block;
-  border: 1px solid rgb(118, 118, 118);
-  border-radius: 2px;
-  padding: 1px 2px;
+  height: 2rem;
+  width: 20rem;
+  padding: 0.1rem 0.2rem;
+  border: 1px solid rgba(0, 0, 0, 0.24);
+  border-radius: 0.2rem;
+  font-size: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
 }/*# sourceMappingURL=styles.css.map */

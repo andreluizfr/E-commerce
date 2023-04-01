@@ -7,6 +7,8 @@ import { StoreState } from 'store';
 import useMercadoPago from 'hooks/useMercadoPago';
 import CreatePaymentQuery from 'queries/Payment/logged/CreatePayment';
 import refreshToken from 'queries/User/public/RefreshToken';
+import NavBar from 'components/NavBar';
+import Footer from 'components/Footer';
 
 
 export default function PaymentPage () : JSX.Element {
@@ -126,7 +128,7 @@ export default function PaymentPage () : JSX.Element {
                     console.log("Fetching resource: ", resource);
           
                     // Animate progress bar
-                    const progressBar = document.querySelector(".progress-bar");
+                    const progressBar = document.querySelector(".Progress-bar");
                     if(progressBar)
                         progressBar.removeAttribute("value");
           
@@ -177,23 +179,29 @@ export default function PaymentPage () : JSX.Element {
 
     return (
         <div className='PaymentPage'>
-            <form id="form-checkout">
-                <div id="form-checkout__cardNumber" className="container"></div>
-                <div id="form-checkout__expirationDate" className="container"></div>
-                <div id="form-checkout__securityCode" className="container"></div>
-                <input type="text" id="form-checkout__cardholderName" />
-                <select id="form-checkout__issuer">
-                </select>
-                <select id="form-checkout__installments">
-                </select>
-                <select id="form-checkout__identificationType">
-                </select>
-                <input type="text" id="form-checkout__identificationNumber" />
-                <input type="email" id="form-checkout__cardholderEmail" />
-                <button type="submit" id="form-checkout__submit">Pagar</button>
-                <progress value="0" className="progress-bar">Carregando...</progress>
-            </form>
-            <div>{JSON.stringify(createPaymentQuery.data)}</div>
+            <NavBar/>
+
+            <div className='Payment-container'>
+                <form id="form-checkout">
+                    <div className="input" id="form-checkout__cardNumber"></div>
+                    <div className="input" id="form-checkout__expirationDate"></div>
+                    <div className="input" id="form-checkout__securityCode"></div>
+                    <input type="text" id="form-checkout__cardholderName" />
+                    <select id="form-checkout__issuer">
+                    </select>
+                    <select id="form-checkout__installments">
+                    </select>
+                    <select id="form-checkout__identificationType">
+                    </select>
+                    <input className="input" type="text" id="form-checkout__identificationNumber" />
+                    <input className="input" type="email" id="form-checkout__cardholderEmail" />
+                    <button className="Pay-button" type="submit" id="form-checkout__submit">Pagar</button>
+                    <progress className="Progress-bar" value="0">Carregando...</progress>
+                    <div>{JSON.stringify(createPaymentQuery.data)}</div>
+                </form>
+            </div>
+
+            <Footer/>
         </div>
     );
 }

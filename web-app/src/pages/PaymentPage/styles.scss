@@ -2,16 +2,52 @@
 @import '../../assets/css/_mixins';
 
 
-#form-checkout {
-    display: flex;
-    flex-direction: column;
-    max-width: 600px;
+.PaymentPage{
+    @include flex-column-center-center;
+    min-height: 100vh;
+
+    button,
+    fieldset,
+    input {
+    all: unset;
+    }
+
+    .Payment-container{
+        flex: 1;
+        @include flex-column-center-center;
+
+        #form-checkout {
+            @include flex-column-center-start;
+            max-height: 30rem;
+            gap: 1rem;
+            
+            padding: 5rem 1rem 1rem 1rem;
+            border: 1px solid $thin-black;
+            border-radius: .2rem;
+
+            .input {
+                display: inline-block;
+    
+                height: 2rem;
+                width: 20rem;
+                padding: .1rem .2rem;
+    
+                border: 1px solid $thin-black;
+                border-radius: .2rem;
+    
+                font-size: $font-size-small;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+            .Pay-button{
+
+            }
+
+            .Progress-bar{
+                
+            }
+        }
+    }
+    
 }
 
-.container {
-    height: 18px;
-    display: inline-block;
-    border: 1px solid rgb(118, 118, 118);
-    border-radius: 2px;
-    padding: 1px 2px;
-}

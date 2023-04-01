@@ -1,0 +1,252 @@
+@import '../../assets/css/variables';
+@import '../../assets/css/_mixins';
+
+
+.CartPage{
+    @include flex-column-center-center;
+    min-height: 100vh;
+
+    .CartPage-container{
+        flex: 1;
+        @include flex-column-center-center;
+        
+        .Wrapper{
+            @include flex-row-space-between-center;
+            gap: 1rem;
+
+            .Items-container{
+                @include flex-column-start-start;
+                gap: .5rem;
+                width: 36rem;
+
+                .Title{
+                    margin-bottom: 1rem;
+                    width: 100%;
+                    text-align: center;
+
+                    font-size: $font-size-medium;
+                    font-weight: 600;
+                }
+
+                .Items-container-menu{
+                    @include flex-row-start-center;
+                    width: 100%;
+                    padding: .5rem 1rem;
+                    border: 1px solid $black;
+                    border-radius: .2rem;
+                    background-color: $white;
+
+                    span{
+                        margin: .5rem;
+                        text-align: center;
+                        font-size: $font-size-small;
+                        font-weight: 500;
+                    }
+                    span:nth-child(1){
+                        width: 18rem;
+                    }
+                    span:nth-child(2){
+                        width: 10.8rem;
+                    }
+                    span:nth-child(3){
+                        width: 7.2rem;
+                    }
+                }
+
+                .Item{
+                    @include flex-row-start-center;
+                    width: 100%;
+                    padding: 0.5rem 1rem;
+
+                    .Product-card{
+                        @include flex-row-start-start;
+                        width: 18rem;
+                        margin: .5rem;
+
+                        .Icon{
+                            width: 5rem;
+                            height: 5rem;
+                            object-fit: contain;
+                        }
+
+                        .Title-code{
+                            @include flex-column-start-start;
+                            max-width: calc(18rem - 5rem); //tamanho total do card - tamanho do icon
+                            margin-top: .2rem;
+
+                            .Item-title{
+                                max-width: 100%;
+                                overflow: hidden;
+                                white-space: nowrap;
+                                text-overflow: ellipsis;
+                                font-size: $font-size-mini;
+                            }
+
+                            .Item-code{
+                                max-width: 100%;
+                                overflow: hidden;
+                                white-space: nowrap;
+                                text-overflow: ellipsis;
+                                font-size: $font-size-mini;
+                            }
+                        }
+                    }
+
+                    .Quantity-wrapper{
+                        @include flex-row-center-center;
+                        width: 10.8rem;
+                        margin: .5rem;
+
+                        .Minus-box{
+
+                        }
+
+                        .Quantity{
+
+                        }
+
+                        .Plus-box{
+
+                        }
+                    }
+
+                    .Price-wrapper{
+                        width: 7.2rem;
+                        margin: .5rem;
+                    }
+
+                }
+
+
+            }
+
+            .Items-resume{
+                padding: .5rem;
+                border-radius: .2rem;
+                filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+                background-color: $lighter-gray;
+
+                .Title{
+                    margin-bottom: .5rem;
+
+                    font-size: $font-size-small;
+                    font-weight: 500;
+                    text-align: center;
+                }
+
+                .Products{
+                    @include flex-column-center-start;
+                    gap: .1rem;
+
+                    .ProductInfo{
+                        @include flex-row-space-between-center;
+                        width: 100%;
+
+                        color: $dark-gray;
+                        font-size: $font-size-mini;
+                        font-family: Arial, Helvetica, sans-serif;
+
+                        .ProductQuantities{
+                            max-width: 12rem;
+                            overflow: hidden;
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
+                            font-family: inherit;
+                        }
+                        .ProductTotalPrice{
+                            font-family: inherit;
+                        }
+                    }
+                }
+
+                .Separator{
+                    height: 1px;
+                    width: 100%;
+            
+                    border-bottom: 1px solid $thin-black;
+                    margin: .5rem 0;
+                }
+
+                .Last-section{
+                    @include flex-column-start-end;
+                    width: 100%;
+                    gap: .2rem;
+
+                    .TotalPrice-wrapper{
+                        @include flex-row-space-between-center;
+                        width: 100%;
+                        
+                        .Title{
+                            font-size: $font-size-smaller;
+                            font-weight: 600;
+                            color: $dark-gray;
+                        }
+
+                        .TotalPrice{
+                            font-size: $font-size-smaller;
+                            font-family: Arial, Helvetica, sans-serif;
+                            font-weight: 600;
+                            color: $dark-gray;
+                        }
+                    }
+
+                    .PriceOnPaymentSlip{
+                        font-size: $font-size-mini;
+                        font-family: Arial, Helvetica, sans-serif;
+                        font-weight: 400;
+                        color: $dark-gray;
+                    }
+
+                    .PriceOnPix{
+                        font-size: $font-size-mini;
+                        font-family: Arial, Helvetica, sans-serif;
+                        font-weight: 400;
+                        color: $dark-gray;
+                    }
+
+                    .ButtonContainer{
+                        @include flex-row-center-center;
+                        width: 100%;
+                        margin-top: .5rem;
+
+                        .ContinueButton{
+                            outline: none;
+                            border: 1px solid $thin-black;
+                            padding: .4rem 1rem;
+                            border-radius: .2rem;
+    
+                            background-color: $black;
+                            color: $white;
+                            font-size: $font-size-mini;
+                            
+                            transition: all 200ms;
+                            cursor: pointer;
+                        }
+
+                        .ContinueButton:hover{
+                            background-color: $opaque-black;
+                        }
+                    }   
+
+                    .AddMoreProductsContainer{
+                        @include flex-row-center-center;
+                        width: 100%;
+                        margin: .5rem 0;
+
+                        .AddMoreProducts{
+                            font-size: $font-size-mini;
+                            color: $dark-gray;
+                            text-decoration: underline;
+    
+                            cursor: pointer;
+                        }
+                        .AddMoreProducts:visited{
+                            color: $dark-gray;
+                        }
+                    }
+                    
+                }
+            }
+        }
+    }
+}

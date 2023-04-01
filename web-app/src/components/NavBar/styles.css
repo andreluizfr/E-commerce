@@ -81,6 +81,7 @@
   outline: none;
   border-radius: 0.2rem;
   padding: 0.5rem;
+  background: rgb(255, 255, 255);
   font-size: 0.9rem;
 }
 .NavBar .NavBar-container-background .NavBar-container .NavBar-searchBar .SearchBar-icon {
