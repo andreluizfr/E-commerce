@@ -329,7 +329,7 @@ export default function EditProduct ({productToBeEdited, setProductToBeEdited}: 
                 </div>
 
                 <div className="FormField">
-                    <label className="FormField-label" htmlFor="price">Preço</label>
+                    <label className="FormField-label" htmlFor="price">Preço (Obs:as casas decimais são com ".")</label>
                     {(productToBeEdited?.price !== null)?
                         <input name="price" type="number" onChange={updateFormData} defaultValue={productToBeEdited?.price}/>
                         :

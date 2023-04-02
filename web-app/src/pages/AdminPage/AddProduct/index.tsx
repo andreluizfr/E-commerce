@@ -269,7 +269,7 @@ export default function AddProduct () : JSX.Element {
                 </div>
 
                 <div className="FormField">
-                    <label className="FormField-label" htmlFor="price">Preço</label>
+                    <label className="FormField-label" htmlFor="price">Preço (Obs:as casas decimais são com ".")</label>
                     <input name="price" type="number" onChange={updateFormData}/>
                 </div>
 
