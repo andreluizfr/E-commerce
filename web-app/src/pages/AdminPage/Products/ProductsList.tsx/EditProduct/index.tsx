@@ -233,9 +233,10 @@ export default function EditProduct ({productToBeEdited, setProductToBeEdited}: 
             localStorage.removeItem("x-access-token");
             setTimeout(()=>window.location.reload(), 3000);
         }
-        else if(editProductQuery.data?.success && editProductQuery.data?.product)
-            console.log("Novos dados do produto - ", editProductQuery.data.product);
-
+        else if(editProductQuery.data?.success && editProductQuery.data?.updatedProduct){
+            console.log("Novos dados do produto - ", editProductQuery.data.updatedProduct);
+            setTimeout(()=>window.location.reload(), 3000);
+        }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [editProductQuery, editProductQuery.data]);
 

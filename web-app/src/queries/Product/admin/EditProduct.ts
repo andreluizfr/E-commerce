@@ -7,7 +7,7 @@ interface IEditProductResponse {
     login?: boolean;
     success: boolean;
     message: string;
-    product?: Product;
+    updatedProduct?: Product;
 }
 
 export default function EditProductQuery (product: Product | null) {
@@ -17,7 +17,7 @@ export default function EditProductQuery (product: Product | null) {
         if(product){
             const accessToken = localStorage.getItem("x-access-token");
 
-            product = {
+            const productToBeEdited = {
                 ...product,
                 price: (product.price === null)?null:Number(product.price),
                 comparisonPrice: (product.comparisonPrice === null)?null:Number(product.comparisonPrice),
@@ -25,8 +25,8 @@ export default function EditProductQuery (product: Product | null) {
                 sales: Number(product.sales)
             }
 
-            const response = await axios.post('/product/admin/editProduct',  product, {headers: { Authorization: `Bearer ${accessToken}` }});
-            
+            const response = await axios.post('/product/admin/editProduct',  productToBeEdited, {headers: { Authorization: `Bearer ${accessToken}` }});
+        
             const data = response.data as IEditProductResponse;
 
             return data;

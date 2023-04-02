@@ -15,7 +15,7 @@ export default new class SignupController{
 
         try{
 
-            const { verifiedUser } = await verifyEmailService.execute({verificationEmailCode});
+            await verifyEmailService.execute({verificationEmailCode});
 
             return res.status(201).send({
                 message: "E-mail verificado com sucesso.",

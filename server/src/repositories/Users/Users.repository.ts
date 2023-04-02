@@ -37,18 +37,14 @@ export class UsersRepository implements IUsersRepository{
     }
 
     async verifyEmail(verificationEmailCode: string){
-        if(verificationEmailCode==="null")
-            throw new Error("Código de verificação de e-mail não registrado no sistema.");
-
         const usersRepository = AppDataSource.getRepository(User);
         const user = await usersRepository.findOneBy({verificationEmailCode: verificationEmailCode});
 
         if (user){
             user.emailVerified = true;
-            user.verificationEmailCode = "null";
             const updatedUser = await usersRepository.save(user);
-            return updatedUser;
-        } else return null;
+        } else
+            throw new Error("Código de verificação de e-mail não registrado no sistema.");
     }
 
     async findById(userId: string){

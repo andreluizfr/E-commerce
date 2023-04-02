@@ -38,7 +38,7 @@ export class User{
     @Column()
     public emailVerified!: boolean;
 
-    @Column({ unique: true })
+    @Column() //botar { unique: true } quando botar uuid
     public verificationEmailCode!: string;
 
     @Column()

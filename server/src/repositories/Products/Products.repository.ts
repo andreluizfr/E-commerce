@@ -28,9 +28,9 @@ export class ProductsRepository implements IProductsRepository{
         await productsRepository.delete({id: productId});
     };
 
-    async updateProduct(productId: string, changes: object){
+    async updateProduct(id: string, changes: object){
         const productsRepository = AppDataSource.getRepository(Product);
-        const product = await productsRepository.findOneBy({id: productId});
+        const product = await productsRepository.findOneBy({id: id});
 
         if (product){
             Object.assign(product, changes);

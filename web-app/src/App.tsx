@@ -2,6 +2,7 @@ import 'assets/css/styles.css';
 
 import {
     createBrowserRouter,
+    RouteObject,
     RouterProvider
 } from "react-router-dom";
 
@@ -92,7 +93,7 @@ function App() {
 			}/>
 		);
 
-    else if(getUserQuery.data?.user?.admin === true)
+    else
 		return (
 			<React.Suspense fallback={<LoadingPage/>}>
 				<RouterProvider router={
@@ -101,6 +102,7 @@ function App() {
 							path: "/",
 							element: <HomePage/>,
 						},
+						getUserQuery.data?.user?.admin &&
 						{
 							path: "/admin",
 							element: <AdminPage/>,
@@ -130,13 +132,15 @@ function App() {
 							element: <ProductPage/>,
 						},
 						{
-							path: "/endereços",
-							element: <AdressesPage/>,
-						},
-						{
 							path: "/carrinho",
 							element: <CartPage/>,
 						},
+						getUserQuery.data?.user &&
+						{
+							path: "/endereços",
+							element: <AdressesPage/>,
+						},
+						getUserQuery.data?.user &&
 						{
 							path: "/pagamento",
 							element: <PaymentPage/>,
@@ -145,64 +149,11 @@ function App() {
 							path: "*",
 							element: <NotFoundPage/>,
 						},
-					])
+					].filter(Boolean) as RouteObject[])
 				}/> 
 			</React.Suspense>
 		);
 
-	else
-		return (
-			<React.Suspense fallback={<LoadingPage/>}>
-				<RouterProvider router={
-					createBrowserRouter([
-						{
-							path: "/",
-							element: <HomePage/>,
-						},
-						{
-							path: "/login",
-							element: <LoginPage/>,
-						},
-						{
-							path: "/cadastro",
-							element: <SignupPage/>,
-						},
-						{
-							path: "/cadastro/confirmeSeuEmail",
-							element: <SignupNextStepPage/>,
-						},
-						{
-							path: "/verificacao/:verificationEmailCode",
-							element: <EmailVerificationPage/>,
-						},
-						{
-							path: "/produtos",
-							element: <ProductsPage/>,
-						},
-						{
-							path: "/produto/:productId",
-							element: <ProductPage/>,
-						},
-						{
-							path: "/endereços",
-							element: <AdressesPage/>,
-						},
-						{
-							path: "/carrinho",
-							element: <CartPage/>,
-						},
-						{
-							path: "/pagamento",
-							element: <PaymentPage/>,
-						},
-						{
-							path: "*",
-							element: <NotFoundPage/>,
-						},
-					])
-				}/> 
-			</React.Suspense>
-		);
 }
 
 export default App;

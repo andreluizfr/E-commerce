@@ -10,10 +10,7 @@ export class VerifyEmailService{
 
     async execute(data: IVerifyEmailRequestDTO){
 
-        const verifiedUser = await this.usersRepository.verifyEmail(data.verificationEmailCode);
-        
-        if(verifiedUser) return {verifiedUser: verifiedUser};
-        else throw new Error("Código de verificação de e-mail não válido.");
+        await this.usersRepository.verifyEmail(data.verificationEmailCode);
 
     }
     
