@@ -5,27 +5,32 @@ import NavBar from 'components/NavBar';
 
 import { useSelector } from 'react-redux';
 import { StoreState } from 'store';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function CartPage () : JSX.Element{
 
+    const navigate = useNavigate();
     const cart = useSelector((state: StoreState) => state.cart);
 
     let totalPrice = 0;
     cart.value.forEach(productState=>{
         if(productState.product.price)
             totalPrice += productState.quantity*productState.product.price;
-    })
+    });
+
+    function navigateToPaymentMethodsPage(){
+        navigate('/MetodoDePagamento');
+    }
 
     return (
         <div className='CartPage'>
             <NavBar/>
 
             <div className='CartPage-container'>
+                <header className='Title'>Carrinho de compras</header>
+
                 <main className='Wrapper'>
                     <section className='Items-container'>
-                        <header className='Title'>Carrinho de compras</header>
-
                         <div className='Items-container-menu'>
                             <span>Produto</span>
                             <span>Quantidade</span>
@@ -43,22 +48,29 @@ export default function CartPage () : JSX.Element{
                                 </div>
 
                                 <div className='Quantity-wrapper'>
-                                    <div className='Minus-box'>
+                                    <button className='Minus-box'>
                                         -
-                                    </div>
+                                    </button>
 
                                     <div className='Quantity-box'>
                                         {productState.quantity}
                                     </div>
 
-                                    <div className='Plus-box'>
+                                    <button className='Plus-box'>
                                         +
+                                    </button>
+                                </div>
+                                
+                                {productState.product.comparisonPrice?
+                                    <div className='Price-wrapper'>
+                                        <span className="ComparisonPrice">{"De R$"+productState.product.comparisonPrice}</span>
+                                        <span className="Price">{"Por R$"+productState.product.price}</span>
                                     </div>
-                                </div>
-
-                                <div className='Price-wrapper'>
-
-                                </div>
+                                    :
+                                    <div className='Price-wrapper'>
+                                        <span className="Price">{"R$"+productState.product.price}</span>
+                                    </div>
+                                }
                             </article>
                         )}
                     </section>
@@ -94,7 +106,7 @@ export default function CartPage () : JSX.Element{
                             </div>
                             
                             <div className='ButtonContainer'>
-                                <button className='ContinueButton'>
+                                <button className='ContinueButton' onClick={navigateToPaymentMethodsPage}>
                                     Continuar
                                 </button>
                             </div>

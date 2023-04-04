@@ -182,6 +182,7 @@ export default function AddProduct () : JSX.Element {
             const serverResponseEl = document.getElementsByClassName("ServerResponse")[0];
             serverResponseEl?.setAttribute("visible", "true");
             setTimeout(()=>{serverResponseEl?.setAttribute("visible", "false")}, 3000);
+            setTimeout(()=>window.location.reload(), 3500);
         }
             
     }, [dispatch, addProductQuery, addProductQuery.data]);
