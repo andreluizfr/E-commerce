@@ -5,6 +5,9 @@ module.exports = {
 		'^.+\\.ts?$': 'ts-jest',
 	},
 	transformIgnorePatterns: ['<rootDir>/node_modules/'],
+	testMatch: [
+		"<rootDir>/src/__tests__/**/*.(spec|test).[jt]s?(x)"
+	],
 	collectCoverage: false,
 	collectCoverageFrom: [
 		'<rootDir>/src/components/**/*.{ts,tsx}',
