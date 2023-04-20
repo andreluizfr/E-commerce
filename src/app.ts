@@ -3,10 +3,6 @@ import {Request, Response} from 'express';
 
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
-const corsOptions = {
-	origin: process.env.BASE_URL_WEB_APP,
-	credentials: true 
-};
 
 import fs from 'fs';
 import path from 'path';
@@ -26,6 +22,11 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+const corsOptions = {
+	origin: process.env.BASE_URL_WEB_APP,
+	credentials: true 
+};
 app.use(cors(corsOptions));
 
 

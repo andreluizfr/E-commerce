@@ -42,6 +42,7 @@
 		"cross-env": "^7.0.3",
 		"dotenv": "^16.0.3",
 		"express": "^4.18.2",
+		"firebase": "^9.20.0",
 		"jsonwebtoken": "^9.0.0",
 		"mercadopago": "^1.5.15",
 		"mongoose": "^6.8.3",

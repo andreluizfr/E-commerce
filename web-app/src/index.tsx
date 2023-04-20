@@ -1,3 +1,7 @@
+
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
@@ -8,6 +12,20 @@ import { Provider } from 'react-redux';
 import store from 'store';
 
 import App from 'App';
+
+const firebaseConfig = {
+	apiKey: "AIzaSyBvsT3RVY-KgfM3BwtUSrDKLHowBKF5C8A",
+	authDomain: "loja-dropshipping-7536d.firebaseapp.com",
+	projectId: "loja-dropshipping-7536d",
+	storageBucket: "loja-dropshipping-7536d.appspot.com",
+	messagingSenderId: "500461665390",
+	appId: "1:500461665390:web:3f853ca51efcd64a03ba7f",
+	measurementId: "G-QP25G0ZLF0"
+};
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
 
 const root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement

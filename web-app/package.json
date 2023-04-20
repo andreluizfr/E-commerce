@@ -5,7 +5,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "jest --passWithNoTests --detectOpenHandles"
+    "test": "jest --passWithNoTests --detectOpenHandles",
+    "deploy": "firebase deploy"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.1",
