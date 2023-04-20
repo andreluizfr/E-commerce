@@ -17,6 +17,6 @@ export const AppDataSource = new DataSource({
     synchronize: Boolean(process.env.POSTGRES_DB), //if It's true anytime you make changes to your entity, it’ll automatically update the schemas changes with the database linked to your app
     logging: process.env.NODE_ENV === "test"? false : true,
     entities: [User, Product, Collection, Payment, Order, Rating],
-    migrations: ['src/database/migrations/**/*.ts'],
-    subscribers: ["src/subscriber/**/*.ts"]
+    migrations: ["../src/database/migrations/**/*.{ts,js}"],
+    subscribers: ["../src/subscriber/**/*.{ts,js}"]
 });
