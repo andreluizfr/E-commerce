@@ -14,6 +14,7 @@ export default interface MercadoPago{
         form: object,
         callbacks: object
     }) => any;
+    getIdentificationTypes: () => Promise<[]>;
 }
 
 interface Constructable<T> {

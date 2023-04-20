@@ -20,14 +20,39 @@ export class Payment{
     @Column()
     public statusDetail!: string;
 
+    @Column({type: "json", nullable: true})
+    public transactionDetails!: {
+        "total_paid_amount": number,
+        "external_resource_url": null | string,
+    }
+
+    @Column({type: "json", nullable: true})
+    public transactionData!: {
+        "qr_code_base64": string,
+        "qr_code": string,
+        "ticket_url": string
+    }
+
     @CreateDateColumn()
     public created_at!: Date;
 
 
     constructor(
-        props: Omit <Payment, 'created_at'>,
+        props: Omit <Payment, 'created_at' | 'transactionDetails' | 'transactionData'>,
+        transactionDetails?: {
+            "total_paid_amount": number,
+            "external_resource_url": null | string,
+        },
+        transactionData?: {
+            "qr_code_base64": string,
+            "qr_code": string,
+            "ticket_url": string
+        }
     ){
         Object.assign(this, props);
+
+        this.id = uuidv4();
+
         if(this.status === "pending")
             this.status = "pendente";
         else if(this.status === "approved")
@@ -47,7 +72,10 @@ export class Payment{
         else if(this.status === "charged_back")
             this.status = "cobrado de volta";
 
-        this.id = uuidv4();
+        if(transactionDetails)
+            this.transactionDetails = transactionDetails;
+        if(transactionData)
+            this.transactionData = transactionData;
     }
 
 }

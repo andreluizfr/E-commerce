@@ -44,6 +44,7 @@ export default function PaymentPage () : JSX.Element {
 
     const createPaymentQuery = CreatePaymentQuery(paymentForm, cart.value, user.value?.id);
 
+    //cria o formulário para cartão e seus callbacks
     useEffect(()=>{
         if(mercadopago){
             const cardForm = mercadopago.cardForm({
@@ -108,13 +109,15 @@ export default function PaymentPage () : JSX.Element {
                             identificationType,
                         } = cardForm.getCardFormData();
 
+                        const description = "Produtos: " + cart.value.map(productState=>(productState.quantity+"x "+productState.product.title)).join();
+
                         setPaymentForm({
                             token,
                             issuer_id,
                             payment_method_id,
                             transaction_amount: Number(amount),
                             installments: Number(installments),
-                            description: "Pagamento de produtos",
+                            description: description,
                             payer: {
                                 email,
                                 identification: {
@@ -142,6 +145,41 @@ export default function PaymentPage () : JSX.Element {
             );
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [mercadopago]);
+
+    //preenche o select do dos tipos de identificação com os tipos vindos do mercado pago
+    function createSelectOptions(elem: HTMLSelectElement, options: {[key: string]: string}[], labelsAndKeys = { label: "name", value: "id" }) {
+        const { label, value } = labelsAndKeys;
+  
+        elem.options.length = 0;
+  
+        const tempOptions = document.createDocumentFragment();
+  
+        options.forEach(option => {
+          const optValue = option[value];
+          const optLabel = option[label];
+  
+          const opt = document.createElement('option');
+          opt.value = optValue;
+          opt.textContent = optLabel;
+  
+          tempOptions.appendChild(opt);
+        });
+  
+        elem.appendChild(tempOptions);
+      }
+    
+    //pega todos os tipos de identificação do mercado pago
+    useEffect(()=>{
+        if(mercadopago){
+            mercadopago.getIdentificationTypes().then(identificationTypes=>{
+                const identificationTypeElement = document.getElementById('form-checkout__identificationType') as HTMLSelectElement;
+                if(identificationTypeElement)
+                    createSelectOptions(identificationTypeElement, identificationTypes);
+            }).catch(e=>{
+                console.error('Error getting identificationTypes: ', e);
+            });
+        }
     }, [mercadopago]);
 
     useEffect(()=>{
