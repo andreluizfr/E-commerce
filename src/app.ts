@@ -1,4 +1,6 @@
 import express from 'express';
+import {Request, Response} from 'express';
+
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 const corsOptions = {
@@ -68,6 +70,9 @@ app.use('/user', userRouter);
 app.use('/product', productRouter);
 app.use('/collection', collectionRouter);
 app.use('/payment', paymentRouter);
+app.get('/', (req: Request, res: Response) => {
+    res.send('Esse servidor só recebe pedidos de ' + process.env.BASE_URL_WEB_APP);
+});
 
 
 export default app;
