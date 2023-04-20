@@ -5,7 +5,7 @@ module.exports = {
 		'^.+\\.ts?$': 'ts-jest',
 	},
 	transformIgnorePatterns: ['<rootDir>/node_modules/'],
-	collectCoverage: true,
+	collectCoverage: false,
 	collectCoverageFrom: [
 		'<rootDir>/src/controllers/**/*.{ts,tsx}',
 		'<rootDir>/src/services/**/*.{ts,tsx}'
