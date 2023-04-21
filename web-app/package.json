@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "react-scripts start",
+    "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "jest --passWithNoTests --detectOpenHandles",
     "deploy": "firebase deploy"
@@ -11,6 +11,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.1",
     "axios": "^1.2.2",
+    "firebase": "^9.20.0",
     "framer-motion": "^10.6.0",
     "radix-ui": "^1.0.1",
     "react": "^18.2.0",
