@@ -1,6 +1,5 @@
 import { useQuery } from 'react-query';
 import axios from 'libs/axios';
-import { z } from "zod";
 
 interface ILoginResponse {
     success: boolean;
@@ -8,20 +7,14 @@ interface ILoginResponse {
     message: string;
 }
 
-const formData = z.object({
-    email: z.string({required_error: "E-mail não informado."}),
-    password: z.string({required_error: "Senha não informada."})
-});
-
-type FormData = z.infer<typeof formData>;
+type FormData = {
+    email: string;
+    password: string;
+}
 
 export default function Login (formDataInput: FormData) {
 
     const loginQuery = useQuery('login', async () => {
-    
-        const parseResponse = formData.safeParse(formDataInput);
-        if(!parseResponse.success)
-            throw new Error(parseResponse.error.issues[0].message);
 
         const response = await axios.post('/user/login', formDataInput);
     
