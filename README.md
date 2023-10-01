@@ -1,6 +1,7 @@
 # Loja
 
 ## Descrição
+...
 
 ## Stacks utilizadas
 
